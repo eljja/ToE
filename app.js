@@ -259,6 +259,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeDimension = 4;
     let baseForceStrength = 1.0;
     let maxParticlesCount = 40;
+    let accretedCount = 0;
+    let horizonRipples = [];
+    let torsionBounceActive = false;
+    let bounceRadius = 0;
 
     function resizeSandboxCanvas() {
         if (sandboxView.classList.contains("active")) {
@@ -336,6 +340,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (currentMode === "string") {
             energyGauge.innerText = "Planck Scale (10^19 GeV)";
             convergenceStatus.innerText = "Vibrating strings...";
+            convergenceStatus.className = "info-value text-green";
+        } else if (currentMode === "horizon") {
+            energyGauge.innerText = "Holographic Bound / Space Inflation active";
+            convergenceStatus.innerText = "Accreting information bits...";
             convergenceStatus.className = "info-value text-green";
         }
     }
@@ -426,6 +434,43 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         }
+        else if (currentMode === "horizon") {
+            accretedCount = 0;
+            horizonRipples = [];
+            const centerX = w / 2;
+            const centerY = h / 2;
+            const horizonRadius = Math.min(w, h) * 0.28;
+
+            // 1. 사건의 지평선 안쪽의 아기 우주 입자들
+            for (let i = 0; i < maxParticlesCount / 2; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = Math.random() * horizonRadius * 0.7;
+                simParticles.push({
+                    x: centerX + Math.cos(angle) * r,
+                    y: centerY + Math.sin(angle) * r,
+                    vx: (Math.random() - 0.5) * 1.0,
+                    vy: (Math.random() - 0.5) * 1.0,
+                    size: Math.random() * 3 + 2,
+                    color: "rgba(161, 118, 255, 0.8)",
+                    isInside: true
+                });
+            }
+
+            // 2. 사건의 지평선 바깥쪽의 모태 우주 입자들
+            for (let i = 0; i < maxParticlesCount / 2; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = Math.random() * (Math.max(w, h) - horizonRadius) + horizonRadius + 30;
+                simParticles.push({
+                    x: centerX + Math.cos(angle) * r,
+                    y: centerY + Math.sin(angle) * r,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 4 + 2,
+                    color: "rgba(255, 215, 0, 0.7)",
+                    isInside: false
+                });
+            }
+        }
 
         animateSandbox();
     }
@@ -474,6 +519,8 @@ document.addEventListener("DOMContentLoaded", () => {
             updateStrongSimulation(w, h);
         } else if (currentMode === "string") {
             updateStringSimulation(w, h);
+        } else if (currentMode === "horizon") {
+            updateHorizonSimulation(w, h);
         }
 
         sandboxAnimationId = requestAnimationFrame(animateSandbox);
@@ -856,6 +903,238 @@ document.addEventListener("DOMContentLoaded", () => {
                     s.y += (dy / dist) * 2 * baseForceStrength;
                 }
             });
+        }
+    }
+
+    function updateHorizonSimulation(w, h) {
+        const centerX = w / 2;
+        const centerY = h / 2;
+        const baseRadius = Math.min(w, h) * 0.28;
+        // Spacetime expansion inside based on accreted count
+        const expansionScale = 1.0 + accretedCount * 0.015;
+        const horizonRadius = baseRadius * Math.min(1.5, expansionScale);
+
+        // Update Horizon Ripples
+        for (let i = horizonRipples.length - 1; i >= 0; i--) {
+            const ripple = horizonRipples[i];
+            ripple.phase += 0.08;
+            ripple.opacity *= 0.95;
+            if (ripple.opacity < 0.05) {
+                horizonRipples.splice(i, 1);
+            }
+        }
+
+        // 1. Draw Spacetime grid *inside* the horizon (expanding)
+        sandboxCtx.strokeStyle = "rgba(161, 118, 255, 0.08)";
+        sandboxCtx.lineWidth = 1;
+        const gridLines = 14;
+        
+        // Circular spacetime mesh representing expanding metric inside black hole
+        for (let i = 1; i <= gridLines; i++) {
+            const r = (horizonRadius / gridLines) * i;
+            sandboxCtx.beginPath();
+            sandboxCtx.arc(centerX, centerY, r, 0, Math.PI * 2);
+            sandboxCtx.stroke();
+        }
+        for (let i = 0; i < 24; i++) {
+            const angle = (i * Math.PI * 2) / 24;
+            sandboxCtx.beginPath();
+            sandboxCtx.moveTo(centerX, centerY);
+            sandboxCtx.lineTo(centerX + Math.cos(angle) * horizonRadius, centerY + Math.sin(angle) * horizonRadius);
+            sandboxCtx.stroke();
+        }
+
+        // 2. Draw Torsion Bounce Shockwaves at r -> 0
+        if (torsionBounceActive) {
+            bounceRadius += 4;
+            if (bounceRadius > horizonRadius) {
+                torsionBounceActive = false;
+            } else {
+                sandboxCtx.strokeStyle = `rgba(255, 0, 127, ${1 - bounceRadius / horizonRadius})`;
+                sandboxCtx.lineWidth = 3;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(centerX, centerY, bounceRadius, 0, Math.PI * 2);
+                sandboxCtx.stroke();
+            }
+        }
+
+        // 3. Draw Event Horizon Boundary (Glowing Ring)
+        sandboxCtx.strokeStyle = "rgba(0, 240, 255, 0.4)";
+        sandboxCtx.lineWidth = 4;
+        sandboxCtx.shadowColor = "rgba(0, 240, 255, 0.5)";
+        sandboxCtx.shadowBlur = 15;
+        
+        // Draw the main circle with ripple distortions
+        sandboxCtx.beginPath();
+        const segments = 120;
+        for (let i = 0; i <= segments; i++) {
+            const angle = (i * Math.PI * 2) / segments;
+            let currentRadius = horizonRadius;
+            
+            // Add ripple deformations
+            horizonRipples.forEach(ripple => {
+                const diff = Math.abs(angle - ripple.angle);
+                if (diff < 0.5) {
+                    currentRadius += Math.sin(ripple.phase) * 12 * ripple.opacity * Math.cos((diff / 0.5) * Math.PI / 2);
+                }
+            });
+
+            // Dimension warp wave (visualize 10D/11D extra dimensions folding)
+            if (activeDimension > 4) {
+                currentRadius += Math.sin(angle * 8 + Date.now() * 0.005) * 2 * (activeDimension - 3);
+            }
+
+            const x = centerX + Math.cos(angle) * currentRadius;
+            const y = centerY + Math.sin(angle) * currentRadius;
+            if (i === 0) sandboxCtx.moveTo(x, y);
+            else sandboxCtx.lineTo(x, y);
+        }
+        sandboxCtx.closePath();
+        sandboxCtx.stroke();
+        sandboxCtx.shadowBlur = 0;
+
+        // 4. Update & Spawn particles
+        // Auto-spawn outer parent particles if they run low
+        const outerCount = simParticles.filter(p => !p.isInside).length;
+        if (outerCount < maxParticlesCount / 2) {
+            const angle = Math.random() * Math.PI * 2;
+            const r = Math.max(w, h) * 0.6;
+            simParticles.push({
+                x: centerX + Math.cos(angle) * r,
+                y: centerY + Math.sin(angle) * r,
+                vx: 0,
+                vy: 0,
+                size: Math.random() * 4 + 2,
+                color: "rgba(255, 215, 0, 0.7)",
+                isInside: false
+            });
+        }
+
+        // Loop over particles
+        for (let i = simParticles.length - 1; i >= 0; i--) {
+            const p = simParticles[i];
+            
+            if (p.isInside) {
+                // --- INNER BABY UNIVERSE PARTICLES ---
+                const dx = p.x - centerX;
+                const dy = p.y - centerY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                // Keep them inside the horizon (soft boundary bounce)
+                if (dist > horizonRadius - p.size - 5) {
+                    const angle = Math.atan2(dy, dx);
+                    p.x = centerX + Math.cos(angle) * (horizonRadius - p.size - 6);
+                    p.vx = -Math.cos(angle) * Math.abs(p.vx) * 0.8;
+                    p.vy = -Math.sin(angle) * Math.abs(p.vy) * 0.8;
+                }
+
+                // Torsion Bounce: if a particle gets too close to the singularity center (r < 25)
+                if (dist < 25) {
+                    const angle = Math.atan2(dy, dx);
+                    p.vx = Math.cos(angle) * 3 * baseForceStrength;
+                    p.vy = Math.sin(angle) * 3 * baseForceStrength;
+                    p.x = centerX + Math.cos(angle) * 26;
+                    
+                    // Trigger shockwave
+                    torsionBounceActive = true;
+                    bounceRadius = 15;
+                }
+
+                // Drag to mouse (if inside and mouse down)
+                if (mouse.isDown && dist < horizonRadius) {
+                    const mdx = mouse.x - p.x;
+                    const mdy = mouse.y - p.y;
+                    const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                    if (mdist > 5 && mdist < 150) {
+                        p.vx += (mdx / mdist) * 0.1 * baseForceStrength;
+                        p.vy += (mdy / mdist) * 0.1 * baseForceStrength;
+                    }
+                }
+
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vx *= 0.98;
+                p.vy *= 0.98;
+
+                // Draw inner particles
+                sandboxCtx.fillStyle = p.color;
+                sandboxCtx.shadowColor = p.color;
+                sandboxCtx.shadowBlur = 6;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                sandboxCtx.fill();
+                sandboxCtx.shadowBlur = 0;
+            } 
+            else {
+                // --- OUTER PARENT UNIVERSE PARTICLES (Accretion) ---
+                const dx = centerX - p.x;
+                const dy = centerY - p.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                // Gravitational pull of the black hole
+                const gravityStrength = 0.5 * baseForceStrength;
+                if (dist > 5) {
+                    p.vx += (dx / dist) * gravityStrength;
+                    p.vy += (dy / dist) * gravityStrength;
+                }
+
+                // Drag by mouse
+                if (mouse.isDown) {
+                    const mdx = mouse.x - p.x;
+                    const mdy = mouse.y - p.y;
+                    const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                    if (mdist < 150) {
+                        p.vx += (mdx / (mdist || 1)) * 0.25 * baseForceStrength;
+                        p.vy += (mdy / (mdist || 1)) * 0.25 * baseForceStrength;
+                    }
+                }
+
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vx *= 0.97;
+                p.vy *= 0.97;
+
+                // Collision detection with Event Horizon Circle
+                if (dist <= horizonRadius + p.size) {
+                    // Accrete particle!
+                    const collisionAngle = Math.atan2(p.y - centerY, p.x - centerX);
+                    
+                    // Create horizon ripple
+                    horizonRipples.push({
+                        angle: collisionAngle,
+                        phase: 0,
+                        opacity: 1.0
+                    });
+
+                    // Increment accreted count
+                    accretedCount++;
+                    valParticlesText.innerText = accretedCount; // display count dynamically in UI
+
+                    // Spawn baby universe particle inside
+                    simParticles.push({
+                        x: centerX + Math.cos(collisionAngle) * (horizonRadius * 0.8),
+                        y: centerY + Math.sin(collisionAngle) * (horizonRadius * 0.8),
+                        vx: -Math.cos(collisionAngle) * 2,
+                        vy: -Math.sin(collisionAngle) * 2,
+                        size: Math.random() * 3 + 2,
+                        color: "rgba(161, 118, 255, 0.9)",
+                        isInside: true
+                    });
+
+                    // Remove this parent particle from array
+                    simParticles.splice(i, 1);
+                    continue;
+                }
+
+                // Draw outer particle (Golden energy bits)
+                sandboxCtx.fillStyle = p.color;
+                sandboxCtx.shadowColor = p.color;
+                sandboxCtx.shadowBlur = 4;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                sandboxCtx.fill();
+                sandboxCtx.shadowBlur = 0;
+            }
         }
     }
 });
