@@ -342,8 +342,8 @@ document.addEventListener("DOMContentLoaded", () => {
             convergenceStatus.innerText = "Vibrating strings...";
             convergenceStatus.className = "info-value text-green";
         } else if (currentMode === "horizon") {
-            energyGauge.innerText = "Holographic Bound / Space Inflation active";
-            convergenceStatus.innerText = "Accreting information bits...";
+            energyGauge.innerText = "HNM Matrix Scale N = " + (20 + accretedCount);
+            convergenceStatus.innerText = "Information accretion active";
             convergenceStatus.className = "info-value text-green";
         }
     }
@@ -1109,6 +1109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Increment accreted count
                     accretedCount++;
                     valParticlesText.innerText = accretedCount; // display count dynamically in UI
+                    updateEnergyStatus(); // update dynamic HNM matrix label
 
                     // Spawn baby universe particle inside
                     simParticles.push({
