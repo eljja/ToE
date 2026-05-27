@@ -148,6 +148,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Document Loader & Markdown/Math Parser
     // ----------------------------------------------------
     function getLocalizedDocName(docName) {
+        if (docName === 'README.md') {
+            return state.currentLang === 'en' ? 'README.md' : 'README_ko.md';
+        }
         if (state.currentLang === 'en' && docName.endsWith('.md')) {
             return docName.replace('.md', '_en.md');
         }
