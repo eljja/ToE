@@ -222,12 +222,14 @@ document.addEventListener("DOMContentLoaded", () => {
             markdownContainer.style.opacity = "1";
         } catch (error) {
             console.error(error);
+            const title = state.currentLang === 'en' ? "Error loading document" : "문서 로딩 중 에러가 발생했습니다";
+            const subtitle = state.currentLang === 'en' ? "Please check if the file exists or run on a local web server/GitHub Pages." : "서버(GitHub Pages) 또는 로컬 웹서버를 구동하여 확인해 주세요.";
             markdownContainer.innerHTML = `
                 <div style="text-align: center; padding: 40px; color: var(--color-magenta);">
                     <i class="fa-solid fa-triangle-exclamation" style="font-size: 48px; margin-bottom: 16px;"></i>
-                    <h2>문서 로딩 중 에러가 발생했습니다</h2>
+                    <h2>${title}</h2>
                     <p style="margin-top: 8px;">${error.message}</p>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">서버(GitHub Pages) 또는 로컬 웹서버를 구동하여 확인해 주세요.</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">${subtitle}</p>
                 </div>
             `;
             loadingSpinner.style.display = "none";
