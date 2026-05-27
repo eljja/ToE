@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theory of Everything (ToE) R&D Portal</title>
-    <meta name="description" content="대통일장 이론(GUT) 및 모든 것의 이론(ToE) 통합 R&D 포털 - 4대 상호작용 및 양자 중력 연구 자료실">
+    <title>ToE R&D Portal - Horizon Noncommutative Matrix Theory</title>
+    <meta name="description" content="Grand Unified Theory and Theory of Everything R&D Portal - HNM Theory Showcase">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -60,58 +60,58 @@
             </div>
 
             <nav class="nav-menu">
-                <p class="nav-title">연구 분석 라이브러리</p>
+                <p class="nav-title" data-en="Research Library" data-ko="연구 분석 라이브러리">Research Library</p>
                 <ul>
                     <li>
                         <button class="nav-btn active" data-doc="README.md">
                             <i class="fa-solid fa-compass"></i>
-                            <span>Overview</span>
+                            <span data-en="Overview" data-ko="Overview">Overview</span>
                         </button>
                     </li>
                     <li>
                         <button class="nav-btn" data-doc="01_electroweak_theory.md">
                             <i class="fa-solid fa-bolt"></i>
-                            <span>01. 전기약작용 이론</span>
+                            <span data-en="01. Electroweak Theory" data-ko="01. 전기약작용 이론">01. Electroweak Theory</span>
                         </button>
                     </li>
                     <li>
                         <button class="nav-btn" data-doc="02_grand_unified_theories.md">
                             <i class="fa-solid fa-circle-nodes"></i>
-                            <span>02. 대통일장 이론 (GUT)</span>
+                            <span data-en="02. Grand Unified Theories (GUT)" data-ko="02. 대통일장 이론 (GUT)">02. Grand Unified Theories (GUT)</span>
                         </button>
                     </li>
                     <li>
                         <button class="nav-btn" data-doc="03_quantum_gravity_toe.md">
                             <i class="fa-solid fa-tornado"></i>
-                            <span>03. 양자 중력 & ToE</span>
+                            <span data-en="03. Quantum Gravity & ToE" data-ko="03. 양자 중력 & ToE">03. Quantum Gravity & ToE</span>
                         </button>
                     </li>
                     <li>
                         <button class="nav-btn" data-doc="04_alternative_paradigms.md">
                             <i class="fa-solid fa-infinity"></i>
-                            <span>04. 대안적 패러다임</span>
+                            <span data-en="04. Alternative Paradigms" data-ko="04. 대안적 패러다임">04. Alternative Paradigms</span>
                         </button>
                     </li>
                     <li>
                         <button class="nav-btn" data-doc="05_black_hole_cosmology.md">
                             <i class="fa-solid fa-circle-dot"></i>
-                            <span>05. 블랙홀 우주론 & 홀로그래피</span>
+                            <span data-en="05. Black Hole Cosmology & Holography" data-ko="05. 블랙홀 우주론 & 홀로그래피">05. Black Hole Cosmology & Holography</span>
                         </button>
                     </li>
                     <li>
                         <button class="nav-btn" data-doc="06_horizon_unification_math.md">
                             <i class="fa-solid fa-square-root-variable"></i>
-                            <span>06. 수학적 수식 공식화</span>
+                            <span data-en="06. Horizon Noncommutative Matrix Theory" data-ko="06. 지평선 비가환 행렬 이론">06. Horizon Noncommutative Matrix Theory</span>
                         </button>
                     </li>
                 </ul>
 
-                <p class="nav-title">인터랙티브 툴</p>
+                <p class="nav-title" data-en="Interactive Tools" data-ko="인터랙티브 툴">Interactive Tools</p>
                 <ul>
                     <li>
                         <button class="nav-btn" data-action="sandbox">
                             <i class="fa-solid fa-flask-ripple"></i>
-                            <span>Quantum Sandbox</span>
+                            <span data-en="Quantum Sandbox" data-ko="Quantum Sandbox">Quantum Sandbox</span>
                         </button>
                     </li>
                 </ul>
@@ -133,7 +133,10 @@
                     <span id="parent-crumb">Library</span> <i class="fa-solid fa-chevron-right separator"></i> <span id="current-crumb">Overview</span>
                 </div>
                 <div class="header-actions">
-                    <button id="theme-toggle" title="테마 전환"><i class="fa-solid fa-moon"></i></button>
+                    <button id="lang-toggle" class="lang-btn glass" title="Toggle Language (EN/KO)">
+                        <span class="lang-text">EN</span><i class="fa-solid fa-language"></i>
+                    </button>
+                    <button id="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
                     <a href="https://github.com/eljja/ToE" target="_blank" class="github-btn">
                         <i class="fa-brands fa-github"></i> GitHub Repo
                     </a>
@@ -146,7 +149,7 @@
                     <!-- Loading Spinner -->
                     <div id="loading" class="spinner-container">
                         <div class="spinner"></div>
-                        <p>문서를 불러오는 중입니다...</p>
+                        <p id="loading-text">Loading document...</p>
                     </div>
 
                     <!-- Rendered Document Content -->

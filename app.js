@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const state = {
         activeView: "doc-view", // 'doc-view' or 'sandbox-view'
         activeDoc: "README.md",
-        theme: "dark-theme"
+        theme: "dark-theme",
+        currentLang: "en"
     };
 
     // ----------------------------------------------------
@@ -18,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----------------------------------------------------
     const body = document.body;
     const themeToggleBtn = document.getElementById("theme-toggle");
+    const langToggleBtn = document.getElementById("lang-toggle");
+    const langText = langToggleBtn ? langToggleBtn.querySelector(".lang-text") : null;
     const docView = document.getElementById("doc-view");
     const sandboxView = document.getElementById("sandbox-view");
     const markdownContainer = document.getElementById("markdown-container");
@@ -42,6 +45,48 @@ document.addEventListener("DOMContentLoaded", () => {
             themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
         }
     });
+
+    // ----------------------------------------------------
+    // Language Management
+    // ----------------------------------------------------
+    function updateUITexts() {
+        document.querySelectorAll("[data-en][data-ko]").forEach(el => {
+            el.innerText = el.getAttribute("data-" + state.currentLang);
+        });
+        
+        // Update breadcrumb
+        const activeBtn = document.querySelector(".nav-btn.active span");
+        if (activeBtn) {
+            currentCrumb.innerText = activeBtn.innerText;
+        }
+        
+        const parentCrumbText = document.getElementById("parent-crumb");
+        if (parentCrumbText) {
+            if (state.activeView === "doc-view") {
+                parentCrumbText.innerText = state.currentLang === "en" ? "Library" : "라이브러리";
+            } else {
+                parentCrumbText.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
+            }
+        }
+    }
+
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener("click", () => {
+            state.currentLang = state.currentLang === 'en' ? 'ko' : 'en';
+            if (langText) langText.innerText = state.currentLang.toUpperCase();
+            document.documentElement.lang = state.currentLang;
+            
+            updateUITexts();
+            
+            // Reload the document if in doc-view
+            if (state.activeView === "doc-view") {
+                loadMarkdown(state.activeDoc);
+            }
+        });
+    }
+
+    // Initialize UI texts on startup
+    updateUITexts();
 
     // ----------------------------------------------------
     // Starry Space Background Canvas
@@ -102,23 +147,62 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----------------------------------------------------
     // Document Loader & Markdown/Math Parser
     // ----------------------------------------------------
+    function getLocalizedDocName(docName) {
+        if (state.currentLang === 'en' && docName.endsWith('.md')) {
+            return docName.replace('.md', '_en.md');
+        }
+        return docName;
+    }
+
     async function loadMarkdown(docName) {
         state.activeDoc = docName;
         loadingSpinner.style.display = "flex";
-        markdownContainer.style.opacity = "0.3";
+        const loadingText = document.getElementById("loading-text");
+        if (loadingText) {
+            loadingText.innerText = state.currentLang === 'en' ? "Loading document..." : "문서를 불러오는 중입니다...";
+        }
+        const targetFile = getLocalizedDocName(docName);
 
         try {
-            const response = await fetch(docName);
+            let response = await fetch(targetFile);
+            if (!response.ok && state.currentLang === 'en') {
+                // Fallback to original (Korean) if English file doesn't exist
+                response = await fetch(docName);
+            }
             if (!response.ok) {
-                throw new Error("문서를 찾을 수 없습니다.");
+                throw new Error(state.currentLang === 'en' ? "Document not found." : "문서를 찾을 수 없습니다.");
             }
             let text = await response.text();
 
             // Pre-process GitHub-style alerts in Markdown
             text = preprocessAlerts(text);
 
+            // 수학 수식 보호 (KaTeX 렌더링 오류 방지: marked.js가 수식 내의 _, * 등을 변환하지 못하게 함)
+            const mathBlocks = {};
+            let mathIndex = 0;
+            // $$ ... $$ 블록 보호
+            text = text.replace(/\$\$([\s\S]+?)\$\$/g, (match) => {
+                const token = `__MATH_BLOCK_${mathIndex}__`;
+                mathBlocks[token] = match;
+                mathIndex++;
+                return token;
+            });
+            // $ ... $ 인라인 보호
+            text = text.replace(/\$([^\n\$]+?)\$/g, (match) => {
+                const token = `__MATH_INLINE_${mathIndex}__`;
+                mathBlocks[token] = match;
+                mathIndex++;
+                return token;
+            });
+
             // Render Markdown using Marked.js
-            const renderedHtml = marked.parse(text);
+            let renderedHtml = marked.parse(text);
+
+            // 수학 수식 복원
+            for (const [token, math] of Object.entries(mathBlocks)) {
+                renderedHtml = renderedHtml.replace(token, math);
+            }
+
             markdownContainer.innerHTML = renderedHtml;
 
             // Render Mathematical Formulas using KaTeX
@@ -215,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 docView.classList.add("active");
                 sandboxView.classList.remove("active");
                 
-                parentCrumb.innerText = "Library";
+                parentCrumb.innerText = state.currentLang === "en" ? "Library" : "라이브러리";
                 currentCrumb.innerText = btn.querySelector("span").innerText;
 
                 loadMarkdown(doc);
@@ -225,8 +309,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 docView.classList.remove("active");
                 sandboxView.classList.add("active");
 
-                parentCrumb.innerText = "Interactive";
-                currentCrumb.innerText = "Quantum Sandbox";
+                parentCrumb.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
+                currentCrumb.innerText = state.currentLang === "en" ? "Quantum Sandbox" : "양자 샌드박스";
 
                 initSandbox();
             }
