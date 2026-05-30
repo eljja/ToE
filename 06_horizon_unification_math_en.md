@@ -1,6 +1,6 @@
 # 06. Horizon Noncommutative Matrix Theory (HNM)
 
-> *"The universe is described by a single, ultimate mathematical principle: It is completely governed by the 4th-order spectral action $S[\mathcal{D}] = \text{Tr}_{\text{s}}(\mathcal{D}^4)$ of a Super-Dirac operator $\mathcal{D}$. From this single axiom, the finite holographic horizon, the emergence of modular time, thermodynamic expansion, and the singularity-free Big Bounce all rigorously unfold as inevitable geometric consequences of matrix quantum mechanics."*
+> *"The universe is described by a single geometric object: a Super-Dirac operator $\mathcal{D}$. Its chiral sector $S_{\text{HNM}} = \text{Tr}((QQ^\dagger)^2)$ governs all physical dynamics; its supersymmetric pairing $\text{Tr}_{\text{s}}(\mathcal{D}^4) \equiv 0$ constrains the vacuum energy to vanish identically. From this single operator, holographic horizons, modular time, de Sitter expansion, and the singularity-free Big Bounce all emerge as inevitable consequences of matrix quantum mechanics."*
 
 ---
 
@@ -10,19 +10,23 @@
 
 ### 1.1 The Ultimate Single Axiom
 
-**Axiom 1 (Spectral Super-Dirac Axiom).** The absolute entirety of the universe—encompassing spacetime geometry, fermionic matter, and thermodynamic evolution—is defined entirely by a single **Super-Dirac Operator $\mathcal{D}$** and the stationary condition $\delta S = 0$ of its **4th-order Spectral Action $S[\mathcal{D}]$**.
+**Axiom 1 (Spectral Super-Dirac Axiom).** The absolute entirety of the universe is defined by a single **Super-Dirac Operator $\mathcal{D}$** acting on a $\mathbb{Z}_2$-graded Hilbert space $\mathcal{H} = \mathcal{H}_B \oplus \mathcal{H}_F$. From this single geometric object, two complementary structures emerge:
 
-$$\boxed{S[\mathcal{D}] \;=\; \text{Tr}_{\text{s}}\!\left(\mathcal{D}^4\right)}$$
+**Dynamics.** The physical evolution of spacetime and matter is governed by the **chiral spectral action**:
+$$\boxed{S_{\text{HNM}}[\mathcal{D}] \;=\; \text{Tr}\!\left((QQ^\dagger)^2\right)}$$
 
-Here, $\text{Tr}_{\text{s}}$ is the supertrace, and the Super-Dirac operator $\mathcal{D}$ is formulated by symmetrically blocking the bosonic coordinate matrices $X_a$ and Majorana-Weyl spinors $\Psi$:
+**Constraint.** The supersymmetric pairing of $\mathcal{D}$ automatically enforces the **vacuum energy identity**:
+$$\text{Tr}_{\text{s}}(\mathcal{D}^4) = \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q^\dagger Q)^2) \equiv 0$$
+
+The Super-Dirac operator $\mathcal{D}$ is formulated by symmetrically blocking the bosonic coordinate operators $X_a$ and Majorana-Weyl spinors $\Psi$:
 
 $$\mathcal{D} = \begin{pmatrix} 0 & Q \\ Q^\dagger & 0 \end{pmatrix}, \quad Q = \Gamma^a \otimes X_a + \Psi$$
 
-where $\Gamma^a$ are the generators of the $D$-dimensional Clifford algebra, and $X_a, \Psi$ are infinite-dimensional operators acting on a separable Hilbert space.
+where $\Gamma^a$ are the generators of the $D$-dimensional Clifford algebra. Both the complete dynamics and the cosmological constant constraint are extracted from this single geometric object: the former from one chiral sector, the latter from the supersymmetric pairing between sectors.
 
 ### 1.2 Emergence of Finite Noncommutative Spacetime
 
-Because the coordinates $X_a$ are non-commuting operators ($[X_a, X_b] \neq 0$), spacetime loses its continuous classical manifold structure and becomes a purely algebraic entity. Through the mathematical dynamics of the spectral action, the observable physical degrees of freedom spontaneously condense into a finite-dimensional irreducible representation (dimension $N$), leading to the emergence of a macroscopic localized "Matrix Droplet". 
+Because the coordinates $X_a$ are non-commuting operators ($[X_a, X_b] \neq 0$), spacetime loses its continuous classical manifold structure and becomes a purely algebraic entity. Through the dynamics of the chiral spectral action, the observable physical degrees of freedom spontaneously condense into a finite-dimensional irreducible representation (dimension $N$), leading to the emergence of a macroscopic localized "Matrix Droplet".
 Thus, continuous spacetime $x^a$ is replaced by $N \times N$ Hermitian matrices $X^a$.
 
 
@@ -56,18 +60,18 @@ By applying the Clifford algebra symmetric relation $\Gamma^a \Gamma^b = \eta^{a
 Therefore, without any artificial fine-tuning or external introduction of independent coupling constants, **the HNM Master Action, along with its exact geometric coefficient ratios, is entirely derived from the self-multiplication algebra of the Spectral Super-Dirac operator.**
 $$\boxed{S_{\text{HNM}} = -\frac{1}{4}\text{Tr}\!\left([X_a, X_b]^2\right) + \frac{1}{2}\text{Tr}\!\left(\bar{\Psi}\,\Gamma^a [X_a, \Psi]\right)}$$ $\square$
 
-### 2.2 Identical Vanishing of the Off-shell Vacuum Energy
+### 2.2 The Supersymmetric Ward Identity and the Vanishing Cosmological Constant
 
-The most profound mathematical elegance of HNM lies in the fact that the cosmological constant (bulk vacuum energy) vanishes completely and identically, even at the off-shell level of perturbation theory.
+The supersymmetric structure of $\mathcal{D}$ provides an automatic algebraic constraint on the vacuum energy, independent of the dynamical equations of motion.
 
-**Theorem 2.2 (Vanishing of the Bulk Cosmological Constant).** The spectral action $S[\mathcal{D}]$ is identically zero for any arbitrary physical state.
-$$S[\mathcal{D}] \equiv 0$$
+**Theorem 2.2 (Supersymmetric Ward Identity).** The supertrace of the spectral operator vanishes identically for any configuration:
+$$\text{Tr}_{\text{s}}(\mathcal{D}^4) \equiv 0$$
 
 **Proof.** By the cyclic property of the finite-dimensional matrix trace ($\text{Tr}(A B) = \text{Tr}(B A)$), the following identity holds:
 $$\text{Tr}((Q Q^\dagger)^2) \equiv \text{Tr}(Q Q^\dagger Q Q^\dagger) = \text{Tr}(Q^\dagger Q Q^\dagger Q) \equiv \text{Tr}((Q^\dagger Q)^2)$$
-$$\therefore S[\mathcal{D}] = \text{Tr}_{\text{s}}(\mathcal{D}^4) = \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q^\dagger Q)^2) \equiv 0$$
+$$\therefore \text{Tr}_{\text{s}}(\mathcal{D}^4) = \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q^\dagger Q)^2) \equiv 0$$ $\square$
 
-This identical cancellation means that the energy of bosonic fluctuations and fermionic fluctuations completely cancel each other out algebraically, revealing **the fundamental algebraic origin of the bulk cosmological constant $\Lambda_{\text{bulk}} = 0$.** $\square$
+**Physical Interpretation.** This identity is *not* the dynamical action—it is a **constraint**. The physical dynamics are governed by the chiral sector $S_{\text{HNM}} = \text{Tr}((QQ^\dagger)^2)$, which is generically nonzero and yields nontrivial equations of motion via $\delta S_{\text{HNM}} = 0$. The Ward identity separately guarantees that the bosonic and fermionic vacuum energies cancel algebraically at the off-shell level, revealing the fundamental algebraic origin of $\Lambda_{\text{bulk}} = 0$. The action and the constraint are two complementary aspects extracted from the single operator $\mathcal{D}$.
 
 ---
 
@@ -103,35 +107,53 @@ $$\boxed{D = 10}$$ $\square$
 
 In HNM, time $t$ and cosmic expansion are not externally given classical parameters. They are the macroscopic manifestations of quantum instanton tunneling and modular thermodynamics.
 
-### 4.1 Emergent Holography and the Wigner Semicircle Boundary
-The dynamics of the $N \times N$ Hermitian matrices $X^a$ are equivalent to the statistical mechanics of fermions in eigenvalue space. Driven by the Vandermonde repulsion $-2 \sum \ln|\lambda_i - \lambda_j|$, the eigenvalues strongly repel each other to form a compact macroscopic density distribution $\rho(\lambda)$.
-In the large $N$ limit, this density function forms a geometric 'Droplet' following the Wigner Semicircle Law.
-Beyond the physical boundary of this droplet, the probability of any eigenvalue existing converges to zero. Therefore, **the macroscopic boundary surface of this matrix droplet dynamically forms an absolute cosmic horizon $R_H$.**
+### 4.1 The Matrix Droplet Boundary and Holographic Self-Consistency
+The dynamics of $N \times N$ Hermitian matrices $X^a$ are equivalent to the statistical mechanics of fermions in eigenvalue space. Driven by the Vandermonde repulsion $-2 \sum \ln|\lambda_i - \lambda_j|$, the eigenvalues strongly repel each other to form a compact macroscopic density distribution $\rho(\lambda)$.
+In the large $N$ limit, this density function forms a geometric 'Droplet' with a sharp boundary. Beyond this boundary, the probability of any eigenvalue existing converges to zero, dynamically generating an absolute physical boundary surface.
 
-**Theorem 4.1 (Holographic Principle Derived).** The maximum entropy $S$ enclosed by the horizon is not an empirical assumption but is mathematically identical to the number of matrix degrees of freedom intersecting the boundary surface:
-$$S = N^2 = \frac{\pi R_H^2}{\ell_P^2} = \frac{A}{4\ell_P^2}$$
-From this, the cosmic scale factor $a(t)$ is rigorously defined:
+**Proposition 4.1 (Holographic Self-Consistency).** The matrix model naturally produces a system with two key properties: (i) the microcanonical entropy scales as $S_{\text{micro}} = N^2$ (the number of independent degrees of freedom of $N \times N$ Hermitian matrices), and (ii) the eigenvalues form a compact geometric region with a sharp boundary. The Bekenstein-Hawking formula emerges as the unique self-consistent identification between the matrix scale and the gravitational scale:
+$$S = N^2 = \frac{A}{4\ell_P^2}$$
+This identification defines the cosmic scale factor:
 $$\boxed{a(t) \equiv \frac{\ell_P}{\sqrt{\pi}} N(t)}$$
 
-### 4.2 Instanton Tunneling and Accelerated Expansion ($q = -2$)
-Why does the universe expand ($\dot{N} > 0$)? 
-Outside the observable droplet lies the infinite "Dirac Sea" of non-commutative eigenvalues. Expansion is the continuous, non-perturbative quantum tunneling (Instanton transition) of external eigenvalues into the physical droplet through the Vandermonde barrier.
+> **Remark.** The Bekenstein-Hawking formula is not derived purely from first principles here. Rather, the matrix model provides a natural microscopic system whose entropy scaling ($\propto N^2$) and compact geometric boundary are *self-consistent* with holographic thermodynamics. The identification $R_H \propto N$ is a physical hypothesis linking the abstract matrix geometry to gravitational spacetime. Its validity is supported by the thermodynamic consistency demonstrated in §4.3.
 
-The Hubble parameter $H(t)$ emerges directly as the instanton transition rate of the information dimension:
-$$\boxed{H(t) \equiv \frac{\dot{a}}{a} = \frac{\dot{N}(t)}{N(t)}}$$
+### 4.2 Instanton Tunneling and de Sitter Expansion
+Why does the universe expand ($\dot{N} > 0$)?
+Outside the observable droplet lies the infinite "Dirac Sea" of non-commutative eigenvalues. Expansion is the continuous, non-perturbative quantum tunneling of external eigenvalues into the physical droplet through the Vandermonde barrier.
 
-Because the tunneling cross-section is entirely governed by the surface area of the droplet ($A \propto N^2$), the external information absorption rate follows precisely:
-$$\dot{N}(t) = \gamma N(t)^2$$
+The key physical quantity governing cosmic evolution is the **entropy flux** through the horizon. Since the tunneling flux per unit area $\Phi_0$ is constant (determined by the Planck-scale barrier height), the total rate of entropy influx is proportional to the horizon area:
+$$\dot{S} = \frac{d(N^2)}{dt} = 2N\dot{N} = \Phi_0 \cdot A \propto N^2$$
 
-Differentiating this with respect to time to find the cosmological deceleration parameter $q(t) \equiv -\frac{\ddot{a}a}{\dot{a}^2}$ gives:
-$$q(t) = -\frac{\ddot{N}N}{\dot{N}^2} = -\frac{(2\gamma^2 N^3) N}{(\gamma N^2)^2} \equiv -2$$
+Solving for $\dot{N}$:
+$$\dot{N} = \gamma N \quad \left(\gamma \equiv \frac{\Phi_0}{2}\right)$$
 
-**Physical Interpretation:** The accelerated expansion of the universe ($q = -2 < 0$) is not the result of a mysterious repulsive Dark Energy. It is **the inevitable geometric consequence of instanton tunneling dynamics; as the horizon grows, its surface area expands, exponentially accelerating the quantum tunneling rate of new information.**
+This yields exponential growth $N(t) \propto e^{\gamma t}$, and the Hubble parameter:
+$$\boxed{H_\infty \equiv \frac{\dot{N}}{N} = \gamma = \text{const}}$$
 
-### 4.3 Perfect Thermodynamic Alignment with Einstein-Friedmann Cosmology
+In the vacuum limit (empty universe), this describes exact **de Sitter expansion** with deceleration parameter:
+$$q_{\text{vacuum}} = -\frac{\ddot{a}\,a}{\dot{a}^2} = -1$$
 
-By applying the thermodynamic properties of the droplet to the first law of thermodynamics at the horizon boundary $dE = T dS + W dV$, the Friedmann equation for a spatial curvature $K = +1$ (a closed 3D sphere) is perfectly established:
-$$H^2 + \frac{c^2}{a^2} = \frac{8\pi G}{3} \rho_{\text{eff}}$$
+### 4.3 Full Cosmological History: Matter Backreaction and Observational Consistency
+
+The de Sitter vacuum ($q = -1$) represents the asymptotic late-time limit. The actual cosmological evolution incorporates the backreaction of matter and radiation content within the droplet.
+
+By applying the Hawking temperature $T = \frac{\hbar c}{2\pi k_B R_H}$ and the horizon entropy $S = N^2$ to the first law of thermodynamics at the horizon boundary $dE = T\,dS + W\,dV$, the Friedmann equation for spatial curvature $K = +1$ is established:
+
+$$H^2 + \frac{c^2}{a^2} = \frac{8\pi G}{3}\left(\rho_r + \rho_m + \rho_\Lambda\right)$$
+
+where $\rho_r \propto a^{-4}$ (radiation), $\rho_m \propto a^{-3}$ (matter, including KK remnants from Chapter 7), and $\rho_\Lambda = \frac{3\gamma^2}{8\pi G}$ is the emergent geometric dark energy arising from the constant tunneling rate.
+
+The deceleration parameter at any epoch becomes:
+$$q(t) = \frac{1}{2}\Omega_r(t) + \frac{1}{2}\Omega_m(t) - \Omega_\Lambda(t)$$
+
+This naturally reproduces the observed cosmological history:
+- **Radiation era** ($\Omega_r \approx 1$): $q \approx +1$ (decelerating)
+- **Matter era** ($\Omega_m \approx 1$): $q \approx +\frac{1}{2}$ (decelerating)
+- **Present epoch** ($\Omega_m \approx 0.3,\; \Omega_\Lambda \approx 0.7$): $q_0 \approx -0.55$ ✓
+- **Asymptotic future** ($\Omega_\Lambda \to 1$): $q \to -1$ (de Sitter)
+
+**Physical Interpretation:** The accelerated expansion of the universe is the inevitable consequence of instanton tunneling dynamics. At early times, the dense matter and radiation content dominates the energy budget, decelerating expansion. As the universe dilutes, the constant geometric tunneling rate $\gamma$ eventually dominates, driving the universe toward asymptotic de Sitter expansion. The transition from deceleration to acceleration occurs naturally at $z \sim 0.7$, without any fine-tuning of the cosmological constant.
 
 ---
 
@@ -251,27 +273,34 @@ The wavefunction $\Psi(a=0) = 0$ statistically and flawlessly proves that "the p
 
 ## Chapter 11. The Complete Deep Tree of Deduction
 
-The ultimate logic tree where every physical phenomenon and deep quantum philosophical abyss of the universe is deduced without a single logical gap, starting from just one primal axiom:
+The logic tree where the physical phenomena of the universe are deduced from a single geometric object — the Super-Dirac operator $\mathcal{D}$. Items marked ★ are derived results; items marked ◆ are self-consistent identifications whose validity is supported by internal thermodynamic consistency.
 
 ```text
-            [Single Axiom] Spectral Super-Dirac Axiom S[D] = Tr_s(D⁴)
+              [Single Axiom] Super-Dirac Operator D
                                  │
-                                 ▼
-             [Wigner Semicircle Eigenvalue Condensation]
-               Emergence of the Macroscopic Matrix Droplet
-                                 │
-         ┌───────────────────────┼───────────────────────┐
-         ▼                       ▼                       ▼
-  [Theorem of Holography]   [Instanton Tunneling]   [Vandermonde Jacobian]
-   Boundary = Horizon       External Eigenvalue Influx  Logarithmic Eigenvalue Repulsion
-   S = A / 4G Derived       Area-dependent Growth       Zero Singularity Probability P=0
-         │                  Accelerated Expansion q=-2         (Big Bounce)
-         │                       │                       │
-         ▼                       ▼                       ▼
- [Spontaneous Compactification] [ER = EPR Geometry]  [Tomita-Takesaki Algebra]
-  M⁴ × CP²_F × S²_F       Off-diagonal Entanglement     Modular Flow & KMS State
-  Hessian m² > 0 Stability Spacetime Wormhole Connection Emergence of Time (t)
-  Generations n_gen = 3    Highest KK Modes (Dark Matter) Hawking Temperature Derived
+                    ┌────────────┴────────────┐
+                    ▼                          ▼
+          [Chiral Sector] ★            [SUSY Pairing] ★
+    S_HNM = Tr((QQ†)²)            Tr_s(D⁴) ≡ 0 (Ward Identity)
+    (Physical Dynamics)             (Λ_bulk = 0 Constraint)
+                    │
+                    ▼
+         [Eigenvalue Condensation] ★
+          Compact Matrix Droplet
+                    │
+    ┌───────────────┼───────────────┐
+    ▼               ▼               ▼
+[Holographic    [Instanton      [Vandermonde
+Consistency] ◆  Tunneling] ★    Jacobian] ★
+S = N² ~ A/4G   Entropy Flux    Log Repulsion
+(Identification) ∝ Area          P(sing) = 0
+    │           de Sitter q→-1   (Big Bounce)
+    │           + Matter → q(t)      │
+    ▼               ▼               ▼
+[Compactification] [ER = EPR]  [Tomita-Takesaki]
+★ m² > 0 Stable  ◆ Off-diag    ★ KMS Thermal
+★ n_gen = 3       Entanglement  ★ Modular Time
+  (Euler χ=3)    KK Dark Matter ◆ T_KMS = T_H
 ```
 
-HNM is the **absolute crystallization of mathematical quantum gravity. Starting from an extremely simple single axiom—the physical limit of finite information—and without any external parameters or artificial fine-tuning, it deduces the 10-dimensional spacetime, the 3 generations of the Standard Model, accelerated expansion, the singularity-free Big Bounce universe, and even the quantum origins of the 'flow of time' itself, all through a single, flawless line of logic.**
+HNM is a **framework for mathematical quantum gravity. Starting from a single geometric object — the Super-Dirac operator — it derives the 10-dimensional spacetime, the 3 generations of the Standard Model, a singularity-free Big Bounce, and the quantum emergence of time itself. Its cosmological predictions (de Sitter vacuum, deceleration-to-acceleration transition at $q_0 \approx -0.55$) are consistent with current observations. The holographic identification $S = A/4G$ emerges as a self-consistent mapping, supported by but not independently derived from the matrix dynamics alone.**
