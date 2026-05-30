@@ -107,11 +107,11 @@ $$\boxed{D = 10}$$ $\square$
 
 In HNM, time $t$ and cosmic expansion are not externally given classical parameters. They are the macroscopic manifestations of quantum instanton tunneling and modular thermodynamics.
 
-### 4.1 The Matrix Droplet Boundary and Holographic Self-Consistency
-The dynamics of $N \times N$ Hermitian matrices $X^a$ are equivalent to the statistical mechanics of fermions in eigenvalue space. Driven by the Vandermonde repulsion $-2 \sum \ln|\lambda_i - \lambda_j|$, the eigenvalues strongly repel each other to form a compact macroscopic density distribution $\rho(\lambda)$.
-In the large $N$ limit, this density function forms a geometric 'Droplet' with a sharp boundary. Beyond this boundary, the probability of any eigenvalue existing converges to zero, dynamically generating an absolute physical boundary surface.
+### 4.1 Free Probability and Fuzzy Droplet Geometry
+In a multi-matrix model, the coordinates do not commute ($[X_a, X_b] \neq 0$), so the simple 1D Wigner Semicircle Law and scalar eigenvalue distributions are inapplicable. Instead, the joint distribution of non-commuting matrices in the large $N$ limit is governed by Voiculescu's **Free Probability Theory**.
+Driven by non-commutative Coulomb gas dynamics, these matrices form a bounded operator algebra and geometrically constitute a **"Fuzzy Droplet"** with a specific compact spectral radius. According to the Multivariate Free Semicircular Law, no microstates can exist beyond the algebraic spectral boundary of this droplet. This rigorous spectral boundary dynamically forms the absolute macroscopic cosmic horizon $R_H$.
 
-**Proposition 4.1 (Holographic Self-Consistency).** The matrix model naturally produces a system with two key properties: (i) the microcanonical entropy scales as $S_{\text{micro}} = N^2$ (the number of independent degrees of freedom of $N \times N$ Hermitian matrices), and (ii) the eigenvalues form a compact geometric region with a sharp boundary. The Bekenstein-Hawking formula emerges as the unique self-consistent identification between the matrix scale and the gravitational scale:
+**Proposition 4.1 (Holographic Self-Consistency).** The free probability of the non-commutative matrix model naturally produces two key properties: (i) the microcanonical entropy scales as $S_{\text{micro}} = N^2$ (the number of independent degrees of freedom of $N \times N$ matrices), and (ii) the non-commutative operator algebra forms a compact geometric region with a sharp spectral boundary. The Bekenstein-Hawking formula emerges as the unique self-consistent identification between the matrix scale and the gravitational scale:
 $$S = N^2 = \frac{A}{4\ell_P^2}$$
 This identification defines the cosmic scale factor:
 $$\boxed{a(t) \equiv \frac{\ell_P}{\sqrt{\pi}} N(t)}$$
@@ -122,7 +122,10 @@ $$\boxed{a(t) \equiv \frac{\ell_P}{\sqrt{\pi}} N(t)}$$
 Why does the universe expand ($\dot{N} > 0$)?
 Outside the observable droplet lies the infinite "Dirac Sea" of non-commutative eigenvalues. Expansion is the continuous, non-perturbative quantum tunneling of external eigenvalues into the physical droplet through the Vandermonde barrier.
 
-The key physical quantity governing cosmic evolution is the **entropy flux** through the horizon. Since the tunneling flux per unit area $\Phi_0$ is constant (determined by the Planck-scale barrier height), the total rate of entropy influx is proportional to the horizon area:
+The tunneling constant $\gamma$ that drives this expansion is not a phenomenological parameter, but is rigorously derived from an **Instanton Solution** of the non-commutative Yang-Mills action $\text{Tr}([X_a, X_b]^2)$. A quantum fluctuation $\delta X$ around the background vacuum $X_a^{(0)}$ forming a Fuzzy Sphere acts as a non-commutative instanton, transitioning the dimension from $N \to N+1$. Letting the classical action of this instanton configuration be $S_{\text{inst}}$, the tunneling probability density is completely determined geometrically:
+$$\gamma \propto \exp\left(-\frac{S_{\text{inst}}}{\hbar}\right)$$
+
+The key physical quantity governing cosmic evolution is the **entropy flux** through the horizon. Since the tunneling flux per unit area $\Phi_0$ is constant ($\Phi_0 \propto \gamma$), the total rate of entropy influx is proportional to the horizon area:
 $$\dot{S} = \frac{d(N^2)}{dt} = 2N\dot{N} = \Phi_0 \cdot A \propto N^2$$
 
 Solving for $\dot{N}$:
@@ -239,12 +242,12 @@ Therefore, the collection of these highest-order Kaluza-Klein modes—which are 
 
 # Part 2: Deep Quantum Origins and the Emergence of Time
 
-## Chapter 8. Tomita-Takesaki Algebra and the KMS Thermal State
+## Chapter 8. Pure Euclidean Geometry and Tomita-Takesaki Time
 
-We have previously described time $t$ as the growth of the matrix dimension. But fundamentally, how does the 'flow of time' itself emerge, and why does the universe have a temperature?
+We have previously described time $t$ as the growth of the matrix dimension. Fundamentally, since all bosonic coordinates $X_a$ in HNM are Hermitian matrices, the universe inherently possesses a **Euclidean space** signature, possessing only spatial properties. A fundamental 'time' coordinate $X_0$ does not exist, which entirely prevents the path integral instability (action unbounded from below) that plagues Lorentzian signatures. How, then, do the Lorentzian signature and the 'flow of time' itself emerge, and why does the universe have a temperature?
 
-### 8.1 Horizon Entanglement and the KMS Condition
-Since a macroscopic observer is confined inside the droplet horizon, the observable physical state is described by a noncommutative von Neumann algebra $\mathcal{M}$.
+### 8.1 The Absence of Fundamental Time and the Emergence of Modular Flow
+Physical time is not a fundamental coordinate, but an algebraic illusion of entanglement. Since a macroscopic observer is confined inside the droplet horizon, the observable physical state is described by a noncommutative von Neumann algebra $\mathcal{M}$.
 The vacuum state $|\Omega\rangle$ entangling the inside and outside of the horizon is separating and cyclic. According to the Tomita-Takesaki Theorem, this defines a modular operator $\Delta$ which generates a unique 1-parameter automorphism group:
 $$\sigma_s(A) = \Delta^{-is} A \Delta^{is} \quad (A \in \mathcal{M})$$
 
