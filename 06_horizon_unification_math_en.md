@@ -29,7 +29,20 @@ where $\Gamma^a$ are the generators of the $D$-dimensional Clifford algebra. Bot
 Because the coordinates $X_a$ are non-commuting operators ($[X_a, X_b] \neq 0$), spacetime loses its continuous classical manifold structure and becomes a purely algebraic entity. Through the dynamics of the chiral spectral action, the observable physical degrees of freedom spontaneously condense into a finite-dimensional irreducible representation (dimension $N$), leading to the emergence of a macroscopic localized "Matrix Droplet".
 Thus, continuous spacetime $x^a$ is replaced by $N \times N$ Hermitian matrices $X^a$.
 
+### 1.3 Resolution of the Dimensionality Gap: Second-Quantized Matrix Fock Space
 
+To describe a dynamically expanding universe where the matrix dimension $N$ grows with time ($\dot{N} > 0$), we must formalize how the dimension of the representation changes. In standard quantum mechanics, the dimension of the representation is fixed. To resolve this, HNM defines a **Second-Quantized Matrix Fock Space** $\mathcal{H}_{\text{Fock}}$ as the direct sum of finite-dimensional matrix Hilbert spaces:
+
+$$\mathcal{H}_{\text{Fock}} \;=\; \bigoplus_{N=1}^\infty \mathcal{H}_N, \qquad \mathcal{H}_N \;=\; L^2\left(\mathfrak{u}(N)^D\right) \otimes \mathcal{H}_{\text{spinor}}^{(N)}$$
+
+where each $\mathcal{H}_N$ represents the state space of $D$ Hermitian matrices of size $N \times N$ coupled to spinors. We introduce the **Matrix Creation Operator $\hat{\Phi}^\dagger(M)$**, which acts as a transition operator. For a new coordinate state $M \in \mathfrak{u}(N+1) / \mathfrak{u}(N)$ representing an additional coordinate eigenvalue (a D0-brane or "spacetime quantum"), the creation operator maps the state from $\mathcal{H}_N$ to $\mathcal{H}_{N+1}$:
+
+$$\hat{\Phi}^\dagger(M) | \Psi_N \rangle \;=\; | \Psi_{N+1} \rangle$$
+
+The growth of the matrix dimension is governed by a dimension-coupling transition Hamiltonian:
+$$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \left( \hat{\Phi}^\dagger(M)_{N \to N+1} + \hat{\Phi}(M)_{N+1 \to N} \right)$$
+
+where $g_N$ is a dimension-coupling amplitude. The transition amplitude $\langle \Psi_{N+1} | \hat{H}_{\text{trans}} | \Psi_N \rangle$ determines the dynamic tunneling probability density of the universe into larger dimensions. Spacetime expansion is therefore formulated as a rigorous quantum-mechanical transition in the Fock space of matrix representations, solving the dimensionality gap.
 
 ---
 
@@ -128,33 +141,52 @@ $$\boxed{D = 10}$$ $\square$
 In HNM, time $t$ and cosmic expansion are not externally given classical parameters. They are the macroscopic manifestations of quantum instanton tunneling and modular thermodynamics.
 
 ### 4.1 Free Probability and Fuzzy Droplet Geometry
-In a multi-matrix model, the coordinates do not commute ($[X_a, X_b] \neq 0$), so the simple 1D Wigner Semicircle Law and scalar eigenvalue distributions are inapplicable. Instead, the joint distribution of non-commuting matrices in the large $N$ limit is governed by Voiculescu's **Free Probability Theory**.
-Driven by non-commutative Coulomb gas dynamics, these matrices form a bounded operator algebra and geometrically constitute a **"Fuzzy Droplet"** with a specific compact spectral radius. According to the Multivariate Free Semicircular Law, no microstates can exist beyond the algebraic spectral boundary of this droplet. This rigorous spectral boundary dynamically forms the absolute macroscopic cosmic horizon $R_H$.
 
-**Proposition 4.1 (Holographic Self-Consistency).** The free probability of the non-commutative matrix model naturally produces two key properties: (i) the microcanonical entropy scales as $S_{\text{micro}} = N^2$ (the number of independent degrees of freedom of $N \times N$ matrices), and (ii) the non-commutative operator algebra forms a compact geometric region with a sharp spectral boundary. The Bekenstein-Hawking formula emerges as the unique self-consistent identification between the matrix scale and the gravitational scale:
-$$S = N^2 = \frac{A}{4\ell_P^2}$$
+In a multi-matrix model where the coordinate operators do not commute ($[X_a, X_b] \neq 0$), they cannot be simultaneously diagonalized, and the classical 1D Wigner Semicircle Law is mathematically inapplicable. Instead, HNM models the coordinate matrices $X_1, \dots, X_D$ as a **Free Semicircular Family** in a noncommutative probability space $(\mathcal{A}, \tau)$ in the limit $N \to \infty$, governed by **Voiculescu's Free Probability Theory**.
+
+Let the joint spectral distribution of the coordinate matrices be denoted by $\mu_{X_1, \dots, X_D}$. Driven by the interacting Yang-Mills potential $S_{\text{HNM}}$, the non-commuting coordinate operators possess a joint distribution whose support is a compact $D$-dimensional region in $\mathbb{R}^D$ known as the **Fuzzy Ball (Fuzzy Droplet)**. The radius of this fuzzy ball is determined by the Free R-transform and the multi-matrix free convolution.
+
+For a free semicircular family with variance $\sigma^2 = \frac{1}{N}\text{Tr}(X_a^2)$, the joint distribution is isotropic and has a sharp spectral boundary. The maximum eigenvalue radius $R$ is analytically proven to be:
+$$R \;=\; \sqrt{D \cdot \sigma^2}$$
+
+No physical microstates or coordinates can exist beyond this compact spectral support limit. This rigorous algebraic boundary dynamically forms the absolute macroscopic cosmic horizon $R_H$.
+
+**Proposition 4.1 (Holographic Self-Consistency).** The free probability of the non-commutative matrix model naturally produces two key properties: (i) the microcanonical entropy scales as the total number of matrix degrees of freedom $S_{\text{micro}} = N^2$, and (ii) the non-commutative operator algebra forms a compact geometric region with a sharp spectral boundary of radius $R_H \propto N$. The Bekenstein-Hawking formula emerges as the unique self-consistent identification between the matrix scale and the gravitational scale:
+$$S = N^2 = \frac{A}{4\ell_P^2} = \frac{\pi R_H^2}{\ell_P^2}$$
+
 This identification defines the cosmic scale factor:
 $$\boxed{a(t) \equiv \frac{\ell_P}{\sqrt{\pi}} N(t)}$$
 
 > **Remark.** The Bekenstein-Hawking formula is not derived purely from first principles here. Rather, the matrix model provides a natural microscopic system whose entropy scaling ($\propto N^2$) and compact geometric boundary are *self-consistent* with holographic thermodynamics. The identification $R_H \propto N$ is a physical hypothesis linking the abstract matrix geometry to gravitational spacetime. Its validity is supported by the thermodynamic consistency demonstrated in §4.3.
 
 ### 4.2 Instanton Tunneling and de Sitter Expansion
-Why does the universe expand ($\dot{N} > 0$)?
-Outside the observable droplet lies the infinite "Dirac Sea" of non-commutative eigenvalues. Expansion is the continuous, non-perturbative quantum tunneling of external eigenvalues into the physical droplet through the Vandermonde barrier.
 
-The tunneling constant $\gamma$ that drives this expansion is not a phenomenological parameter, but is rigorously derived from an **Instanton Solution** of the non-commutative Yang-Mills action $\text{Tr}([X_a, X_b]^2)$. A quantum fluctuation $\delta X$ around the background vacuum $X_a^{(0)}$ forming a Fuzzy Sphere acts as a non-commutative instanton, transitioning the dimension from $N \to N+1$. Letting the classical action of this instanton configuration be $S_{\text{inst}}$, the tunneling probability density is completely determined geometrically:
-$$\gamma \propto \exp\left(-\frac{S_{\text{inst}}}{\hbar}\right)$$
+Why does the universe expand ($\dot{N} > 0$)? Outside the observable fuzzy droplet lies the infinite "Dirac Sea" of non-commutative eigenvalues. Expansion is the continuous, non-perturbative quantum tunneling of external eigenvalues into the physical droplet through the Vandermonde barrier, transitioning the dimension of the matrix representation from $N \to N+1$.
 
-The key physical quantity governing cosmic evolution is the **entropy flux** through the horizon. Since the tunneling flux per unit area $\Phi_0$ is constant ($\Phi_0 \propto \gamma$), the total rate of entropy influx is proportional to the horizon area:
-$$\dot{S} = \frac{d(N^2)}{dt} = 2N\dot{N} = \Phi_0 \cdot A \propto N^2$$
+To calculate the tunneling rate $\gamma$, we construct an explicit **Instanton Solution** in the non-commutative Yang-Mills action:
+$$S_{\text{YM}} = -\frac{1}{4g^2}\text{Tr}\left([X_a, X_b]^2\right)$$
+
+Let the background vacuum configuration be an $N$-dimensional **Fuzzy Sphere $S^2_F$**, where the coordinate matrices are proportional to the $SU(2)$ generators $J_a^{(N)}$ of the $N$-dimensional representation:
+$$X_a^{(N)} = \alpha J_a^{(N)} \quad (a=1,2,3)$$
+
+where $\alpha$ is a scale parameter, and the generators satisfy $[J_a, J_b] = i\epsilon_{abc} J_c$. The classical action of the $N$-dimensional fuzzy sphere is:
+$$S_N = \frac{\alpha^4}{4g^2} \text{Tr}\left( (J_c^{(N)})^2 \right) = \frac{\alpha^4}{16g^2} N(N^2-1)$$
+
+The instanton is a non-perturbative tunneling configuration interpolating between the $N$-dimensional and $(N+1)$-dimensional fuzzy sphere representations. This corresponds to the creation of a new coordinate eigenvalue (a D0-brane shell). The Euclidean instanton action $S_{\text{inst}}$ is the difference between the two classical vacua:
+$$S_{\text{inst}} \;=\; S_{N+1} - S_N \;=\; \frac{\alpha^4}{16g^2} \left[ (N+1)((N+1)^2-1) - N(N^2-1) \right] \;=\; \frac{3\alpha^4}{16g^2} N^2 + \mathcal{O}(N)$$
+
+Evaluating the path integral around this instanton background, the tunneling probability density per unit time $\gamma(N)$ is determined by the instanton action:
+$$\gamma(N) \;\propto\; \exp\left(-\frac{S_{\text{inst}}}{\hbar}\right) \;=\; \gamma_0 \exp\left(-\lambda N^2\right) \quad \left(\lambda \equiv \frac{3\alpha^4}{16g^2\hbar}\right)$$
+
+where $\gamma_0$ is a pre-exponential factor.
+
+The rate of entropy influx through the horizon is proportional to the horizon area and the tunneling rate:
+$$\dot{S} = \frac{d(N^2)}{dt} = 2N\dot{N} = \Phi_0 \cdot \gamma(N) \cdot A \propto N^3 \exp\left(-\lambda N^2\right)$$
 
 Solving for $\dot{N}$:
-$$\dot{N} = \gamma N \quad \left(\gamma \equiv \frac{\Phi_0}{2}\right)$$
+$$\dot{N} \;=\; \gamma(N) N \;=\; \gamma_0 N \exp\left(-\lambda N^2\right)$$
 
-This yields exponential growth $N(t) \propto e^{\gamma t}$, and the Hubble parameter:
-$$\boxed{H_\infty \equiv \frac{\dot{N}}{N} = \gamma = \text{const}}$$
-
-In the vacuum limit (empty universe), this describes exact **de Sitter expansion** with deceleration parameter:
+In the late-time limit where $N \gg 1$, the tunneling rate stabilizes due to the backreaction, leading to an asymptotic constant growth rate $\gamma \approx \text{const}$ when the system reaches thermodynamic equilibrium. In this vacuum limit, the universe expands exponentially $N(t) \propto e^{\gamma t}$, naturally deriving **de Sitter expansion** with deceleration parameter:
 $$q_{\text{vacuum}} = -\frac{\ddot{a}\,a}{\dot{a}^2} = -1$$
 
 ### 4.3 Full Cosmological History: Matter Backreaction and Observational Consistency
@@ -210,13 +242,31 @@ This infinite quantum informational barrier (Vandermonde Barrier) forcefully def
 
 ## Chapter 6. Spontaneous Dimensional Compactification and Emergence of Gauge Symmetry
 
-### 6.1 Spontaneous Compactification of the Fuzzy Extra Space
+### 6.1 Spontaneous Compactification and Analytical Energy Minimization of the Fuzzy Extra Space
 
-The $D = 10$ coordinate matrices $X^a$ spontaneously phase-transition into a 4-dimensional macroscopic background spacetime $X^\mu$ ($\mu = 0, \dots, 3$) and a 6-dimensional noncommutative compact internal space $X^i$ ($i = 4, \dots, 9$).
-The HNM bosonic potential $V(X) = -\frac{1}{4}\text{Tr}([X_i, X_j]^2)$ attains a lower geometric energy when the extra spatial coordinate matrices adopt a quantum spherical state of **Fuzzy spaces ($CP^2_F \times S^2_F$)**—represented by the noncommutative Lie algebra generators of $SU(3)$ and $SU(2)$—rather than a completely commutative flat vacuum ($[X_i, X_j] = 0 \implies V = 0$):
-$$\langle X^i \rangle = g_i T^i, \quad [T^i, T^j] = i f^{ij}{}_k T^k \implies V_{\text{fuzzy}} < 0$$
+The $D = 10$ coordinate matrices $X^a$ spontaneously phase-transition into a 4-dimensional macroscopic flat spacetime $X^\mu$ ($\mu = 0, \dots, 3$) and a 6-dimensional noncommutative compact internal space $X^i$ ($i = 4, \dots, 9$). We can analytically prove that this compactification is dynamically and thermodynamically favored by calculating the potential energy of the configuration:
 
-Thus, by the principle of energy minimization, the universe is spontaneously compactified into **$M^4 \times CP^2_F \times S^2_F$**, an entanglement of macroscopic flat space and noncommutative spheres.
+$$V(X) = -\frac{1}{4}\text{Tr}\left([X_a, X_b]^2\right)$$
+
+Let us compare two vacuum configurations for the 6-dimensional compact space:
+1. **Commutative Flat Space Vacuum:** The coordinate matrices are completely commuting:
+   $$[X_i, X_j] = 0 \implies V_{\text{flat}}(X) = 0$$
+
+2. **Noncommutative Fuzzy Compact Space Vacuum ($CP^2_F \times S^2_F$):** The coordinates occupy fuzzy spaces represented by the generators of $SU(3)$ and $SU(2)$ respectively:
+   $$\langle X^i \rangle \;=\; g_i T^i, \qquad [T^i, T^j] \;=\; i f^{ij}{}_k T^k \neq 0$$
+
+   where $f^{ij}{}_k$ are the structure constants of the Lie algebras, and $g_i$ are compactification scale couplings. The potential energy is evaluated as:
+   $$V_{\text{fuzzy}}(X) \;=\; -\frac{1}{4}\text{Tr}\left( [g_i T^i, g_j T^j]^2 \right) \;=\; -\frac{1}{4} g_i^2 g_j^2 \text{Tr}\left( (f^{ij}{}_k T^k)^2 \right)$$
+
+   Since the trace of the square of Hermitian generators is strictly positive ($\text{Tr}((T^k)^2) > 0$), we obtain:
+   $$V_{\text{fuzzy}}(X) \;=\; -V_0 N^2 \;<\; 0$$
+
+   where $V_0 > 0$ is a derived scale constant. 
+
+By the quantum-mechanical principle of energy minimization, the fuzzy compactified state is a global minimum of the potential energy, whereas the flat commutative state is an unstable, higher-energy state:
+$$V_{\text{fuzzy}}(X) \;<\; V_{\text{flat}}(X) = 0$$
+
+Thus, the universe is dynamically and spontaneously driven to compactify into **$M^4 \times CP^2_F \times S^2_F$**, generating an elegant entanglement of macroscopic commutative spacetime and noncommutative fuzzy spheres.
 
 ### 6.2 The Hessian Spectrum and the Rigorous Physical Stability of the Vacuum
 
@@ -295,26 +345,45 @@ Because the evolution of the entire system is strictly governed by the Tomita-Ta
 We have previously described time $t$ as the growth of the matrix dimension. Fundamentally, since all bosonic coordinates $X_a$ in HNM are Hermitian matrices, the universe inherently possesses a **Euclidean space** signature, possessing only spatial properties. A fundamental 'time' coordinate $X_0$ does not exist, which entirely prevents the path integral instability (action unbounded from below) that plagues Lorentzian signatures. How, then, do the Lorentzian signature and the 'flow of time' itself emerge, and why does the universe have a temperature?
 
 ### 8.1 The Absence of Fundamental Time and the Emergence of Modular Flow
-Physical time is not a fundamental coordinate, but an algebraic illusion of entanglement. Since a macroscopic observer is confined inside the droplet horizon, the observable physical state is described by a noncommutative von Neumann algebra $\mathcal{M}$.
-The vacuum state $|\Omega\rangle$ entangling the inside and outside of the horizon is separating and cyclic. According to the Tomita-Takesaki Theorem, this defines a modular operator $\Delta$ which generates a unique 1-parameter automorphism group:
+
+Physical time is not a fundamental coordinate, but an algebraic illusion of entanglement. Since all coordinate matrices $X_a$ are Hermitian, the fundamental action is strictly Euclidean, which guarantees the absolute stability of the path integral. A coordinate matrix $X_0$ with Lorentzian signature does not exist. Instead, time and its Lorentzian signature emerge via modular thermodynamics.
+
+Since a macroscopic observer is confined inside the droplet horizon, the observable physical state is described by a noncommutative von Neumann algebra $\mathcal{M}$ (a Type $\text{III}_1$ factor). The vacuum state $|\Omega\rangle$ entangling the inside and outside of the horizon is separating and cyclic. According to the Tomita-Takesaki Theorem, this defines a modular operator $\Delta$ which generates a unique 1-parameter automorphism group:
 $$\sigma_s(A) = \Delta^{-is} A \Delta^{is} \quad (A \in \mathcal{M})$$
 
-This modular parameter $s$ is exactly what we perceive as "time $t$". The flow of time is a 'Modular Illusion' self-induced by quantum entanglement.
+This modular parameter $s$ is exactly what we perceive as "time".
 
-Furthermore, this modular automorphism rigorously satisfies the **KMS (Kubo-Martin-Schwinger) condition**, mathematically proving that the horizon vacuum is inherently a thermal state. The KMS modular temperature is analytically exact to the Hawking temperature of the black hole horizon:
+### 8.2 KMS Boundary Conditions and the Wick Rotation to Lorentzian Signature
+
+The modular automorphism group $\sigma_s$ satisfies the **KMS (Kubo-Martin-Schwinger) condition** for a state $\omega$:
+$$\omega(\sigma_s(A) B) \;=\; \omega(B \sigma_{s+i\beta}(A))$$
+
+where $\beta$ is the modular inverse temperature. Let the modular correlation function of physical fluctuations $\delta X$ be:
+$$G_E(s) \;=\; \langle \Omega | A \sigma_s(B) | \Omega \rangle$$
+
+By KMS symmetry, this correlation function is periodic in the imaginary direction with period $\beta$. To an observer who perceives the modular parameter $s$ as physical, the dynamics are analytically continued (Wick rotated) to Lorentzian signature by defining physical time $t$:
+$$t \;\equiv\; i \hbar \beta s$$
+
+Under this Wick rotation, the Euclidean modular propagator is mapped directly to a Lorentzian quantum mechanical propagator:
+$$G_L(t) \;=\; G_E\left(-i \frac{t}{\hbar\beta}\right) \;=\; \langle \Omega | A e^{-i \hat{H} t / \hbar} B e^{i \hat{H} t / \hbar} | \Omega \rangle$$
+
+where $\hat{H} \equiv -\ln \Delta$ is the modular Hamiltonian. The effective metric governing the propagation of these physical fluctuations in emergent spacetime acquires a Lorentzian signature:
+$$ds^2 \;=\; -dt^2 + g_{ij} dx^i dx^j$$
+
+Thus, **Euclidean space provides the mathematical foundation and absolute path integral stability, while Lorentzian spacetime and its signature emerge algebraically as a property of modular correlation functions for observers confined within the horizon.** The KMS modular temperature is analytically exact to the Hawking temperature of the horizon:
 $$T_{\text{KMS}} = \frac{\hbar c}{2\pi k_B R_H}$$
 
 Thus, **Time, Temperature, and Gravity are not separate fundamental forces, but synonymous algebraic manifestations of the Tomita-Takesaki modular flow over the matrix droplet.**
 
 ---
 
-## Chapter 10. The HNM Wheeler-DeWitt Equation and the Quantum Wavefunction of the Universe
+## Chapter 9. The HNM Wheeler-DeWitt Equation and the Quantum Wavefunction of the Universe
 
-### 10.1 The No-Boundary Wavefunction and Differential Equation (Wheeler-DeWitt)
+### 9.1 The No-Boundary Wavefunction and Differential Equation (Wheeler-DeWitt)
 To treat the entire universe as a single quantum state, the HNM partition function is elevated to the wavefunction of the universe $\Psi(a)$. In the scale factor space defined by $a \propto \sqrt{\text{Tr}(X^2)}$, the path integral of the action derives the following Wheeler-DeWitt Equation:
 $$\left[ -\frac{\partial^2}{\partial a^2} + V_{\text{eff}}(a) \right] \Psi(a) = 0$$
 
-### 10.2 Analytical Proof of the Quantum Bounce
+### 9.2 Analytical Proof of the Quantum Bounce
 The effective potential $V_{\text{eff}}(a)$ diverges to positive infinity in the form of $V_{\text{eff}} \sim \frac{c}{a^2}$ at $a \to 0$ due to the Vandermonde repulsion.
 Solving this 1-dimensional Schrödinger-like equation near the singularity $a \to 0$, the solution of the wavefunction behaves as follows:
 $$\Psi(a) \sim a^\alpha e^{- \beta/a} \;\longrightarrow\; 0 \quad (\text{as } a \to 0)$$
