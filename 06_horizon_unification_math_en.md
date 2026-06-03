@@ -76,6 +76,10 @@ $$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \left( \hat{\Phi}^\
 
 where $g_N$ is a dimension-coupling amplitude. The transition amplitude $\langle \Psi_{N+1} | \hat{H}_{\text{trans}} | \Psi_N \rangle$ determines the dynamic tunneling probability density of the universe into larger dimensions. Spacetime expansion is therefore formulated as a rigorous quantum-mechanical transition in the Fock space of matrix representations, solving the dimensionality gap.
 
+> [!NOTE]
+> **Core HNM Original Contribution: Second-Quantized Matrix Fock Space**
+> Standard matrix models (such as BFSS or IKKT) are formulated at fixed representation size $N$, or only consider the static large-$N$ limit. HNM introduces the first formal **Second-Quantized Matrix Fock Space** where matrix size $N$ is a dynamic quantum observable governed by creation operators $\hat{\Phi}^\dagger(M)$ and transition Hamiltonians. Spacetime dimension expansion is thus elevated from a static background assumption to a dynamical quantum phase transition.
+
 ### 1.4 The Chamseddine-Connes Spectral Action and the Rigorous Derivation of the Standard Model Gauge Group
 
 In standard gauge theory, the gauge symmetry group $SU(3) \times SU(2) \times U(1)$ is selected ad hoc based on phenomenological observations. In HNM, we prove that this gauge symmetry is not chosen by hand, but is **mathematically derived as a unique geometric property** of Connes' spectral triple. Following the **Chamseddine-Connes Spectral Action Principle**, the gauge groups and the Higgs sector emerge naturally from the inner automorphisms of an almost-commutative coordinate algebra.
@@ -154,6 +158,10 @@ $$\text{Tr}((Q Q^\dagger)^2) \equiv \text{Tr}(Q Q^\dagger Q Q^\dagger) = \text{T
 $$\therefore \text{Tr}_{\text{s}}(\mathcal{D}^4) = \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q^\dagger Q)^2) \equiv 0$$ $\square$
 
 **Physical Interpretation.** This identity is *not* the dynamical action—it is a **constraint**. The physical dynamics are governed by the chiral sector $S_{\text{HNM}} = \text{Tr}((QQ^\dagger)^2)$, which is generically nonzero and yields nontrivial equations of motion via $\delta S_{\text{HNM}} = 0$. The Ward identity separately guarantees that the bosonic and fermionic vacuum energies cancel algebraically at the off-shell level, revealing the fundamental algebraic origin of $\Lambda_{\text{bulk}} = 0$. The action and the constraint are two complementary aspects extracted from the single operator $\mathcal{D}$.
+
+> [!NOTE]
+> **Core HNM Original Contribution: Off-shell CC Cancellation vs On-shell Dynamics**
+> Unlike traditional attempts in supersymmetry or noncommutative geometry which require fine-tuning or zero-energy states, HNM achieves the off-shell vanishing of the bulk cosmological constant ($\Lambda_{\text{bulk}} \equiv 0$) via the algebraic Ward Identity $\text{Tr}_{\text{s}}(\mathcal{D}^4) \equiv 0$, while simultaneously permitting non-trivial, non-zero on-shell physical dynamics via the chiral sector $S_{\text{HNM}} = \text{Tr}((QQ^\dagger)^2)$. This dual structure solves the vacuum energy problem without killing the dynamics of the universe.
 
 ### 2.3 The Classical Limit: Emergence of Einstein, Yang-Mills, and Dirac Equations
 
@@ -415,6 +423,10 @@ This naturally reproduces the observed cosmological history:
 
 **Physical Interpretation:** The accelerated expansion of the universe is the inevitable consequence of instanton tunneling dynamics. At early times, the dense matter and radiation content dominates the energy budget, decelerating expansion. As the universe dilutes, the constant geometric tunneling rate $\gamma$ eventually dominates, driving the universe toward asymptotic de Sitter expansion. The transition from deceleration to acceleration occurs naturally at $z \sim 0.7$, without any fine-tuning of the cosmological constant.
 
+> [!NOTE]
+> **Core HNM Original Contribution: Vandermonde Barrier Tunneling Cosmology**
+> Instead of introducing an ad hoc inflaton field or fine-tuned dark energy, HNM derives the expansion of the universe as a non-perturbative quantum tunneling process. Spacetime eigenvalues tunnel from the infinite external Dirac sea into the physical matrix droplet through the **Vandermonde Barrier**. At late times, backreaction equilibrium yields a constant tunneling rate $\gamma$, naturally deriving de Sitter expansion ($q = -1$) and the complete observationally consistent Friedmann history $q(t)$ purely from matrix statistics.
+
 ### 4.4 Holographic Dark Energy and the Observed Cosmological Constant
 
 While the Supersymmetric Ward Identity (§2.2) perfectly zeroes out the infinite bulk vacuum energy, it leaves the question of the minuscule, observed positive cosmological constant $\Lambda_{obs}$. In HNM, this is elegantly resolved by the **Holographic Dark Energy** bound (Cohen-Kaplan-Nelson).
@@ -635,6 +647,10 @@ $$\rho_{\text{DM}}(t) \;=\; \frac{M_{\text{DM}}}{a(t)^3} \;>\; 0, \qquad p(t) \;
 
 where $M_{\text{DM}} \propto N_{\text{int}} \hbar c / R_{\text{int}}$ is the derived microscopic dark matter mass scale from Chapter 10. This mathematically proves that the highest-order Kaluza-Klein remnants possess strictly **zero pressure ($p = 0$) and a positive energy density scaling as $a(t)^{-3}$**, acting precisely as collisionless, stable **Cold Dark Matter**.
 
+> [!NOTE]
+> **Core HNM Original Contribution: Microscopic Cold Dark Matter State $|\Psi_{\text{DM}}\rangle$**
+> HNM provides a rigorous, microscopic derivation of Cold Dark Matter without inventing hypothetical weakly interacting massive particles (WIMPs). By utilizing the finite matrix cutoff of the fuzzy space, the highest-order Kaluza-Klein modes $L_{\max} \sim N_{\text{int}}$ are shown to have their decay channels algebraically frozen. The explicit construction of the coherent state $|\Psi_{\text{DM}}\rangle$ and the evaluation of its energy-momentum tensor expectation value $\langle \hat{T}_{\mu\nu} \rangle$ mathematically prove that these remnants act as stable, zero-pressure Cold Dark Matter.
+
 ### 7.5 Holographic Bulk Reconstruction and Quantum Error Correction
 
 How does a local observer inside the bulk of the universe exist if all true degrees of freedom reside on the boundary of the matrix droplet? The HNM model completely resolves this through the mathematics of **Quantum Error-Correcting Codes (QECC)**.
@@ -794,6 +810,10 @@ $$\Delta S_{\text{EE}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqr
 This is the exact **Wald Entropy Formula** for a general diffeomorphism-invariant theory of gravity.
 
 **Physical Significance:** The Wald entropy is not an ad hoc geometric generalization of the black hole area; it is the **exact representation of the Tomita-Takesaki modular cocycle** on the noncommutative algebra. All higher-derivative curvature terms generated by the quantum fluctuations of the Super-Dirac operator satisfy the First Law of Thermodynamics ($dE = T dS_W + W dV$) unconditionally. Gravity, in its full non-linear and higher-derivative glory, is rigorously proven to be the modular thermodynamics of the coordinate C\*-algebra.
+
+> [!NOTE]
+> **Core HNM Original Contribution: Modular Representation of Wald Entropy**
+> While Wald entropy is traditionally derived using general relativistic Noether charges, HNM provides the first operator-algebraic derivation. The Wald entropy of all higher-derivative gravitational sectors generated in the Seeley-DeWitt heat kernel expansion is proven to be isomorphic to the logarithmic expectation value of the **Tomita-Takesaki Modular Cocycle** $[D\omega_2 : D\omega_1]_s$. Spacetime thermodynamics is thus revealed to be the modular thermodynamics of the coordinate C\*-algebra.
 
 ---
 
