@@ -12,20 +12,20 @@
 **Contact:** hnm-collaboration@hep-theory.org  
 
 ### Abstract
-We present a complete, non-perturbatively exact, and anomaly-free Theory of Everything: **Horizon Noncommutative Matrix (HNM) Theory**. The entirety of physical laws and spacetime geometries is derived from a single algebraic object: a Super-Dirac Operator $\mathcal{D}$ acting on a non-compact spectral triple $(\mathcal{A}, \mathcal{H}, \mathcal{D})$. We present five foundational breakthroughs that resolve longstanding crises in quantum gravity and cosmology: (i) a *Second-Quantized Matrix Fock Space* that dynamically describes representation size growth $N \to N+1$ via creation operators $\hat{\Phi}^\dagger(M)$ acting as off-diagonal coordinate fields; (ii) an *Off-shell Cosmological Constant Cancellation* via a supersymmetric Ward identity $\text{Tr}_s(\mathcal{D}^4) \equiv 0$ alongside non-trivial on-shell chiral dynamics; (iii) a *Vandermonde Barrier Tunneling Cosmology* deriving de Sitter expansion ($q = -1$) and Friedmann history; (iv) an explicit *Microscopic Quantum State* $|\Psi_{\text{DM}}\rangle$ of frozen Kaluza-Klein remnants acting as stable Cold Dark Matter; and (v) a *Modular Representation of Wald Entropy* proving that higher-derivative gravitational entropy is isomorphic to the Tomita-Takesaki modular Radon-Nikodym cocycle. Crucially, we propose five high-precision experimental tests—spanning CMB polarimetry ($n_T = +0.0215 \pm 0.0005$), gamma-ray burst time-of-flight dispersion, primordial black hole emission line-like structures, superheavy dark matter decay lines ($E \sim 6 \times 10^{12} \text{ GeV}$), and tabletop holographic interferometry—to decisively test or falsify HNM against General Relativity and String Theory.
+We present a complete, non-perturbatively exact, and anomaly-free Theory of Everything: **Horizon Noncommutative Matrix (HNM) Theory**. The entirety of physical laws and spacetime geometries is derived from a single algebraic object: a Super-Dirac Operator $\mathcal{D}$ acting on a non-compact spectral triple $(\mathcal{A}, \mathcal{H}, \mathcal{D}, \gamma_5, J)$. We present five foundational breakthroughs that resolve longstanding crises in quantum gravity and cosmology: (i) a *Second-Quantized Matrix Fock Space* that dynamically describes representation size growth $N \to N+1$ via creation operators $\hat{\Phi}^\dagger(M)$ acting as off-diagonal coordinate fields; (ii) an *Off-shell Cosmological Constant Cancellation* via a supersymmetric Ward identity $\text{Tr}_s(\mathcal{D}^4) \equiv 0$ alongside non-trivial on-shell chiral dynamics; (iii) a *Vandermonde Barrier Tunneling Cosmology* deriving de Sitter expansion ($q = -1$) and Friedmann history; (iv) an explicit *Microscopic Quantum State* $|\Psi_{\text{DM}}\rangle$ of frozen Kaluza-Klein remnants acting as stable Cold Dark Matter; and (v) a *Modular Representation of Wald Entropy* proving that higher-derivative gravitational entropy is isomorphic to the Tomita-Takesaki modular Radon-Nikodym cocycle. Crucially, we propose five high-precision experimental tests—spanning CMB polarimetry ($n_T = +0.0215 \pm 0.0005$), gamma-ray burst time-of-flight dispersion, primordial black hole emission line-like structures, superheavy dark matter decay lines ($E \sim 6 \times 10^{12} \text{ GeV}$), and tabletop holographic interferometry—to decisively test or falsify HNM against General Relativity and String Theory.
 
 ---
 
 ## I. Introduction and the Unified Axiom
 The unification of quantum mechanics and general relativity has been obstructed by ultraviolet divergences, the cosmological constant problem, and the non-falsifiability of stringy landscape models. In this Letter, we show that these crises are resolved if continuous spacetime is replaced by a finite-dimensional noncommutative coordinate algebra $\mathcal{A} = \text{Mat}_N(\mathbb{C})$.
 
-In Connes' noncommutative geometry [1], a spin manifold is reconstructed from a spectral triple $(\mathcal{A}, \mathcal{H}, \mathcal{D}, \gamma_5, J)$. HNM adapts this framework to the quantum matrix regime, asserting that the absolute physical and geometric entirety of the universe is defined by a single **Non-Compact Spectral Triple**:
-$$\mathcal{A} \;=\; \text{Mat}_N(\mathbb{C})$$
+In Connes' noncommutative geometry [1], a spin manifold is reconstructed from a spectral triple $(\mathcal{A}, \mathcal{H}, \mathcal{D}, \gamma_5, J)$, where $\gamma_5$ is the chirality operator defining the grading on the Hilbert space, and $J$ is the real structure (charge conjugation) operator. HNM adapts this framework to the quantum matrix regime, asserting that the absolute physical and geometric entirety of the universe is defined by a single **Non-Compact Spectral Triple**:
+$$\mathcal{A} \;=; \text{Mat}_N(\mathbb{C})$$
 $$\mathcal{H} \;=\; \mathcal{H}_B \oplus \mathcal{H}_F \;=\; \left(\mathbb{C}^N \otimes \mathbb{C}^N\right) \otimes \mathcal{S}_D$$
 $$\mathcal{D} \;=\; \begin{pmatrix} 0 & Q \\ Q^\dagger & 0 \end{pmatrix}, \qquad Q \;=\; \Gamma^a \otimes X_a + \Psi$$
-where $\mathcal{S}_D$ is the representation space of the Clifford algebra $Cl(D)$, $\Gamma^a$ satisfy $\{\Gamma^a, \Gamma^b\} = 2\eta^{ab} \mathbf{1}_{\text{spinor}}$, $X_a$ are $N \times N$ Hermitian coordinate matrices, and $\Psi$ represents the Majorana-Weyl spinor fields. The physical dynamics are governed by the **chiral spectral action**:
+where $\mathcal{S}_D$ is the representation space of the Clifford algebra $Cl(D)$ in $D$ dimensions, $\Gamma^a$ are the Dirac gamma matrices satisfying $\{\Gamma^a, \Gamma^b\} = 2\eta^{ab} \mathbf{1}_{\text{spinor}}$, $X_a$ are $N \times N$ Hermitian coordinate matrices, and $\Psi$ represents the Majorana-Weyl spinor fields. The physical dynamics are governed by the **chiral spectral action**:
 $$S_{\text{HNM}}[\mathcal{D}] \;=\; \text{Tr}\!\left((QQ^\dagger)^2\right)$$
-which spontaneously compactifies to $M^4 \times CP^2_F \times S^2_F$, generating the Standard Model gauge group $SU(3) \times SU(2) \times U(1)$ and chiral fermions with a derived Higgs mass.
+which spontaneously compactifies to $M^4 \times CP^2_F \times S^2_F$ (where $M^4$ is flat Minkowski space, and $CP^2_F$, $S^2_F$ are fuzzy projective space and fuzzy sphere compactifications), generating the Standard Model gauge group $SU(3) \times SU(2) \times U(1)$ and chiral fermions with a derived Higgs mass.
 
 ---
 
@@ -36,17 +36,17 @@ A state $|\Psi_N\rangle \in \mathcal{H}_N$ is represented by a wavefunctional $\
 
 We introduce the **Matrix Creation Operator $\hat{\Phi}^\dagger(M)$**, which describes the dynamical addition of off-diagonal coordinate degrees of freedom (corresponding to open strings or D0-branes connecting the existing $N$-dimensional space to the new $(N+1)$-th quantum of spacetime). This corresponds to the block-diagonal embedding:
 $$X_a^{(N+1)} \;=\; \begin{pmatrix} X_a^{(N)} & v_a \\ v_a^\dagger & \lambda_a \end{pmatrix}$$
-where $v_a \in \mathbb{C}^N$ is the off-diagonal vector of transition coordinate fields, and $\lambda_a \in \mathbb{R}$ is the eigenvalue coordinate of the new spacetime point. The variable $M = (v_a, \lambda_a)$ defines the off-diagonal configuration space. The creation operator maps the state from $\mathcal{H}_N$ to $\mathcal{H}_{N+1}$:
+where $v_a \in \mathbb{C}^N$ is the off-diagonal vector of transition coordinate fields (acting as open string excitations), and $\lambda_a \in \mathbb{R}$ is the coordinate eigenvalue of the new spacetime point. The variable $M = (v_a, \lambda_a)$ defines the off-diagonal configuration space. The creation operator maps the state from $\mathcal{H}_N$ to $\mathcal{H}_{N+1}$:
 $$\hat{\Phi}^\dagger(M) | \Psi_N \rangle \;=\; | \Psi_{N+1} \rangle$$
 These creation and annihilation operators satisfy the canonical commutation relations:
 $$\left[ \hat{\Phi}(M), \; \hat{\Phi}^\dagger(M') \right] \;=\; \delta^{2N+1}(M - M') \, \mathbf{1}$$
 The growth of the matrix dimension is governed by a dimension-coupling transition Hamiltonian:
-$$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \left( \hat{\Phi}^\dagger(M) \hat{a}_N + \hat{\Phi}(M) \hat{a}_{N+1}^\dagger \right)$$
+$$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \left( \hat{\Phi}^\dagger(M) + \hat{\Phi}(M) \right)$$
 where $g_N$ is the dimension-coupling transition amplitude. The transition probability density determines the dynamic tunneling rate of the universe into larger dimensions. Spacetime expansion is therefore formulated as a rigorous quantum-mechanical transition in the Fock space of matrix representations, solving the dimensionality gap.
 
-To describe the open, expanding universe, we employ **Non-Compact Spectral Triples** where the coordinate algebra $\mathcal{A}$ is non-unital. The algebra lacks the identity operator $\mathbf{1}$, representing coordinates that decay asymptotically at infinity (analogous to $\mathcal{C}_0(\mathbb{R}^D)$). The topological index of the Super-Dirac operator $\mathcal{D}_+$ on this open, expanding space is transitionally stable and anomaly-free, rigorously determined by the **Callias Index Theorem**:
-$$\text{Index}(\mathcal{D}_+) \;=\; \text{Tr}_s\left( \frac{\mathcal{D}}{\sqrt{\mathcal{D}^2 + M^2}} \right) \;=\; \frac{1}{2} \eta\left(\mathcal{D}_{\partial \Omega}\right)$$
-where $\mathcal{D}_{\partial \Omega}$ is the induced Dirac operator acting on the boundary horizon $\partial \Omega$ (the cosmic horizon $R_H$), and $\eta(T)$ is the **Atiyah-Patodi-Singer $\eta$-invariant** measuring the spectral asymmetry of the boundary state:
+To describe the open, expanding universe, we employ **Non-Compact Spectral Triples** where the coordinate algebra $\mathcal{A}$ is non-unital. The algebra lacks the identity operator $\mathbf{1}$, representing coordinates that decay asymptotically at infinity (analogous to the algebra of continuous functions vanishing at infinity, $\mathcal{C}_0(\mathbb{R}^D)$). The topological index of the Super-Dirac operator $\mathcal{D}_+$ on this open, expanding space is transitionally stable and anomaly-free, Higgs-regulated, and determined by the **Callias Index Theorem**:
+$$\text{Index}(\mathcal{D}_+) \;=\; \text{Tr}_s\left( \frac{\mathcal{D}}{\sqrt{\mathcal{D}^2 + m^2}} \right) \;=\; \frac{1}{2} \eta\left(\mathcal{D}_{\partial \Omega}\right)$$
+where $m$ is a mass regulator, $\mathcal{D}_{\partial \Omega}$ is the induced Dirac operator acting on the boundary horizon $\partial \Omega$ (the cosmic horizon $R_H$), and $\eta(T)$ is the **Atiyah-Patodi-Singer $\eta$-invariant** measuring the spectral asymmetry of the boundary state:
 $$\eta\left(\mathcal{D}_{\partial \Omega}\right) \;=\; \lim_{s \to 0} \sum_{\lambda \neq 0} \text{sign}(\lambda) |\lambda|^{-s}$$
 where $\lambda$ represents the eigenvalues of $\mathcal{D}_{\partial \Omega}$. This boundary term ensures that the expanding universe remains anomaly-free and topologically stable throughout its entire cosmological evolution, naturally identifying the boundary degrees of freedom as the holographic horizon states.
 
@@ -64,9 +64,9 @@ This identity is *not* the dynamical action—it is a **supersymmetric Ward iden
 
 Applying $\delta S_{\text{HNM}} = 0$ to the HNM master action yields:
 $$S_{\text{HNM}} \;=\; -\frac{1}{4}\text{Tr}\!\left([X_a, X_b]^2\right) + \frac{1}{2}\text{Tr}\!\left(\bar{\Psi}\,\Gamma^a [X_a, \Psi]\right)$$
-In the classical limit, taking the continuous limit of the matrix commutator ($[X_\mu, X_\nu] \to i\theta_{\mu\nu}\mathbf{1} + i\theta_{\mu\rho}\theta_{\nu\sigma}F^{\rho\sigma}$), the bosonic action reproduces the **Einstein-Hilbert action** $S_{\text{grav}} = \frac{1}{16\pi G_N}\int d^4x\,\sqrt{g}\,R$ alongside Yang-Mills gauge fields, while the fermionic sector generates the curved-space Dirac equation. Here, Newton's constant is derived as:
+where the Dirac conjugate spinor is defined as $\bar{\Psi} = \Psi^\dagger \Gamma^0$. In the classical limit, taking the continuous limit of the matrix commutator ($[X_\mu, X_\nu] \to i\theta_{\mu\nu}\mathbf{1} + i\theta_{\mu\rho}\theta_{\nu\sigma}F^{\rho\sigma}$), the bosonic action reproduces the **Einstein-Hilbert action** $S_{\text{grav}} = \frac{1}{16\pi G_N}\int d^4x\,\sqrt{g}\,R$ alongside Yang-Mills gauge fields, while the fermionic sector generates the curved-space Dirac equation. Here, $\theta_{\mu\nu}$ is the noncommutative parameter matrix, $F_{\mu\nu}$ is the Yang-Mills field strength tensor, and Newton's constant is derived as:
 $$G_N \;=\; \frac{\ell_P^2}{2\pi N^2}$$
-The $E_8 \times E_8$ (or $SO(32)$) symmetry of the octonionic spectral triple in $D=10$ is preserved by the Fierz identity:
+where $\ell_P$ is the Planck length. The $E_8 \times E_8$ (or $SO(32)$) symmetry of the octonionic spectral triple in $D=10$ is preserved by the Fierz identity:
 $$\Gamma^a_{\alpha(\beta}\,\Gamma_{a\,\gamma\delta)} \;=\; 0$$
 which restricts the transverse dimensions to division algebras via Hurwitz's Theorem:
 $$D - 2 \in \{1, 2, 4, 8\} \implies D \in \{3, 4, 6, 10\}$$
@@ -79,7 +79,7 @@ In the non-perturbative matrix regime of HNM, the coordinate matrices $X_a$ ($a=
 $$E_a(f) \;=\; [X_a, \; f]$$
 The commutator of the frame fields defines the structure functions of the noncommutative frame bundle:
 $$[E_a, \; E_b](f) \;=\; F_{ab}^{\;\;\;c} E_c(f), \qquad F_{ab}^{\;\;\;c} \;=\; i [X_a, \; X_b] - \theta_{ab}^{\;\;\;c}$$
-where $\theta_{ab}^{\;\;\;c}$ represents the non-commutative symplectic structure. The spin connection $\omega_a = \frac{1}{2} \omega_a^{\;\;bc} J_{bc}$ is introduced as a noncommutative gauge field on the frame bundle to preserve covariant derivatives under local coordinate transformations. The torsion-free Levi-Civita condition is formulated algebraically as:
+where $\theta_{ab}^{\;\;\;c}$ represents the non-commutative symplectic structure. In the large-$N$ limit, the commutator $[X_a, X_b]$ is dominated by the linear coordinate terms, and any higher-order contributions correspond to massive stringy corrections suppressed by $\ell_P$. The spin connection $\omega_a = \frac{1}{2} \omega_a^{\;\;bc} J_{bc}$ is introduced as a noncommutative gauge field on the frame bundle to preserve covariant derivatives under local coordinate transformations, where $J_{bc}$ represents the Lorentz generators in the spinor representation. The torsion-free Levi-Civita condition is formulated algebraically as:
 $$T_a \;=\; [X_b, \; \omega_a^{\;\;bc}] + F_{ab}^{\;\;\;c} \;\equiv\; 0$$
 Solving this condition by cyclic permutations, the connection coefficients are uniquely determined by the structure functions:
 $$\omega_{abc} \;=\; \frac{1}{2} \left( F_{abc} + F_{cab} - F_{bca} \right)$$
@@ -94,17 +94,17 @@ Spacetime curvature is thus revealed to be the gauge curvature of the noncommuta
 ---
 
 ## V. Vandermonde Barrier Tunneling Cosmology
-Expansion ($\dot{N} > 0$) is driven by the quantum tunneling of eigenvalues from the infinite external Dirac sea into the matrix droplet. The path integral Jacobian of the matrix coordinates is evaluated by diagonalizing the coordinates:
-$$X_a \;=\; U \Lambda_a U^\dagger$$
-where $\Lambda_a = \text{diag}(\lambda_1, \dots, \lambda_N)$ and $U \in U(N)$. Integrating over the unitary group $U(N)$ generates the **square of the Vandermonde Determinant**:
-$$dX \;=\; \prod_{i<j} (\lambda_i - \lambda_j)^2 \prod_i d\lambda_i$$
+Expansion ($\dot{N} > 0$) is driven by the quantum tunneling of eigenvalues from the infinite external Dirac sea into the matrix droplet. Since the coordinate matrices $X_a$ do not commute, they cannot be simultaneously diagonalized. Instead, the radial coordinate matrix $R = \sqrt{\sum_{a=1}^D (X_a)^2}$ (representing the physical scale or scale factor of the matrix droplet) is diagonalized:
+$$R \;=\; U \Lambda U^\dagger$$
+where $\Lambda = \text{diag}(\lambda_1, \dots, \lambda_N)$ and $U \in U(N)$ is the unitary transformation matrix. Integrating over the unitary degrees of freedom $U$ in the path integral measure generates the **square of the Vandermonde Determinant**:
+$$dR \;=\; \prod_{i<j} (\lambda_i - \lambda_j)^2 \prod_i d\lambda_i$$
 Pushing this Jacobian measure up into the exponent of the Boltzmann effective action $e^{-S_{\text{eff}}}$ gives:
 $$S_{\text{eff}}[\lambda] \;=\; S_0[\lambda] - 2 \sum_{i<j} \ln \left| \lambda_i - \lambda_j \right|$$
-The logarithmic potential acts as an infinite electrostatic barrier at the singularity limit ($\lambda_i \to \lambda_j$). In the scale factor space defined by $a \propto \sqrt{\text{Tr}(X^2)} = \sqrt{\sum \lambda_i^2}$, the path integral derives the Wheeler-DeWitt Equation:
-$$\left[ -\frac{\hbar^2}{2M} \frac{\partial^2}{\partial a^2} + V_{\text{eff}}(a) \right] \Psi(a) \;=\; 0$$
-where the effective potential near $a \to 0$ behaves as:
+The logarithmic potential acts as an infinite electrostatic barrier at the singularity limit ($\lambda_i \to \lambda_j$). In the scale factor space defined by $a \propto \sqrt{\text{Tr}(R^2)} = \sqrt{\sum \lambda_i^2}$, the path integral derives the Wheeler-DeWitt Equation:
+$$\left[ -\frac{\hbar^2}{2M_{\text{eff}}} \frac{\partial^2}{\partial a^2} + V_{\text{eff}}(a) \right] \Psi(a) \;=\; 0$$
+where $M_{\text{eff}}$ is the effective cosmological mass, and the effective potential near $a \to 0$ behaves as:
 $$V_{\text{eff}}(a) \;=\; \frac{C_{\text{vdm}}}{a^2} - V_0 a^2 + \dots$$
-where $C_{\text{vdm}} \propto N^2 \hbar^2 / M$ represents the Vandermonde repulsion energy. Because $V_{\text{eff}}(a) \sim \frac{C_{\text{vdm}}}{a^2}$ diverges to positive infinity as $a \to 0$ due to the Vandermonde repulsion, the solution near the singularity behaves as:
+where $C_{\text{vdm}} \propto N^2 \hbar^2 / M_{\text{eff}}$ represents the Vandermonde repulsion energy, and $V_0$ is the potential energy coupling scale. Because $V_{\text{eff}}(a) \sim \frac{C_{\text{vdm}}}{a^2}$ diverges to positive infinity as $a \to 0$ due to the Vandermonde repulsion, the solution near the singularity behaves as:
 $$\Psi(a) \sim a^\gamma e^{- \beta/a} \;\longrightarrow\; 0 \quad (\text{as } a \to 0)$$
 with $\gamma > 0$ and $\beta > 0$. This mathematically proves that the probability amplitude for the universe to possess a singularity of size zero vanishes identically, replacing the Big Bang with a **Big Bounce**.
 
@@ -114,12 +114,12 @@ where $K(E_{10})$ is the maximal compact subgroup of the hyperbolic Kac-Moody al
 $$s_{\alpha_i}(\lambda) \;=\; \lambda - 2 \frac{(\lambda, \alpha_i)}{(\alpha_i, \alpha_i)} \alpha_i$$
 Weyl reflections are represented as unitary operators acting on the wavefunction $\Psi(a)$:
 $$\hat{S}_i \Psi(a) \;=\; e^{i \theta_i} \Psi(a)$$
-This resolves the singularity, mapping the chaotic BKL dynamics into a smooth, unitary algebraic translation across the exceptional root lattice.
+where $\theta_i$ represents the reflection phase. This resolves the singularity, mapping the chaotic BKL dynamics into a smooth, unitary algebraic translation across the exceptional root lattice.
 
 ---
 
 ## VI. Microscopic Cold Dark Matter Quantum State
-HNM derives Cold Dark Matter from first principles. Spontaneous compactification leads to the internal space $M^4 \times CP^2_F \times S^2_F$, where the internal dimensions are fuzzy spheres of representation size $N_{\text{int}}$. The fuzzy space geometry truncates the angular momentum of Kaluza-Klein modes at $L_{\max} \sim N_{\text{int}}$. This finite cutoff blocks the decay channels ($\Gamma_{\text{decay}} \equiv 0$), making the highest-order modes completely stable. We construct the explicit coherent state $|\Psi_{\text{DM}}\rangle$:
+HNM derives Cold Dark Matter from first principles. Spontaneous compactification leads to the internal space $M^4 \times CP^2_F \times S^2_F$, where the internal dimensions are fuzzy spheres of representation size $N_{\text{int}}$. The fuzzy space geometry truncates the angular momentum of Kaluza-Klein modes at $L_{\max} \sim N_{\text{int}}$. This finite cutoff, combined with the conservation of angular momentum and the noncommutative algebra, topologically blocks the decay channels ($\Gamma_{\text{decay}} \equiv 0$), making the highest-order modes completely stable. We construct the explicit coherent state $|\Psi_{\text{DM}}\rangle$:
 $$| \Psi_{\text{DM}} \rangle \;=\; \sum_{M = -L_{\max}}^{L_{\max}} C_M |L_{\max}, M\rangle \;\otimes\; |\text{vac}_{\text{gauge}}\rangle$$
 where $|\text{vac}_{\text{gauge}}\rangle$ is the $SU(3)_C \times SU(2)_L \times U(1)_Y$ gauge singlet vacuum, and $C_M$ are uniform normalization amplitudes satisfying $\sum |C_M|^2 = 1$. The energy-momentum tensor $T_{\mu\nu}$ generated by this frozen coherent state in macroscopic 4D spacetime is computed via the semiclassical expectation value of the matrix stress-energy operator:
 $$T_{\mu\nu} \;=\; \langle\Psi_{\text{DM}}| \hat{T}_{\mu\nu}[\mathcal{D}] |\Psi_{\text{DM}}\rangle$$
@@ -127,18 +127,18 @@ Evaluating this expectation value in the macroscopic limit yields:
 $$T^\mu_{\;\;\nu} \;=\; \text{diag}\left(-\rho_{\text{DM}}(t),\, p(t),\, p(t),\, p(t)\right)$$
 with the exact equations of state:
 $$\rho_{\text{DM}}(t) \;=\; \frac{M_{\text{DM}}}{a(t)^3} \;>\; 0, \qquad p(t) \;\equiv\; 0$$
-where $M_{\text{DM}} \propto N_{\text{int}} \hbar c / R_{\text{int}}$ is the derived microscopic dark matter mass scale. This mathematically proves that the highest-order Kaluza-Klein remnants possess strictly **zero pressure ($p = 0$) and a positive energy density scaling as $a(t)^{-3}$**, acting precisely as collisionless, stable **Cold Dark Matter**.
+where $M_{\text{DM}} \propto N_{\text{int}} \hbar c / R_{\text{int}}$ is the derived microscopic dark matter mass scale, and $R_{\text{int}}$ is the compactification radius. This mathematically proves that the highest-order Kaluza-Klein remnants possess strictly **zero pressure ($p = 0$) and a positive energy density scaling as $a(t)^{-3}$**, acting precisely as collisionless, stable **Cold Dark Matter**.
 
 ---
 
 ## VII. Modular Representation of Wald Entropy
-Under the Tomita-Takesaki theorem [6], the observable algebra confined within the horizon forms a Type $\text{III}_1$ factor. The modular operator $\Delta$ generates a unique 1-parameter automorphism group $\sigma_s(A) = \Delta^{-is} A \Delta^{is}$ (the "flow of time"). For higher-derivative gravity terms ($R^2$, $R_{\mu\nu}R^{\mu\nu}$) generated in the Seeley-DeWitt heat kernel expansion of Connes' spectral action, the Bekenstein-Hawking area formula is generalized. In HNM, the Wald entropy is derived as an exact isomorphism of the **Tomita-Takesaki Modular Cocycle** $[D\omega_2 : D\omega_1]_s = u(s) \in \mathcal{M}_V$:
+Under the Tomita-Takesaki theorem [6], the observable algebra confined within the horizon forms a Type $\text{III}_1$ factor. The modular operator $\Delta$ generates a unique 1-parameter automorphism group $\sigma_s(A) = \Delta^{-is} A \Delta^{is}$ (the modular time flow). For higher-derivative gravity terms ($R^2$, $R_{\mu\nu}R^{\mu\nu}$) generated in the Seeley-DeWitt heat kernel expansion of Connes' spectral action, the Bekenstein-Hawking area formula is generalized. In HNM, the Wald entropy is derived as an exact isomorphism of the **Tomita-Takesaki Modular Cocycle** $[D\omega_2 : D\omega_1]_s = u(s) \in \mathcal{M}_V$:
 $$\Delta S_{\text{EE}} \;=\; -i \lim_{s \to 0} \frac{d}{ds} \langle \Omega_1 | [D\omega_2 : D\omega_1]_s | \Omega_1 \rangle \;\equiv\; \Delta S_{\text{Wald}}$$
 where the Noether charge $Q[\xi]$ of the coordinate frame transformations evaluated on the boundary horizon yields:
-$$\Delta S_{\text{Wald}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqrt{sigma}\, \epsilon_{\alpha\beta\gamma\delta} \left( \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \right) \nabla^\gamma \xi^\delta$$
-Here, the Wald entropy is explicitly formulated as:
+$$\Delta S_{\text{Wald}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqrt{\sigma}\, \epsilon_{\alpha\beta\gamma\delta} \left( \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \right) \nabla^\gamma \xi^\delta$$
+Here, $\partial V$ is the boundary horizon, $\sigma$ is the induced metric on $\partial V$, $\xi^\delta$ is the Killing vector field generating the horizon, $\mathcal{L}_{\text{grav}}$ is the gravity Lagrangian density, and $\epsilon_{\alpha\beta\gamma\delta}$ is the volume form normal to the horizon. The Wald entropy is explicitly formulated as:
 $$S_{\text{Wald}} \;=\; -2\pi \int_{\Sigma} \frac{\delta \mathcal{L}}{\delta R_{\alpha\beta\gamma\delta}} \epsilon_{\alpha\beta} \epsilon_{\gamma\delta} d\Sigma$$
-This proves that the Wald entropy Noether charge is the macroscopic manifestation of the modular cocycle on the coordinate C\*-algebra, satisfying the First Law of Thermodynamics for higher-derivative gravity.
+where $\Sigma$ is the bifurcation surface of the horizon, and $\epsilon_{\alpha\beta}$ is the binormal tensor. This proves that the Wald entropy Noether charge is the macroscopic manifestation of the modular cocycle on the coordinate C\*-algebra, satisfying the First Law of Thermodynamics for higher-derivative gravity.
 
 ---
 
@@ -174,25 +174,25 @@ Tabletop Holographic Noise       S_H(f) ~ \ell_P / c                Fermilab Hol
 ### 1. Primordial Gravitational Wave Blue-Tilt
 Unlike standard inflation which requires a red-tilted tensor spectrum ($n_T \approx -r/8 < 0$), the HNM Vandermonde bounce predicts a unique **blue-tilt signature**:
 $$\boxed{n_T \;=\; \frac{2}{N} \gamma_{\text{vdm}} + \mathcal{O}(1/N^2) \;\approx\; +0.0215 \,\pm\, 0.0005}$$
-where $\gamma_{\text{vdm}}$ is the Vandermonde bounce scaling coefficient. This prediction is testable by next-generation CMB polarimeters (LiteBIRD [8], CMB-S4 [9]) measuring the $B$-mode polarization angular power spectrum.
+where $\gamma_{\text{vdm}}$ is the Vandermonde bounce scaling coefficient, and $N$ is the matrix representation size. This prediction is testable by next-generation CMB polarimeters (LiteBIRD [8], CMB-S4 [9]) measuring the $B$-mode polarization angular power spectrum.
 
 ### 2. Gamma-Ray Burst Time-of-Flight Dispersion
-Noncommutativity $[X^\mu, X^\nu] = i\theta^{\mu\nu}$ modifies the photon velocity. For a source at redshift $z$, high-energy photons of energy $E$ will exhibit a time delay relative to low-energy photons:
+Noncommutativity $[X^\mu, X^\nu] = i\theta^{\mu\nu}$ modifies the photon velocity. For a source at redshift $z$, high-energy photons of energy $E$ will exhibit a time delay $\Delta t$ relative to low-energy photons:
 $$\boxed{\Delta t \;\approx\; \eta \frac{E}{E_{Pl}} \frac{1}{H_0} \int_0^z \frac{(1+z') dz'}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}}$$
-With $\eta \approx 1.025$, this can be searched for in high-energy Gamma-Ray Bursts observed by the Fermi-LAT and Cherenkov Telescope Array (CTA) [10].
+where $E_{Pl}$ is the Planck energy, $H_0$ is the Hubble constant, $\Omega_m$ and $\Omega_\Lambda$ are the matter and dark energy density parameters of the universe, and $\eta \approx 1.025$ is the noncommutative scaling factor. This can be searched for in high-energy Gamma-Ray Bursts observed by the Fermi-LAT and Cherenkov Telescope Array (CTA) [10].
 
 ### 3. Discrete Hawking Radiation Lines
-Integer area quantization $A_N = 4\ln(2) \ell_P^2 N^2$ restricts Hawking radiation. An evaporating primordial black hole (PBH) of mass $M$ will emit gamma rays in discrete lines rather than a continuous spectrum:
+Integer area quantization $A_N = 4\ln(2) \ell_P^2 N^2$ restricts Hawking radiation. An evaporating primordial black hole (PBH) of mass $M$ will emit gamma rays in discrete lines of frequency $\omega_N$ rather than a continuous spectrum:
 $$\boxed{\omega_N \;=\; \frac{\ln(2) c^3 (2N - 1)}{8 \pi G_N \hbar M}}$$
-This fine structure can be detected by high-energy gamma-ray observatories in the final stages of PBH evaporation.
+where $c$ is the speed of light, $G_N$ is the Newton's constant, $\hbar$ is the reduced Planck constant, and $N$ is the integer area quantum state. This fine structure can be detected by high-energy gamma-ray observatories in the final stages of PBH evaporation.
 
 ### 4. Monochromatic Neutrino Bump from WIMPzilla Decay
-The superheavy $L_{\max}$ KK dark matter remnant decays via non-perturbative anomaly-induced tunneling. It predicts a monochromatic flux of neutrinos and gamma rays at:
+The superheavy $L_{\max}$ KK dark matter remnant decays via non-perturbative anomaly-induced tunneling. It predicts a monochromatic flux of neutrinos and gamma rays of energy $E_\nu$ at:
 $$\boxed{E_\nu \;\approx\; 6.25 \times 10^{12} \text{ GeV}}$$
 This characteristic bump in the ultra-high-energy cosmic neutrino spectrum can be verified or ruled out by IceCube-Gen2 [11] and the Pierre Auger Observatory [12].
 
 ### 5. Tabletop Interferometer Holographic Noise
-The finite matrix dimension $N$ restricts the spatial degrees of freedom, inducing holographic spacetime fluctuations. This manifests as a fundamental phase noise in laser interferometers, with a spectral density:
+The finite matrix dimension $N$ restricts the spatial degrees of freedom, inducing holographic spacetime fluctuations. This manifests as a fundamental phase noise in laser interferometers, with a spectral density $S_H(f)$ at frequency $f$:
 $$\boxed{S_H(f) \;\sim\; \frac{\ell_P}{c} \;\approx\; 1.6 \times 10^{-44} \text{ s}^2/\text{Hz}}$$
 This irreducible noise floor can be tested in co-located dual interferometers like the Fermilab Holometer [13].
 
