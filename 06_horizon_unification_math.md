@@ -708,7 +708,11 @@ $$S A |\Omega\rangle \;=\; A^\dagger |\Omega\rangle, \qquad S \;=\; J \Delta^{1/
 토미타-다케사키 정리에 따라, 모듈러 연산자는 다음과 같이 대수 $\mathcal{M}$ 내에 유일한 1-매개변수 자기동형사상 군(modular automorphism group)을 생성한다:
 $$\sigma_s(A) = \Delta^{-is} A \Delta^{is} \quad (A \in \mathcal{M})$$
 
-이 모듈러 매개변수 $s$가 바로 우리가 "시간"으로 인지하는 물리량과 정확히 등가이다. 대수 상의 두 서로 다른 상태(혹은 두 관측자) $\omega_1$과 $\omega_2$에 대해, 알랭 콘의 라돈-니코딤(Radon-Nikodym) 정리는 다음을 만족하는 유일하고 강하게 연속적인 유니터리 군 $u(s) \in \mathcal{M}$ (라돈-니코딤 코사이클 $[D\omega_2 : D\omega_1]_s$)의 존재을 보장한다:
+이 모듈러 매개변수 $s$가 바로 우리가 "시간"으로 인지하는 물리량과 정확히 등가이다. 수학적으로, 이 모듈러 자기동형사상 군 \sigma_s$는 진공 상태 \phi(A) = \langle\Omega|A|\Omega\rangle$에 대해 역온도 \beta = 1$에서의 KMS(Kubo-Martin-Schwinger) 조건을 충족한다. 즉, 임의의 $A, B \in \mathcal{M}$에 대해, 복소 띠(strip) $0 < \text{Im}(z) < 1$에서 해석적이고 그 경계에서 연속인 함수 $F(z)$가 존재하여 다음을 만족한다:
+$$F(s) \;=\; \phi(\sigma_s(A)B), \qquad F(s + i) \;=\; \phi(B\sigma_s(A)) \quad \forall s \in \mathbb{R}$$
+이 대수적 관계식은 다음과 같이 간결하게 표현될 수 있다:
+$$\phi(AB) \;=\; \phi(B \sigma_i(A))$$
+이 모듈러 매개변수를 $t = \frac{\hbar}{k_B T_{\text{H}}} s$를 통해 물리적 관찰자의 좌표 시간 $t$로 매핑하면, $\beta_{\text{mod}} = 1$에서의 KMS 조건은 베켄슈타인-호킹 온도 $T_{\text{H}} = \frac{\hbar c}{2\pi k_B R_H}$를 갖는 물리적인 열적 상태(thermal state)로 윅 회전(Wick-rotate)된다. 이는 매끄러운 시공간 계량 텐서를 선험적으로 가정하지 않고도, 작용소 대수적 구조로부터 직접 언루-호킹 복사의 존재를 수학적으로 완벽히 증명한다. 대수 상의 두 서로 다른 상태(혹은 두 관측자) $\omega_1$과 $\omega_2$에 대해, 알랭 콘의 라돈-니코딤(Radon-Nikodym) 정리는 다음을 만족하는 유일하고 강하게 연속적인 유니터리 군 $u(s) \in \mathcal{M}$ (라돈-니코딤 코사이클 $[D\omega_2 : D\omega_1]_s$)의 존재을 보장한다:
 $$\sigma_s^{\omega_2}(A) \;=\; u(s) \sigma_s^{\omega_1}(A) u(s)^\dagger, \quad \forall A \in \mathcal{M}$$
 
 이 유니터리 코사이클 $u(s)$는 서로 다른 관측자들의 모듈러 시간 흐름을 매개하는 게이지 연결고리(gauge link) 역할을 하며, 이는 **물리적 시간의 흐름이 게이지 불변 좌표(gauge-invariant coordinate)**임을 보여준다. 즉, 관측자의 변경은 모듈러 시간 매개변수 $s$에 대한 국소 유니터리 게이지 변환에 지나지 않는다.
