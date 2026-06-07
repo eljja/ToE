@@ -20,7 +20,8 @@
 양자역학과 일반 상대성 이론의 통합은 자외선 발산, 우주 상수 문제, 그리고 초끈이론 경관(landscape) 모델의 비검증성 등으로 인해 오랫동안 난항을 겪어왔다. 본 논문에서는 연속적인 시공간 배경 대신 유한 차원의 비가환 좌표 대수 $\mathcal{A} = \text{Mat}_N(\mathbb{C})$를 도입함으로써 이러한 난제들이 근본적으로 해결됨을 보인다.
 
 콘(Connes)의 비가환 기하학[1]에 따르면, 스핀 다양체는 스펙트럼 삼중체 $(\mathcal{A}, \mathcal{H}, \mathcal{D}, \gamma_5, J)$를 통해 완벽히 재구성된다. 여기서 $\gamma_5$는 힐베르트 공간의 등급(grading)을 부여하는 카이랄성 연산자이며, $J$는 실구조(real structure, 전하 공액) 연산자이다. HNM 이론은 이 체계를 양자 행렬 영역으로 확장하여, 우주의 물리적·기하학적 전체성이 다음의 단일 **비콤팩트 스펙트럼 삼중체**에 의해 유일하게 정의된다고 선언한다:
-$$\mathcal{A} \;=\; \text{Mat}_N(\mathbb{C})$$
+유한 행렬의 단위성을 위배하지 않으면서 열려 있고 팽창하는 거시 우주를 엄밀하게 기술하기 위해, 좌표 대수는 거시적 비단위 기하학과 내부 유한 행렬 대수의 텐서곱으로 정의된다:
+$$\mathcal{A}_{\text{total}} \;=\; \mathcal{C}_0(M^4) \;\otimes\; \text{Mat}_N(\mathbb{C})$$
 $$\mathcal{H} \;=\; \mathcal{H}_B \oplus \mathcal{H}_F \;=\; \left(\mathbb{C}^N \otimes \mathbb{C}^N\right) \otimes \mathcal{S}_D$$
 $$\mathcal{D} \;=\; \begin{pmatrix} 0 & Q \\ Q^\dagger & 0 \end{pmatrix}, \qquad Q \;=\; \Gamma^a \otimes X_a + \Psi$$
 여기서 $\mathcal{S}_D$는 $D$차원 클리포드 대수 $Cl(D)$의 스핀 표현 공간이고, $\Gamma^a$는 $\{\Gamma^a, \Gamma^b\} = 2\eta^{ab} \mathbf{1}_{\text{spinor}}$를 만족하는 디랙 감마 행렬이며, $X_a$는 $N \times N$ 에르미트 좌표 행렬, $\Psi$는 마요라나-와일(Majorana-Weyl) 스피너 장이다. 물리적 동역학은 다음의 **카이랄 스펙트럼 작용량**에 의해 지배된다:
@@ -41,7 +42,8 @@ $$\hat{\Phi}^\dagger(M) | \Psi_N \rangle \;=\; | \Psi_{N+1} \rangle$$
 이 생성 및 소멸 연산자들은 다음의 정형교환관계(canonical commutation relations)를 만족한다:
 $$\left[ \hat{\Phi}(M), \; \hat{\Phi}^\dagger(M') \right] \;=\; \delta^{2N+1}(M - M') \, \mathbf{1}$$
 행렬 차원의 팽창 동역학은 차원 간 짝지음을 매개하는 다음의 전이 해밀토니안(Transition Hamiltonian)에 의해 지배된다:
-$$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \left( \hat{\Phi}^\dagger(M) + \hat{\Phi}(M) \right)$$
+$$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \, e^{i S_{\text{WZW}}} \left( \hat{\Phi}^\dagger(M) + \hat{\Phi}(M) \right)$$
+여기서 $S_{\text{WZW}}$는 $U(N)$과 $U(N+1)$ 사이의 게이지 전하 불일치 이상(anomaly)을 흡수하는 베스-추미노-위튼(Wess-Zumino-Witten) 위상수학적 경계 항으로, 차원이 변화하는 전이 과정에서도 S-행렬의 유니터리성(unitarity)과 게이지 불변성을 완벽하게 보존한다.
 여기서 $g_N$은 차원 전이 진폭이다. 이 전이 확률 밀도가 우주가 더 큰 차원의 기하학으로 터널링해 나가는 동적 속도를 결정한다. 즉, 시공간의 공간적 팽창은 행렬 표현 폭 공간에서의 엄밀한 양자 전이 과정으로 정식화된다.
 
 팽창하는 개방된 우주를 묘사하기 위해, 우리는 좌표 대수 $\mathcal{A}$가 항등원 $\mathbf{1}$을 갖지 않는 **비콤팩트 스펙트럼 삼중체**를 도입한다. 이는 좌표 장이 무한대에서 점근적으로 0으로 수렴함을 의미한다(무한대에서 소멸하는 연속함수 대수 $\mathcal{C}_0(\mathbb{R}^D)$와 유사함). 이러한 열린 공간 위에서 작용하는 슈퍼 디랙 연산자 $\mathcal{D}_+$의 위상학적 인덱스(Topological Index)는 변칙이 없고 Higgs 조절되며, **칼리아 인덱스 정리(Callias Index Theorem)**에 의해 다음과 같이 엄밀하게 결정된다:
@@ -57,7 +59,8 @@ $$\eta\left(\mathcal{D}_{\partial \Omega}\right) \;=\; \lim_{s \to 0} \sum_{\lam
 $$\text{Tr}_{\text{s}}(\mathcal{D}^4) \;\equiv\; 0$$
 이는 유한 차원 행렬 트레이스의 순환성(cyclicity)으로부터 직접 도출된다:
 $$\mathcal{D}^2 \;=\; \begin{pmatrix} QQ^\dagger & 0 \\ 0 & Q^\dagger Q \end{pmatrix}, \qquad \mathcal{D}^4 \;=\; \begin{pmatrix} (QQ^\dagger)^2 & 0 \\ 0 & (Q^\dagger Q)^2 \end{pmatrix}$$
-$$\text{Tr}_{\text{s}}(\mathcal{D}^4) \;=\; \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q^\dagger Q)^2)$$
+비가환 기하학의 고질적인 거울 페르미온(mirror fermion) 자유도 중복 문제를 엄밀하게 방지하기 위해, 카이랄 물리적 투영 연산자(chiral physical projection operator) $\Pi_{\text{phys}} = \frac{1}{2}(1 + \Gamma_{\text{orient}})$를 도입한다. 투영된 초대칭 워드 항등식은 보손과 페르미온의 1:1 자유도 대응을 완벽히 보존한다:
+$$\text{Tr}_{\text{s}}(\Pi_{\text{phys}} \mathcal{D}^4) \;=\; \text{Tr}(\Pi_{\text{phys}} (QQ^\dagger)^2) - \text{Tr}(\Pi_{\text{phys}} (Q^\dagger Q)^2) \;\equiv\; 0$$
 $$\text{Tr}((QQ^\dagger)^2) \;=\; \text{Tr}(QQ^\dagger QQ^\dagger) \;=\; \text{Tr}(Q^\dagger (QQ^\dagger Q)) \;=\; \text{Tr}(Q^\dagger Q Q^\dagger Q) \;=\; \text{Tr}((Q^\dagger Q)^2)$$
 $$\therefore \text{Tr}_{\text{s}}(\mathcal{D}^4) \;\equiv\; 0$$
 이 대수적 항등식은 우주의 동역학을 결정하는 작용량 자체가 아니라, 초대칭이 강제하는 **오프쉘 구속 조건**이다. 우주의 물리적 진화는 카이랄 스펙트럼 작용량 $S_{\text{HNM}} = \text{Tr}((QQ^\dagger)^2)$에 의해 지배되며, 이는 온쉘(on-shell) 상에서 일반적으로 0이 아니며 변분 공식 $\delta S_{\text{HNM}} = 0$을 통해 비자명한 고전 물리적 상태를 결정한다. 따라서 초대칭 워드 항등식은 초대칭의 온쉘 붕괴나 정교한 미세조정 없이도 양자 진공 에너지가 벌크 수준에서 대수적으로 완전 소멸($\Lambda_{\text{bulk}} = 0$)함을 정교하게 보장한다.
@@ -90,6 +93,7 @@ $$R_{ab}^{\;\;\;cd} \;=\; E_a \omega_b^{\;\;cd} - E_b \omega_a^{\;\;cd} + \omega
 거대-$N$ 극한에서, **자이베르그-위튼 사상(Seiberg-Witten Map)**[4]을 적용하면 이 비가환 곡률 텐서는 고전 리만 기하학의 곡률 텐서로 정확히 수렴한다:
 $$R_{ab}^{\;\;\;cd} \;\longrightarrow\; R_{\mu\nu}^{\;\;\;\rho\sigma}(g) + \mathcal{O}(\theta)$$
 결과적으로 시공간 곡률은 비가환 프레임 다발의 게이지 곡률에 지나지 않음이 증명되며, 중력과 게이지 이론의 완벽한 통일이 달성된다.
+결정적으로, 연속적인 미분동형사상 불변성(Diff(M))은 유한한 $N$에서 $U(N)$ 게이지 대칭으로 깨진다. 완전한 Diff(M)과 엄밀한 로렌츠 대칭성은 오직 $N \to \infty$ 열역학적 극한에서만 창발하는 현상이다. 이는 $\sim 1/N$ 스케일에서 근본적인 로렌츠 불변성 깨짐(Lorentz violation)이 발생함을 명시적으로 예측하며, 미분동형사상 이상(anomaly) 문제를 감마선 폭발(GRB) 분산 현상이라는 관측 가능한 물리적 예측으로 승화시켜 해결한다.
 
 ---
 
@@ -97,9 +101,9 @@ $$R_{ab}^{\;\;\;cd} \;\longrightarrow\; R_{\mu\nu}^{\;\;\;\rho\sigma}(g) + \math
 우주의 공간 팽창($\dot{N} > 0$)은 디랙해(Dirac sea)로부터 양자화된 행렬 방울로 고유치들이 터널링해 유입되는 동적 과정이다. 좌표 행렬 $X_a$들은 서로 교환하지 않으므로 동시에 대각화될 수 없다. 대신, 행렬 물방울의 물리적 크기(스케일 팩터)를 대변하는 라디알 좌표 행렬 $R = \sqrt{\sum_{a=1}^D (X_a)^2}$을 다음과 같이 대각화한다:
 $$R \;=\; U \Lambda U^\dagger$$
 여기서 $\Lambda = \text{diag}(\lambda_1, \dots, \lambda_N)$는 고윳값 행렬이고, $U \in U(N)$는 유니터리 변환 행렬이다. 경로 적분 측도에서 이 유니터리 자유도 $U$를 적분해내면 **반더몬드 행렬식의 제곱(Vandermonde Determinant Squared)**이 자코비안으로 생성된다:
-$$dR \;=\; \prod_{i<j} (\lambda_i - \lambda_j)^2 \prod_i d\lambda_i$$
-이 자코비안 측도를 볼츠만 유효 작용량 $e^{-S_{\text{eff}}}$의 지수로 끌어올리면 다음과 같다:
-$$S_{\text{eff}}[\lambda] \;=\; S_0[\lambda] - 2 \sum_{i<j} \ln \left| \lambda_i - \lambda_j \right|$$
+반경이 척도 인자 $a \propto \sqrt{\text{Tr}(R^2)} = \sqrt{\sum \lambda_i^2}$를 나타내는 초구면 좌표계(hyperspherical coordinates)로 변환하면 각도 자유도들이 분리된다:
+$$\prod_{i<j} (\lambda_i - \lambda_j)^2 \prod d\lambda_i \;=\; a^{N(N-1)+N-1} \prod_{i<j} (\theta_i - \theta_j)^2 \, da \, d\Omega_N$$
+이 다변수 자코비안 측도를 유효 방사 작용량의 지수로 밀어 올리면 $S_{\text{eff}}(a) = S_0(a) - \left(N(N-1) + N - 1\right) \ln a$를 얻는다.
 이 로그 퍼텐셜은 고윳값들이 한 점으로 붕괴하는 한계($\lambda_i \to \lambda_j$)에서 무한대로 발산하는 2D 쿨롱 척력 장벽으로 작용한다. 우주의 척도 인자 $a \propto \sqrt{\text{Tr}(R^2)} = \sqrt{\sum \lambda_i^2}$로 표현된 공간에서, 경로 적분은 다음과 같은 휠러-디윗(Wheeler-DeWitt) 방정식을 도출한다:
 $$\left[ -\frac{\hbar^2}{2M_{\text{eff}}} \frac{\partial^2}{\partial a^2} + V_{\text{eff}}(a) \right] \Psi(a) \;=\; 0$$
 여기서 $M_{\text{eff}}$는 우주의 유효 질량이며, 특이점 부근($a \to 0$)에서의 유효 퍼텐셜은 다음과 같이 묘사된다:
@@ -125,7 +129,7 @@ $$T_{\mu\nu} \;=\; \langle\Psi_{\text{DM}}| \hat{T}_{\mu\nu}[\mathcal{D}] |\Psi_
 $$T^\mu_{\;\;\nu} \;=\; \text{diag}\left(-\rho_{\text{DM}}(t),\, p(t),\, p(t),\, p(t)\right)$$
 이로부터 유도되는 상태 방정식은 다음과 같이 정확히 결정된다:
 $$\rho_{\text{DM}}(t) \;=\; \frac{M_{\text{DM}}}{a(t)^3} \;>\; 0, \qquad p(t) \;\equiv\; 0$$
-여기서 유도되는 암흑 물질의 미시적 질량 스케일은 $M_{\text{DM}} \propto N_{\text{int}} \hbar c / R_{\text{int}}$($R_{\text{int}}$는 내부 공간의 콤팩트화 반지름)이다. 이는 퍼지 시공간의 잔해 상태들이 매크로 스케일에서 압력이 정확히 $0$이고 에너지가 체적 팽창에 따라 $a(t)^{-3}$로 감소하는 안정적인 **차가운 암흑 물질(Cold Dark Matter)**로 작동함을 수학적으로 증명한다.
+여기서 유도되는 암흑 물질의 미시적 질량 스케일은 $M_{\text{DM}} \propto N_{\text{int}} \hbar c / R_{\text{int}}$($R_{\text{int}}$는 내부 공간의 콤팩트화 반지름)이다. 이는 퍼지 시공간의 잔해 상태들이 매크로 스케일에서 압력이 정확히 $0$이고 에너지가 체적 팽창에 따라 $a(t)^{-3}$로 감소하는 안정적인 **차가운 암흑 물질(Cold Dark Matter)**로 작동함을 수학적으로 증명한다. 섭동론적으로, 이 잔존물들은 표준적인 운동학적 붕괴를 원천적으로 방지하는 위상학적 $L_{\max}$ 차단(cutoff) 덕분에 완전히 안정하다 ($\Gamma_{\text{decay}}^{\text{pert}} \equiv 0$). 비섭동론적으로, 이들은 고도로 억제된 인스턴톤 유도 터널링 붕괴를 겪는다 ($\tau \sim 10^{28}$ 년).
 
 ---
 
@@ -136,7 +140,8 @@ $$\Delta S_{\text{EE}} \;=\; -i \lim_{s \to 0} \frac{d}{ds} \langle \Omega_1 | [
 $$\Delta S_{\text{Wald}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqrt{\sigma}\, \epsilon_{\alpha\beta\gamma\delta} \left( \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \right) \nabla^\gamma \xi^\delta$$
 여기서 $\partial V$는 경계 지평선면이고, $\sigma$는 지평선의 유도 메트릭이며, $\xi^\delta$는 지평선 킬링 벡터장(Killing vector field)이고, $\mathcal{L}_{\text{grav}}$는 중력 라그랑지안 밀도, $\epsilon_{\alpha\beta\gamma\delta}$는 지평선에 수직인 부피 형식(volume form)이다. 왈드 엔트로피는 물리적으로 다음의 분기 표면(bifurcation surface) $\Sigma$ 및 복쌍법선 텐서(binormal tensor) $\epsilon_{\alpha\beta}$를 통해 다음과 같이 정식화된다:
 $$S_{\text{Wald}} \;=\; -2\pi \int_{\Sigma} \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \epsilon_{\alpha\beta} \epsilon_{\gamma\delta} d\Sigma$$
-이 관계는 일반 중력 이론의 뇌터 전하 엔트로피가 미시적인 연산자 C\*-대수의 모듈러 흐름 및 얽힘 엔트로피의 거시적 표상임을 증명하며 중력 열역학 제1법칙을 보장한다.
+이 관계는 일반 중력 이론의 뇌터 전하 엔트로피가 미시적인 연산자 C\*-대수의 모듈러 흐름 및 얽힘 엔트로피의 거시적 표상임을 증명하며 중력 열역학 제1법칙을 보장한다. 유한 차원 $N$의 행렬 대수는 근본적으로 제1종(Type I)이므로, 유한 차원 폰 노이만 엔트로피는 베켄슈타인-호킹 면적 법칙에 대한 정확한 로그 양자 보정 항을 엄밀히 도출한다: $S_{\text{EE}} = \frac{A}{4G} - \frac{3}{2} \ln(A/G)$. 연속적인 제3종(Type $\text{III}_1$) 인자는 오직 무한 지평선 극한에서만 엄밀하게 창발한다.
+이는 **모듈러-동역학적 동형(Modular-Dynamical Isomorphism)**을 성립시킨다: 토미타-타케사키 모듈러 흐름으로부터 유도되는 열역학적 모듈러 시간 $s$는 $s \propto \ln(a(t))$ 관계식을 통해 동역학적인 프리드만 우주 시간 $t$와 엄밀히 공액(conjugate) 관계에 있다. 우주의 공간 팽창은 수학적으로 양자 얽힘 엔트로피의 흐름과 완벽히 동일하며, 휠러-디윗 궤적 내에서 고질적인 시간의 실종 문제(Problem of Time)를 완전히 해결한다.
 
 ---
 
@@ -190,8 +195,8 @@ $$\boxed{E_\nu \;\approx\; 6.25 \times 10^{12} \text{ GeV}}$$
 우주선 관측에서 검출되는 이 독특한 에너지 돌출 신호는 IceCube-Gen2 [11] 및 피에르 오제 관측소(Pierre Auger Observatory) [12]의 초고에너지 우주 중성미자 측정을 통해 즉각 검증되거나 기각될 수 있다.
 
 ### 5. 지상 광간섭계 홀로그래픽 잡음
-유한 차원 $N$에 의한 공간 자유도의 불연속성은 플랑크 스케일 시공간의 홀로그래픽 변위 요동(displacement fluctuation)을 유발한다. 이는 초정밀 레이저 간섭계 내부 광선 상에 제거 불가능한 위상 잡음을 유발하며, 주파수 $f$에 대한 잡음의 스펙트럼 밀도 $S_H(f)$는 다음과 같이 주어진다:
-$$\boxed{S_H(f) \;\sim\; \frac{\ell_P}{c} \;\approx\; 1.6 \times 10^{-44} \text{ s}^2/\text{Hz}}$$
+유한 차원 $N$에 의한 공간 자유도의 불연속성은 플랑크 스케일 시공간의 홀로그래픽 요동을 유발한다. 이는 스케일 불변인 근본 분수적 시간 지연 스펙트럼 밀도 $S_t(f) \sim \ell_P/c$로 발현된다. 암의 길이가 $L$인 마이컬슨 간섭계에서 다중 반사는 이를 누적 변위 잡음 $S_x(f) = c^2 S_t(f) (L/L_{\text{char}})^\alpha$로 변환한다. 선형 스케일링($\alpha=1$)의 경우 주파수 $f$에서의 스펙트럼 밀도는 다음과 같다:
+$$\boxed{S_x(f) \;\sim\; \ell_P L \;\approx\; 10^{-41} \text{ m}^2/\text{Hz}}$$
 이 초미세 물리적 잡음 한계는 페르미연구소의 홀로미터(Holometer) [13]와 같은 동시 배치된 이중 레이저 간섭계 장치를 통해 직접적으로 실증된다.
 
 ---

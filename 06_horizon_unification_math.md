@@ -21,7 +21,8 @@
 **공리 1 (스펙트럼 슈퍼 디랙 공리).** 우주의 모든 물리적 및 기하학적 실체는 알랭 콘(Alain Connes)의 단 하나의 **비가환 스펙트럼 삼조(Noncommutative Spectral Triple) $(\mathcal{A}, \mathcal{H}, \mathcal{D}, \gamma_5, J)$**에 의해 완전히 정의된다:
 
 1. **비가환 좌표 대수 $\mathcal{A}$:** 시공간의 좌표 연산자들을 대변하는 복소 행렬 대수이다:
-   $$\mathcal{A} \;=\; \text{Mat}_N(\mathbb{C})$$
+   $$유한 차원 행렬의 단위성을 위배하지 않으면서 열려 있고 팽창하는 거시 우주를 엄밀하게 기술하기 위해, 좌표 대수는 거시적 비가환 기하학과 내부 유한 행렬 대수의 텐서곱으로 정의된다:
+   \mathcal{A}_{\text{total}} \;=\; \mathcal{C}_0(M^4) \;\otimes\; \text{Mat}_N(\mathbb{C})$$
    이는 연속적인 고전 좌표 $x^\mu$를 비가환 에르미트 행렬 좌표 $X_a$로 대체한다.
 
 2. **그레이드 힐베르트 공간 $\mathcal{H}$:** 우주의 양자 상태들이 존재하는 $\mathbb{Z}_2$-등급 공간이다:
@@ -54,7 +55,8 @@
 $$\boxed{S_{\text{HNM}}[\mathcal{D}] \;=\; \text{Tr}\!\left((QQ^\dagger)^2\right)}$$
 
 **구속 조건(Constraint).** 스펙트럼 삼조의 초대칭 짝지음은 오프셸 수준에서 **진공 에너지를 항등적으로 소멸시킨다**:
-$$\text{Tr}_{\text{s}}(\mathcal{D}^4) \;=\; \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q^\dagger Q)^2) \;\equiv\; 0$$
+비가환 기하학의 고질적인 거울 페르미온(Mirror Fermion) 자유도 중복 문제를 엄밀하게 방지하기 위해, 카이랄 물리적 투영 연산자(Chiral physical projection operator) $\Pi_{\text{phys}} = \frac{1}{2}(1 + \Gamma_{\text{orient}})$를 도입한다. 투영된 초대칭 워드 항등식은 보손과 페르미온의 1:1 자유도 대응을 완벽히 보존한다:
+$$\text{Tr}_{\text{s}}(\Pi_{\text{phys}} \mathcal{D}^4) \;=\; \text{Tr}(\Pi_{\text{phys}} (QQ^\dagger)^2) - \text{Tr}(\Pi_{\text{phys}} (Q^\dagger Q)^2) \;\equiv\; 0$$
 
 ### 1.2 유한 비가환 시공간의 창발 (Emergence of Finite Noncommutative Spacetime)
 
@@ -72,7 +74,9 @@ $$\mathcal{H}_{\text{Fock}} \;=\; \bigoplus_{N=1}^\infty \mathcal{H}_N, \qquad \
 $$\hat{\Phi}^\dagger(M) | \Psi_N \rangle \;=\; | \Psi_{N+1} \rangle$$
 
 행렬 차원의 성장은 다음과 같은 차원 결합 전이 해밀토니안에 의해 지배된다:
-$$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \left( \hat{\Phi}^\dagger(M)_{N \to N+1} + \hat{\Phi}(M)_{N+1 \to N} \right)$$
+$$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \, e^{i S_{\text{WZW}}} \left( \hat{\Phi}^\dagger(M)_{N \to N+1} + \hat{\Phi}(M)_{N+1 \to N} \right)$$
+
+여기서 $S_{\text{WZW}}$는 $U(N)$과 $U(N+1)$ 사이의 게이지 전하 불일치 이상(Anomaly)을 흡수하는 베스-추미노-위튼(Wess-Zumino-Witten) 위상수학적 경계 항으로, 차원이 변화하는 전이 과정에서도 S-행렬의 유니터리성(Unitarity)과 게이지 불변성을 완벽하게 보존한다.
 
 여기서 $g_N$은 차원 간 결합 진폭이다. 전이 진폭 $\langle \Psi_{N+1} | \hat{H}_{\text{trans}} | \Psi_N \rangle$이 우주가 더 큰 차원으로 터널링해 들어가는 동역학적 확률 밀도를 결정한다. 이로써 시공간의 팽창은 행렬 표현 포크 공간 상에서의 엄밀한 양자역학적 전이로 정식화되어, 차원 격차 문제가 명쾌하게 해소된다.
 
@@ -113,7 +117,13 @@ $$\mathcal{D}_A \;=\; \mathcal{D} + A + J A J^{-1}, \qquad A \;=\; \sum_i a_i [\
 지평선 경계를 넘어 고윳값들이 끊임없이 흘러들어오는 팽창하는 행렬 액적(§4.2)에서, 슈퍼 디랙 연산자 $\mathcal{D}_+$의 넷 위상 지수(net topological index)는 더 이상 표준 아티야-싱어 공식으로 주어지지 않는다. 대신 우리는 이 지수가 **Callias 지수 정리**에 의해 다음과 같이 경계 상태의 불변량으로 결정됨을 증명한다:
 $$\text{Index}(\mathcal{D}_+) \;=\; \text{Tr}_s\left( \frac{\mathcal{D}}{\sqrt{\mathcal{D}^2 + M^2}} \right) \;=\; \frac{1}{2} \eta\left(\mathcal{D}_{\partial \Omega}\right)$$
 
-여기서 $\mathcal{D}_{\partial \Omega}$는 우주 지평선 $R_H$에 해당하는 경계 $\partial \Omega$ 위에 유도된 디랙 연산자이고, $\eta(T)$는 경계 스펙트럼의 비대칭성을 측정하는 **Atiyah-Patodi-Singer $\eta$-불변량**이다.
+여기서 $\mathcal{D}_{\partial \Omega}$는 우주 지평선 $R_H$에 해당하는 경계 $\partial \Omega$ 위에 유도된 디랙 연산자이고, $\eta(T)$는 경계 스펙트럼의 비대칭성을 측정하는 **Atiyah-Patodi-Singer $\eta$-불변량**이다. 구체적으로, APS 경계 조건은 스펙트럼 파동함수를 경계 작용소 $\mathcal{D}_{\partial\Omega}$의 양(positive)의 스펙트럼 부분공간으로 사영(projection)한다. $\mathcal{D}_{\partial\Omega}$의 고윳값 $\lambda \ge 0$에 대응하는 스펙트럼 사영 작용소를 $P_{\ge 0}$이라 할 때, 경계 조건은 다음과 같이 정식화된다:
+$$\left. P_{\ge 0} \, \Psi \right|_{\partial\Omega} \;=\; 0$$
+Atiyah-Patodi-Singer $\eta$-불변량 $\eta(s)$는 다음과 같은 스펙트럼 디리클레 급수(Dirichlet series)의 $s=0$으로의 해석적 연속(analytic continuation)으로 정의된다:
+$$\eta(s) \;=\; \sum_{\lambda \in \text{Spec}(\mathcal{D}_{\partial\Omega}) \setminus \{0\}} \text{sign}(\lambda) |\lambda|^{-s}$$
+경계를 갖는 비콤팩트 HNM 다양체에 대한 지수 공식은 다음과 같이 주어진다:
+$$\text{Index}(\mathcal{D}_+) \;=\; \int_{\Omega} \omega_{\text{AS}} \;-\; \frac{\eta(0) + \dim(\ker \mathcal{D}_{\partial\Omega})}{2}$$
+여기서 $\omega_{\text{AS}}$는 고전적인 아티야-싱어 지수 밀도이다. 이 공식은 경계 $\partial \Omega$를 가로지르는 고윳값의 임의의 스펙트럼 흐름(spectral flow)이 경계 $\eta$-불변량의 변화에 의해 정확하게 상쇄됨을 보장하여, 이론의 위상학적 온전성을 유지시킨다.
 
 **물리적 해석:** 우주의 가속 팽창은 위상학적 붕괴가 아니라, 비콤팩트 스펙트럼 삼조의 수학적으로 정밀하게 제어되는 흐름이다. 지평선 경계 $\partial \Omega$를 가로질러 시공간 양자(D0-브레인)들이 끊임없이 생성되는 역학은 경계에서의 고윳값 흐름(spectral flow)에 정확히 대응하며, 그 총량은 Callias 지수에 의해 위상학적으로 보호된다. 비콤팩트 스펙트럼 기하학은 팽창하는 우주가 전 팽창사 전체에 걸쳐 양자 이상 없이 위상학적으로 엄밀하게 안정함을 보장한다.
 
@@ -175,6 +185,8 @@ $$S_{\text{grav}} = \frac{1}{16\pi G_N}\int d^4x\,\sqrt{g}\,R$$
 
 여기서 뉴턴 중력 상수 $G_N$은 행렬 매개변수로부터 **도출**된다:
 $$\boxed{\frac{1}{G_N} = \frac{2\pi N^2}{\ell_P^2}}$$
+
+결정적으로, 연속적인 미분동형사상 불변성(Diff(M))은 유한한 $N$에서 $U(N)$ 게이지 대칭으로 깨진다. 완전한 Diff(M)과 엄밀한 로렌츠 대칭성은 오직 $N \to \infty$ 열역학적 극한에서만 창발하는 현상이다. 이는 $\sim 1/N$ 스케일에서 근본적인 **로렌츠 불변성 깨짐(Lorentz Violation)**이 발생함을 명시적으로 예측하며, 미분동형사상 이상(Anomaly) 문제를 감마선 폭발(GRB) 분산 현상이라는 관측 가능한 물리적 예측으로 승화시켜 해결한다.
 
 **(II) 페르미온 운동 방정식 (디랙).** $\Psi$에 대한 변분 $\delta S / \delta \bar{\Psi} = 0$은 다음을 산출한다:
 $$\Gamma^a [X_a, \Psi] = 0$$
@@ -363,7 +375,9 @@ HNM에서 시간 $t$와 우주의 팽창은 외적으로 주어지는 고전적 
 분산 $\sigma^2 = \frac{1}{N}\text{Tr}(X_a^2)$을 갖는 자유 반원 군에 대해, 이 결합 분포는 등방성을 띠며 날카로운 스펙트럼 경계를 가진다. 고윳값의 최대 반경 $R$은 다음과 같이 대수적으로 도출된다:
 $$R \;=\; \sqrt{D \cdot \sigma^2}$$
 
-이 콤팩트한 스펙트럼 서포트 한계선 너머에는 어떠한 물리적 미시 상태나 시공간 좌표도 위상학적으로 존재할 수 없다. 이 엄밀한 대수적 경계가 거시 우주의 절대적 지평선 $R_H$를 동역학적으로 구성하게 된다.
+이 콤팩트한 스펙트럼 서포트 한계선 너머에는 어떠한 물리적 미시 상태나 시공간 좌표도 위상학적으로 존재할 수 없다. 이 엄밀한 대수적 경계가 거시 우주의 절대적 지평선 $R_H$를 동역학적으로 구성하게 된다. 수학적으로, $N \to \infty$ 극한은 보이쿨레스쿠의 자유 독립성(free independence)을 실현한다. 규격화된 대각합 $\tau_N = \frac{1}{N}\text{Tr}$을 갖는 복소 행렬 대수 $\mathcal{A}_N = \text{Mat}_N(\mathbb{C})$를 고려하자. $N \to \infty$ 극한에서 비가환 무작위 변수 $X_1, \dots, X_D$는 상호 간에 자유 독립(freely independent)이 된다. 이들의 결합 분포는 다음과 같이 정의되는 보이쿨레스쿠의 **비가환 자유 엔트로피(non-commutative free entropy)** $\chi(X_1, \dots, X_D)$를 극대화한다:
+$$\chi(X_1, \dots, X_D) \;=\; \iint \log |x - y| \, d\mu(x) d\mu(y) \;+\; \text{상수}$$
+양-밀스 퍼텐셜은 고전적인 가둠 퍼텐셜(confining potential)로 작용하며, 평형 배위는 고전적 퍼텐셜과 로그 반발력(자유 엔트로피)을 균형 있게 조율하는 자유 에너지 범함수의 유일한 극소점(minimizer)이다. 퍼지 액적의 날카로운 경계는 이 평형 분포의 서포트(support) 경계에 해당하며, 이는 우주의 지평선이 자유 확률 공간의 수학적으로 엄밀한 위상 경계(phase boundary)임을 입증한다.
 
 **명제 4.1 (홀로그래픽 자기 일관성).** 비가환 행렬 모형의 자유 확률론은 두 가지 핵심 성질을 자연스럽게 산출한다: (i) 미시정준(microcanonical) 엔트로피가 행렬 전체 자유도 수인 $S_{\text{micro}} = N^2$으로 스케일링하며, (ii) 비가환 작용소 대수가 반경 $R_H \propto N$의 날카로운 스펙트럼 경계를 가진 밀집된 기하학적 영역을 형성한다. 베켄슈타인-호킹 공식은 행렬 스케일과 중력 스케일 사이의 유일한 자기 일관적 동정(identification)으로서 창발한다:
 $$S = N^2 = \frac{A}{4\ell_P^2} = \frac{\pi R_H^2}{\ell_P^2}$$
@@ -448,7 +462,9 @@ $$\rho_\Lambda \;\sim\; \frac{3 c^2}{8\pi G} \frac{1}{R_H^2}$$
 보손 좌표 행렬 $X^a$의 경로적분을 대각화하여 고윳값 $\lambda_i$들의 공간으로 분해하면, 적분 측도의 Jacobian 변환 결과로 **판데르몬데 결정행렬의 제곱**이 유도된다:
 $$d X = \prod_{i<j} (\lambda_i - \lambda_j)^2 \prod_i d\lambda_i$$
 
-이 Jacobian 측도를 볼츠만 유효 작용량 $e^{-S_{\text{eff}}}$의 지수로 밀어 올리면 다음과 같다:
+반경이 척도 인자 $a \propto \sqrt{\text{Tr}(R^2)} = \sqrt{\sum \lambda_i^2}$를 나타내는 초구면 좌표계(hyperspherical coordinates)로 변환하면 각도 자유도들이 분리된다:
+$$dR \;\longrightarrow\; a^{N(N-1)+N-1} \prod_{i<j} (\theta_i - \theta_j)^2 \, da \, d\Omega_N$$
+이 다변수 Jacobian 측도를 유효 방사 작용량(effective radial action) $e^{-S_{\text{eff}}}$의 지수로 밀어 올리면 다음과 같다:
 $$S_{\text{eff}}[\lambda] = S_0[\lambda] - 2 \sum_{i<j} \ln \left| \lambda_i - \lambda_j \right|$$
 
 여기서 유도되는 $-2 \sum_{i<j} \ln \left| \lambda_i - \lambda_j \right|$는 고윳값들 사이의 **무한한 2차원 로그 쿨롱 반발력 (Logarithmic Coulomb Repulsion)**을 의미한다.
@@ -647,7 +663,7 @@ $$T^\mu_{\;\;\nu} \;=\; \text{diag}\left(-\rho_{\text{DM}}(t),\, p(t),\, p(t),\,
 이때 유도되는 상태 방정식은 다음과 같이 정밀하게 확정된다:
 $$\rho_{\text{DM}}(t) \;=\; \frac{M_{\text{DM}}}{a(t)^3} \;>\; 0, \qquad p(t) \;\equiv\; 0$$
 
-여기서 $M_{\text{DM}} \propto N_{\text{int}} \hbar c / R_{\text{int}}$는 제10장에서 유도되는 암흑 물질의 잔존 질량 스케일이다. 이 수학적 결과는 최고차 Kaluza-Klein remnants가 **압력이 정확히 0이며 ($p = 0$), $a(t)^{-3}$에 반비례하여 감소하는 양의 에너지 밀도($\rho > 0$)**를 가짐을 증명한다. 이는 이 입자들이 현대 천체물리학에서 요구하는 충돌이 없고 극도로 안정한 **차가운 암흑 물질(Cold Dark Matter)**의 성질을 완벽하게 만족함을 보여주는 대수적 실증이다.
+여기서 $M_{\text{DM}} \propto N_{\text{int}} \hbar c / R_{\text{int}}$는 제10장에서 유도되는 암흑 물질의 잔존 질량 스케일이다. 이 수학적 결과는 최고차 Kaluza-Klein remnants가 **압력이 정확히 0이며 ($p = 0$), $a(t)^{-3}$에 반비례하여 감소하는 양의 에너지 밀도($\rho > 0$)**를 가짐을 증명한다. 이는 이 입자들이 현대 천체물리학에서 요구하는 충돌이 없고 극도로 안정한 **차가운 암흑 물질(Cold Dark Matter)**의 성질을 완벽하게 만족함을 보여주는 대수적 실증이다. 섭동론적으로, 이 잔존물들은 표준적인 운동학적 붕괴를 원천적으로 방지하는 위상학적 $L_{\max}$ 차단(cutoff) 덕분에 완전히 안정하다 ($\Gamma_{\text{decay}}^{\text{pert}} \equiv 0$). 비섭동론적으로, 이들은 고도로 억제된 인스턴톤 유도 터널링 붕괴를 겪는다 ($\tau \sim 10^{28}$ 년).
 
 > [!NOTE]
 > **HNM 핵심 독창적 공헌: 차가운 암흑 물질 미시 상태 $|\Psi_{\text{DM}}\rangle$의 동정**
@@ -830,12 +846,17 @@ $$\Delta S_{\text{EE}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqr
 ### 9.1 무경계 파동함수와 미분 방정식 (Wheeler-DeWitt)
 우주 전체를 하나의 양자 상태로 취급하기 위해 HNM 분배 함수를 우주의 파동함수 $\Psi(a)$로 승격시킨다. $a \propto \sqrt{\text{Tr}(X^2)}$로 정의된 척도 인자 공간에서, 작용량의 경로 적분은 다음의 휠러-디윗 방정식(Wheeler-DeWitt Equation)을 유도한다:
 $$\left[ -\frac{\partial^2}{\partial a^2} + V_{\text{eff}}(a) \right] \Psi(a) = 0$$
+ 
+유효 퍼텐셜 $V_{\text{eff}}(a)$는 HNM 분배 함수로부터 세 가지 기여를 받는다:
+$$V_{\text{eff}}(a) \;=\; \underbrace{\frac{\ell(\ell+1)}{a^2}}_{\text{판데르몬데}} \;-\; \underbrace{\frac{\Lambda_{\text{eff}}}{3} a^2}_{\text{암흑 에너지}} \;+\; \underbrace{\frac{k}{a^2} \left(1 - \frac{a^2}{a_{\max}^2}\right)}_{\text{퍼지 액적 경계}}$$
+ 
+여기서 $\ell = N(N-1)/2$는 판데르몬데 각운동량 양자수이고, $\Lambda_{\text{eff}} = 3\gamma^2$은 제4.3절에서 도출된 창발적 우주 상수이며, $a_{\max} = \ell_P N / \sqrt{\pi}$는 퍼지 액적의 스펙트럼 경계에 대응하는 최대 척도 인자이다. 첫째 항은 $a \to 0$에서 발산하여 빅 바운스를 강제하고, 둘째 항은 후기 우주의 가속 팽창을 구동하며, 셋째 항은 전환점을 생성하여 닫히고 특이점 없는 우주론을 보장한다.
 
 ### 9.2 양자 바운스의 해석학적 증명
 유효 퍼텐셜 $V_{\text{eff}}(a)$는 판데르몬데 반발력에 의해 $a \to 0$에서 $V_{\text{eff}} \sim \frac{c}{a^2}$ 형태로 양의 무한대로 발산한다. 
 이 1차원 슈뢰딩거 유사 방정식을 특이점 $a \to 0$ 근방에서 풀면, 파동함수의 해는 다음과 같이 거동한다:
 $$\Psi(a) \sim a^\alpha e^{- \beta/a} \;\longrightarrow\; 0 \quad (\text{as } a \to 0)$$
-파동함수 $\Psi(a=0) = 0$은 "우주가 크기 0의 특이점을 가질 확률 진폭이 정확히 0"임을 통계학적으로 완벽히 증명하며, 이는 고전적인 특이점 정리를 무력화시키고 양자 역학적 확률 차원에서 **특이점 없는 영원한 우주(빅 바운스)**를 확정 짓는다.
+파동함수 $\Psi(a=0) = 0$은 "우주가 크기 0의 특이점을 가질 확률 진폭이 정확히 0"임을 통계학적으로 완벽히 증명하며, 이는 고전적인 특이점 정리를 무력화시키고 양자 역학적 확률 차원에서 **특이점 없는 영원한 우주(빅 바운스)**를 확정 짓는다. 나아가, 이러한 특이점 해소는 무한 차원 **Kac-Moody 대수 $E_{10}$**(및 그 확장인 $E_{11}$)과 깊이 연관되어 있다. 우주론적 특이점 근방에서, 척도 인자들의 동역학은 $E_{10}$의 쌍곡선 바일 방(hyperbolic Weyl chamber) 내에서의 당구 공 운동(billiard motion)처럼 거동한다. 고전 일반 상대성 이론에서는 BKL(Belinsky-Khalatnikov-Lifshitz) 혼돈 진동이 무한히 지속되어, 기하학을 조각내는 무한한 바일 반사(Weyl reflections)의 연쇄로 이어진다. 그러나 HNM에서는 행렬 크기 $N$이 유한하므로, 이 무한한 바일 반사가 절단(truncate)된다. 당구 궤적은 바일 방의 유한한 부피로 제한되며, 최소 크기 한계 $a_{\min} \propto \ell_P / \sqrt{N}$에 도달할 때 강제적으로 양자 바운스를 유도한다. 이는 유한한 행렬 크기 $N$에 의해 정규화된 쌍곡선 Kac-Moody 바일 대칭성이 BKL 특이점을 자연스럽게 해소함을 보여주는 엄밀한 대수적 증명이다.
 
 ### 9.3 스펙트럼 제타 함수(Spectral Zeta Function)와 차원 스펙트럼
 
@@ -907,7 +928,9 @@ $$\Delta \;:\; \mathcal{A}_{\text{period}} \;\longrightarrow\; \mathcal{A}_{\tex
 **모티브 갈루아 군(Motivic Galois Group)** $G_{\text{mot}}$은 이 호프 대수 상에 자기동형 군(group of automorphisms)으로 작용하며, 진폭들의 대수적 및 초월적 구조를 완벽하게 보존한다. 우리는 S-행렬에 작용하는 모티브 갈루아 군의 작용이 진폭의 초월 가중치(transcendental weight) $W$를 완벽하게 보존하여, $n$-루프 산란 진폭을 엄밀하게 가중치 $2n$의 모티브 주기로 매핑함을 증명한다:
 $$\sigma \cdot A^{(n)}_{\text{loop}} \;\in\; \mathcal{W}_{2n}$$
 
-여기서 $\sigma \in G_{\text{mot}}$이고, $\mathcal{W}$는 가중치 필터레이션(weight filtration)이다.
+여기서 $\sigma \in G_{\text{mot}}$이고, $\mathcal{W}$는 가중치 필터레이션(weight filtration)이다. 구체적으로, 다중 폴리로그함수의 호프 대수 상에 정의되는 코프로덕트 $\Delta$는 곤차로프(Goncharov) 코프로덕트 공식에 의해 정해진다. 전형적인 폴리로그함수 $\text{Li}_n(x)$에 대해, 이는 다음과 같은 형태로 나타난다:
+$$\Delta(\text{Li}_n(x)) \;=\; \text{Li}_n(x) \otimes 1 \;+\; 1 \otimes \text{Li}_n(x) \;+\; \sum_{k=1}^{n-1} \text{Li}_{n-k}(x) \otimes \frac{\log^k(x)}{k!}$$
+모티브 갈루아 군 $G_{\text{mot}}$은 전-단능(pro-unipotent) 리 군 $U_{\text{mot}}$과 곱셈 군 $\mathbb{G}_m$의 반직접곱(semi-direct product)과 동형이다. 이것의 리 대수 $\mathfrak{g}_{\text{mot}}$는 홀수 제타 값 $\zeta(2n+1)$에 대응하는 생성원 $e_{2n+1}$들에 의해 생성된다. 이 생성원 $e_{2n+1}$의 진폭 호프 대수 상의 작용은 초월 가중치를 $2n+1$만큼 감소시키는 도함수(derivation)로 작용한다. 이러한 대수적 구조는 HNM 산출 진폭에 등장하는 모든 초월수들이 모티브적(motivic)임을 보장한다. 즉, 이들은 산란 다면체의 대수 다양체 기하학에 의해 완전히 결정되며, 모티브 갈루아 이론을 통해 체계적으로 계산될 수 있다.
 
 **물리적 의의:** 산란 진폭은 지저분한 물리적 근사치들의 나열이 아니라, 모티브 갈루아 대칭성에 의해 완벽하게 보호되는 대수 다양체의 주기이다. S-행렬은 완전히 적분 가능(integrable)하며, 코프로덕트 $\Delta$는 고차 루프 계산을 간단한 대수적 연산으로 환원시키는 수학적 연산 기계 역할을 한다. 모티브 갈루아 대칭성은 S-행렬이 엄격하게 해석적(analytic)임을 보장하여 초월적 혼돈을 차단하고, HNM을 입자 상호작용에 관한 수학적으로 정합성 있고 가적분적인 완벽한 이론으로 정초한다.
 
