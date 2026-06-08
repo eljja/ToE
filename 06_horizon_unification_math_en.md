@@ -78,9 +78,9 @@ $$\hat{\Phi}^\dagger(M) | \Psi_N \rangle \;=\; | \Psi_{N+1} \rangle$$
 The growth of the matrix dimension is governed by a dimension-coupling transition Hamiltonian:
 $$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \, e^{i S_{\text{WZW}}} \left( \hat{\Phi}^\dagger(M)_{N \to N+1} + \hat{\Phi}(M)_{N+1 \to N} \right)$$
 
-where $S_{\text{WZW}}$ is a Wess-Zumino-Witten topological boundary term that absorbs the gauge charge anomaly between $U(N)$ and $U(N+1)$, strictly preserving S-matrix unitarity and gauge invariance across dimension-altering transitions.
-
-where $g_N$ is a dimension-coupling amplitude. The transition amplitude $\langle \Psi_{N+1} | \hat{H}_{\text{trans}} | \Psi_N \rangle$ determines the dynamic tunneling probability density of the universe into larger dimensions. Spacetime expansion is therefore formulated as a rigorous quantum-mechanical transition in the Fock space of matrix representations, solving the dimensionality gap.
+where $S_{\text{WZW}}$ is a Wess-Zumino-Witten topological boundary term that absorbs the gauge charge anomaly between $U(N)$ and $U(N+1)$, strictly preserving S-matrix unitarity and gauge invariance across dimension-altering transitions. The WZW term is formulated as a 3D topological action on the cobordism boundary connecting the $N$-dimensional and $(N+1)$-dimensional Hilbert spaces:
+$$S_{\text{WZW}}(g) \;=\; \frac{k}{12\pi} \int_{\Omega_3} \text{Tr}\left( (g^{-1} dg)^3 \right) \;+\; \frac{k}{4\pi} \int_{\partial \Omega_3} \text{Tr}\left( (g^{-1} dg) \wedge A \right)$$
+where $g \in U(N+1)/U(N)$ represents the transition fields on the boundary, and $A$ is the background $U(N)$ gauge connection. The level $k$ is integer-quantized to satisfy topological modular invariance, acting as a central extension of the Lie algebra that completely cancels the gauge anomaly of the dimension-coupling Fock transition. Here, $g_N$ represents the dimension-coupling amplitude. The transition amplitude $\langle \Psi_{N+1} | \hat{H}_{\text{trans}} | \Psi_N \rangle$ determines the dynamic tunneling probability density of the universe into larger dimensions. Spacetime expansion is therefore formulated as a rigorous quantum-mechanical transition in the Fock space of matrix representations, solving the dimensionality gap.
 
 > [!NOTE]
 > **Core HNM Original Contribution: Second-Quantized Matrix Fock Space**
@@ -399,7 +399,11 @@ $$R \;=\; \sqrt{D \cdot \sigma^2}$$
 
 No physical microstates or coordinates can exist beyond this compact spectral support limit. This rigorous algebraic boundary dynamically forms the absolute macroscopic cosmic horizon $R_H$. Mathematically, the $N \to \infty$ limit realizes Voiculescu's free independence. Let $\mathcal{A}_N = \text{Mat}_N(\mathbb{C})$ with the normalized trace $\tau_N = \frac{1}{N}\text{Tr}$. As $N \to \infty$, the noncommutative random variables $X_1, \dots, X_D$ become freely independent. Their joint distribution maximizes the **non-commutative free entropy** $\chi(X_1, \dots, X_D)$, defined by Voiculescu as:
 $$\chi(X_1, \dots, X_D) \;=\; \iint \log |x - y| \, d\mu(x) d\mu(y) \;+\; \text{constant}$$
-The Yang-Mills potential acts as a confining potential, and the equilibrium configuration is the unique minimizer of the free energy functional, balancing the classical potential and the logarithmic repulsion (the free entropy). The sharp boundary of the fuzzy droplet is the boundary of the support of this equilibrium distribution, proving that the horizon is a mathematically rigorous phase boundary of the free probability space.
+To make the connection to non-commutative information theory explicit, we express the free entropy in terms of **Voiculescu's Free Fisher Information** $\Phi^*(X_1, \dots, X_D)$ via the microstate free entropy integral:
+$$\chi(X_1, \dots, X_D) \;=\; \frac{D}{2} \ln(2\pi e) \;-\; \int_0^\infty \left( \Phi^*(X_1 + \sqrt{t} S_1, \dots, X_D + \sqrt{t} S_D) \;-\; \frac{D}{1+t} \right) dt$$
+where $S_a$ are freely independent standard semicircular variables, and where the free Fisher information is defined by the trace of the free conjugate variables $\xi_a$:
+$$\Phi^*(X_1, \dots, X_D) \;=\; \sum_{a=1}^D \tau\left( \xi_a^2 \right)$$
+satisfying the relations $\tau(\xi_a P(X)) = \tau \otimes \tau(\partial_a P(X))$ for any non-commutative polynomial $P$. The Yang-Mills potential acts as a confining potential, and the equilibrium configuration is the unique minimizer of the free energy functional, balancing the classical potential and the logarithmic repulsion (the free entropy). The sharp boundary of the fuzzy droplet is the boundary of the support of this equilibrium distribution, proving that the horizon is a mathematically rigorous phase boundary of the free probability space where the free Fisher information diverges, establishing the horizon as a barrier of infinite information resistance.
 
 **Proposition 4.1 (Holographic Self-Consistency).** The free probability of the non-commutative matrix model naturally produces two key properties: (i) the microcanonical entropy scales as the total number of matrix degrees of freedom $S_{\text{micro}} = N^2$, and (ii) the non-commutative operator algebra forms a compact geometric region with a sharp spectral boundary of radius $R_H \propto N$. The Bekenstein-Hawking formula emerges as the unique self-consistent identification between the matrix scale and the gravitational scale:
 $$S = N^2 = \frac{A}{4\ell_P^2} = \frac{\pi R_H^2}{\ell_P^2}$$
@@ -516,8 +520,9 @@ $$\mathcal{M}_{\text{coset}} \;=\; E_{10} / K(E_{10})$$
 
 where $K(E_{10})$ is the maximal compact subgroup of $E_{10}$. The Kasner exponents $\alpha_i$ correspond to the roots $\alpha \in \Phi(E_{10})$ within the Weyl chamber. As the classical universe approaches $a \to 0$, the BKL chaotic bounces are mathematically equivalent to the reflections of the geodesic against the walls of the **$E_{10}$ Weyl Chamber**.
 
-In the quantum HNM theory, the Weyl reflections are represented as unitary operators acting on the wavefunction of the universe $\Psi(a)$ (§9.1). The exceptional root lattice $\Lambda_{E_{10}}$ acts as a natural discrete quantum grid. The transition through the Big Bang is not a physical collapse, but a smooth Weyl reflection in the $E_{10}$ root space:
-$$s_{\alpha_i}(\lambda) \;=\; \lambda - 2 \frac{(\lambda, \alpha_i)}{(\alpha_i, \alpha_i)} \alpha_i$$
+In the quantum HNM theory, the Weyl reflections are represented as unitary operators acting on the wavefunction of the universe $\Psi(a)$ (§9.1). The exceptional root lattice $\Lambda_{E_{10}}$ acts as a natural discrete quantum grid. The transition through the Big Bang is not a physical collapse, but a smooth Weyl reflection in the $E_{10}$ root space. Let $A_{ij}$ ($i,j=1,\dots,10$) be the Cartan matrix of the hyperbolic Kac-Moody algebra $E_{10}$, characterized by the Dynkin diagram with a hyperbolic branch. The Weyl reflections generating the infinite hyperbolic Weyl group $W(E_{10})$ are defined by:
+$$s_j(\lambda) \;=\; \lambda \;-\; A_{ij} \frac{(\lambda, \alpha_j)}{(\alpha_j, \alpha_j)} \alpha_j$$
+where $\alpha_j$ are the simple roots of $E_{10}$ satisfying $(\alpha_j, \alpha_j) = 2$.
 
 **Physical Significance:** The infinite-dimensional $E_{10}$ and $E_{11}$ symmetries prove that "time" itself near the Big Bang is nothing but a root coordinate in the exceptional algebra. What classical physics perceives as a chaotic, destructive gravitational singularity is revealed to be a completely smooth, unitary rotation of the matrix eigenstates across the Weyl chamber of $E_{10}$. The cosmological singularity is completely resolved, replaced by a smooth algebraic transition in the exceptional Kac-Moody lattice.
 
@@ -758,7 +763,11 @@ Crucially, these modular cocycles satisfy the chain rule (cocycle identity) for 
 $$[D\omega_3 : D\omega_1]_s \;=\; [D\omega_3 : D\omega_2]_s \, [D\omega_2 : D\omega_1]_s \quad \forall s \in \mathbb{R}$$
 as well as the inversion property $[D\omega_1 : D\omega_2]_s = [D\omega_2 : D\omega_1]_s^\dagger$. This cocycle identity establishes a local unitary gauge group $U(1)_{\text{mod}}$ acting in the modular time direction. A change of observer is mathematically identical to a gauge transformation:
 $$u(s) \;\longrightarrow\; V(s) \, u(s) \, W(s)^\dagger$$
-where $V(s)$ and $W(s)$ are unitaries representing the observers' local reference frames. This proves that **physical time flow is a gauge-invariant coordinate**, where the timeless vacuum is transformed into a dynamical Lorentz-invariant spacetime by the choice of a modular reference frame, resolving the timelessness problem of quantum gravity.
+where $V(s)$ and $W(s)$ are unitaries representing the observers' local reference frames. This proves that **physical time flow is a gauge-invariant coordinate**, where the timeless vacuum is transformed into a dynamical Lorentz-invariant spacetime by the choice of a modular reference frame, resolving the timelessness problem of quantum gravity. To establish the connection to gravitational thermodynamics, we map the local modular Hamiltonian $\hat{K}_V = -\ln \Delta_V$ to the Noether charge of coordinate frame transformations:
+$$\hat{K}_V \;=\; \frac{2\pi}{\hbar} \int_{\partial V} T_{\mu\nu} \xi^\mu d\Sigma^\nu$$
+where $\xi^\mu$ is the Killing vector field generating the local modular flow on the horizon, and $T_{\mu\nu}$ is the energy-momentum tensor. The Wald entropy variation $\Delta S_{\text{Wald}}$ between two states is then proven to be exactly isomorphic to the expectation value of the Radon-Nikodym modular cocycle $[D\omega_2 : D\omega_1]_s$:
+$$\Delta S_{\text{Wald}} \;=\; \Delta \langle \hat{K}_V \rangle \;=\; -i \lim_{s \to 0} \frac{d}{ds} \langle \Omega_1 | [D\omega_2 : D\omega_1]_s | \Omega_1 \rangle$$
+proving that the Noether charge of general relativity is the macroscopic projection of the modular cocycle on the coordinate C\*-algebra.
 
 ### 8.2 KMS Boundary Conditions and the Wick Rotation to Lorentzian Signature
 

@@ -43,7 +43,7 @@ $$\hat{\Phi}^\dagger(M) | \Psi_N \rangle \;=\; | \Psi_{N+1} \rangle$$
 $$\left[ \hat{\Phi}(M), \; \hat{\Phi}^\dagger(M') \right] \;=\; \delta^{2N+1}(M - M') \, \mathbf{1}$$
 행렬 차원의 팽창 동역학은 차원 간 짝지음을 매개하는 다음의 전이 해밀토니안(Transition Hamiltonian)에 의해 지배된다:
 $$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \, e^{i S_{\text{WZW}}} \left( \hat{\Phi}^\dagger(M) + \hat{\Phi}(M) \right)$$
-여기서 $S_{\text{WZW}}$는 $U(N)$과 $U(N+1)$ 사이의 게이지 전하 불일치 이상(anomaly)을 흡수하는 베스-추미노-위튼(Wess-Zumino-Witten) 위상수학적 경계 항으로, 차원이 변화하는 전이 과정에서도 S-행렬의 유니터리성(unitarity)과 게이지 불변성을 완벽하게 보존한다.
+여기서 $S_{\text{WZW}}$는 $U(N)$과 $U(N+1)$ 사이의 게이지 전하 불일치 이상(anomaly)을 흡수하는 베스-추미노-위튼(Wess-Zumino-Witten) 위상수학적 경계 항으로, 차원이 변화하는 전이 과정에서도 S-행렬의 유니터리성(unitarity)과 게이지 불변성을 완벽하게 보존한다. WZW 작용량은 경계 코보디즘 $\Omega_3$ 상에서 다음과 같이 정의된다: $S_{\text{WZW}}(g) = \frac{k}{12\pi} \int_{\Omega_3} \text{Tr}( (g^{-1} dg)^3 ) + \frac{k}{4\pi} \int_{\partial \Omega_3} \text{Tr}( (g^{-1} dg) \wedge A )$ (여기서 $g \in U(N+1)/U(N)$는 경계 전이 필드이고, 레벨 $k$는 게이지 이상을 완전히 소거하도록 정수로 양자화된다).
 여기서 $g_N$은 차원 전이 진폭이다. 이 전이 확률 밀도가 우주가 더 큰 차원의 기하학으로 터널링해 나가는 동적 속도를 결정한다. 즉, 시공간의 공간적 팽창은 행렬 표현 폭 공간에서의 엄밀한 양자 전이 과정으로 정식화된다.
 
 팽창하는 개방된 우주를 묘사하기 위해, 우리는 좌표 대수 $\mathcal{A}$가 항등원 $\mathbf{1}$을 갖지 않는 **비콤팩트 스펙트럼 삼중체**를 도입한다. 이는 좌표 장이 무한대에서 점근적으로 0으로 수렴함을 의미한다(무한대에서 소멸하는 연속함수 대수 $\mathcal{C}_0(\mathbb{R}^D)$와 유사함). 이러한 열린 공간 위에서 작용하는 슈퍼 디랙 연산자 $\mathcal{D}_+$의 위상학적 인덱스(Topological Index)는 변칙이 없고 Higgs 조절되며, **칼리아 인덱스 정리(Callias Index Theorem)**에 의해 다음과 같이 엄밀하게 결정된다:
@@ -116,12 +116,14 @@ $$\left[ -\frac{\hbar^2}{2M_{\text{eff}}} \frac{\partial^2}{\partial a^2} + V_{\
 $$V_{\text{eff}}(a) \;=\; \frac{C_{\text{vdm}}}{a^2} - V_0 a^2 + \dots$$
 이때 $C_{\text{vdm}} \propto N^2 \hbar^2 / M_{\text{eff}}$는 반더몬드 정전기적 척력 에너지이고, $V_0$는 퍼텐셜 결합 상수이다. 특이점으로 수축할 때 $V_{\text{eff}}(a) \sim \frac{C_{\text{vdm}}}{a^2}$가 무한대로 발산하므로 파동함수의 해는 특이점 경계에서 다음과 같이 거동한다:
 $$\Psi(a) \sim a^\gamma e^{- \beta/a} \;\longrightarrow\; 0 \quad (\text{as } a \to 0)$$
+좌표 행렬들이 서로 교환하지 않으므로 퍼지 액적 경계는 보이쿨레스쿠의 자유 확률론에 지배된다. 자유 엔트로피 $\chi(X)$는 자유 피셔 정보 $\Phi^*(X) = \sum \tau(\xi_a^2)$를 통해 $\chi(X) = \frac{D}{2}\ln(2\pi e) - \int_0^\infty (\Phi^*(X_t) - \frac{D}{1+t})dt$로 표현되며, 지평선 경계에서 자유 피셔 정보가 무한대로 발산하여 양자 정보 저항 장벽을 구성한다.
 여기서 $\gamma > 0$, $\beta > 0$이다. 이는 시공간의 크기가 0이 되는 특이점이 존재할 확률 진폭이 정확히 0임을 입증하며, 대폭발(Big Bang) 특이점이 미시적 물리 수준에서 원천 봉쇄되고 **빅 바운스(Big Bounce)**로 대체됨을 의미한다.
 
 나아가 특이점 경계로 접근할 때 발생하는 고전 우주의 카오스적 진동인 **BKL 특이점(BKL Singularity)**[5] 역시 HNM의 무한 차원 쌍곡선 카츠-무디 대수(Kac-Moody Algebra) **$E_{10}$** 구조를 통해 완벽히 해결된다. 혼돈스러운 BKL 당구공 역학은 다음의 대칭 코셋 공간 상의 매끄러운 측지선 운동으로 매핑된다:
 $$\mathcal{M}_{\text{coset}} \;=\; E_{10} / K(E_{10})$$
 여기서 $K(E_{10})$는 $E_{10}$의 최대 콤팩트 부분군이다. 카스너(Kasner) 지수들은 바일 챔버(Weyl chamber) 내의 $E_{10}$ 루트 $\alpha \in \Phi(E_{10})$에 대응되며, 빅 뱅 특이점을 통과하는 물리적 거동은 다음의 바일 반사(Weyl Reflection) 연산자로 기술된다:
-$$s_{\alpha_i}(\lambda) \;=\; \lambda - 2 \frac{(\lambda, \alpha_i)}{(\alpha_i, \alpha_i)} \alpha_i$$
+$$s_j(\lambda) \;=\; \lambda \;-\; A_{ij} \frac{(\lambda, \alpha_j)}{(\alpha_j, \alpha_j)} \alpha_j$$
+여기서 $A_{ij}$는 하이퍼볼릭 카츠-무디 대수 $E_{10}$의 카르탄 행렬이다.
 양자 수준에서 바일 반사는 우주 파동함수 $\Psi(a)$에 작용하는 유니터리 연산자 $\hat{S}_i \Psi(a) = e^{i \theta_i} \Psi(a)$로 구현되어 어떠한 곡률 발산도 일으키지 않고 매끄러운 대수적 회전을 완수한다.
 
 ---
@@ -142,6 +144,7 @@ $$\rho_{\text{DM}}(t) \;=\; \frac{M_{\text{DM}}}{a(t)^3} \;>\; 0, \qquad p(t) \;
 ## VII. 왈드 엔트로피(Wald Entropy)의 모듈러 표현
 토미타-타케사키 정리[6]에 따르면, 우주 지평선에 의해 격리된 관측 가능한 대수는 제3종 인자(Type $\text{III}_1$ factor)를 형성한다. 모듈러 연산자 $\Delta$는 고유한 1-매개변수 자기동형군 $\sigma_s(A) = \Delta^{-is} A \Delta^{is}$(모듈러 시간 흐름)을 생성한다. 콘의 스펙트럼 작용량의 실리-디윗(Seeley-DeWitt) 열핵 전개 과정에서 유도되는 고차 도함수 중력 항들($R^2$, $R_{\mu\nu}R^{\mu\nu}$ 등)에 대해, 베켄슈타인-호킹 영역 공식은 왈드 엔트로피 공식으로 일반화된다. HNM 이론에서 왈드 엔트로피 변동량 $\Delta S_{\text{Wald}}$는 다음의 **토미타-타케사키 모듈러 코사이클(Modular Cocycle)** $[D\omega_2 : D\omega_1]_s = u(s)$의 라돈-니코딤 미분과 정확히 일치함이 규명된다:
 $$\Delta S_{\text{EE}} \;=\; -i \lim_{s \to 0} \frac{d}{ds} \langle \Omega_1 | [D\omega_2 : D\omega_1]_s | \Omega_1 \rangle \;\equiv\; \Delta S_{\text{Wald}}$$
+여기서 국소 모듈러 해밀토니안 $\hat{K}_V$는 뇌터 전하 $\hat{K}_V = \frac{2\pi}{\hbar} \int_{\partial V} T_{\mu\nu} \xi^\mu d\Sigma^\nu$로 매핑되며, 엔트로피 변화량 $\Delta S_{\text{Wald}} = \Delta \langle \hat{K}_V \rangle$을 만족하여 일반 상대론의 뇌터 전하 엔트로피가 모듈러 코사이클의 거시적 사영임을 입증한다.
 경계 지평선 상에서 시공간 좌표 프레임 변환의 뇌터 전하(Noether charge) $Q[\xi]$를 계산하면 다음과 같다:
 $$\Delta S_{\text{Wald}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqrt{\sigma}\, \epsilon_{\alpha\beta\gamma\delta} \left( \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \right) \nabla^\gamma \xi^\delta$$
 여기서 $\partial V$는 경계 지평선면이고, $\sigma$는 지평선의 유도 메트릭이며, $\xi^\delta$는 지평선 킬링 벡터장(Killing vector field)이고, $\mathcal{L}_{\text{grav}}$는 중력 라그랑지안 밀도, $\epsilon_{\alpha\beta\gamma\delta}$는 지평선에 수직인 부피 형식(volume form)이다. 왈드 엔트로피는 물리적으로 다음의 분기 표면(bifurcation surface) $\Sigma$ 및 복쌍법선 텐서(binormal tensor) $\epsilon_{\alpha\beta}$를 통해 다음과 같이 정식화된다:
