@@ -78,12 +78,6 @@ Furthermore, we evaluate the Connes' spectral action $S[\mathcal{D}] = \text{Tr}
 $$\text{Tr}\left(f\left(\frac{\mathcal{D}}{\Lambda}\right)\right) \;=\; \sum_{n=0}^\infty f_{4-2n} \Lambda^{4-2n} a_{2n}(\mathcal{D}^2)$$
 where the Laplacian $\mathcal{D}_A^2 = -g^{\mu\nu}D_\mu D_\nu + \frac{1}{4}R + E$ yields the endomorphism:
 $$E \;=\; \frac{1}{2} \Gamma^{\mu\nu} F_{\mu\nu} \;-\; \sum_i (D_i H)^2 \;-\; (H^2 - v^2)^2 \;-\; \frac{1}{2} \sum_{i,j} \Gamma^{ij} [X_i, X_j] H$$
-The integrated trace $\text{Tr}(E^2)$ over the compact space generates the Higgs potential $V(H) = \lambda_H (H^2 - v^2)^2$ with a self-coupling $\lambda_H = \frac{3}{8} g_{\text{YM}}^2$ at the unification scale. To construct this algebra explicitly, the $32 \times 32$ Dirac gamma matrices $\Gamma^a$ in $D=10$ are built as $\Gamma^0 = i\sigma_2 \otimes \mathbf{1}_{16}$ and $\Gamma^i = \sigma_1 \otimes \gamma^i$, where $\gamma^i$ generate the Euclidean Clifford algebra $Cl(9)$. The Majorana-Weyl condition reduces the complex spinor to a 16-component real representation $\mathbf{16}$. Under compactification $SO(1,9) \to SO(1,3) \times SO(6)$, this decomposes as $\mathbf{16} \to (\mathbf{2}, \mathbf{4}) \oplus (\mathbf{\bar{2}}, \mathbf{\bar{4}})$, generating three generations of chiral fermions when the internal space has three topological index defects.
-
-Furthermore, we evaluate the Connes' spectral action $S[\mathcal{D}] = \text{Tr}(f(\mathcal{D}/\Lambda))$ via the Seeley-DeWitt heat kernel expansion:
-$$\text{Tr}\left(f\left(\frac{\mathcal{D}}{\Lambda}\right)\right) \;=\; \sum_{n=0}^\infty f_{4-2n} \Lambda^{4-2n} a_{2n}(\mathcal{D}^2)$$
-where the Laplacian $\mathcal{D}_A^2 = -g^{\mu\nu}D_\mu D_\nu + \frac{1}{4}R + E$ yields the endomorphism:
-$$E \;=\; \frac{1}{2} \Gamma^{\mu\nu} F_{\mu\nu} \;-\; \sum_i (D_i H)^2 \;-\; (H^2 - v^2)^2 \;-\; \frac{1}{2} \sum_{i,j} \Gamma^{ij} [X_i, X_j] H$$
 The integrated trace $\text{Tr}(E^2)$ over the compact space generates the Higgs potential $V(H) = \lambda_H (H^2 - v^2)^2$ with a self-coupling $\lambda_H = \frac{3}{8} g_{\text{YM}}^2$ at the unification scale.
 
 ---
