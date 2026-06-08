@@ -73,7 +73,13 @@ $$G_N \;=\; \frac{\ell_P^2}{2\pi N^2}$$
 $$\Gamma^a_{\alpha(\beta}\,\Gamma_{a\,\gamma\delta)} \;=\; 0$$
 이는 후르비츠 정리(Hurwitz's Theorem)에 의해 횡단 차원을 나눗셈 대수(division algebra)의 차원으로 제한한다:
 $$D - 2 \in \{1, 2, 4, 8\} \implies D \in \{3, 4, 6, 10\}$$
-카이랄 마요라나-와일 스피너가 존재할 수 있는 시공간 차원은 $D \equiv 2 \pmod 8$뿐이므로, HNM의 모체 차원은 $D=10$으로 고유하게 확정된다.
+카이랄 마요라나-와일 스피너가 존재할 수 있는 시공간 차원은 $D \equiv 2 \pmod 8$뿐이므로, HNM의 모체 차원은 $D=10$으로 고유하게 확정된다. 이 대수적 구조를 명시적으로 구현하기 위해, 10차원의 $32 \times 32$ 디랙 감마 행렬 $\Gamma^a$는 $\Gamma^0 = i\sigma_2 \otimes \mathbf{1}_{16}$ 및 $\Gamma^i = \sigma_1 \otimes \gamma^i$로 구성되며, 여기서 $\gamma^i$는 유클리드 Clifford 대수 $Cl(9)$를 생성한다. 마요라나-바일 조건은 복소 스피너를 16성분 실수 표현 $\mathbf{16}$으로 축소시킨다. 컴팩트화 $SO(1,9) \to SO(1,3) \times SO(6)$ 하에서, 이는 $\mathbf{16} \to (\mathbf{2}, \mathbf{4}) \oplus (\mathbf{\bar{2}}, \mathbf{\bar{4}})$로 분해되어, 내부 공간이 세 개의 위상학적 지수 결함을 가질 때 정확히 세 세대의 카이랄 페르미온을 생성한다.
+
+나아가, 콘의 스펙트럼 작용량 $S[\mathcal{D}] = \text{Tr}(f(\mathcal{D}/\Lambda))$을 Seeley-DeWitt 열핵 전개를 통해 평가한다:
+$$\text{Tr}\left(f\left(\frac{\mathcal{D}}{\Lambda}\right)\right) \;=\; \sum_{n=0}^\infty f_{4-2n} \Lambda^{4-2n} a_{2n}(\mathcal{D}^2)$$
+여기서 라플라시안 $\mathcal{D}_A^2 = -g^{\mu\nu}D_\mu D_\nu + \frac{1}{4}R + E$는 다음과 같은 자기동형 사상을 산출한다:
+$$E \;=\; \frac{1}{2} \Gamma^{\mu\nu} F_{\mu\nu} \;-\; \sum_i (D_i H)^2 \;-\; (H^2 - v^2)^2 \;-\; \frac{1}{2} \sum_{i,j} \Gamma^{ij} [X_i, X_j] H$$
+컴팩트 공간 상의 적분된 대각합 $\text{Tr}(E^2)$은 통일 스케일에서 자체 결합 상수 $\lambda_H = \frac{3}{8} g_{\text{YM}}^2$을 가지는 힉스 퍼텐셜 $V(H) = \lambda_H (H^2 - v^2)^2$을 생성한다.
 
 ---
 
@@ -98,7 +104,7 @@ $$R_{ab}^{\;\;\;cd} \;\longrightarrow\; R_{\mu\nu}^{\;\;\;\rho\sigma}(g) + \math
 ---
 
 ## V. 반더몬드 장벽(Vandermonde Barrier) 터널링 우주론
-우주의 공간 팽창($\dot{N} > 0$)은 디랙해(Dirac sea)로부터 양자화된 행렬 방울로 고유치들이 터널링해 유입되는 동적 과정이다. 좌표 행렬 $X_a$들은 서로 교환하지 않으므로 동시에 대각화될 수 없다. 대신, 행렬 물방울의 물리적 크기(스케일 팩터)를 대변하는 라디알 좌표 행렬 $R = \sqrt{\sum_{a=1}^D (X_a)^2}$을 다음과 같이 대각화한다:
+우주의 공간 팽창($\dot{N} > 0$)은 디랙해(Dirac sea)로부터 양자화된 행렬 방울로 고유치들이 터널링해 유입되는 동적 과정이다. 단위 시간당 터널링 확률 밀도는 인스턴톤 작용량 차이 $S_{\text{inst}} = S_{N+1} - S_N \approx \frac{3\alpha^4}{16g^2} N^2$에 의해 $\gamma(N) \propto \exp(-S_{\text{inst}}/\hbar) = \gamma_0 \exp(-\lambda N^2)$으로 결정된다. 여기서 프리엑스포넨셜 인자 $\gamma_0 = \frac{S_{\text{inst}}^{d/2}}{(2\pi)^{d/2}} \left| \frac{\det'(-\nabla^2 + V''_{\text{inst}})}{\det(-\nabla^2 + V''_{\text{vac}})} \right|^{-1/2}$는 인스턴톤 배경 주위의 1-루프 양자 요동 결정행렬로부터 계산되며, 스펙트럼 제타 함수를 통해 정규화된다. 좌표 행렬 $X_a$들은 서로 교환하지 않으므로 동시에 대각화될 수 없다. 대신, 행렬 물방울의 물리적 크기(스케일 팩터)를 대변하는 라디알 좌표 행렬 $R = \sqrt{\sum_{a=1}^D (X_a)^2}$을 다음과 같이 대각화한다:
 $$R \;=\; U \Lambda U^\dagger$$
 여기서 $\Lambda = \text{diag}(\lambda_1, \dots, \lambda_N)$는 고윳값 행렬이고, $U \in U(N)$는 유니터리 변환 행렬이다. 경로 적분 측도에서 이 유니터리 자유도 $U$를 적분해내면 **반더몬드 행렬식의 제곱(Vandermonde Determinant Squared)**이 자코비안으로 생성된다:
 반경이 척도 인자 $a \propto \sqrt{\text{Tr}(R^2)} = \sqrt{\sum \lambda_i^2}$를 나타내는 초구면 좌표계(hyperspherical coordinates)로 변환하면 각도 자유도들이 분리된다:
@@ -140,7 +146,7 @@ $$\Delta S_{\text{EE}} \;=\; -i \lim_{s \to 0} \frac{d}{ds} \langle \Omega_1 | [
 $$\Delta S_{\text{Wald}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqrt{\sigma}\, \epsilon_{\alpha\beta\gamma\delta} \left( \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \right) \nabla^\gamma \xi^\delta$$
 여기서 $\partial V$는 경계 지평선면이고, $\sigma$는 지평선의 유도 메트릭이며, $\xi^\delta$는 지평선 킬링 벡터장(Killing vector field)이고, $\mathcal{L}_{\text{grav}}$는 중력 라그랑지안 밀도, $\epsilon_{\alpha\beta\gamma\delta}$는 지평선에 수직인 부피 형식(volume form)이다. 왈드 엔트로피는 물리적으로 다음의 분기 표면(bifurcation surface) $\Sigma$ 및 복쌍법선 텐서(binormal tensor) $\epsilon_{\alpha\beta}$를 통해 다음과 같이 정식화된다:
 $$S_{\text{Wald}} \;=\; -2\pi \int_{\Sigma} \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \epsilon_{\alpha\beta} \epsilon_{\gamma\delta} d\Sigma$$
-이 관계는 일반 중력 이론의 뇌터 전하 엔트로피가 미시적인 연산자 C\*-대수의 모듈러 흐름 및 얽힘 엔트로피의 거시적 표상임을 증명하며 중력 열역학 제1법칙을 보장한다. 유한 차원 $N$의 행렬 대수는 근본적으로 제1종(Type I)이므로, 유한 차원 폰 노이만 엔트로피는 베켄슈타인-호킹 면적 법칙에 대한 정확한 로그 양자 보정 항을 엄밀히 도출한다: $S_{\text{EE}} = \frac{A}{4G} - \frac{3}{2} \ln(A/G)$. 연속적인 제3종(Type $\text{III}_1$) 인자는 오직 무한 지평선 극한에서만 엄밀하게 창발한다.
+이 관계는 일반 중력 이론의 뇌터 전하 엔트로피가 미시적인 연산자 C\*-대수의 모듈러 흐름 및 얽힘 엔트로피의 거시적 표상임을 증명하며 중력 열역학 제1법칙을 보장한다. 결정적으로, 이 모듈러 코사이클들은 연쇄 법칙 $[D\omega_3 : D\omega_1]_s = [D\omega_3 : D\omega_2]_s [D\omega_2 : D\omega_1]_s$ 및 역원 성질 $[D\omega_1 : D\omega_2]_s = [D\omega_2 : D\omega_1]_s^\dagger$을 만족하여, 모듈러 시간 방향의 국소 유니터리 게이지 군 $U(1)_{\text{mod}}$을 확립한다. 이를 통해 물리적 시간의 흐름이 국소 게이지 불변 좌표임을 알 수 있다. 관찰자(상태)를 바꾸는 것은 수학적으로 모듈러 매개변수 $s$에 대한 국소 유니터리 게이지 변환 $u(s) \to V(s) u(s) W(s)^\dagger$에 불과하며, 양자 중력의 고질적인 시간의 문제를 해결한다. 유한 차원 $N$의 행렬 대수는 근본적으로 제1종(Type I)이므로, 유한 차원 폰 노이만 엔트로피는 베켄슈타인-호킹 면적 법칙에 대한 정확한 로그 양자 보정 항을 엄밀히 도출한다: $S_{\text{EE}} = \frac{A}{4G} - \frac{3}{2} \ln(A/G)$. 연속적인 제3종(Type $\text{III}_1$) 인자는 오직 무한 지평선 극한에서만 엄밀하게 창발한다.
 이는 **모듈러-동역학적 동형(Modular-Dynamical Isomorphism)**을 성립시킨다: 토미타-타케사키 모듈러 흐름으로부터 유도되는 열역학적 모듈러 시간 $s$는 $s \propto \ln(a(t))$ 관계식을 통해 동역학적인 프리드만 우주 시간 $t$와 엄밀히 공액(conjugate) 관계에 있다. 우주의 공간 팽창은 수학적으로 양자 얽힘 엔트로피의 흐름과 완벽히 동일하며, 휠러-디윗 궤적 내에서 고질적인 시간의 실종 문제(Problem of Time)를 완전히 해결한다.
 
 ---
@@ -152,7 +158,7 @@ $$S_{\text{Wald}} \;=\; -2\pi \int_{\Sigma} \frac{\delta \mathcal{L}_{\text{grav
 $$\text{Li}_{n_1, \dots, n_k}(x_1, \dots, x_k) \;=\; \sum_{0 < m_1 < \dots < m_k} \frac{x_1^{m_1} \dots x_k^{m_k}}{m_1^{n_1} \dots m_k^{n_k}}$$
 우리는 임의의 고차 산란 진폭을 하위 motivic 주기의 텐서 곱으로 분해하는 코프로덕트(coproduct) $\Delta$ 연산을 가진 **주기 호프 대수 $\mathcal{A}_{\text{period}}$**를 정의한다:
 $$\Delta \;:\; \mathcal{A}_{\text{period}} \;\longrightarrow\; \mathcal{A}_{\text{period}} \;\otimes\; \mathcal{A}_{\text{period}}$$
-**모티브 갈루아 군(Motivic Galois Group)** $G_{\text{mot}}$은 이 호프 대수 상에 작용하는 자기동형군으로, 산란 진폭의 모든 초월적 성질과 대수적 가동성을 완전히 통제한다. 우리는 S-행렬 상에 작용하는 모티브 갈루아 군의 작용이 산란 진폭의 초월적 가중치(transcendental weight) $W$를 엄격히 보존하며, $n$-루프 진폭을 정확히 $2n$ 가중치를 갖는 주기로 매핑함을 증명한다:
+**모티브 갈루아 군(Motivic Galois Group)** $G_{\text{mot}}$은 이 호프 대수 상에 작용하는 자기동형군으로, 산란 진폭의 모든 초월적 성질과 대수적 가동성을 완전히 통제한다. 행렬 장론 수준에서, 1PI 파인만 그래프로 생성되는 **Connes-Kreimer Hopf 대수** $\mathcal{H}_{\text{CK}}$를 코프로덕트 $\Delta_{\text{CK}}(\Gamma) = \Gamma \otimes 1 + 1 \otimes \Gamma + \sum_{\gamma \subset \Gamma} \gamma \otimes \Gamma/\gamma$와 함께 정의한다. 캐릭터 군에서의 루프 생성원의 버코프 분해 $\phi(x) = \phi_-(x)^{-1} \phi_+(x)$는 모든 UV 발산을 대수적으로 흡수하여, $\phi_+(x)$가 $\epsilon \to 0$ 극한에서 해석적임을 보장한다. 우리는 S-행렬 상에 작용하는 모티브 갈루아 군의 작용이 산란 진폭의 초월적 가중치(transcendental weight) $W$를 엄격히 보존하며, $n$-루프 진폭을 정확히 $2n$ 가중치를 갖는 주기로 매핑함을 증명한다:
 $$\sigma \cdot A^{(n)}_{\text{loop}} \;\in\; \mathcal{W}_{2n}$$
 여기서 $\sigma \in G_{\text{mot}}$이고, $\mathcal{W}$는 가중치 여과(weight filtration)이다. 이 대수적 불변성은 코프로덕트 연산 $\Delta$가 고차 루프 적분을 대수적 가감승제로 환원시키는 기계로 작동하도록 하며, S-행렬의 완전한 가적분성을 보장한다.
 

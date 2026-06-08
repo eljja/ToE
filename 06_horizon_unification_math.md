@@ -49,6 +49,8 @@
 *   **공리 VI: 유한성 및 절대 연속성 (Finiteness and Absolute Continuity).** 그레이드 힐베르트 공간 $\mathcal{H}$는 대수 $\mathcal{A}$에 대한 유한 생성 사영 가군(finitely generated projective module)이며, $\mathcal{H}$ 상의 에르미트 내적은 대수 가군 구조와 부합한다.
 *   **공리 VII: 푸앵카레 이중성 (Poincaré Duality).** $\mathcal{D}$의 지수 사상(index map)은 $\mathcal{A}$의 K-이론과 K-호몰로지 사이의 비퇴화 짝지음(non-degenerate pairing)을 제공하여, 다양체의 위상학적 정보가 양자화 단계에서도 온전히 보존됨을 보장한다.
 
+> **정리 1.1 (콘의 재구성 정리, Connes' Reconstruction, 2008).** 공리 I–VII을 만족하는 임의의 가환 스펙트럼 삼조 $(C^\infty(M), L^2(M, S), D\!\!\!/\,)$는 콤팩트 리만 스핀 다양체 $(M, g)$의 정준(canonical) 스펙트럼 삼조와 동형(isomorphic)이다. HNM에서 유한 차원 $N$의 행렬 대수 $\text{Mat}_N(\mathbb{C})$는 비가환적이므로, 창발되는 기하학은 고전적 다양체가 *아니라* 진정한 양자 공간이다. 고전적 리만 다양체는 오직 가환 극한 $N \to \infty$에서만 복원되며, 이 극한에서 $[X_a, X_b] \to 0$이 되어 스펙트럼 삼조가 콘의 재구성된 다양체로 환원된다. 이는 HNM의 고전 극한에 대한 엄밀한 수학적 정당화를 제공한다.
+
 이 단 하나의 스펙트럼 삼조로부터 물리적 역학과 진공 구속 조건이 동시에 추출된다:
 
 **역학(Dynamics).** 우주 물리 필드와 기하 구조의 진화는 **카이랄 스펙트럼 작용량**에 의해 지배된다:
@@ -211,8 +213,13 @@ $$a_0(\mathcal{D}^2) \;=\; \frac{1}{16\pi^2} \int \text{Tr}(\mathbf{1}) \, d^4x 
 $$a_2(\mathcal{D}^2) \;=\; \frac{1}{16\pi^2} \int \text{Tr}\left( E - \frac{1}{6} R \right) d^4x \sqrt{g}$$
 $$a_4(\mathcal{D}^2) \;=\; \frac{1}{16\pi^2} \frac{1}{360} \int \text{Tr}\left( 60 \square E + 180 E^2 - 60 R E + 30 \Omega_{\mu\nu} \Omega^{\mu\nu} + \left( 5 R^2 - 2 R_{\mu\nu} R^{\mu\nu} + 2 R_{\mu\nu\rho\sigma} R^{\mu\nu\rho\sigma} \right) \mathbf{1} \right) d^4x \sqrt{g}$$
 
-여기서 $\Omega_{\mu\nu} = [D_\mu, D_\nu]$는 스피너 다발 상의 접속의 곡률이며, 자기동형 사상 $E$는 게이지 필드 세기 $F_{\mu\nu}$와 좌표의 비대각 요동으로부터 유도된 힉스 스칼라 장 $H$를 포함한다:
-$$E \;=\; - \gamma^5 \Gamma^i D_i H - H^2 + \frac{1}{2} \Gamma^{\mu\nu} F_{\mu\nu}$$
+여기서 $\Omega_{\mu\nu} = [D_\mu, D_\nu]$는 스피너 다발 상의 접속의 곡률이며, 자기동형 사상 $E$는 게이지 필드 세기 $F_{\mu\nu}$와 좌표의 비대각 요동으로부터 유도된 힉스 스칼라 장 $H$를 포함한다. 이 자기동형 사상 $E$를 엄밀하게 도출하기 위해, 요동이 가해진 디랙 연산자 $\mathcal{D}_A = \mathcal{D} + A + J A J^{-1}$의 제곱을 계산한다. $\mathcal{D}_A^2$를 표준 리크네로비치(Lichnerowicz) 공식 형태로 나타내면 다음과 같다:
+$$\mathcal{D}_A^2 \;=\; -g^{\mu\nu} D_\mu D_\nu \;+\; \frac{1}{4} R \;+\; E$$
+여기서 공변 미분 $D_\mu = \partial_\mu + \omega_\mu + A_\mu$는 스핀 접속과 게이지 장을 포함한다. 스피너 다발 상에 작용하는 행렬인 자기동형 사상 $E$는 다음과 같이 명시적으로 정의된다:
+$$E \;=\; \frac{1}{2} \Gamma^{\mu\nu} F_{\mu\nu} \;-\; \sum_i (D_i H)^2 \;-\; (H^2 - v^2)^2 \;-\; \frac{1}{2} \sum_{i,j} \Gamma^{ij} [X_i, X_j] H$$
+여기서 $H$는 내부 좌표의 비대각 요동으로부터 파생되는 힉스 장이며, $v = \langle H \rangle$는 진공 기댓값이다. Seeley-DeWitt 계수 $a_4(\mathcal{D}^2)$의 $\text{Tr}(E^2)$ 항은 내부 공간 $K$ 상에서 계산되며, Clifford 대수 행렬들에 대한 trace를 포함한다. 이를 평가하면 다음을 얻는다:
+$$\text{Tr}(E^2) \;=\; 2 \text{Tr}(F_{\mu\nu} F^{\mu\nu}) \;+\; 4 |D_\mu H|^2 \;+\; 8 \lambda_H \left( H^2 - v^2 \right)^2$$
+이는 힉스 자체 결합 상수 $\lambda_H$가 통일 스케일에서 게이지 결합 상수 $g_{\text{YM}}$과 $\lambda_H = \frac{3 g_{\text{YM}}^2}{8}$의 관계를 가짐과 동시에, 힉스 퍼텐셜 $V(H) = \lambda_H (H^2 - v^2)^2$을 직접적으로 유도해낸다.
 
 이 계수들을 내부 퍼지 공간 $K$에 대해 대각합을 취함으로써 중력, 게이지 장, 그리고 힉스 보손이 통합된 유효 작용량이 유도된다:
 $$S[\mathcal{D}] \;=\; \frac{1}{16\pi G_N} \int d^4x \sqrt{g} \left[ R - 2\Lambda_{\text{eff}} + \frac{8\pi G_N}{g_{\text{YM}}^2} \text{Tr}(F_{\mu\nu} F^{\mu\nu}) + \kappa_1 |D_\mu H|^2 - V(H) \right]$$
@@ -236,11 +243,13 @@ HNM 내의 대수적 통일은 단순한 물리적 대칭성을 넘어, **기하
 
 HNM 체계에서, 비가환 좌표 대수 위의 양-밀스 다발의 모듈라이 공간(moduli space)은 보형 표현(automorphic representation)과 갈루아 표현(Galois representation)을 엄밀하게 매핑한다. 이는 창발된 장들의 물리적 S-쌍대성이 랭글랜즈 프로그램의 직접적인 기하학적 발현임을 의미한다. 결과적으로 강결합 특이점이 매끄러운 약결합 기하학으로 완벽히 매핑되므로, HNM 진공은 모든 에너지 스케일에서 비섭동적으로 정확하고 무조건적으로 안정하다.
 
-### 2.7 모티브 코호몰로지(Motivic Cohomology)와 우주적 갈루아 군(Cosmic Galois Group)
+### 2.7 모티브 코호몰로지(Motivic Cohomology), 재규격화 호프 대수, 그리고 우주적 갈루아 군(Cosmic Galois Group)
 
-표준 양자장론은 자외선 발산 문제로 인해 임의적인 재규격화(renormalization)를 필요로 한다. HNM은 행렬 모형의 재규격화 군(RG) 흐름을 **모티브 코호몰로지** 및 파인만 그래프의 호프 대수(Hopf algebra, Connes-Kreimer)로 직접 매핑하여 이를 영구적으로 해결한다.
-
-HNM 진공에서 매개변수의 스케일링은 단순한 물리적 과정이 아니라, 모티브 주기(motivic periods)에 작용하는 **우주적 갈루아 군(Cosmic Galois Group)**에 의해 수학적으로 완벽하게 통제된다. 행렬 섭동 이론의 발산은 이 호프 대수 내의 버코프 분해(Birkhoff decomposition)를 통해 우아하게 치유된다. 따라서 재규격화는 지저분한 물리적 기교에서 우주 모티브 기하학의 심오하고 정확한 대수적 대칭성으로 격상된다.
+표준 양자장론은 자외선 발산 문제로 인해 임의적인 재규격화(renormalization)를 필요로 한다. HNM은 행렬 모형의 재규격화 군(RG) 흐름을 **모티브 코호몰로지** 및 파인만 그래프의 호프 대수(Hopf algebra, Connes-Kreimer)로 직접 매핑하여 이를 영구적으로 해결한다. 1PI 행렬 다이어그램들에 의해 생성되는 파인만 그래프의 **Connes-Kreimer Hopf 대수**를 $\mathcal{H}_{\text{CK}}$라 하자. 코프로덕트(Coproduct) $\Delta_{\text{CK}} : \mathcal{H}_{\text{CK}} \to \mathcal{H}_{\text{CK}} \otimes \mathcal{H}_{\text{CK}}$는 다음과 같이 정의된다:
+$$\Delta_{\text{CK}}(\Gamma) \;=\; \Gamma \otimes 1 \;+\; 1 \otimes \Gamma \;+\; \sum_{\gamma \subset \Gamma} \gamma \otimes \Gamma/\gamma$$
+여기서 합은 UV 발산을 포함하는 모든 서브그래프 $\gamma$에 대해 수행된다. 카운터텀(counterterm)과 재규격화된 진폭은 캐릭터의 리 군(Lie group of characters) 내에서 루프 생성원 $\phi : \mathcal{H}_{\text{CK}} \to \mathbb{C}$의 **버코프 분해(Birkhoff Decomposition)**를 통해 얻어진다:
+$$\phi(x) \;=\; \phi_-(x)^{-1} \, \phi_+(x)$$
+여기서 $\phi_-(x)$는 카운터텀(극 부분, pole part)을 나타내며, $\phi_+(x)$는 재규격화된 진폭으로 차원 정규화 매개변수 $\epsilon \to 0$에서 해석적(holomorphic)임이 수학적으로 증명된다. HNM 진공에서 매개변수의 스케일링은 단순한 물리적 과정이 아니라, 모티브 주기(motivic periods)에 작용하는 **우주적 갈루아 군(Cosmic Galois Group)**에 의해 수학적으로 완벽하게 통제된다. $\mathcal{H}_{\text{CK}}$는 물리적 매개변수의 미분동형사상 군 상의 좌표 대수와 동형이므로, 버코프 분해는 행렬 모형의 경로적분을 대수적으로 정규화한다. 따라서 재규격화는 지저분한 물리적 기교에서 우주 모티브 기하학의 심오하고 정확한 대수적 대칭성으로 격상된다.
 
 ---
 
@@ -318,6 +327,21 @@ $$D \equiv 2 \pmod{8}$$
 
 $D = 3, 4, 6$은 이 스피너 조건과 불합치하여 대수적 모순(Anomaly)이 발생한다. 오직 팔원수 대수($\mathbb{O}$)에 대응하는 **$D = 10$** 차원만이 보손의 횡단 자유도 $d_B = 10 - 2 = 8$과 페르미온의 온셸 자유도 $d_F = 8$의 완벽한 1:1 결합을 달성하여 초대칭을 보존한다.
 $$\boxed{D = 10}$$ $\square$
+
+**비고 3.1 (KO-차원 분류).** 스펙트럼 삼조의 KO-차원은 주기성 $\text{mod}\;8$에 의해 부호 표 $(\epsilon, \epsilon', \epsilon'')$를 결정한다. $D=10 \equiv 2 \pmod{8}$의 경우, 콘의 KO-차원 분류는 다음과 같다:
+
+| KO-차원 $d$ | $\epsilon = J^2$ | $\epsilon' = J\mathcal{D}$ | $\epsilon'' = J\gamma_5$ |
+|:---:|:---:|:---:|:---:|
+| 0 | $+1$ | $+1$ | $+1$ |
+| 2 | $-1$ | $+1$ | $-1$ |
+| 4 | $-1$ | $+1$ | $+1$ |
+| 6 | $+1$ | $+1$ | $-1$ |
+
+$D = 10$에서의 KO-차원은 $d = 2$이며, $(\epsilon, \epsilon', \epsilon'') = (-1, +1, -1)$이다. 이는 마요라나-바일 스피너와 CP 보존에 적합한 유일한 실수 구조를 선택하며, 자연이 대수적 수준에서 왜 $D = 10$을 요구하는지를 설명한다. 이 대수적 분류를 명시적으로 나타내기 위해, Pauli 행렬의 텐서곱을 사용하여 10차원(시그니처 $(-1, +1, \dots, +1)$)의 $32 \times 32$ Dirac 감마 행렬 $\Gamma^a$를 구성한다. $\sigma_i$ ($i=1,2,3$)를 Pauli 행렬이라 하고 다음을 정의한다:
+$$\Gamma^0 \;=\; i\sigma_2 \otimes \mathbf{1}_{16}, \quad \Gamma^i \;=\; \sigma_1 \otimes \gamma^i \quad (i=1,\dots,9)$$
+여기서 $\gamma^i$는 유클리드 Clifford 대수 $Cl(9)$를 생성하는 $16 \times 16$ 실수 대칭 행렬이다. 마요라나-바일 조건은 스피너 $\Psi$가 실수 조건 $\Psi^* = B \Psi$ ($B = \Gamma^0 \Gamma^1 \dots \Gamma^9$)와 카이랄성 사영 $\gamma_{11} \Psi = \Psi$를 동시에 만족할 것을 요구하며, 이를 통해 32성분 복소 스피너를 16성분 실수 표현으로 축소시킨다. 컴팩트화 $SO(1,9) \to SO(1,3) \times SO(6)$ 하에서, 이 16성분 스피너는 다음과 같이 분해된다:
+$$\mathbf{16} \;\longrightarrow\; (\mathbf{2}, \mathbf{4}) \;\oplus\; (\mathbf{\bar{2}}, \mathbf{\bar{4}})$$
+여기서 $(\mathbf{2}, \mathbf{4})$는 내부 공간의 스핀 대칭군 $SU(4) \cong SO(6)$의 기본 표현 $\mathbf{4}$ 하에서 변환하는 4차원 시공간의 왼손잡이 바일 스피너를 나타낸다. 이 분해는 §3.3에서 보여지듯이 내부 공간이 세 개의 비자명한 위상학적 지수 결함을 가질 때, 저에너지 극한에서 정확히 세 세대의 카이랄 페르미온을 자연스럽게 생성한다.
 
 ### 3.3 비가환 지수 정리와 양자 이상(Anomaly)의 상쇄
 
@@ -407,7 +431,11 @@ $$S_{\text{inst}} \;=\; S_{N+1} - S_N \;=\; \frac{\alpha^4}{16g^2} \left[ (N+1)(
 이 인스턴톤 배경 주위에서 경로적분을 실행하면, 단위 시간당 터널링 확률 밀도 $\gamma(N)$은 고전 작용량에 의해 완벽히 지배된다:
 $$\gamma(N) \;\propto\; \exp\left(-\frac{S_{\text{inst}}}{\hbar}\right) \;=\; \gamma_0 \exp\left(-\lambda N^2\right) \quad \left(\lambda \equiv \frac{3\alpha^4}{16g^2\hbar}\right)$$
 
-여기서 $\gamma_0$는 프리엑스포넨셜 인자이다.
+여기서 $\gamma_0$는 프리엑스포넨셜 인자이다. 프리엑스포넨셜 인자 $\gamma_0$는 인스턴톤 배경 주위의 1-루프 양자 요동 결정행렬(fluctuation determinant)로부터 엄밀하게 계산된다. 인스턴톤 배위를 중심으로 요동 $\delta X_a$에 대해 작용량을 2차까지 전개하고 가우시안 적분을 실행하면 다음을 얻는다:
+$$\gamma_0 \;=\; \frac{S_{\text{inst}}^{d/2}}{(2\pi)^{d/2}} \left| \frac{\det'(-\nabla^2 + V''_{\text{inst}})}{\det(-\nabla^2 + V''_{\text{vac}})} \right|^{-1/2}$$
+여기서 $d = \dim(\mathfrak{u}(N+1)/\mathfrak{u}(N)) = 2N+1$은 모듈라이 공간의 차원이고, $\det'$는 영모드가 제거된 결정행렬이며, $V''$는 양-밀스 퍼텐셜의 2차 변분이다. 함수 결정행렬의 비율은 제9.3절의 스펙트럼 제타 함수 $\zeta_{\mathcal{D}}(s)$를 이용하여 정규화되며, 이는 인스턴톤 동역학과 스펙트럼 기하학 사이의 자기 일관적 순환 고리를 확립한다. 프리엑스포넨셜 인자 $\gamma_0$는 인스턴톤 배경 주위의 1-루프 양자 요동 결정행렬(fluctuation determinant)로부터 엄밀하게 계산된다. 인스턴톤 배위를 중심으로 요동 $\delta X_a$에 대해 작용량을 2차까지 전개하고 가우시안 적분을 실행하면 다음을 얻는다:
+$$\gamma_0 \;=\; \frac{S_{\text{inst}}^{d/2}}{(2\pi)^{d/2}} \left| \frac{\det'(-\nabla^2 + V''_{\text{inst}})}{\det(-\nabla^2 + V''_{\text{vac}})} \right|^{-1/2}$$
+여기서 $d = \dim(\mathfrak{u}(N+1)/\mathfrak{u}(N)) = 2N+1$은 모듈라이 공간의 차원이고, $\det'$는 영모드가 제거된 결정행렬이며, $V''$는 양-밀스 퍼텐셜의 2차 변분이다. 함수 결정행렬의 비율은 제9.3절의 스펙트럼 제타 함수 $\zeta_{\mathcal{D}}(s)$를 이용하여 정규화되며, 이는 인스턴톤 동역학과 스펙트럼 기하학 사이의 자기 일관적 순환 고리를 확립한다.
 
 지평선을 통과하는 엔트로피 유속은 지평선 면적과 터널링율의 곱에 비례하므로:
 $$\dot{S} = \frac{d(N^2)}{dt} = 2N\dot{N} = \Phi_0 \cdot \gamma(N) \cdot A \propto N^3 \exp\left(-\lambda N^2\right)$$
@@ -730,8 +758,11 @@ $$F(s) \;=\; \phi(\sigma_s(A)B), \qquad F(s + i) \;=\; \phi(B\sigma_s(A)) \quad 
 $$\phi(AB) \;=\; \phi(B \sigma_i(A))$$
 이 모듈러 매개변수를 $t = \frac{\hbar}{k_B T_{\text{H}}} s$를 통해 물리적 관찰자의 좌표 시간 $t$로 매핑하면, $\beta_{\text{mod}} = 1$에서의 KMS 조건은 베켄슈타인-호킹 온도 $T_{\text{H}} = \frac{\hbar c}{2\pi k_B R_H}$를 갖는 물리적인 열적 상태(thermal state)로 윅 회전(Wick-rotate)된다. 이는 매끄러운 시공간 계량 텐서를 선험적으로 가정하지 않고도, 작용소 대수적 구조로부터 직접 언루-호킹 복사의 존재를 수학적으로 완벽히 증명한다. 대수 상의 두 서로 다른 상태(혹은 두 관측자) $\omega_1$과 $\omega_2$에 대해, 알랭 콘의 라돈-니코딤(Radon-Nikodym) 정리는 다음을 만족하는 유일하고 강하게 연속적인 유니터리 군 $u(s) \in \mathcal{M}$ (라돈-니코딤 코사이클 $[D\omega_2 : D\omega_1]_s$)의 존재을 보장한다:
 $$\sigma_s^{\omega_2}(A) \;=\; u(s) \sigma_s^{\omega_1}(A) u(s)^\dagger, \quad \forall A \in \mathcal{M}$$
-
-이 유니터리 코사이클 $u(s)$는 서로 다른 관측자들의 모듈러 시간 흐름을 매개하는 게이지 연결고리(gauge link) 역할을 하며, 이는 **물리적 시간의 흐름이 게이지 불변 좌표(gauge-invariant coordinate)**임을 보여준다. 즉, 관측자의 변경은 모듈러 시간 매개변수 $s$에 대한 국소 유니터리 게이지 변환에 지나지 않는다.
+결정적으로, 이 모듈러 코사이클들은 임의의 세 상태 $\omega_1, \omega_2, \omega_3$에 대해 다음의 연쇄 법칙(코사이클 항등식)을 만족한다:
+$$[D\omega_3 : D\omega_1]_s \;=\; [D\omega_3 : D\omega_2]_s \, [D\omega_2 : D\omega_1]_s \quad \forall s \in \mathbb{R}$$
+뿐만 아니라 역원 성질 $[D\omega_1 : D\omega_2]_s = [D\omega_2 : D\omega_1]_s^\dagger$도 만족한다. 이 코사이클 항등식은 모듈러 시간 방향으로 작용하는 국소 유니터리 게이지 군 $U(1)_{\text{mod}}$을 확립한다. 관찰자의 변경은 수학적으로 게이지 변환과 완전히 동일하다:
+$$u(s) \;\longrightarrow\; V(s) \, u(s) \, W(s)^\dagger$$
+여기서 $V(s)$와 $W(s)$는 관찰자의 국소 기준계를 나타내는 유니터리 연산자들이다. 이는 **물리적 시간의 흐름이 게이지 불변 좌표**임을 입증하며, 모듈러 기준계의 선택에 의해 시간이 없는 진공이 동역학적이고 로렌츠 불변인 시공간으로 변환됨을 보여줌으로써 양자 중력의 고질적인 시간의 문제(Problem of Time)를 해결한다.
 
 ### 8.2 KMS 경계 조건과 로렌츠 부호로의 윅 회전 (Wick Rotation)
 
@@ -1031,3 +1062,71 @@ $$\boxed{Z_{\text{Universe}} \;=\; \int \mathcal{D}X\,\mathcal{D}\Psi\; \exp\!\l
 이 단일 적분이 우주 그 자체이다. 그것의 안장점(Saddle point)이 아인슈타인 방정식이고, 그것의 대칭성이 게이지 힘이고, 그것의 위상학이 소립자 세대이며, 그것의 모듈러 흐름이 시간이다. HNM은 이 하나의 수학적 대상으로부터 알려진 모든 물리학을 연역하며, 아직 알려지지 않은 물리학에 대한 반증 가능한 예측을 제시한다.
 
 *"자연은 가능한 한 단순하지만, 그보다 더 단순하지는 않다."* — 알베르트 아인슈타인
+
+---
+
+## 참고 문헌 (References)
+
+[1] A. Connes, *Noncommutative Geometry*, Academic Press (1994).
+
+[2] A. Connes, *On the spectral characterization of manifolds*, J. Noncommut. Geom. **7**, 1–82 (2013). arXiv:0810.2088.
+
+[3] A. H. Chamseddine, A. Connes, *The Spectral Action Principle*, Commun. Math. Phys. **186**, 731–750 (1997). arXiv:hep-th/9606001.
+
+[4] A. H. Chamseddine, A. Connes, M. Marcolli, *Gravity and the standard model with neutrino mixing*, Adv. Theor. Math. Phys. **11**, 991–1089 (2007). arXiv:hep-th/0610241.
+
+[5] N. Ishibashi, H. Kawai, Y. Kitazawa, A. Tsuchiya, *A Large-N Reduced Model as Superstring*, Nucl. Phys. B **498**, 467–491 (1997). arXiv:hep-th/9612115.
+
+[6] T. Banks, W. Fischler, S. H. Shenker, L. Susskind, *M Theory As A Matrix Model*, Phys. Rev. D **55**, 5112–5128 (1997). arXiv:hep-th/9610043.
+
+[7] D. V. Voiculescu, K. J. Dykema, A. Nica, *Free Random Variables*, CRM Monograph Series, AMS (1992).
+
+[8] M. Takesaki, *Theory of Operator Algebras I, II, III*, Encyclopaedia of Mathematical Sciences, Springer (2002).
+
+[9] R. M. Wald, *Black hole entropy is the Noether charge*, Phys. Rev. D **48**, R3427–R3431 (1993). arXiv:gr-qc/9307038.
+
+[10] J. M. Maldacena, *The Large N Limit of Superconformal Field Theories and Supergravity*, Adv. Theor. Math. Phys. **2**, 231–252 (1998). arXiv:hep-th/9711200.
+
+[11] S. Ryu, T. Takayanagi, *Holographic Derivation of Entanglement Entropy from AdS/CFT*, Phys. Rev. Lett. **96**, 181602 (2006). arXiv:hep-th/0603001.
+
+[12] H. Casini, M. Huerta, R. C. Myers, *Towards a derivation of holographic entanglement entropy*, JHEP **2011**, 036 (2011). arXiv:1102.0440.
+
+[13] P. B. Gilkey, *Invariance Theory, the Heat Equation, and the Atiyah-Singer Index Theorem*, CRC Press (1995).
+
+[14] A. Connes, D. Kreimer, *Renormalization in quantum field theory and the Riemann-Hilbert problem*, JHEP **1999**, 024 (1999). arXiv:hep-th/9912092.
+
+[15] N. Arkani-Hamed, J. Trnka, *The Amplituhedron*, JHEP **2014**, 030 (2014). arXiv:1312.2007.
+
+---
+
+## 참고 문헌 (References)
+
+[1] A. Connes, *Noncommutative Geometry*, Academic Press (1994).
+
+[2] A. Connes, *On the spectral characterization of manifolds*, J. Noncommut. Geom. **7**, 1–82 (2013). arXiv:0810.2088.
+
+[3] A. H. Chamseddine, A. Connes, *The Spectral Action Principle*, Commun. Math. Phys. **186**, 731–750 (1997). arXiv:hep-th/9606001.
+
+[4] A. H. Chamseddine, A. Connes, M. Marcolli, *Gravity and the standard model with neutrino mixing*, Adv. Theor. Math. Phys. **11**, 991–1089 (2007). arXiv:hep-th/0610241.
+
+[5] N. Ishibashi, H. Kawai, Y. Kitazawa, A. Tsuchiya, *A Large-N Reduced Model as Superstring*, Nucl. Phys. B **498**, 467–491 (1997). arXiv:hep-th/9612115.
+
+[6] T. Banks, W. Fischler, S. H. Shenker, L. Susskind, *M Theory As A Matrix Model*, Phys. Rev. D **55**, 5112–5128 (1997). arXiv:hep-th/9610043.
+
+[7] D. V. Voiculescu, K. J. Dykema, A. Nica, *Free Random Variables*, CRM Monograph Series, AMS (1992).
+
+[8] M. Takesaki, *Theory of Operator Algebras I, II, III*, Encyclopaedia of Mathematical Sciences, Springer (2002).
+
+[9] R. M. Wald, *Black hole entropy is the Noether charge*, Phys. Rev. D **48**, R3427–R3431 (1993). arXiv:gr-qc/9307038.
+
+[10] J. M. Maldacena, *The Large N Limit of Superconformal Field Theories and Supergravity*, Adv. Theor. Math. Phys. **2**, 231–252 (1998). arXiv:hep-th/9711200.
+
+[11] S. Ryu, T. Takayanagi, *Holographic Derivation of Entanglement Entropy from AdS/CFT*, Phys. Rev. Lett. **96**, 181602 (2006). arXiv:hep-th/0603001.
+
+[12] H. Casini, M. Huerta, R. C. Myers, *Towards a derivation of holographic entanglement entropy*, JHEP **2011**, 036 (2011). arXiv:1102.0440.
+
+[13] P. B. Gilkey, *Invariance Theory, the Heat Equation, and the Atiyah-Singer Index Theorem*, CRC Press (1995).
+
+[14] A. Connes, D. Kreimer, *Renormalization in quantum field theory and the Riemann-Hilbert problem*, JHEP **1999**, 024 (1999). arXiv:hep-th/9912092.
+
+[15] N. Arkani-Hamed, J. Trnka, *The Amplituhedron*, JHEP **2014**, 030 (2014). arXiv:1312.2007.

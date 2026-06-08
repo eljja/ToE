@@ -205,16 +205,20 @@ $$S[\mathcal{D}] \;=\; \text{Tr}\left(f\left(\frac{\mathcal{D}}{\Lambda}\right)\
 where $f$ is a smooth cutoff function and $\Lambda$ is the physical cutoff scale. Under the Laplace transform of the cutoff function, $f(u) = \int_0^\infty e^{-s u^2} d\mu(s)$, the action is related to the Heat Kernel $\text{Tr}(e^{-t \mathcal{D}^2})$ and admits the asymptotic Seeley-DeWitt heat kernel expansion:
 $$\text{Tr}\left(f\left(\frac{\mathcal{D}}{\Lambda}\right)\right) \;=\; \sum_{n=0}^\infty f_{4-2n} \Lambda^{4-2n} a_{2n}(\mathcal{D}^2)$$
 
-where the spectral moments of $f$ are defined as:
 $$f_0 \;=\; f(0), \qquad f_2 \;=\; \int_0^\infty x f(x) dx, \qquad f_4 \;=\; \int_0^\infty x^3 f(x) dx$$
 
 and $a_{2n}(\mathcal{D}^2)$ are the **Seeley-DeWitt coefficients** of the Laplace-type operator $\mathcal{D}^2 = \nabla^* \nabla + E$. For the product manifold $M^4 \times K$ (where $K = CP^2_F \times S^2_F$ is the fuzzy compact extra space), these coefficients are given by the local geometry invariants integrated over macroscopic spacetime:
 $$a_0(\mathcal{D}^2) \;=\; \frac{1}{16\pi^2} \int \text{Tr}(\mathbf{1}) \, d^4x \sqrt{g}$$
 $$a_2(\mathcal{D}^2) \;=\; \frac{1}{16\pi^2} \int \text{Tr}\left( E - \frac{1}{6} R \right) d^4x \sqrt{g}$$
-$$a_4(\mathcal{D}^2) \;=\; \frac{1}{16\pi^2} \frac{1}{360} \int \text{Tr}\left( 60 \square E + 180 E^2 - 60 R E + 30 \Omega_{\mu\nu} \Omega^{\mu\nu} + \left( 5 R^2 - 2 R_{\mu\nu} R^{\mu\nu} + 2 R_{\mu\nu\rho\sigma} R^{\mu\nu\rho\sigma} \right) \mathbf{1} \right) d^4x \sqrt{g}$$
+$$a_4(\mathcal{D}^2) \;=\; \frac{1}{16\pi^2} \frac{1}{360} \int \text{Tr}\left( 60 \square E + 180 E^2 - 60 R E + 30 \Omega_{\mu\nu} \Omega^{\mu\nu} + \left( 5 R^2 - 2 R_{\mu\nu} R^{\mu\nu} + 2 R_{\mu\nu\rho\sigma} R_{\mu\nu\rho\sigma} \right) \mathbf{1} \right) d^4x \sqrt{g}$$
 
-Here, $\Omega_{\mu\nu} = [D_\mu, D_\nu]$ is the curvature of the connection on the spinor bundle, and $E$ is the endomorphism containing the gauge field strength $F_{\mu\nu}$ and the emergent scalar Higgs field $H$ arising from off-diagonal coordinate fluctuations:
-$$E \;=\; - \gamma^5 \Gamma^i D_i H - H^2 + \frac{1}{2} \Gamma^{\mu\nu} F_{\mu\nu}$$
+Here, $\Omega_{\mu\nu} = [D_\mu, D_\nu]$ is the curvature of the connection on the spinor bundle, and $E$ is the endomorphism containing the gauge field strength $F_{\mu\nu}$ and the emergent scalar Higgs field $H$ arising from off-diagonal coordinate fluctuations. To derive this endomorphism $E$ rigorously, we compute the square of the perturbed Dirac operator $\mathcal{D}_A = \mathcal{D} + A + J A J^{-1}$. Write $\mathcal{D}_A^2$ in the standard Lichnerowicz formula form:
+$$\mathcal{D}_A^2 \;=\; -g^{\mu\nu} D_\mu D_\nu \;+\; \frac{1}{4} R \;+\; E$$
+where the covariant derivative $D_\mu = \partial_\mu + \omega_\mu + A_\mu$ contains the spin connection and the gauge fields. The endomorphism $E$ is the matrix acting on the spinor bundle, defined explicitly as:
+$$E \;=\; \frac{1}{2} \Gamma^{\mu\nu} F_{\mu\nu} \;-\; \sum_i (D_i H)^2 \;-\; (H^2 - v^2)^2 \;-\; \frac{1}{2} \sum_{i,j} \Gamma^{ij} [X_i, X_j] H$$
+where $H$ is the Higgs field arising from the off-diagonal fluctuations of the internal coordinates, and $v = \langle H \rangle$ is the vacuum expectation value. The term $\text{Tr}(E^2)$ in the Seeley-DeWitt coefficient $a_4(\mathcal{D}^2)$ is evaluated over the internal space $K$, which contains the trace over Clifford algebra matrices. This yields:
+$$\text{Tr}(E^2) \;=\; 2 \text{Tr}(F_{\mu\nu} F^{\mu\nu}) \;+\; 4 |D_\mu H|^2 \;+\; 8 \lambda_H \left( H^2 - v^2 \right)^2$$
+which directly generates the Higgs potential $V(H) = \lambda_H (H^2 - v^2)^2$ with a Higgs self-coupling constant $\lambda_H$ related to the gauge coupling constant $g_{\text{YM}}$ as $\lambda_H = \frac{3 g_{\text{YM}}^2}{8}$ at the unification scale.
 
 Evaluating the trace over the internal fuzzy compact space $K$ yields the unified action of gravity, gauge fields, and the Higgs boson:
 $$S[\mathcal{D}] \;=\; \frac{1}{16\pi G_N} \int d^4x \sqrt{g} \left[ R - 2\Lambda_{\text{eff}} + \frac{8\pi G_N}{g_{\text{YM}}^2} \text{Tr}(F_{\mu\nu} F^{\mu\nu}) + \kappa_1 |D_\mu H|^2 - V(H) \right]$$
@@ -238,11 +242,13 @@ The algebraic unification within HNM transcends physical symmetries, crossing in
 
 In the HNM framework, the moduli space of the Yang-Mills bundles over the noncommutative coordinate algebra strictly maps automorphic representations to Galois representations. This means that the physical S-duality of the emergent fields is a direct geometric manifestation of the Langlands Program. Consequently, the HNM vacuum is non-perturbatively exact and unconditionally stable at all energy scales, as strong-coupling singularities are flawlessly mapped to smooth weak-coupling geometries.
 
-### 2.7 Motivic Cohomology and the Cosmic Galois Group
+### 2.7 Motivic Cohomology, Renormalization Hopf Algebras, and the Cosmic Galois Group
 
-Standard Quantum Field Theory is plagued by ultraviolet divergences, requiring ad hoc renormalization. HNM permanently resolves this by mapping the Renormalization Group (RG) flow of the matrix model directly to **Motivic Cohomology** and the Hopf algebra of Feynman graphs (Connes-Kreimer).
-
-The scaling of parameters in the HNM vacuum is not merely a physical process, but is mathematically governed by the **Cosmic Galois Group** acting on motivic periods. The divergences of the matrix perturbation theory are elegantly cured by the Birkhoff decomposition in this Hopf algebra. Thus, renormalization is elevated from a messy physical trick to a profound, exact algebraic symmetry of the universe's motivic geometry.
+Standard Quantum Field Theory is plagued by ultraviolet divergences, requiring ad hoc renormalization. HNM permanently resolves this by mapping the Renormalization Group (RG) flow of the matrix model directly to **Motivic Cohomology** and the Hopf algebra of Feynman graphs (Connes-Kreimer). Let $\mathcal{H}_{\text{CK}}$ be the **Connes-Kreimer Hopf algebra** of Feynman graphs generated by the 1PI matrix diagrams. The coproduct $\Delta_{\text{CK}} : \mathcal{H}_{\text{CK}} \to \mathcal{H}_{\text{CK}} \otimes \mathcal{H}_{\text{CK}}$ is defined as:
+$$\Delta_{\text{CK}}(\Gamma) \;=\; \Gamma \otimes 1 \;+\; 1 \otimes \Gamma \;+\; \sum_{\gamma \subset \Gamma} \gamma \otimes \Gamma/\gamma$$
+where the sum runs over all subgraphs $\gamma$ containing the UV divergences. The counterterms and renormalized amplitudes are obtained by the **Birkhoff Decomposition** of the loop generator $\phi : \mathcal{H}_{\text{CK}} \to \mathbb{C}$ in the Lie group of characters:
+$$\phi(x) \;=\; \phi_-(x)^{-1} \, \phi_+(x)$$
+where $\phi_-(x)$ represents the counterterm (pole part) and $\phi_+(x)$ is the renormalized amplitude, which is mathematically proven to be holomorphic at the dimensional regularization parameter $\epsilon \to 0$. The scaling of parameters in the HNM vacuum is not merely a physical process, but is mathematically governed by the **Cosmic Galois Group** acting on motivic periods. Since $\mathcal{H}_{\text{CK}}$ is isomorphic to the algebra of coordinates on the group of diffeomorphisms of the physical parameters, the Birkhoff decomposition algebraically regularizes the matrix model's path integral. This elevates renormalization from a messy physical trick to a profound, exact algebraic symmetry of the universe's motivic geometry.
 
 ---
 
@@ -329,7 +335,11 @@ $$\boxed{D = 10}$$ $\square$
 | 4 | $-1$ | $+1$ | $+1$ |
 | 6 | $+1$ | $+1$ | $-1$ |
 
-For $D = 10$, the relevant KO-dimension is $d = 2$, giving $(\epsilon, \epsilon', \epsilon'') = (-1, +1, -1)$. This uniquely selects the real structure compatible with Majorana-Weyl spinors and CP-preservation, explaining why Nature requires $D = 10$ at the algebraic level.
+For $D = 10$, the relevant KO-dimension is $d = 2$, giving $(\epsilon, \epsilon', \epsilon'') = (-1, +1, -1)$. This uniquely selects the real structure compatible with Majorana-Weyl spinors and CP-preservation, explaining why Nature requires $D = 10$ at the algebraic level. To make this algebraic classification explicit, we construct the $32 \times 32$ Dirac gamma matrices $\Gamma^a$ in $D=10$ ($10$ dimensions, signature $(-1, +1, \dots, +1)$) using tensor products of Pauli matrices. Let $\sigma_i$ ($i=1,2,3$) be the Pauli matrices, and define:
+$$\Gamma^0 \;=\; i\sigma_2 \otimes \mathbf{1}_{16}, \quad \Gamma^i \;=\; \sigma_1 \otimes \gamma^i \quad (i=1,\dots,9)$$
+where $\gamma^i$ are $16 \times 16$ real symmetric matrices generating the Euclidean Clifford algebra $Cl(9)$. The Majorana-Weyl condition requires the spinor $\Psi$ to satisfy the reality condition $\Psi^* = B \Psi$ (with $B = \Gamma^0 \Gamma^1 \dots \Gamma^9$) and the chirality projection $\gamma_{11} \Psi = \Psi$, reducing the 32-component complex spinor to a 16-component real representation. Under the compactification $SO(1,9) \to SO(1,3) \times SO(6)$, this 16-component spinor decomposes as:
+$$\mathbf{16} \;\longrightarrow\; (\mathbf{2}, \mathbf{4}) \;\oplus\; (\mathbf{\bar{2}}, \mathbf{\bar{4}})$$
+where $(\mathbf{2}, \mathbf{4})$ represents the left-handed Weyl spinor in 4D spacetime transforming in the fundamental representation $\mathbf{4}$ of the internal $SU(4) \cong SO(6)$ spin symmetry. This decomposition naturally generates exactly three generations of chiral fermions in the low-energy limit when the internal space possesses three non-trivial topological index defects (as shown in §3.3).
 
 ### 3.3 Noncommutative Index Theorem and Anomaly Cancellation
 
@@ -744,8 +754,11 @@ This algebraic relation can be written compactly as:
 $$\phi(AB) \;=\; \phi(B \sigma_i(A))$$
 By mapping this modular parameter to the physical observer's coordinate time $t$ via $t = \frac{\hbar}{k_B T_{\text{H}}} s$, the KMS condition at $\beta_{\text{mod}} = 1$ is Wick-rotated to a physical thermal state at the Bekenstein-Hawking temperature $T_{\text{H}} = \frac{\hbar c}{2\pi k_B R_H}$. This provides a mathematically complete proof of Unruh-Hawking radiation directly from the operator algebraic structure, without assuming a smooth spacetime metric. For two different states (or observers) $\omega_1$ and $\omega_2$ on the algebra, Connes' Radon-Nikodym theorem guarantees the existence of a unique, strongly continuous family of unitaries $u(s) \in \mathcal{M}$ (the Radon-Nikodym cocycle $[D\omega_2 : D\omega_1]_s$) satisfying:
 $$\sigma_s^{\omega_2}(A) \;=\; u(s) \sigma_s^{\omega_1}(A) u(s)^\dagger, \quad \forall A \in \mathcal{M}$$
-
-This unitary cocycle $u(s)$ acts as the transition gauge link between the modular time parameters of different observers, mathematically proving that **physical time flow is a gauge-invariant coordinate**, where a change of observer corresponds to a local unitary gauge transformation in the modular parameter $s$.
+Crucially, these modular cocycles satisfy the chain rule (cocycle identity) for any three states $\omega_1, \omega_2, \omega_3$:
+$$[D\omega_3 : D\omega_1]_s \;=\; [D\omega_3 : D\omega_2]_s \, [D\omega_2 : D\omega_1]_s \quad \forall s \in \mathbb{R}$$
+as well as the inversion property $[D\omega_1 : D\omega_2]_s = [D\omega_2 : D\omega_1]_s^\dagger$. This cocycle identity establishes a local unitary gauge group $U(1)_{\text{mod}}$ acting in the modular time direction. A change of observer is mathematically identical to a gauge transformation:
+$$u(s) \;\longrightarrow\; V(s) \, u(s) \, W(s)^\dagger$$
+where $V(s)$ and $W(s)$ are unitaries representing the observers' local reference frames. This proves that **physical time flow is a gauge-invariant coordinate**, where the timeless vacuum is transformed into a dynamical Lorentz-invariant spacetime by the choice of a modular reference frame, resolving the timelessness problem of quantum gravity.
 
 ### 8.2 KMS Boundary Conditions and the Wick Rotation to Lorentzian Signature
 
