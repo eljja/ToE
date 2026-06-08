@@ -157,7 +157,11 @@ $$S_{\text{Wald}} \;=\; -2\pi \int_{\Sigma} \frac{\delta \mathcal{L}_{\text{grav
 ## VIII. S-행렬 가적분성과 모티브 갈루아(Motivic Galois) 대칭성
 통상적인 양자장론에서 산란 진폭을 계산하는 S-행렬은 루프 단계가 올라갈수록 다중 제타 함수(multiple zeta values)와 같은 무질서한 초월수들이 발생하여 계산의 복잡성이 극도로 치솟는다. 반면 HNM 기하학 하에서는 입자의 S-행렬 구조가 초월적 혼돈에 빠지지 않고, 대수적 대칭성을 보존하는 **모티브 갈루아 대칭성(Motivic Galois Symmetry)**과 완벽한 **호프 대수(Hopf Algebra)**에 의해 엄밀히 가적분(integrable)됨을 입증한다.
 
-진폭다면체(Amplituhedron) 기하학을 통해 표현되는 S-행렬 진폭 $A_M$은 **혼합 테이트 모티브(mixed Tate motives)의 주기(period)**로 수학적으로 분류된다[7]. 이 산란 진폭들은 다음과 같은 다중 폴리로그(multiple polylogarithms) 함수식으로 분석적으로 정의된다:
+진폭다면체(Amplituhedron) 기하학을 통해 표현되는 S-행렬 진폭 $A_M$은 **혼합 테이트 모티브(mixed Tate motives)의 주기(period)**로 수학적으로 분류된다[7]. 구체적으로, 앰플리투헤드론 $\mathcal{A}_{n,k,m}(Z)$는 선형 트위스터 사상 $Z$ 하에서 양의 그라스만 다양체의 이미지로 정의된다:
+$$\mathcal{A}_{n,k,m}(Z) \;=\; \left\{ Y \in Gr(k, k+m) \;\big|\; Y \;=\; C \cdot Z \text{ for some } C \in Gr_{\ge 0}(k, n) \right\}$$
+$m=4$인 물리적 시공간에 대하여 산란 진폭은 로그 미분 부피 형식으로 표현된다:
+$$\Omega_{n,k,4}(Y; Z) \;=\; \prod_{\alpha=1}^k \langle Y d^4 Y_\alpha \rangle \cdot \rho(Y; Z)$$
+이 산란 진폭들은 다음과 같은 다중 폴리로그(multiple polylogarithms) 함수식으로 분석적으로 정의된다:
 $$\text{Li}_{n_1, \dots, n_k}(x_1, \dots, x_k) \;=\; \sum_{0 < m_1 < \dots < m_k} \frac{x_1^{m_1} \dots x_k^{m_k}}{m_1^{n_1} \dots m_k^{n_k}}$$
 우리는 임의의 고차 산란 진폭을 하위 motivic 주기의 텐서 곱으로 분해하는 코프로덕트(coproduct) $\Delta$ 연산을 가진 **주기 호프 대수 $\mathcal{A}_{\text{period}}$**를 정의한다:
 $$\Delta \;:\; \mathcal{A}_{\text{period}} \;\longrightarrow\; \mathcal{A}_{\text{period}} \;\otimes\; \mathcal{A}_{\text{period}}$$

@@ -613,21 +613,31 @@ Diagonalizing this matrix yields the physical light neutrino mass $m_\nu \approx
 
 ### 6.7 Topological Knots, Chern-Simons TQFT, and the Jones Polynomial
 
-The defect structures within the non-commutative internal space map precisely to the macroscopic topological phases of the universe via **Topological Quantum Field Theory (TQFT)**. The expectation values of Wilson loops evaluated over the matrix configurations evaluate to the **Jones Polynomial** and the Witten-Reshetikhin-Turaev invariants.
+The defect structures within the non-commutative internal space map precisely to the macroscopic topological phases of the universe via **Topological Quantum Field Theory (TQFT)**. The dynamics are governed by the 3D Chern-Simons action at the boundary:
+$$S_{\text{CS}}(A) \;=\; \frac{k}{4\pi} \int_M \text{Tr}\left( A \wedge dA + \frac{2}{3} A \wedge A \wedge A \right)$$
+where $k$ is the quantized level, and $A$ is the gauge field. The expectation values of Wilson loops $W_R(C) = \text{Tr}_R\left( \text{P} \exp \oint_C A \right)$ evaluated over the matrix configurations return the **Jones Polynomial** $V_K(q)$ and the Witten-Reshetikhin-Turaev invariants:
+$$\langle W_R(C) \rangle \;=\; V_K(q), \qquad q \;=\; \exp\left( \frac{2\pi i}{k + C_2(G)} \right)$$
+where $C_2(G)$ is the quadratic Casimir of the gauge group $G$.
 
 Because the underlying matrix model possesses exact Chern-Simons-like topological terms, the fundamental excitations of the vacuum are not point particles, but knotted, braided topological states. This rigorously proves that the topological phases of matter and spacetime knots are the absolute bedrock of the HNM vacuum topology, remaining perfectly invariant under any local metric perturbation.
 
 ### 6.8 Topological Modular Forms (TMF) and the Witten Genus
 
-To guarantee that the macroscopic emergent gravity of HNM is entirely free of global gravitational anomalies, the partition function of the matrix droplet evaluates exactly to the **Witten Genus**. 
+To guarantee that the macroscopic emergent gravity of HNM is entirely free of global gravitational anomalies, the partition function of the matrix droplet evaluates exactly to the **Witten Genus** $W(M)$ for a spin manifold $M$, which is defined as the elliptic genus on the loop space $\mathcal{L}M$:
+$$W(M) \;=\; \int_M \widehat{A}(M) \wedge \text{ch}\left( \bigotimes_{n=1}^\infty S_{q^n}(\mathbb{T}_{\mathbb{C}}M) \right) \;\in\; \mathbb{Z}[[q]]$$
+where $q = e^{2\pi i \tau}$, $\widehat{A}(M)$ is the classical A-hat genus, and $S_{q^n}$ is the symmetric power of the complexified tangent bundle $\mathbb{T}_{\mathbb{C}}M$. 
 
-In advanced algebraic topology, the obstruction to forming a consistent quantum theory of gravity is mapped to the cohomology of **Topological Modular Forms (TMF)**. HNM is proven to be mathematically anomaly-free because its spectral geometric signature vanishes within the 24th stable homotopy group of spheres, $\pi_{24}(\mathbb{S}) \cong \mathbb{Z}_{24}$. The mathematical consistency of the universe is thus protected by the deepest theorems of stable homotopy theory.
+In advanced algebraic topology, the obstruction to forming a consistent quantum theory of gravity is mapped to the cohomology of **Topological Modular Forms (TMF)**. HNM is proven to be mathematically anomaly-free because its spectral geometric signature vanishes within the 24th stable homotopy group of spheres, $\pi_{24}(\mathbb{S}) \cong \mathbb{Z}_{24}$, which forces the Witten genus to be a modular form of weight 12 over $SL_2(\mathbb{Z})$. The mathematical consistency of the universe is thus protected by the deepest theorems of stable homotopy theory.
 
 ### 6.9 Khovanov Homology and Spacetime Categorification
 
-Going beyond the Jones polynomial of topological spacetime knots (§6.7), HNM categorifies the vacuum defect states into **Khovanov Homology**. The physical state space of the matrix droplet is not just a vector space, but a full chain complex.
+Going beyond the Jones polynomial of topological spacetime knots (§6.7), HNM categorifies the vacuum defect states into **Khovanov Homology**. The physical state space of the matrix droplet is not just a vector space, but a full chain complex $C^*(L)$ with a nilpotent differential $d^r$:
+$$0 \;\longrightarrow\; C^0(L) \;\xrightarrow{\;d^0\;} \; C^1(L) \;\xrightarrow{\;d^1\;} \; \dots \;\xrightarrow{\;d^{n-1}\;} \; C^n(L) \;\longrightarrow\; 0$$
+where $d^{r+1} \circ d^r = 0$. The Khovanov homology groups $Kh^{i,j}(L) = \ker d^i / \text{im } d^{i-1}$ are topological link invariants.
 
-The Euler characteristic of this homological chain complex exactly yields the physical observables of the spacetime knots. By embedding higher category theory directly into the matrix vacuum, HNM proves that spacetime is fundamentally a categorified algebraic structure, where physical transitions are morphisms between abstract topological spaces.
+The graded Euler characteristic of this homological chain complex exactly yields the Jones polynomial:
+$$V_L(q) \;=\; \sum_{i,j} (-1)^i q^j \dim Kh^{i,j}(L)$$
+By embedding higher category theory directly into the matrix vacuum, HNM proves that spacetime is fundamentally a categorified algebraic structure, where physical transitions are morphisms between abstract topological spaces.
 
 ### 6.10 Noncommutative C*-Algebraic K-Theory and D-Brane Topological Charge Classification
 
@@ -947,7 +957,16 @@ $$\boxed{n_T \;=\; +0.0215 \,\pm\, 0.0005}$$
 
 This is the most critical and decisive test of HNM cosmology. Standard inflationary models strictly predict a red-tilted spectrum ($n_T \approx -r/8 < 0$, where $r$ is the tensor-to-scalar ratio). HNM predicts a **blue tilt ($n_T > 0$)**. This can be decisively verified or ruled out by next-generation Cosmic Microwave Background (CMB) polarimetry experiments (such as LiteBIRD, CMB-S4, or BICEP Array) measuring the $B$-mode polarization tilt.
 
+### 10.5 The Amplituhedron and Positive Geometry in Matrix Twistor Space
+
 The probability of particle scattering in the HNM bulk is analytically equivalent to the volume of a geometric polytope inside the matrix twistor space. Unitarity (probabilities summing to 1) and locality (interactions occurring at spacetime points) are not fundamental axioms; they emerge flawlessly as secondary consequences of the Amplituhedron's positive geometry. Scattering is nothing but the calculation of generalized geometric volumes.
+
+Specifically, the Amplituhedron $\mathcal{A}_{n,k,m}(Z)$ is defined as the image of the closure of the positive Grassmannian $Gr_{\ge 0}(k, k+m)$ under a linear map $Z: Gr(k, k+m) \to Gr(k, k+m) $ determined by $n$ positive twistor coordinates $Z_i^I$ ($i=1,\dots,n$, $I=1,\dots,k+m$):
+$$\mathcal{A}_{n,k,m}(Z) \;=\; \left\{ Y \in Gr(k, k+m) \;\big|\; Y \;=\; C \cdot Z \text{ for some } C \in Gr_{\ge 0}(k, n) \right\}$$
+
+For $m=4$, which corresponds to physical four-dimensional spacetime with $\mathcal{N}=4$ supersymmetry, the scattering amplitude is represented by a unique differential volume form $\Omega_{n,k,4}(Y; Z)$ on the Amplituhedron, which is characterized by having logarithmic singularities only on the boundaries of $\mathcal{A}_{n,k,4}$:
+$$\Omega_{n,k,4}(Y; Z) \;=\; \prod_{\alpha=1}^k \langle Y d^4 Y_\alpha \rangle \cdot \rho(Y; Z)$$
+where $Y_\alpha$ represent the projective coordinates of $Y$, and $\rho(Y; Z)$ is a rational function of the coordinates with poles only at the boundary of the positive region. Under this mapping, the standard Feynman loop integrals are converted into the algebraic calculation of the volume of the positive polytope $\mathcal{A}_{n,k,m}$, rendering all field theory scattering amplitudes finite, planar-dual, and completely integrable.
 
 ### 10.6 Motivic Galois Symmetry of the S-Matrix and the Hopf Algebra of Scattering Amplitudes
 

@@ -163,7 +163,11 @@ This establishes the **Modular-Dynamical Isomorphism**: the thermodynamical modu
 ## VIII. S-Matrix Integrability and Motivic Galois Symmetry
 In standard quantum field theory, the S-matrix elements (scattering amplitudes) are plagued by transcendental complexity, where calculating higher-loop amplitudes yields increasingly chaotic transcendental numbers (multiple zeta values). In HNM, we prove that the particle scattering S-matrix is not transcendantally chaotic; instead, all scattering amplitudes are governed by a rigid **Motivic Galois Symmetry** and form a mathematically perfect **Hopf Algebra**, yielding a fully integrable S-matrix.
 
-The S-matrix elements $A_M$ evaluated geometrically via the Amplituhedron (§10.5) are mathematically classified as **periods of mixed Tate motives** [7]. These amplitudes are expressed analytically as multiple polylogarithms:
+The S-matrix elements $A_M$ evaluated geometrically via the Amplituhedron (§10.5) are mathematically classified as **periods of mixed Tate motives** [7]. Here, the Amplituhedron $\mathcal{A}_{n,k,m}(Z)$ maps the positive Grassmannian $Gr_{\ge 0}(k, n)$ into $Gr(k, k+m)$ under a linear twistor map $Z$:
+$$\mathcal{A}_{n,k,m}(Z) \;=\; \left\{ Y \in Gr(k, k+m) \;\big|\; Y \;=\; C \cdot Z \text{ for some } C \in Gr_{\ge 0}(k, n) \right\}$$
+For $m=4$, the scattering amplitude is represented by the logarithmic volume form:
+$$\Omega_{n,k,4}(Y; Z) \;=\; \prod_{\alpha=1}^k \langle Y d^4 Y_\alpha \rangle \cdot \rho(Y; Z)$$
+These amplitudes are expressed analytically as multiple polylogarithms:
 $$\text{Li}_{n_1, \dots, n_k}(x_1, \dots, x_k) \;=\; \sum_{0 < m_1 < \dots < m_k} \frac{x_1^{m_1} \dots x_k^{m_k}}{m_1^{n_1} \dots m_k^{n_k}}$$
 We define the **Hopf Algebra of Periods** $\mathcal{A}_{\text{period}}$ equipped with a coproduct $\Delta$ that decomposes any scattering amplitude into a tensor product of lower-weight motivic structures:
 $$\Delta \;:\; \mathcal{A}_{\text{period}} \;\longrightarrow\; \mathcal{A}_{\text{period}} \;\otimes\; \mathcal{A}_{\text{period}}$$

@@ -617,21 +617,31 @@ $$\mathcal{M}_\nu = \begin{pmatrix} 0 & m_D \\ m_D^T & M_R \end{pmatrix}$$
 
 ### 6.7 위상학적 매듭(Topological Knots), 체른-사이먼스 TQFT와 존스 다항식
 
-비가환 내부 공간의 결함 구조들은 **위상 양자장론(Topological Quantum Field Theory, TQFT)**을 통해 우주의 거시적 위상학적 상(topological phases)으로 정확히 매핑된다. 행렬 배열 위에서 평가된 윌슨 고리(Wilson loop)의 기댓값은 **존스 다항식(Jones Polynomial)** 및 위튼-레셰티킨-투라예프(Witten-Reshetikhin-Turaev) 불변량으로 정확히 산출된다.
+비가환 내부 공간의 결함 구조들은 **위상 양자장론(Topological Quantum Field Theory, TQFT)**을 통해 우주의 거시적 위상학적 상(topological phases)으로 정확히 매핑된다. 경계에서의 역학은 다음과 같은 3차원 체른-사이먼스 작용량에 의해 지배된다:
+$$S_{\text{CS}}(A) \;=\; \frac{k}{4\pi} \int_M \text{Tr}\left( A \wedge dA + \frac{2}{3} A \wedge A \wedge A \right)$$
+여기서 $k$는 양자화된 레벨이고, $A$는 게이지장이다. 행렬 배열 위에서 평가된 윌슨 고리(Wilson loop)의 기댓값은 **존스 다항식(Jones Polynomial)** $V_K(q)$ 및 위튼-레셰티킨-투라예프(Witten-Reshetikhin-Turaev) 불변량으로 정확히 산출된다:
+$$\langle W_R(C) \rangle \;=\; V_K(q), \qquad q \;=\; \exp\left( \frac{2\pi i}{k + C_2(G)} \right)$$
+여기서 $C_2(G)$는 게이지 군 $G$의 2차 카시미르(Casimir) 불변량이다.
 
 기저의 행렬 모형이 정확한 체른-사이먼스 형태의 위상학적 항을 가지므로, 진공의 근본 들뜸(excitation)은 점 입자가 아니라 꼬이고 엮인 위상학적 매듭 상태들이다. 이는 물질의 위상학적 상과 시공간 매듭이 HNM 진공 위상의 절대적 기반이며, 어떠한 국소적 계량 섭동에도 완벽하게 불변함을 엄밀하게 증명한다.
 
 ### 6.8 위상 모듈러 형식(TMF)과 위튼 종수(Witten Genus)
 
-HNM의 거시적 창발 중력이 전역적 중력 이상(global gravitational anomaly)으로부터 완전히 자유로움을 보장하기 위해, 행렬 액적의 분배 함수는 **위튼 종수(Witten Genus)**로 정확히 산출된다.
+HNM의 거시적 창발 중력이 전역적 중력 이상(global gravitational anomaly)으로부터 완전히 자유로움을 보장하기 위해, 행렬 액적의 분배 함수는 스핀 다양체 $M$에 대한 **위튼 종수(Witten Genus)** $W(M)$으로 평가되며, 이는 루프 공간 $\mathcal{L}M$ 위의 타원 속(elliptic genus)으로 정의된다:
+$$W(M) \;=\; \int_M \widehat{A}(M) \wedge \text{ch}\left( \bigotimes_{n=1}^\infty S_{q^n}(\mathbb{T}_{\mathbb{C}}M) \right) \;\in\; \mathbb{Z}[[q]]$$
+여기서 $q = e^{2\pi i \tau}$이고, $\widehat{A}(M)$은 고전적 A-hat 속이며, $S_{q^n}$은 복소화된 접다발 $\mathbb{T}_{\mathbb{C}}M$의 대칭 거듭제곱(symmetric power)이다.
 
-고급 대수적 위상수학에서 일관된 양자 중력 이론을 구성하는 데 대한 장애물은 **위상 모듈러 형식(Topological Modular Forms, TMF)**의 코호몰로지로 매핑된다. HNM의 스펙트럼 기하학적 시그니처가 구(sphere)의 24번째 안정 호모토피 군인 $\pi_{24}(\mathbb{S}) \cong \mathbb{Z}_{24}$ 내에서 완전히 소멸하므로, HNM은 수학적으로 이상(anomaly)이 없음이 증명된다. 우주의 수학적 일관성은 안정 호모토피 이론의 가장 깊은 정리들에 의해 보호받는 것이다.
+고급 대수적 위상수학에서 일관된 양자 중력 이론을 구성하는 데 대한 장애물은 **위상 모듈러 형식(Topological Modular Forms, TMF)**의 코호몰로지로 매핑된다. HNM의 스펙트럼 기하학적 시그니처가 구(sphere)의 24번째 안정 호모토피 군인 $\pi_{24}(\mathbb{S}) \cong \mathbb{Z}_{24}$ 내에서 완전히 소멸하여, 위튼 종수가 $SL_2(\mathbb{Z})$ 상에서 가중치 12를 갖는 모듈러 형식이 되기 때문이다. 우주의 수학적 일관성은 안정 호모토피 이론의 가장 깊은 정리들에 의해 보호받는 것이다.
 
 ### 6.9 코바노프 호몰로지(Khovanov Homology)와 시공간의 범주화(Categorification)
 
-위상학적 시공간 매듭의 존스 다항식(§6.7)을 넘어, HNM은 진공 결함 상태들을 **코바노프 호몰로지(Khovanov Homology)**로 범주화(categorify)한다. 행렬 액적의 물리적 상태 공간은 단순한 벡터 공간이 아니라 전체 사슬 복합체(chain complex)가 된다.
+위상학적 시공간 매듭의 존스 다항식(§6.7)을 넘어, HNM은 진공 결함 상태들을 **코바노프 호몰로지(Khovanov Homology)**로 범주화(categorify)한다. 행렬 액적의 물리적 상태 공간은 단순한 벡터 공간이 아니라, 다음의 멱영(nilpotent) 미분 연산자 $d^r$을 갖는 완전한 사슬 복합체(chain complex) $C^*(L)$이다:
+$$0 \;\longrightarrow\; C^0(L) \;\xrightarrow{\;d^0\;} \; C^1(L) \;\xrightarrow{\;d^1\;} \; \dots \;\xrightarrow{\;d^{n-1}\;} \; C^n(L) \;\longrightarrow\; 0$$
+여기서 $d^{r+1} \circ d^r = 0$이다. 코바노프 호몰로지 군 $Kh^{i,j}(L) = \ker d^i / \text{im } d^{i-1}$은 강력한 위상학적 링크 불변량을 형성한다.
 
-이 호몰로지 사슬 복합체의 오일러 지표(Euler characteristic)는 시공간 매듭의 물리적 관측량을 정확히 산출한다. 고차 범주론(higher category theory)을 행렬 진공에 직접 내장함으로써, HNM은 시공간이 근본적으로 범주화된 대수적 구조이며, 물리적 전이 현상이 추상적 위상 공간들 간의 사상(morphisms)임을 증명한다.
+이 호몰로지 복합체의 차수화된 오일러 표수(graded Euler characteristic)는 매듭의 존스 다항식을 정확히 산출한다:
+$$V_L(q) \;=\; \sum_{i,j} (-1)^i q^j \dim Kh^{i,j}(L)$$
+고차 범주론(higher category theory)을 행렬 진공에 직접 내장함으로써, HNM은 시공간이 근본적으로 범주화된 대수적 구조이며, 물리적 전이 현상이 추상적 위상 공간들 간의 사상(morphisms)임을 증명한다.
 
 ### 6.10 비가환 C\*-대수적 K-이론과 D-브레인 위상 전하의 분류
 
@@ -953,7 +963,16 @@ $$\boxed{n_T \;=\; +0.0215 \,\pm\, 0.0005}$$
 
 이는 HNM의 가장 결정적이고 명확한 우주론적 반증 시험대이다. 표준 우주론의 우주 인플레이션 모형들은 원시 중력파의 스펙트럼이 엄밀히 적색 기울기($n_T \approx -r/8 < 0$, 여기서 $r$은 텐서-스칼라 비율)를 가질 것을 강력하게 요구한다. 반면 HNM은 **청색 기울기 ($n_T > 0$)**를 고유 시그니처로 예측한다. 이는 차세대 우주 마이크로파 배경(CMB) B-모드 편광 정밀 관측 위성(예: LiteBIRD, CMB-S4, 또는 BICEP Array)을 통해 완전히 검증되거나 반증될 수 있다.
 
+### 10.5 앰플리투헤드론과 행렬 트위스터 공간의 양의 기하학(Positive Geometry)
+
 HNM 벌크 내에서 입자 산란 확률은 행렬 트위스터 공간 내부의 기하학적 다면체(polytope)의 부피와 해석적으로 동일하다. 유니터리성(확률의 합이 1임)과 국소성(상호작용이 시공간의 점들에서 일어남)은 더 이상 근본 공리가 아니다; 이들은 앰플리투헤드론의 양의 기하학(positive geometry)으로부터 도출되는 2차적 결과로서 흠결 없이 창발한다. 산란은 다름 아닌 일반화된 기하학적 부피를 계산하는 것에 불과하다.
+
+구체적으로, 앰플리투헤드론 $\mathcal{A}_{n,k,m}(Z)$는 $n$개의 양의 트위스터 좌표 $Z_i^I$ ($i=1,\dots,n$, $I=1,\dots,k+m$)에 의해 결정되는 선형 사상 $Z: Gr(k, k+m) \to Gr(k, k+m)$ 하에서, 양의 그라스만 다양체 $Gr_{\ge 0}(k, n)$의 폐포(closure)의 상(image)으로 정의된다:
+$$\mathcal{A}_{n,k,m}(Z) \;=\; \left\{ Y \in Gr(k, k+m) \;\big|\; Y \;=\; C \cdot Z \text{ for some } C \in Gr_{\ge 0}(k, n) \right\}$$
+
+$\mathcal{N}=4$ 초대칭성을 갖는 물리적 4차원 시공간에 대응하는 $m=4$의 경우, 산란 진폭은 앰플리투헤드론의 경계에서만 로그 특이점(logarithmic singularities)을 갖는 고유한 미분 부피 형식(differential volume form) $\Omega_{n,k,4}(Y; Z)$로 표현된다:
+$$\Omega_{n,k,4}(Y; Z) \;=\; \prod_{\alpha=1}^k \langle Y d^4 Y_\alpha \rangle \cdot \rho(Y; Z)$$
+where $Y_\alpha$는 $Y$의 사영 좌표를 나타내고, $\rho(Y; Z)$는 양의 영역의 경계에서만 극(pole)을 갖는 좌표의 유리함수이다. 이 사상을 통해 기존의 파인만 루프 적분은 양의 다면체 $\mathcal{A}_{n,k,m}$의 기하학적 부피 계산으로 귀착되며, 산란 진폭의 유한성(finiteness), 평면 대칭성(planar duality), 그리고 완전 적분가능성(complete integrability)이 대수적으로 완벽히 보장된다.
 
 ### 10.6 S-행렬의 모티브 갈루아 대칭성과 산란 진폭의 호프 대수(Hopf Algebra)
 
