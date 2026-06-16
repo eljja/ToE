@@ -779,7 +779,7 @@ $$S A |\Omega\rangle \;=\; A^\dagger |\Omega\rangle, \qquad S \;=\; J \Delta^{1/
 토미타-다케사키 정리에 따라, 모듈러 연산자는 다음과 같이 대수 $\mathcal{M}$ 내에 유일한 1-매개변수 자기동형사상 군(modular automorphism group)을 생성한다:
 $$\sigma_s(A) = \Delta^{-is} A \Delta^{is} \quad (A \in \mathcal{M})$$
 
-이 모듈러 매개변수 $s$가 바로 우리가 "시간"으로 인지하는 물리량과 정확히 등가이다. 수학적으로, 이 모듈러 자기동형사상 군 \sigma_s$는 진공 상태 \phi(A) = \langle\Omega|A|\Omega\rangle$에 대해 역온도 \beta = 1$에서의 KMS(Kubo-Martin-Schwinger) 조건을 충족한다. 즉, 임의의 $A, B \in \mathcal{M}$에 대해, 복소 띠(strip) $0 < \text{Im}(z) < 1$에서 해석적이고 그 경계에서 연속인 함수 $F(z)$가 존재하여 다음을 만족한다:
+이 모듈러 매개변수 $s$가 바로 우리가 "시간"으로 인지하는 물리량과 정확히 등가이다. 수학적으로, 이 모듈러 자기동형사상 군 $\sigma_s$는 진공 상태 $\phi(A) = \langle\Omega|A|\Omega\rangle$에 대해 역온도 $\beta = 1$에서의 KMS(Kubo-Martin-Schwinger) 조건을 충족한다. 즉, 임의의 $A, B \in \mathcal{M}$에 대해, 복소 띠(strip) $0 < \text{Im}(z) < 1$에서 해석적이고 그 경계에서 연속인 함수 $F(z)$가 존재하여 다음을 만족한다:
 $$F(s) \;=\; \phi(\sigma_s(A)B), \qquad F(s + i) \;=\; \phi(B\sigma_s(A)) \quad \forall s \in \mathbb{R}$$
 이 대수적 관계식은 다음과 같이 간결하게 표현될 수 있다:
 $$\phi(AB) \;=\; \phi(B \sigma_i(A))$$
