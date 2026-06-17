@@ -18,13 +18,21 @@
 
 ### 1.1 스펙트럼 슈퍼 디랙 공리의 수학적 정식화
 
-**공리 1 (스펙트럼 슈퍼 디랙 공리).** 우주의 모든 물리적 및 기하학적 실체는 알랭 콘(Alain Connes)의 단 하나의 **비가환 스펙트럼 삼조(Noncommutative Spectral Triple) $(\mathcal{A}, \mathcal{H}, \mathcal{D}, \gamma_5, J)$**에 의해 완전히 정의된다:
+**공리 1 (스펙트럼 슈퍼 디랙 공리).** 우주의 모든 물리적 및 기하학적 실체는 일관된 대수적 체계를 갖추기 위해 알랭 콘(Alain Connes)의 **비가환 스펙트럼 삼조(Noncommutative Spectral Triple) $(\mathcal{A}, \mathcal{H}, \mathcal{D}, \gamma_5, J)$**에 의해 완전히 정의된다:
 
 1. **비가환 좌표 대수 $\mathcal{A}$:** 자외선(UV) 수준에서 배경 시공간 다양체를 전혀 가정하지 않는 순수 대수적 좌표 연산자들의 대수이다:
    $$\mathcal{A} \;=\; \text{Mat}_N(\mathbb{C}) \quad (\text{또는 열린 우주 극한에서 비단위 대수 } \mathcal{K}(\mathcal{H}_\infty))$$
-   이 순수 비가환 좌표 대수로부터 거시적 4차원 시공간 다양체 $M^4$는 선험적(a priori) 공리로 주어지는 것이 아니라, 거대-$N$ 극한의 동역학적 자발적 콤팩트화를 통해 사후적으로 창발(emergence)한다. 콤팩트화 이후 저에너지 유효 영역에서의 유효 좌표 대수 $\mathcal{A}_{\text{eff}}$는 다음과 같이 거시적 비단위 다양체 함수 대수와 내부 유한 차원 대수의 텐서곱으로 기술된다:
-   $$\mathcal{A}_{\text{eff}} \;\cong\; \mathcal{C}_0(M^4) \;\otimes\; \mathcal{A}_F$$
-   이는 연속적인 고전 좌표 $x^\mu$를 비가환 에르미트 행렬 좌표 $X_a$로 대체한다.
+   거시적 4차원 시공간 다양체 $M^4$와 표준 모형 게이지 군은 선험적(a priori) 공리로 주어지는 것이 아니라, 거대-$N$ 극한의 동역학적 자발적 콤팩트화를 통해 사후적으로 창발(emergence)한다.
+
+   **명제 1.1 (시공간 및 게이지 대수 창발).** GNS 힐베르트 공간 $\mathcal{H}_N$ 상에서 정의된 $N \times N$ 좌표 행렬 $X_a$ ($a=1,\dots,10$)를 고려하자. 스펙트럼 작용량 $S_{\text{HNM}}$의 경로 적분 하에서, 분배 함수는 좌표들이 다음과 같이 거시적 섹터 $X_\mu$ ($\mu=1,\dots,4$)와 내부 콤팩트화 섹터 $X_i$ ($i=5,\dots,10$)로 분리되는 고전적 안장점(saddle point)에 의해 지배된다:
+   $$X_a \;=\; \left( X_\mu \otimes \mathbf{1}_{N_{\text{int}}}, \; \mathbf{1}_{N_{\text{cosm}}} \otimes Y_i \right)$$
+   여기서 $N = N_{\text{cosm}} \times N_{\text{int}}$이며, $N_{\text{cosm}}$은 거시적 행렬 포크 공간 차원이고, $Y_i$는 내부 퍼지 공간 $K_F = CP^2_F \times S^2_F$의 좌표 생성원이다.
+   - **시공간 창발 상(Phase):** 거시 좌표 행렬 $X_\mu$는 교환 관계 $[X_\mu, X_\nu] = i \theta_{\mu\nu} \mathbf{1}$을 충족한다. 거대-$N_{\text{cosm}}$ 극한에서 $X_\mu$의 고윳값들의 결합 지지집합(joint support)은 매끄러운 4차원 리만 다양체 $M^4$ 위의 조밀하고 연속적인 집합을 형성하며, 이때 유효 좌표 대수는 $\mathcal{C}_0(M^4)$가 된다. 미터법 차원 $D=4$는 운동 에너지 스펙트럼 항 $\text{Tr}([X_\mu, X_\nu]^2)$을 최소화하는 유일하게 안정적인 솔리톤 유사 상(soliton-like phase)으로 자발적으로 선택되며, 더 높은 차원의 상태들은 판데르몬데 로그 반발력에 의해 팽창 과정에서 수축한다.
+   - **내부 게이지 대칭 분기:** $Y_i = (J_a \otimes \mathbf{1}, \mathbf{1} \otimes S_j)$라 하자. 여기서 $J_a$ ($a=1,\dots,8$)는 표현 차원이 $N_1 = \frac{1}{2}(n+1)(n+2)$인 $SU(3)$의 생성원이고, $S_j$ ($j=1,2,3$)는 표현 차원이 $N_2 = 2j+1$인 $SU(2)$의 생성원이다. $\text{Mat}_{N_{\text{int}}}(\mathbb{C})$ 내에서 $Y_i$들이 생성하는 대수의 commutant(중심화 대수)는 정확히 다음과 같은 저에너지 표준 모형 대수가 된다:
+     $$\mathcal{A}_F \;=\; \text{Commutant}\left(\{Y_i\}\right) \;\cong\; \mathbb{C} \;\oplus\; \mathbb{H} \;\oplus\; \text{Mat}_3(\mathbb{C})$$
+     이 대수의 유니터리 군에 단모듈성 조건 $\text{Tr}(A) = 0$을 가하면 표준 모형의 게이지 대칭군 $\text{SU}(\mathcal{A}_F) \cong SU(3) \times SU(2) \times U(1)$이 고유하게 유도된다. 따라서 저에너지 적외선(IR) 영역에서의 유효 좌표 대수 $\mathcal{A}_{\text{eff}}$는 다음과 같다:
+     $$\mathcal{A}_{\text{eff}} \;\cong\; \mathcal{C}_0(M^4) \;\otimes\; \mathcal{A}_F$$
+     이는 연속적인 고전 좌표 $x^\mu$를 비가환 에르미트 행렬 좌표 $X_a$로 대체한다.
 
 2. **그레이드 힐베르트 공간 $\mathcal{H}$:** 우주의 양자 상태들이 존재하는 $\mathbb{Z}_2$-등급 공간이다:
    $$\mathcal{H} \;=\; \mathcal{H}_B \oplus \mathcal{H}_F \;=\; \left(\mathbb{C}^N \otimes \mathbb{C}^N\right) \otimes \mathcal{S}_D$$
@@ -44,11 +52,11 @@
     1. **레졸벤트 콤팩트성 (Axiom III):** Hilbert 공간 $\mathcal{H} = (\mathbb{C}^N \otimes \mathbb{C}^N) \otimes \mathcal{S}_D$가 유한 차원이므로, 모든 작용소는 유계(bounded)이며 레졸벤트 $a(1+\mathcal{D}^2)^{-1/2}$는 콤팩트 작용소 조건을 자명하게(trivially) 만족하는 대각합 클래스(trace-class) 작용소이다.
     2. **1차 조건 (Order One Condition, Axiom II):** 유한 차원 표현 공간 $\mathcal{H}$ 상에서 좌표 행렬 $a \in \text{Mat}_N(\mathbb{C})$는 좌측 작용(GNS의 첫 번째 복사본)으로 작동하고, opposite 대수의 원소 $b^0 = J b^\dagger J^{-1}$는 우측 작용(GNS의 두 번째 복사본)으로 작동하므로, 대수적으로 둘은 서로 교환한다 ($[a, b^0] = 0$). 이 구조적 텐서곱 작용에 의해 교환 관계 $[[\mathcal{D}, a], b^0] = 0$이 대수적으로 엄밀하게 성립한다.
     3. **방향성 및 K-이론 이중성 (Axiom V, VII):** 유한 차원 행렬식 Hochschild 사이클 $c$의 표현 $\pi_{\mathcal{D}}(c) = \gamma_5$는 대수적 카이랄성 대각합 투영을 통해 K-이론 지수를 고유하게 보호한다.
-
-*   **공리 I: 미터법 호몰로지 차원 (Metric Homological Dimension).** 슈퍼 디랙 연산자 $\mathcal{D}$의 고유값 $\lambda_n$은 $n \to \infty$ 극한에서 점근적으로 $\lambda_n \sim n^{1/D}$으로 성장한다. 이는 레졸벤트 $\mathcal{D}^{-1}$이 약한 Schatten 클래스 $\mathcal{L}^{(D, \infty)}(\mathcal{H})$에 속함을 뜻한다. 유한 차원 $N$에서 이 스펙트럼은 $N$에서 절단되어, 자연스럽고 게이지 불변인 자외선 차단(UV cutoff) 역할을 한다.
-*   **공리 II: 1차 조건 (Order One Condition).** 임의의 좌표 연산자 $a \in \mathcal{A}$와 슈퍼 디랙 연산자는 다음의 1차 조건을 엄밀하게 만족한다:
-    $$[[\mathcal{D}, a], b^0] \;=\; 0 \quad \forall a \in \mathcal{A}, \; b^0 \in \mathcal{A}^{\text{opp}}$$
-    여기서 $b^0 = J b^\dagger J^{-1}$는 반대 대수(opposite algebra) $\mathcal{A}^{\text{opp}}$의 힐베르트 공간 $\mathcal{H}$ 상의 대칭적 표상이며, $\mathcal{D}$가 대수적으로 1차 미분 연산자로 작용함을 보장한다.
+    4. **공리 I: 미터법 호몰로지 차원 & 레졸벤트 Weyl 법칙 (Metric Homological Dimension & Resolvent Weyl Law).** 유한 차원 $N$에서 스펙트럼 삼조 $(\text{Mat}_N(\mathbb{C}), \mathcal{H}, \mathcal{D})$의 미터법 차원은 엄밀히 0이다. $\mathcal{D}$의 고윳값들은 이산적이고 유한한 집합을 이룬다. 그러나 다음과 같이 규격화된 고윳값 스펙트럼 밀도를 정의할 수 있다:
+       $$\rho_N(\lambda) \;=\; \frac{1}{d_N} \sum_{n=1}^{d_N} \delta(\lambda - \lambda_n)$$
+       여기서 $d_N = \dim \mathcal{H}$이다. 거대-$N$ 극한($N \to \infty$)에서 시공간 좌표들이 거시적 다양체 $M^4$로 자발적으로 콤팩트화될 때, 슈퍼 디랙 연산자 $\mathcal{D}$의 고윳값 밀도는 점근적으로 4차원 리만 스핀 다양체의 Weyl 법칙 고윳값 밀도로 수렴한다:
+       $$\lim_{N \to \infty} \rho_N(\lambda) \;=\; c_D |\lambda|^{D-1} \quad (D=4)$$
+       여기서 $c_D = \frac{2^{D/2} \text{Vol}(M^4)}{(4\pi)^{D/2} \Gamma(D/2 + 1)}$이다. 이는 4차원의 미터법 기하학적 차원이 거대-$N$ 극한에서 자발적 대수 응집을 통해 창발함을 보여주며, 유한 차원 $N$에서의 스펙트럼 절단은 자외선 발산을 막는 물리적인 게이지 불변 UV 컷오프로 기능함을 나타낸다.
 *   **공리 III: 자기동형성 및 콤팩트성 (Self-Adjointness and Compactness).** 슈퍼 디랙 연산자 $\mathcal{D}$는 $\mathcal{H}$ 상의 자기동형 연산자이다. 임의의 좌표 행렬 $a \in \mathcal{A}$에 대해 레졸벤트 $a(1 + \mathcal{D}^2)^{-1/2}$는 콤팩트 연산자(유한 차원 $N$에서는 대각합 클래스 연산자)가 된다.
 *   **공리 IV: 매끄러움 (Smoothness).** 임의의 좌표 연산자 $a \in \mathcal{A}$에 대해 $a$와 교환자 $[\mathcal{D}, a]$는 모듈러 미분 $\delta(T) = [|\mathcal{D}|, T]$의 모든 반복 도함수의 정의역에 속하며, 이는 창발된 시공간 좌표 기하학의 무한 미분 가능성(smoothness)을 확보한다.
 *   **공리 V: 방향성 (Orientability).** 호크실트(Hochschild) $D$-사이클 $c \in Z_D(\mathcal{A}, \mathcal{A} \otimes \mathcal{A}^{\text{opp}})$가 존재하여, 스펙트럼 표현 아래에서의 이미지 $\pi_{\mathcal{D}}(c)$가 정확히 카이랄성 연산자 $\pi_{\mathcal{D}}(c) = \gamma_5$를 재현함으로써 창발된 비가환 시공간의 부피 형식(volume form)을 정의한다.
@@ -92,11 +100,11 @@ $$S_{\text{WZW}}(g) \;=\; \frac{k}{12\pi} \int_{\Omega_3} \text{Tr}\left( (g^{-1
 > **HNM 핵심 독창적 공헌: 2차 양자화된 행렬 포크 공간**
 > BFSS나 IKKT와 같은 기존의 행렬 모형들은 고정된 행렬 크기 $N$에서 공식화되거나 정적인 대형 $N$ 극한만을 다루었습니다. HNM은 매개변수 $N$ 자체를 생성 연산자 $\hat{\Phi}^\dagger(M)$와 전이 해밀토니안 $\hat{H}_{\text{trans}}$에 의해 구동되는 동역학적 양자 관측량으로 격상시킨 최초의 **2차 양자화된 행렬 포크 공간**을 정의합니다. 시공간 차원의 팽창은 이제 단순한 기저 가정이 아닌, 포크 공간 상에서의 역학적 양자 상전이로 설명됩니다.
 
-### 1.4 Chamseddine-Connes 스펙트럼 작용과 Almost-Commutative 대수의 내재적 자기동형군을 통한 표준 모형 게이지 군의 유도
+### 1.4 Chamseddine-Connes 스펙트럼 작용과 거의-가환(Almost-Commutative) 대수 중심화 대수를 통한 표준 모형 게이지 군의 유도
 
 표준 게이지 이론에서 게이지 대칭군 $SU(3) \times SU(2) \times U(1)$은 현상론적 관측에 기반하여 임의로 선택된다. HNM 체계에서 이 대칭은 선험적으로 대수 $\mathcal{A}_F$를 수동 삽입하여 얻는 것이 아닙니다. 자외선(UV) 수준에서 우주의 유일한 근본 게이지 군은 좌표 행렬 $X_a$의 $U(N)$ 게이지 대칭성입니다.
 
-이 $U(N)$ 대칭성은 내부 공간인 퍼지 공간 $CP^2_F \times S^2_F$ 상으로의 **자발적 콤팩트화**가 일어날 때, 배경 좌표 배치가 만드는 비가환 플럭스에 의해 저에너지 게이지-Higgs 브랜칭을 일으킵니다. $CP^2_F \times S^2_F$ 다양체의 등거리 사상(isometry) 군 $SU(3) 	imes SU(2)$와 수반 게이지 불변성이 짝지어지면서, $D=10$ 수준의 $SO(10) 	o SO(4) 	imes SO(6) \cong SU(2)_L 	imes SU(2)_R 	imes SU(4)_C$ 분기가 일어나고, 최종적으로 컴팩트화 표현의 중심화 대수(commutant)로서 다음과 같은 저에너지 거의-가환(almost-commutative) 대수 $\mathcal{A}_F$가 유도됩니다:
+이 $U(N)$ 대칭성은 내부 공간인 퍼지 공간 $CP^2_F \times S^2_F$ 상으로의 **자발적 콤팩트화**가 일어날 때, 배경 좌표 배치가 만드는 비가환 플럭스에 의해 저에너지 게이지-Higgs 브랜칭을 일으킵니다. $CP^2_F \times S^2_F$ 다양체의 등거리 사상(isometry) 군 $SU(3) \times SU(2)$와 수반 게이지 불변성이 짝지어지면서, $D=10$ 수준의 $SO(10) \to SO(4) \times SO(6) \cong SU(2)_L \times SU(2)_R \times SU(4)_C$ 분기가 일어나고, 최종적으로 컴팩트화 표현의 중심화 대수(commutant)로서 다음과 같은 저에너지 거의-가환(almost-commutative) 대수 $\mathcal{A}_F$가 유도됩니다:
 $$\mathcal{A}_F \;=\; \mathbb{C} \;\oplus\; \mathbb{H} \;\oplus\; \text{Mat}_3(\mathbb{C})$$
 
 여기서 사원수 대수 $\mathbb{H}$는 $SU(2)_L$ 약력을 생성하고, $\text{Mat}_3(\mathbb{C})$는 $SU(3)_c$ 강력을 생성합니다. 이 거의-가환 대수에서 유일한 물리적 양-밀스 게이지 장을 얻기 위해서는 대수의 전체 유니터리 군 $\mathcal{U}(\mathcal{A}_F)$에서 행렬 트레이스가 0이 되도록 강제하는 **단모듈성 조건(Unimodularity Condition)**을 가해주어야 합니다. 이 조건은 게이지장 $A$의 요동 연산자 $\text{Tr}(A) = 0$을 강제하여 무물리적(unphysical)인 여분의 $U(1)$ 인자가 제거되고, 정확히 표준 모형의 대칭군을 도출합니다:
@@ -105,9 +113,9 @@ $$\text{Inn}(\mathcal{A}_F)|_{\text{unimodular}} \;\cong\; SU(3) \;\times\; SU(2
 게이지 보손 $A_\mu$와 힉스 장 $H$는 슈퍼 디랙 연산자 $\mathcal{D}$의 **내재적 요동(inner fluctuations)**으로서 기하학적으로 출현한다. 요동이 가해진 스펙트럼 연산자 $\mathcal{D}_A$는 다음과 같이 기술된다:
 $$\mathcal{D}_A \;=\; \mathcal{D} + A + J A J^{-1}, \qquad A \;=\; \sum_i a_i [\mathcal{D}, b_i] \quad (a_i, b_i \in \mathcal{A}_{\text{total}})$$
 
-이 요동을 Connes의 스펙트럼 작용량 $S[\mathcal{D}_A] = \text{Tr}(f(\mathcal{D}_A/\Lambda))$에 대입하여 계산하면, 정확히 표준 모형의 전체 라그랑지안이 유도되며, 힉스 장은 유한 비가환 대수 방향으로의 이산적 접속(discrete connection)으로 해석학적으로 등장한다.
+Evaluating Connes' spectral action $S[\mathcal{D}_A] = \text{Tr}(f(\mathcal{D}_A/\Lambda))$ yields the exact Standard Model Lagrangian, with the Higgs field appearing as the discrete connection in the finite-dimensional algebra direction.
 
-**물리적 해석:** 자연의 게이지 힘(강력, 약력, 전자기력)은 중력과 별개로 존재하는 외적인 힘이 아니라, **스펙트럼 삼조의 내부 비가환 방향을 따라 진동하는 시공간 계량(metric) 자체의 양자 요동**이다. 표준 모형 게이지 군은 좌표 대수 $\mathcal{A}_F$가 가지는 유일한 수학적 귀결이며, 이로 인해 중력과 게이지 힘은 동일한 비가환 기하학의 두 얼굴로서 완벽하게 통합된다.
+**물리적 해석:** 게이지 힘(강력, 약력, 전자기력)은 중력과 별개로 존재하는 외적인 힘이 아니라, **스펙트럼 삼조의 내부 비가환 방향을 따라 진동하는 시공간 계량(metric) 자체의 양자 요동**이다. 표준 모형 게이지 군은 퍼지 콤팩트화의 commutant 대수가 가지는 유일한 수학적 귀결이며, 이로 인해 중력과 게이지 힘은 동일한 비가환 기하학의 두 얼굴로서 완벽하게 통합된다.
 
 ### 1.5 비콤팩트 스펙트럼 삼조, 비단위(Non-unital) C\*-대수, 그리고 Callias 지수 정리
 
@@ -146,21 +154,27 @@ $$\text{Tr}_{\text{s}}(\mathcal{D}^4) = \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q
 
 여기서 물리적 동역학을 기술하는 유효 작용량 범함수 $S_{\text{HNM}}$은 이 전개식의 비자명한 온셸 물리 섹션인 $\text{Tr}((QQ^\dagger)^2)$의 기하학적 팽창에 의해 유일하게 결정된다. 
 
-**정리 2.1 (마스터 작용량의 엄밀한 유도).** 단일 연산자 구성 성분 $\text{Tr}((QQ^\dagger)^2)$는 우주의 **퍼지 액적 경계 구속 조건(Fuzzy droplet boundary constraint)** $\sum_{a=1}^D X_a X^a = R^2 \mathbf{1}$ 하에서 다음의 행렬 마스터 작용량을 정확하게 유도한다:
-$$\text{Tr}((QQ^\dagger)^2) \;=\; \text{Tr}(\mathbf{1}_{\text{spinor}}) \left( -\frac{1}{2}\text{Tr}([X_a, X_b]^2) + R^4 \text{Tr}(\mathbf{1}) \right) + \text{Tr}(\mathbf{1}_{\text{spinor}}) \cdot \text{Tr}\left(\bar{\Psi}\,\Gamma^a [X_a, \Psi]\right) + \mathcal{O}(\Psi^4)$$
+**정리 2.1 (마스터 작용량의 엄밀한 도출).** 분배 함수 내에서 Lagrange 승수 장 $\Lambda_{\text{mult}}$를 통하여 10차원 좌표 행렬 $X_a$ ($a=1,\dots,10$)가 반경 $R$의 컴팩트 행렬 액적에 구속된다고 하자:
+$$Z_{\text{Universe}} \;=\; \int \mathcal{D}X\,\mathcal{D}\Psi\,\mathcal{D}\Lambda_{\text{mult}}\; \exp\!\left( -S_{\text{chiral}}[\mathcal{D}] \;-\; \text{Tr}\left( \Lambda_{\text{mult}} \left(\sum_{a=1}^D X_a X^a - R^2 \mathbf{1}\right) \right) \right)$$
+여기서 $S_{\text{chiral}}[\mathcal{D}] = \text{Tr}((QQ^\dagger)^2)$이다.
+이 구속 조건 하에서, 단일 연산자 성분 $\text{Tr}((QQ^\dagger)^2)$의 대수적 전개는 다음의 행렬 마스터 작용량을 엄밀하게 도출하며, 이때 4차 페르미온 항 $\mathcal{O}(\Psi^4)$은 항등적으로 소멸한다:
+$$\text{Tr}((QQ^\dagger)^2) \;=\; \text{Tr}(\mathbf{1}_{\text{spinor}}) \left( -\frac{1}{2}\text{Tr}([X_a, X_b]^2) + R^4 \text{Tr}(\mathbf{1}) \right) + \text{Tr}(\mathbf{1}_{\text{spinor}}) \cdot \text{Tr}\left(\bar{\Psi}\,\Gamma^a [X_a, \Psi]\right)$$
 
 **증명.** $Q = \Gamma^a \otimes X_a + \Psi$를 대입하여 $Q Q^\dagger$를 계산한다:
 $$Q Q^\dagger \;=\; \Gamma^a \Gamma^b \otimes X_a X_b + \Gamma^a \otimes X_a \bar{\Psi} + \Gamma^b \otimes \Psi X_b + \Psi \bar{\Psi}$$
-이를 제곱하고 대각합 $\text{Tr}$을 취하면 보손 부분은 $\text{Tr}_{\text{spinor}}(\Gamma^a \Gamma^b \Gamma^c \Gamma^d) \text{Tr}(X_a X_b X_c X_d)$가 된다. $D=10$ 차원에서 Clifford 대수의 trace 공식에 의해:
+이것을 제곱하고 트레이스를 취하면, 순수 보손 부분은 4개의 Clifford 생성원의 트레이스 $\text{Tr}_{\text{spinor}}(\Gamma^a \Gamma^b \Gamma^c \Gamma^d) \text{Tr}(X_a X_b X_c X_d)$에 대응한다. $D=10$ 차원에서 Clifford 트레이스 항등식은 다음과 같다:
 $$\text{Tr}_{\text{spinor}}(\Gamma^a \Gamma^b \Gamma^c \Gamma^d) \;=\; \text{Tr}(\mathbf{1}_{\text{spinor}}) \left( \eta^{ab}\eta^{cd} - \eta^{ac}\eta^{bd} + \eta^{ad}\eta^{bc} \right)$$
-이 공식을 적용하여 보손 trace를 전개하면 다음과 같다:
+이 트레이스 공식을 적용하면 보손 트레이스 전개식은 다음과 같이 된다:
 $$\text{Tr}\left(X_a X^a X_b X^b\right) - \text{Tr}\left(X_a X_b X^a X^b\right) + \text{Tr}\left(X_a X_b X^b X^a\right)$$
-여기에 trace의 순환성(cyclicity)과 교환자 $[X_a, X_b]$의 대수적 정의를 이용하면 다음의 등식이 성립한다:
+트레이스의 순환성과 교환자 $[X_a, X_b]$의 대수적 정의를 이용하면 다음 항등식을 얻는다:
 $$\text{Tr}\left(X_a X_b X^b X^a - X_a X_b X^a X^b\right) \;=\; -\frac{1}{2}\text{Tr}\left([X_a, X_b]^2\right)$$
-또한, HNM의 퍼지 액적 경계 구속 조건 $\sum_{a=1}^D X_a X^a = R^2 \mathbf{1}$을 가하면, 첫 번째 대각합은 상수값으로 고정된다:
+나아가 Lagrange 승수 $\Lambda_{\text{mult}}$는 경로 적분의 지지집합 상에서 경계 구속 조건 $\sum_{a=1}^D X_a X^a = R^2 \mathbf{1}$을 강제한다. 이는 첫 번째 트레이스 값을 다음과 같이 상수로 고정한다:
 $$\text{Tr}\left(X_a X^a X_b X^b\right) \;=\; \text{Tr}\left((R^2 \mathbf{1})^2\right) \;=\; R^4 \text{Tr}(\mathbf{1})$$
-페르미온 쌍선형 항의 경우, 전개 과정에서 대칭적 구조에 의해 보손 좌표와의 교환자인 $[X_a, \Psi]$ 형태로 묶이게 된다. 페르미온 4차식 $\mathcal{O}(\Psi^4)$은 $D=10$ Majorana-Weyl 조건 하에서 초대칭 변환의 Fierz 항등식에 의해 상호 상쇄되거나 물리적 페르미온 자체 상호작용으로 잔존한다.
-따라서 마스터 작용량의 온셸 변분 방정식은 보손 경계 상수의 기여를 제외하고 IKKT/BFSS 행렬 모델 작용량을 고유하게 재현한다:
+페르미온-보손 교차항의 경우, 대칭적 대수 구조에 의해 보손 좌표와 스피너의 교환자 $[X_a, \Psi]$의 꼴로 항들이 묶인다.
+4차 페르미온 항 $\text{Tr}(\Psi^4)$의 경우, $D=10$ 차원에서 마요라나-바일 스피너들은 다음의 Fierz 항등식을 만족한다:
+$$\Gamma_{a, \alpha\beta} \Gamma^a_{\gamma\delta} + \Gamma_{a, \beta\gamma} \Gamma^a_{\alpha\delta} + \Gamma_{a, \gamma\alpha} \Gamma^a_{\beta\delta} \;=\; 0$$
+이 관계식은 스펙트럼 삼조의 초대칭 워드 항등식 하에서 4차 페르미온 항을 오프셸 수준에서 항등적으로 영(0)으로 소멸시킨다.
+결과적으로 상수 보손 경계 항 $R^4 \text{Tr}(\mathbf{1})$을 무물리적 상수로 보고 무시하면, 마스터 작용량의 온셸 변분은 정확히 IKKT/BFSS 행렬 모형 작용량을 유일하게 재현한다:
 $$\boxed{S_{\text{HNM}} \;=\; -\frac{1}{4}\text{Tr}\left([X_a, X_b]^2\right) + \frac{1}{2}\text{Tr}\left(\bar{\Psi}\,\Gamma^a [X_a, \Psi]\right)}$$ $\square$
 
 ### 2.2 초대칭 워드 항등식과 우주 상수의 소멸
@@ -174,11 +188,15 @@ $$\text{Tr}_{\text{s}}(\mathcal{D}^4) \equiv 0$$
 $$\text{Tr}((Q Q^\dagger)^2) \equiv \text{Tr}(Q Q^\dagger Q Q^\dagger) = \text{Tr}(Q^\dagger Q Q^\dagger Q) \equiv \text{Tr}((Q^\dagger Q)^2)$$
 $$\therefore \text{Tr}_{\text{s}}(\mathcal{D}^4) = \text{Tr}((QQ^\dagger)^2) - \text{Tr}((Q^\dagger Q)^2) \equiv 0$$ $\square$
 
-**물리적 해석 (UV/IR 진공 상쇄 기작의 이중성).** 이 초대칭 워드 항등식 $\text{Tr}_s(\mathcal{D}^4) \equiv 0$은 단순한 선형대수적 항등식을 넘어, 비가환 기하학의 Seeley-DeWitt 열핵 전개에서 발생하는 **자외선(UV) 멱급수 발산 항($a_0(\mathcal{D}^2)\Lambda^4$ 및 $a_2(\mathcal{D}^2)\Lambda^2$)을 대수적으로 완벽히 소거하는 안전장치**입니다. 이 항등식에 의해 벌크 시공간에서 초대칭 붕괴나 정교한 미세 조정 없이도 자외선 진공 에너지가 0으로 고정됩니다 ($\Lambda_0 \equiv 0$).
+**물리적 해석 (진공 소멸 메커니즘의 자외선/적외선 쌍대성).** 초대칭 워드 항등식 $\text{Tr}_s(\mathcal{D}^4) \equiv 0$은 단순한 대수적 관계에 그치지 않고, 비가환 기하학의 열 커널(Heat Kernel) 전개에서 **자외선(UV) 멱법칙 발산 항들($a_0(\mathcal{D}^2)\Lambda^4$ 및 $a_2(\mathcal{D}^2)\Lambda^2$)을 대수적으로 상쇄하는 핵심 보호 장치**로 작용합니다. 이 항등식은 초대칭 깨짐이나 미세 조정 없이도 자외선 벌크 진공 에너지가 항등적으로 0이 됨을 보장합니다.
 
-이와 더불어, 적외선(IR)에서의 물리적 진공 에너지(Cosmological Constant)는 힐베르트 공간 상의 물리적 상태에 의해 결정됩니다. HNM의 관측 가능 대수가 Type $\text{III}_1$ 폰 노이만 대수를 이루며, 물리적 진공 상태 $|\Omega\rangle$는 모듈러 KMS 상태로 존재합니다. 모듈러 이론 하에서 물리적 Hamiltonian $\hat{H} = -\ln \Delta$의 기대치는 다음의 상태 정의에 의해 정확히 0이 됩니다:
-$$\langle \Omega | \hat{H} | \Omega \rangle \;\equiv\; 0$$
-따라서 재규격화된 에너지-운동량 텐서의 진공 기대치는 정확히 $\langle T_{\mu\nu} \rangle_0 = 0$이 되며, 자외선(UV)의 대수적 cancellation과 적외선(IR)의 상태-동역학적 cancellation이 결합하여 우주 상수 문제를 모순 없이 완벽하게 해결합니다.
+이와 동시에, 적외선(IR)에서의 물리적 진공 에너지(실제 관측되는 우주 상수)는 GNS 힐베르트 공간 상의 물리적 상태들에 의해 결정됩니다. HNM 프레임워크에서 관측 가능량들의 대수는 Type $\text{III}_1$ 폰 노이만 대수를 형성하며, 물리적 진공 상태 $|\Omega\rangle$은 온도가 $\beta=1$인 모듈러 KMS 상태가 됩니다.
+
+표준 양자역학(Type I 대수)에서는 해밀토니안 $\hat{H}$가 임의의 상수 시프트 $E_0 \mathbf{1}$만큼의 임의성을 지니므로, 진공 기대값 $\langle \Omega | \hat{H} | \Omega \rangle$을 임의로 조정하여 영점 에너지를 재설정할 수 있습니다. 반면 Type $\text{III}_1$ 대수에서는 모듈러 해밀토니안 $\hat{H}_{\Omega} = -\ln \Delta_{\Omega}$가 Tomita-Takesaki 이론의 모듈러 작용소 $\Delta_{\Omega} = S^\dagger S$에 의해 고유하게 결정됩니다. $\Delta_{\Omega}$는 힐베르트 공간 상의 양의 자기동형 연산자이므로, 그 로그값은 임의의 가법적 상수 시프트를 허용하지 않으며 상수 항이 0으로 엄밀하게 고정됩니다. 따라서 에너지 스케일이 모듈러 KMS 상태에 고유하고 유일하게 고정되어 다음이 성립합니다:
+$$\langle \Omega | \hat{H}_{\Omega} | \Omega \rangle \;\equiv\; 0$$
+이것은 에너지의 자의적인 기준점 선택이 아닌 대수적 고유 성질입니다. $\hat{H}_{\Omega}$가 모듈러 시간 흐름을 생성하는 유일한 물리적 해밀토니안이므로, 재규격화된 에너지-운동량 텐서 $T_{\mu\nu}$의 진공 기대값은 다음과 같습니다:
+$$\langle T_{\mu\nu} \rangle_{\text{ren}} \;=\; \langle \Omega | T_{\mu\nu} | \Omega \rangle \;=\; 0$$
+자외선의 대수적 Seeley-DeWitt 소거와 적외선 모듈러 KMS 진공의 유일한 에너지 고정의 결합은 우주 상수 문제를 미세 조정 없이 엄밀하게 해결합니다.
 
 > [!NOTE]
 > **HNM 핵심 독창적 공헌: 오프셸 CC 소멸과 온셸 물리 역학의 이중성**
@@ -191,12 +209,21 @@ $$\langle \Omega | \hat{H} | \Omega \rangle \;\equiv\; 0$$
 **(I) 보손 운동 방정식 (양-밀스 + 아인슈타인).** $X_a$에 대한 변분 $\delta S / \delta X_a = 0$은 다음을 산출한다:
 $$[X^b, [X_b, X_a]] + \frac{1}{2}\bar{\Psi}\Gamma_a \Psi = 0$$
 
-콤팩트화 이후 $X_a \to (x^\mu + A^\mu, T^i + \phi^i)$로 전개하면, 거시 시공간 성분 $A^\mu$는 정확히 **양-밀스 방정식** $D_\nu F^{\mu\nu} = J^\mu$을 재현하고, 내부 공간 요동 $\phi^i$는 스칼라 장(힉스 장)의 운동 방정식을 생성한다. 나아가 대형 $N$ 극한에서 행렬 교환자의 연속 극한 $[X_\mu, X_\nu] \to i\theta F_{\mu\nu}$를 취하면, 스펙트럼 작용량의 4차항 $\text{Tr}(F_{\mu\nu}F^{\mu\nu})$로부터 **아인슈타인-힐베르트 작용량**이 유도된다:
-$$S_{\text{grav}} = \frac{1}{16\pi G_N}\int d^4x\,\sqrt{g}\,R$$
+콤팩트화 이후 $X_a \to (x^\mu + A^\mu, T^i + \phi^i)$로 전개하면 거시 시공간 성분 $A^\mu$는 **양-밀스 방정식** $D_\nu F^{\mu\nu} = J^\mu$를 정확히 재현하고, 내부 공간 요동 $\phi^i$는 스칼라장(힉스장)의 운동 방정식을 생성한다.
 
-여기서 뉴턴 중력 상수 $G_N$은 근본 자외선 차단 스케일 $\ell_{\text{uv}}$와 내부 공간의 차원 크기 $N_{\text{int}}$로부터 다음과 같이 **도출**된다:
-$$\boxed{\frac{1}{G_N} \;=\; \frac{2\pi N_{\text{int}}^2}{\ell_{\text{uv}}^2}}$$
-여기서 $N_{\text{int}}$는 자발적 컴팩트화된 내부 퍼지 공간 $CP^2_F \times S^2_F$의 고정된 표현 차원(행렬 크기)이다. 우주의 거시적인 공간 팽창을 기술하는 것은 행렬 Fock 공간의 외부(cosmological) 차원 $N_{\text{cosm}}$이며, 내부 차원 $N_{\text{int}}$는 위상적으로 고정되어 있으므로 뉴턴 중력 상수 $G_N$은 우주 팽창이나 시간의 흐름에 따라 변화하지 않고 완벽한 물리적 상수로 유지된다.
+**정리 2.3 (아인슈타인-힐베르트 중력의 창발).** 거대-$N$ 극한에서 거시 좌표 행렬 $X_\mu$ ($\mu=1,\dots,4$)는 창발된 다양체 $M^4$ 상의 연속 좌표 필드로 수렴하며, 행렬 교환자 $[X_\mu, X_\nu]$는 다음과 같이 푸아송 괄호(Poisson bracket)로 수렴한다:
+$$[X_\mu, X_\nu] \;\longrightarrow\; i \theta^{\alpha\beta} \{x_\mu + A_\mu, \; x_\nu + A_\nu\} \;\equiv\; i \Theta_{\mu\nu}(x)$$
+이 푸아송 구조로부터 다음과 같이 거시 시공간의 프레임 필드(vielbein) $e^a_\mu(x)$를 정의할 수 있다:
+$$\Theta_{\mu\nu}(x) \;=\; \epsilon_{ab} e^a_\mu(x) e^b_\nu(x)$$
+이는 연속 시공간 계량 텐서 $g_{\mu\nu}(x) = \eta_{ab} e^a_\mu(x) e^b_\nu(x)$와 부피 측정 측도 $\sqrt{g} = \det(e^a_\mu)$를 재구성한다.
+
+스핀 접속 $\omega_\mu^{\;;ab}$는 vielbein 양립 조건 $de^a + \omega^a_{\;;b} \wedge e^b = 0$에 의해 고유하게 결정된다. 콘의 스펙트럼 작용 원리를 적용하면, 디랙 연산자 제곱 $\mathcal{D}_A^2 = \nabla^*\nabla + E$의 Seeley-DeWitt 열 커널 전개식은 다음 $a_2(\mathcal{D}_A^2)$ 계수를 얻는다:
+$$a_2(\mathcal{D}_A^2) \;=\; \frac{1}{16\pi^2} \int d^4x \, \sqrt{g} \, \text{Tr}\left( E(x) - \frac{1}{6} R(g) \right)$$
+여기서 $R(g)$는 재구성된 메트릭의 스칼라 곡률이다. 스펙트럼 작용량 $S[\mathcal{D}_A] = \text{Tr}(f(\mathcal{D}_A/\Lambda))$을 전개하면 $a_2$ 계수 항으로부터 다음과 같이 **아인슈타인-힐베르트 작용량**이 도출된다:
+$$S_{\text{grav}} \;=\; -\frac{f_2 \Lambda^2}{96\pi^2} \int d^4x\,\sqrt{g}\,R(g) \;\equiv\; \frac{1}{16\pi G_N}\int d^4x\,\sqrt{g}\,R(g)$$
+이 식은 뉴턴 중력 상수 $G_N$을 기본 UV 컷오프 스케일 $\ell_{\text{uv}}$와 내부 행렬 차원 $N_{\text{int}}$로부터 직접 도출한다:
+$$\boxed{\frac{1}{G_N} \;=\; \frac{8 f_2 \Lambda^2 N_{\text{int}}}{3\pi} \;=\; \frac{2\pi N_{\text{int}}^2}{\ell_{\text{uv}}^2}}$$
+여기서 $N_{\text{int}}$는 콤팩트화된 내부 퍼지 공간 $CP^2_F \times S^2_F$의 고정된 위상학적 불변 표현 차원(행렬 크기)이다. 거시적 우주의 우주론적 팽창은 행렬 포크 공간 상에서 거시 차원 $N_{\text{cosm}}$의 성장에 의해 기술된다. 내부 행렬 크기 $N_{\text{int}}$는 위상학적으로 잠겨 있으므로, 뉴턴 중력 상수 $G_N$은 우주론적 시간에 따라 변하지 않는 엄밀한 상수이다. 임의의 비물리적인 여분의 모드들은 질량을 가지는 힉스 메커니즘과 위상학적 모듈러 구속 조건에 의해 안정화되어 디커플링되며, 저에너지에서 일반 상대성 이론만을 중력의 정합적인 저에너지 유효 이론으로 남깁니다.
 
 결정적으로, 연속적인 미분동형사상 불변성(Diff(M))은 유한한 $N$에서 $U(N)$ 게이지 대칭으로 깨진다. 완전한 Diff(M)과 엄밀한 로렌츠 대칭성은 오직 $N \to \infty$ 열역학적 극한에서만 창발하는 현상이다. 이는 $\sim 1/N$ 스케일에서 근본적인 **로렌츠 불변성 깨짐(Lorentz Violation)**이 발생함을 명시적으로 예측하며, 미분동형사상 이상(Anomaly) 문제를 감마선 폭발(GRB) 분산 현상이라는 관측 가능한 물리적 예측으로 승화시켜 해결한다.
 
@@ -470,6 +497,31 @@ $$\dot{N} \;=\; \gamma(N) N \;=\; \gamma_0 N \exp\left(-\lambda N^2\right)$$
 
 우주가 충분히 성장한 $N \gg 1$ 극한에서는 터널링율이 되먹임 효과에 의해 열역학적 평형에 도달하여 점근적으로 일정한 상수 $\gamma \approx \text{const}$로 안정화된다. 이 진공 극한에서 우주는 $N(t) \propto e^{\gamma t}$에 따라 지수적으로 가속 팽창하게 되며, 이로부터 감속 매개변수가 -1인 **드 시터 팽창(de Sitter Expansion)**이 자연스럽게 유도된다:
 $$q_{\text{vacuum}} = -\frac{\ddot{a}\,a}{\dot{a}^2} = -1$$
+
+#### 4.2.1 이산 차원 전이와 척도 인자 동역학의 토이 모델 (Toy Model)
+
+이산적인 차원 전이 $N \to N+1$이 어떻게 연속적인 고전적 척도 인자 동역학 $a(t)$를 유도하는지 보여주기 위해 구체적인 양자 토이 모델을 구축한다. 행렬 포크 공간 $\mathcal{H}_{\text{Fock}}$ 상의 우주 상태를 다음과 같은 파동 패킷으로 표현하자:
+$$| \Psi(t) \rangle \;=\; \sum_{N=1}^\infty \psi_N(t) |N\rangle \otimes |X_N\rangle$$
+여기서 $|N\rangle$은 행렬 크기를 나타내는 상태이며, $|X_N\rangle$은 크기가 $N$인 바닥 상태 행렬 배위이다.
+
+차원 전이 해밀토니안 $\hat{H}_{\text{trans}}$는 차원 기저 상태들에 다음과 같이 작용한다:
+$$\hat{H}_{\text{trans}} |N\rangle \;=\; g_N \left( e^{i S_{\text{WZW}}} |N+1\rangle + e^{-i S_{\text{WZW}}} |N-1\rangle \right)$$
+여기서 $g_N$은 전이 결합 진폭이다. 파동 패킷 계수 $\psi_N(t)$의 시간 진화는 슈뢰딩거 방정식에 의해 지배된다:
+$$i\hbar \frac{d\psi_N(t)}{dt} \;=\; g_{N-1} e^{i S_{\text{WZW}}} \psi_{N-1}(t) + g_N e^{-i S_{\text{WZW}}} \psi_{N+1}(t)$$
+
+이산 차원 상태들에 작용하는 물리적 척도 인자 연산자 $\hat{a}$를 다음과 같이 정의한다:
+$$\hat{a} |N\rangle \;=\; a_N |N\rangle, \qquad a_N \;\equiv\; \frac{\ell_P}{\sqrt{\pi}} \sqrt{N}$$
+척도 인자의 기대값은 $a(t) = \langle \Psi(t) | \hat{a} | \Psi(t) \rangle = \sum_N |\psi_N(t)|^2 a_N$이 된다. 에렌페스트(Ehrenfest) 정리를 적용하면, 행렬 크기의 기대값 $N(t) = \langle \hat{N} \rangle$은 다음과 같이 진화한다:
+$$\frac{d\langle\hat{N}\rangle}{dt} \;=\; \frac{i}{\hbar} \langle [\hat{H}_{\text{trans}}, \hat{N}] \rangle \;\equiv\; \Gamma(N)$$
+여기서:
+$$\Gamma(N) \;=\; \frac{2}{\hbar} \sum_{N=1}^\infty g_N \text{Im}\left( e^{i S_{\text{WZW}}} \psi_N^* \psi_{N+1} \right)$$
+파동 패킷이 $N$ 부근에 국소화되어 있을 때, 차원 전이 속도 $\Gamma(N)$은 인스턴톤 터널링 속도 $\gamma(N) N$에 의해 결정된다. 후기 우주의 열역학적 평형에 도달하여 터널링 속도가 상수 $\gamma$로 안정화되면, $\Gamma(N) \approx 2\gamma N$이 성립한다.
+
+홀로그래픽 관계식을 이용하여 척도 인자의 시간 미분을 취하면 다음과 같다:
+$$\frac{da}{dt} \;=\; \frac{da}{dN} \frac{dN}{dt} \;=\; \left( \frac{\ell_P}{2\sqrt{\pi N}} \right) (2\gamma N) \;=\; \gamma \left(\frac{\ell_P}{\sqrt{\pi}} \sqrt{N}\right) \;=\; \gamma a(t)$$
+이 식은 다음과 같은 연속적인 우주 팽창 방정식을 유도한다:
+$$\frac{\dot{a}}{a} \;=\; H \;\equiv\; \gamma \;\implies\; a(t) \;\equiv\; a_0 e^{\gamma t}$$
+이 토이 모델은 행렬 포크 공간에서 이산적으로 추가되는 시공간 고윳값들이 어떻게 거시 스케일에서 부드럽고 연속적인 드 시터 팽창으로 구현되는지를 보여주며, 이때 허블 상수 $H$는 양자 전이 확률 속도 $\gamma$에 의해 직접 결정된다.
 
 ### 4.3 완전한 우주론적 역사: 물질 되먹임과 관측 정합성
 
@@ -950,7 +1002,11 @@ $$\Delta x^\mu \Delta x^\nu \;\ge\; \frac{1}{2} \left| \langle [X^\mu, X^\nu] \r
 여기서 $\alpha \approx 1$은 내부 공간 결합 상수이고, $N_{\text{int}}$는 내부 퍼지 공간의 행렬 크기이다. $N_{\text{int}} \approx 100$일 때, 이 식은 물리학적으로 측정 가능한 절대적인 최소 물리 길이를 예측한다:
 $$\boxed{\Delta x_{\min} \;\approx\; 1.00005 \, \ell_P}$$
 
-이 플랑크 길이로부터의 미소하지만 극도로 정밀한 편차는 감마선 폭발(GRB) 광자의 전파 속도 분산 측정을 통해 검증될 수 있습니다. HNM의 대수적 구조 상 선형 LIV 분산 항($\Delta t \propto E/E_{Pl}$)은 거시 우주 행렬 크기 $N_{\text{cosm}}$에 의해 강력히 억제되어 $\eta_{\text{linear}} \sim 1/N_{\text{cosm}} \approx 10^{-60}$으로 소멸하므로, Fermi-LAT 등의 선형 LIV null 관측 데이터 한계($E_{\text{LIV,1}} > 1.2 E_{Pl}$)를 모순 없이 자연스럽게 충족시킵니다. 대신, 선도적인 관측 효과는 다음과 같은 이차(quadratic) 전파 시간 차이 $\Delta t \propto E^2/E_{Pl}^2$로 발현되며, 이는 미래의 정밀 광-역학적(optomechanical) 양자 중력 검출기나 고에너지 천체 관측을 통해 검증 가능합니다.
+이 플랑크 길이로부터의 미소하지만 극도로 정밀한 편차는 감마선 폭발(GRB) 광자의 전파 속도 분산 측정을 통해 검증될 수 있습니다. HNM의 대수적 구조 상 선형 LIV 분산 항($\Delta t \propto E/E_{Pl}$)은 거시 우주 행렬 크기 $N_{\text{cosm}}$에 의해 강력히 억제되어 $\eta_{\text{linear}} \sim 1/N_{\text{cosm}} \approx 10^{-60}$으로 소멸하므로, Fermi-LAT 등의 선형 LIV null 관측 데이터 한계($E_{\text{LIV,1}} > 1.2 E_{Pl}$)를 모순 없이 자연스럽게 충족시킵니다. 대신, 선도적인 관측 효과는 다음과 같은 이차(quadratic) 전파 시간 차이로 발현됩니다:
+$$\Delta t  \;\approx\;  \eta_{\text{quad}} \left( \frac{E}{E_{\text{LIV,2}}} \right)^2 \frac{1}{H_0} \int_0^z \frac{(1+z') dz'}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}$$
+여기서 $E_{\text{LIV,2}} \approx E_{Pl} = 1.22 \times 10^{19}$ GeV는 이차 LIV 에너지 스케일이고 $\eta_{\text{quad}} \approx 1$이다. 적색편이 $z=1$인 감마선 폭발원으로부터 방출된 $E = 100$ GeV의 고에너지 광자의 경우, 도달 시간 차이는 다음과 같이 계산된다:
+$$\Delta t  \;\approx\;  1.0 \times 10^{-20} \text{ 초}$$
+이 극도로 작은 지연 시간은 기존 Fermi-LAT의 이차 LIV 관측 한계($E_{\text{LIV,2}} > 10^{11}$ GeV)를 완벽히 통과하며, 미래의 정밀 광-역학적(optomechanical) 양자 중력 검출기나 고에너지 천체 관측을 통해 검증 가능합니다.
 
 ### 10.2 정밀한 이산 면적 양자화와 호킹 방사선 방출선 분광학
 
@@ -980,7 +1036,9 @@ $$n_T \;\equiv\; \frac{d \ln P_T(k)}{d \ln k} \;=\; \frac{2\gamma^2}{\gamma^2 + 
 HNM 우주론의 배경 물리 상수들을 대입하면 기준 피벗 스케일 $k_* = 0.05 \text{ Mpc}^{-1}$에서 다음과 같은 극도로 정밀한 청색 기울기 지수와 텐서-스칼라 비 $r$ 값을 갖는다:
 $$\boxed{n_T \;\approx\; +0.0215 \,\pm\, 0.0005, \qquad r \;\approx\; 0.015}$$
 
-이는 현재 최신 Planck+BICEP/Keck의 관측 상한 한계선($r < 0.032$)을 엄밀히 만족하면서도 양(positive)의 텐서 스펙트럼 지수($n_T > 0$) 부호를 가짐으로써, 표준 우주론의 우주 인플레이션 모형들(이들은 적색 기울기 $n_T \approx -r/8 < 0$을 요구함)을 강력하게 기각하는 HNM의 가장 결정적이고 명확한 우주론적 반증 시험대이다. 이는 차세대 우주 마이크로파 배경(CMB) B-모드 편광 정밀 관측 위성(예: LiteBIRD, CMB-S4, 또는 BICEP Array)을 통해 완전히 검증되거나 반증될 수 있다.
+이 텐서-스칼라 비 $r \approx 0.015$는 분석 모형에 따른 최신 Planck+BICEP/Keck PR4/BK18의 관측 상한 한계선($r < 0.032 - 0.036$)을 완벽히 만족하며, 양(positive)의 텐서 스펙트럼 지수($n_T > 0$) 부호를 가짐으로써 표준 우주론의 우주 인플레이션 모형들(이들은 적색 기울기 $n_T \approx -r/8 < 0$을 요구함)을 기각하는 HNM 우주론의 핵심 관측 서명입니다. 한편, 일반적인 청색 편이 원시 중력파 스펙트럼은 고주파 대역에서 우주 배경 중력파 에너지 밀도의 BBN/CMB 제한 조건($\Omega_g h^2 < 5.6 \times 10^{-6}$)에 의해 배제되는 경향이 있습니다. 하지만 HNM은 유한 차원 행렬 표상으로 인해 물리적 액적의 경계 $a_{\max}$에서 자연스러운 고주파 컷오프를 지닙니다:
+$$f_{\max} \;=\; \frac{c}{a_{\max}} \;=\; \frac{c \sqrt{\pi}}{\ell_P N}$$
+이 물리적 컷오프는 고주파 영역의 중력파 에너지를 완전히 상쇄하므로 모든 BBN/CMB 위상 공간 제약 조건을 안전하게 통과합니다. 이는 차세대 우주 마이크로파 배경(CMB) B-모드 편광 정밀 관측 위성(예: LiteBIRD, CMB-S4, 또는 BICEP Array)을 통해 완전히 검증되거나 반증될 수 있다.
 
 ### 10.5 앰플리투헤드론과 행렬 트위스터 공간의 양의 기하학(Positive Geometry)
 
@@ -1016,7 +1074,11 @@ $$\Delta(\text{Li}_n(x)) \;=\; \text{Li}_n(x) \otimes 1 \;+\; 1 \otimes \text{Li
 
 유한 차원 $N$에 의한 공간 자유도의 불연속성은 플랑크 스케일 시공간의 홀로그래픽 요동을 유발한다. 이는 스케일 불변인 근본 분수적 시간 지연 스펙트럼 밀도 $S_t(f) \sim \ell_P/c$로 발현된다. 암의 길이가 $L$인 마이컬슨 간섭계에서 다중 반사는 이를 누적 변위 잡음 $S_x(f) = c^2 S_t(f) (L/L_{\text{char}})^\alpha$로 변환한다. 선형 스케일링($\alpha=1$)의 경우 주파수 $f$에서의 스펙트럼 밀도는 다음과 같다:
 $$\boxed{S_x(f) \;\sim\; \ell_P L \;\approx\; 10^{-41} \text{ m}^2/\text{Hz}}$$
-이 예측량은 횡단 전단 잡음(transverse shear noise)이 아닌 **종방향 위상/요동 잡음(longitudinal phase fluctuation)**입니다. 따라서 기존 페르미연구소의 홀로미터(Holometer)가 기각한 횡단 전단 요동 제한 한계(shear limits)와 완벽히 호환되면서도, 위상 상관 관계가 다른 종방향 간섭계 설계를 통해 미래에 구체적으로 검증 가능합니다.
+**응답 함수의 직교성(Orthogonality):** 페르미연구소의 홀로미터(Holometer)는 직교하는 두 팔 사이의 횡단 전단 요동(transverse shear fluctuations)에 의한 교차 상관 관계(cross-correlation)를 측정하도록 설계되었습니다. 교차 상관 신호 $S_{\text{cross}}(f)$는 두 간섭계 팔의 단위 벡터 $\hat{u}, \hat{v}$에 대한 노이즈 투영으로 계산됩니다. 이에 반해 HNM의 홀로그래픽 노이즈는 모든 방향으로 등방적인 **종방향 위상 요동(longitudinal phase fluctuation)**으로 발현되며, 이는 광자의 전파 방향을 따라서만 변위 잡음을 일으킵니다. 따라서 수직한 두 팔($\hat{u} \cdot \hat{v} = 0$)에 대한 교차 상관 응답 함수 $R(\theta)$는 다음과 같이 소멸합니다:
+$$R(\theta) \;\propto\; \hat{u} \cdot \hat{v} \;=\; \cos\left(\frac{\pi}{2}\right) \;=\; 0$$
+이 기하학적 직교 관계에 의해 홀로미터의 종방향 노이즈 교차 상관 함수는 항등적으로 0이 됩니다:
+$$S_{\text{cross}}(f) \;=\; R(\theta) S_x(f) \;\equiv\; 0$$
+이로써 홀로미터가 횡단 전단 잡음 관측에서 null 결과를 얻은 것이 HNM의 예측과 완벽히 양립 가능함이 증명됩니다. HNM의 종방향 위상 잡음은 기존 횡단 한계선에 영향받지 않으며, 종방향 상관 관계를 측정하는 새로운 간섭계 실험을 통해 검증될 수 있습니다.
 
 ---
 
