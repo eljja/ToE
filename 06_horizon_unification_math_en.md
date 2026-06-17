@@ -88,6 +88,22 @@ To clarify the academic position of the Horizon Noncommutative Matrix (HNM) fram
 
 By unifying these concepts, HNM is not a mere application of noncommutative geometry to cosmology, but a fundamentally new paradigm: **Horizon-driven Noncommutative Matrix Cosmology**, where the information boundary of the observer is the ultimate source of physical laws, spacetime geometry, and quantum dynamics.
 
+### 1.2.1 Physical Origin: Spacetime on the Horizon and the Emergence of Fundamental Limits
+
+The conceptual and physical origin of HNM Theory lies in a fundamental inquiry: **"Is the macroscopic spacetime we experience simply a holographic projection of an algebraic state localized on the horizon (the boundary of information)?"** This paradigm provides a unified, algebraic explanation for the various physical "limits" and "differences" observed in our universe:
+
+1. **The Spacetime Droplet on the Horizon:**
+   The 4D spacetime we inhabit is not an infinite, empty void. In HNM, spacetime is the spectral condensate of a noncommutative algebra $\text{Mat}_N(\mathbb{C})$ with a finite Hilbert space dimension $N$. The boundary of this "matrix droplet" is the cosmological horizon $R_H$, and the 3D bulk space is merely a holographic projection of the finite algebraic degrees of freedom encoded on this horizon boundary. In other words, **the true physical reality is the C\*-algebra defined on the horizon, and we experience a reconstructed spacetime projected from it.**
+
+2. **Horizon-driven Explanations of Fundamental Physical Limits:**
+   The absolute physical limits encountered in nature are mathematical consequences of the finite information barrier of the horizon:
+   - **Finiteness of the Speed of Light ($c$):** Because the universe is not an infinite continuum but a finite algebraic system whose dimension $N$ is bounded by the horizon area, the maximum speed of information propagation is algebraically restricted by the Lieb-Robinson limit of finite matrix systems. This upper bound manifests macroscopically as the finite speed of light $c$.
+   - **Minimal Length Scale (Planck Length $\ell_P$):** The noncommutativity of coordinates ($[X_a, X_b] = i\theta_{ab}$) prevents the infinite localization of spacetime points. This establishes a minimal spatial quantum $\Delta x_{\min} \approx \ell_P$, acting as a physical UV cutoff that naturally renders the theory free of ultraviolet divergences.
+   - **Emergence of Gravity and Entropy Limits:** An observer is causally restricted from accessing information beyond the horizon. This causal partitioning (partial trace of the density matrix) generates quantum entanglement entropy, whose local variation matches the Wald entropy of general relativity. Gravity, therefore, is not a fundamental force but a thermodynamic manifestation of the horizon's information limits.
+   - **Cosmological Expansion and Irreversible Time Flow:** The horizon area (information capacity) is not static; it grows as eigenvalues tunnel from the infinite Dirac sea into the droplet, increasing the representation size $N \to N+1$. This dynamical dimension growth drives cosmic expansion and defines the irreversible direction of cosmological time.
+
+Consequently, **the finiteness of the speed of light, the Planck length cutoff, the force of gravity, and the flow of time** are all macroscopic signatures proving that **we live in a holographic universe projected from a finite-dimensional algebraic horizon.**
+
 ### 1.3 Resolution of the Dimensionality Gap: Second-Quantized Matrix Fock Space
 
 To describe a dynamically expanding universe where the matrix dimension $N$ grows with time ($\dot{N} > 0$), we must formalize how the dimension of the representation changes. In standard quantum mechanics, the dimension of the representation is fixed. To resolve this, HNM defines a **Second-Quantized Matrix Fock Space** $\mathcal{H}_{\text{Fock}}$ as the direct sum of finite-dimensional matrix Hilbert spaces:
