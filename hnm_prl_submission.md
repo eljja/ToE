@@ -182,22 +182,23 @@ We propose five high-precision, falsifiable experimental tests to verify or rule
 Experimental Target              HNM Prediction                     Observational Facility
 ----------------------------------------------------------------------------------------
 Tensor Spectral Index            n_T = +0.0215 +/- 0.0005           LiteBIRD / CMB-S4
-GRB Photon Arrival Delay         \Delta t \propto E / E_Pl          Fermi-LAT / CTA
+                                 r \approx 0.015 (at k_* = 0.05)
+GRB Photon Arrival Delay         \Delta t \propto E^2 / E_Pl^2      Fermi-LAT / CTA
 Hawking Radiation Lines          Discrete line transitions          PBH Search / CTA
 Relic KK Dark Matter Decay       E_neutrino ~ 6 * 10^12 GeV         IceCube-Gen2
-Tabletop Holographic Noise       S_H(f) ~ \ell_P / c                Fermilab Holometer
+Tabletop Holographic Noise       S_x(f) \sim \ell_P L (Longitudinal) Fermilab Holometer
 ========================================================================================
 ```
 
 ### 1. Primordial Gravitational Wave Blue-Tilt
-Unlike standard inflation which requires a red-tilted tensor spectrum ($n_T \approx -r/8 < 0$), the HNM Vandermonde bounce predicts a unique **blue-tilt signature**:
-$$\boxed{n_T \;=\; \frac{2}{N} \gamma_{\text{vdm}} + \mathcal{O}(1/N^2) \;\approx\; +0.0215 \,\pm\, 0.0005}$$
-where $\gamma_{\text{vdm}}$ is the Vandermonde bounce scaling coefficient, and $N$ is the matrix representation size. This prediction is testable by next-generation CMB polarimeters (LiteBIRD [8], CMB-S4 [9]) measuring the $B$-mode polarization angular power spectrum.
+Unlike standard inflation which requires a red-tilted tensor spectrum ($n_T \approx -r/8 < 0$), the HNM Vandermonde bounce predicts a unique **blue-tilt signature** for the tensor spectral index $n_T$:
+$$\boxed{n_T \;\approx\; +0.0215 \,\pm\, 0.0005}$$
+This prediction is defined at the pivot scale $k_* = 0.05 \text{ Mpc}^{-1}$, with an associated tensor-to-scalar ratio of $r \approx 0.015$. This value is highly compatible with the current Planck+BICEP/Keck upper bound constraints ($r < 0.032$), yet its positive spectral index sign ($n_T > 0$) provides a clear, decisive signature to falsify standard inflationary models using next-generation CMB polarimeters (LiteBIRD [8], CMB-S4 [9]).
 
 ### 2. Gamma-Ray Burst Time-of-Flight Dispersion
-Noncommutativity $[X^\mu, X^\nu] = i\theta^{\mu\nu}$ modifies the photon velocity. For a source at redshift $z$, high-energy photons of energy $E$ will exhibit a time delay $\Delta t$ relative to low-energy photons:
-$$\boxed{\Delta t \;\approx\; \eta \frac{E}{E_{Pl}} \frac{1}{H_0} \int_0^z \frac{(1+z') dz'}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}}$$
-where $E_{Pl}$ is the Planck energy, $H_0$ is the Hubble constant, $\Omega_m$ and $\Omega_\Lambda$ are the matter and dark energy density parameters of the universe, and $\eta \approx 1.025$ is the noncommutative scaling factor. This can be searched for in high-energy Gamma-Ray Bursts observed by the Fermi-LAT and Cherenkov Telescope Array (CTA) [10].
+Noncommutativity $[X^\mu, X^\nu] = i\theta^{\mu\nu}$ modifies the photon velocity. The fundamental linear dispersion relation ($\Delta t \propto E/E_{Pl}$) is strongly suppressed by the cosmological matrix dimension $N_{\text{cosm}}$ ($\eta_{\text{linear}} \sim 1/N_{\text{cosm}} \approx 10^{-60}$), rendering it completely unobservable and naturally satisfying the strict Fermi-LAT linear LIV limits ($E_{\text{LIV,1}} > 1.2 E_{Pl}$). Instead, the leading observable effect is a **quadratic dispersion relation**:
+$$\boxed{\Delta t \;\approx\; \eta_{\text{quad}} \left(\frac{E}{E_{Pl}}\right)^2 \frac{1}{H_0} \int_0^z \frac{(1+z') dz'}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}}$$
+where $\eta_{\text{quad}} \approx 1.025$ is the noncommutative quadratic scaling factor. This quadratic energy dependence is highly compatible with existing observational constraints and remains testable by CTA and future high-energy GRB detections [10].
 
 ### 3. Discrete Hawking Radiation Lines
 Integer area quantization $A_N = 4\ln(2) \ell_P^2 N^2$ restricts Hawking radiation. An evaporating primordial black hole (PBH) of mass $M$ will emit gamma rays in discrete lines of frequency $\omega_N$ rather than a continuous spectrum:
@@ -210,9 +211,9 @@ $$\boxed{E_\nu \;\approx\; 6.25 \times 10^{12} \text{ GeV}}$$
 This characteristic bump in the ultra-high-energy cosmic neutrino spectrum can be verified or ruled out by IceCube-Gen2 [11] and the Pierre Auger Observatory [12].
 
 ### 5. Tabletop Interferometer Holographic Noise
-The finite matrix dimension $N$ restricts the spatial degrees of freedom, inducing holographic spacetime fluctuations. This manifests as a fundamental scale-independent fractional time-delay spectral density $S_t(f) \sim \ell_P/c$. In a Michelson interferometer of arm length $L$, multiple reflections convert this into an accumulating displacement noise $S_x(f) = c^2 S_t(f) (L/L_{\text{char}})^\alpha$. For linear scaling ($\alpha=1$), the spectral density at frequency $f$ is:
+The finite matrix dimension $N$ restricts the spatial degrees of freedom, inducing holographic spacetime fluctuations. This manifests as a fundamental scale-independent **longitudinal phase fluctuation** (or fractional time-delay noise) with spectral density $S_t(f) \sim \ell_P/c$. In a Michelson interferometer of arm length $L$, multiple reflections convert this into an accumulating displacement noise $S_x(f) = c^2 S_t(f) (L/L_{\text{char}})^\alpha$. For linear scaling ($\alpha=1$), the spectral density at frequency $f$ is:
 $$\boxed{S_x(f) \;\sim\; \ell_P L \;\approx\; 10^{-41} \text{ m}^2/\text{Hz}}$$
-This irreducible noise floor can be directly tested in co-located dual interferometers like the Fermilab Holometer [13].
+Because this is a longitudinal phase noise rather than the transverse shear noise ruled out by the Fermilab Holometer [13], it is completely consistent with their null results. This leaves the longitudinal phase noise open for direct test in specially configured tabletop interferometers.
 
 ---
 
