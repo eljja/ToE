@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const parentCrumb = document.getElementById("parent-crumb");
     const currentCrumb = document.getElementById("current-crumb");
     const navButtons = document.querySelectorAll(".nav-btn");
+    const theoryMapView = document.getElementById("theory-map-view");
+    const theoryMapCanvas = document.getElementById("theory-map-canvas");
+    const nodeDetails = document.getElementById("node-details");
 
     // ----------------------------------------------------
     // Theme Management
@@ -81,6 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Reload the document if in doc-view
             if (state.activeView === "doc-view") {
                 loadMarkdown(state.activeDoc);
+            } else if (state.activeView === "theory-map-view") {
+                selectNode(theoryMapSelectedNode);
             }
         });
     }
@@ -303,6 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 state.activeView = "doc-view";
                 docView.classList.add("active");
                 sandboxView.classList.remove("active");
+                if (theoryMapView) theoryMapView.classList.remove("active");
                 
                 parentCrumb.innerText = state.currentLang === "en" ? "Library" : "라이브러리";
                 currentCrumb.innerText = btn.querySelector("span").innerText;
@@ -313,11 +319,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 state.activeView = "sandbox-view";
                 docView.classList.remove("active");
                 sandboxView.classList.add("active");
+                if (theoryMapView) theoryMapView.classList.remove("active");
 
                 parentCrumb.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
                 currentCrumb.innerText = state.currentLang === "en" ? "Quantum Sandbox" : "양자 샌드박스";
 
                 initSandbox();
+            } else if (action === "theory-map") {
+                // Switch to Theory Map View
+                state.activeView = "theory-map-view";
+                docView.classList.remove("active");
+                sandboxView.classList.remove("active");
+                if (theoryMapView) theoryMapView.classList.add("active");
+
+                parentCrumb.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
+                currentCrumb.innerText = state.currentLang === "en" ? "HNM Theory Map" : "HNM 이론 도식 맵";
+
+                initTheoryMap();
             }
         });
     });
@@ -1183,48 +1201,499 @@ document.addEventListener("DOMContentLoaded", () => {
                 p.vx *= 0.97;
                 p.vy *= 0.97;
 
-                // Collision detection with Event Horizon Circle
-                if (dist <= horizonRadius + p.size) {
-                    // Accrete particle!
-                    const collisionAngle = Math.atan2(p.y - centerY, p.x - centerX);
-                    
-                    // Create horizon ripple
-                    horizonRipples.push({
-                        angle: collisionAngle,
-                        phase: 0,
-                        opacity: 1.0
-                    });
-
-                    // Increment accreted count
-                    accretedCount++;
-                    valParticlesText.innerText = accretedCount; // display count dynamically in UI
-                    updateEnergyStatus(); // update dynamic HNM matrix label
-
-                    // Spawn baby universe particle inside
-                    simParticles.push({
-                        x: centerX + Math.cos(collisionAngle) * (horizonRadius * 0.8),
-                        y: centerY + Math.sin(collisionAngle) * (horizonRadius * 0.8),
-                        vx: -Math.cos(collisionAngle) * 2,
-                        vy: -Math.sin(collisionAngle) * 2,
-                        size: Math.random() * 3 + 2,
-                        color: "rgba(161, 118, 255, 0.9)",
-                        isInside: true
-                    });
-
-                    // Remove this parent particle from array
-                    simParticles.splice(i, 1);
-                    continue;
-                }
-
-                // Draw outer particle (Golden energy bits)
-                sandboxCtx.fillStyle = p.color;
-                sandboxCtx.shadowColor = p.color;
-                sandboxCtx.shadowBlur = 4;
-                sandboxCtx.beginPath();
-                sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                sandboxCtx.fill();
-                sandboxCtx.shadowBlur = 0;
             }
         }
+    }
+
+    // ----------------------------------------------------
+    // HNM Theory Map Visualizer
+    // ----------------------------------------------------
+    let theoryMapCtx = theoryMapCanvas ? theoryMapCanvas.getContext("2d") : null;
+    let theoryMapSelectedNode = null;
+    let theoryMapHoveredNode = null;
+    let theoryMapPan = { x: 0, y: 0 };
+    let theoryMapZoom = 1.0;
+    let theoryMapAnimationId = null;
+    let theoryMapIsPanning = false;
+    let theoryMapStartPan = { x: 0, y: 0 };
+    let theoryMapCenterTween = null;
+
+    const hnmNodes = [
+        {
+            id: "axiom",
+            symbol: "D",
+            nameEn: "Super-Dirac Axiom",
+            nameKo: "슈퍼 디랙 공리",
+            mathCode: "\\mathcal{D} = \\begin{pmatrix} 0 & Q \\\\ Q^\\dagger & 0 \\end{pmatrix}",
+            descEn: "The fundamental starting point of HNM. The entire physical and geometric properties of the universe are uniquely encoded in a single Super-Dirac operator acting on a noncommutative spectral triple.",
+            descKo: "HNM 이론의 절대적인 시작점입니다. 우주의 모든 물리적 및 기하학적 성질은 비가환 스펙트럼 삼조 상에 작용하는 단 하나의 슈퍼 디랙 연산자에 의해 수학적으로 코딩됩니다.",
+            link: "06_horizon_unification_math.md#L17-L22",
+            x: 0,
+            y: 0,
+            radius: 35,
+            color: "rgba(251, 191, 36, 0.95)", // Golden Amber
+            borderColor: "rgba(251, 191, 36, 0.4)",
+            hoverColor: "#fbbf24"
+        },
+        {
+            id: "chiral",
+            symbol: "S",
+            nameEn: "Chiral Spectral Action",
+            nameKo: "카이랄 스펙트럼 작용량",
+            mathCode: "S_{\\text{HNM}} = \\text{Tr}((Q Q^\\dagger)^2)",
+            descEn: "The variational principle driving all physical dynamics. Under spontaneous compactification, it yields general relativity, Yang-Mills gauge theory, and standard model chiral fermions.",
+            descKo: "우주의 동역학을 유도하는 변분 원리입니다. 자발적 콤팩트화를 거치며 고전 아인슈타인-힐베르트 중력 작용량, 양-밀스 게이지 이론 및 3세대 카이랄 페르미온을 생성합니다.",
+            link: "06_horizon_unification_math.md#L176-L190",
+            x: -160,
+            y: -100,
+            radius: 28,
+            color: "rgba(6, 182, 212, 0.95)", // Cyan
+            borderColor: "rgba(6, 182, 212, 0.4)",
+            hoverColor: "#06b6d4"
+        },
+        {
+            id: "susy",
+            symbol: "Tr_s",
+            nameEn: "SUSY Ward Identity",
+            nameKo: "초대칭 워드 항등식",
+            mathCode: "\\text{Tr}_{\\text{s}}(\\mathcal{D}^4) \\equiv 0",
+            descEn: "Algebraic identity that vanishes identically off-shell. It acts as a constraint forcing the cosmological constant to vanish and resolving the vacuum energy density crisis.",
+            descKo: "오프셸 수준에서 항상 0으로 소멸하는 수학적 항등식입니다. 대수적 구속조건으로 작용하여 우주의 벌크 진공 에너지를 0으로 강제하며 우주상수 문제를 해결합니다.",
+            link: "06_horizon_unification_math.md#L209-L220",
+            x: 160,
+            y: -100,
+            radius: 28,
+            color: "rgba(168, 85, 247, 0.95)", // Purple
+            borderColor: "rgba(168, 85, 247, 0.4)",
+            hoverColor: "#a855f7"
+        },
+        {
+            id: "droplet",
+            symbol: "X_a",
+            nameEn: "Fuzzy Droplet Geometry",
+            nameKo: "퍼지 액적 기하학",
+            mathCode: "[X_a, X_b] = i \\theta_{ab} \\mathbf{1}",
+            descEn: "Coordinate matrices form a fuzzy droplet under the action. In the large-N limit, the eigenvalues condense to form a continuous 4D Riemannian manifold.",
+            descKo: "비가환 시공간 좌표 행렬들이 응집해 구 형태의 퍼지 액적 기하학을 형성합니다. 큰-$N$ 극한에서 고윳값 분포가 연속적인 4차원 곡선 시공간 다양체로 창발합니다.",
+            link: "06_horizon_unification_math.md#L473-L485",
+            x: -280,
+            y: -10,
+            radius: 25,
+            color: "rgba(34, 197, 94, 0.95)", // Emerald Green
+            borderColor: "rgba(34, 197, 94, 0.4)",
+            hoverColor: "#22c55e"
+        },
+        {
+            id: "horizon",
+            symbol: "R_H",
+            nameEn: "Holographic Horizon",
+            nameKo: "홀로그래픽 지평선",
+            mathCode: "S = N^2 = \\frac{A}{4\\ell_P^2}",
+            descEn: "The spectral outer boundary of the fuzzy droplet functions as the cosmic horizon. Entropy is equivalent to the matrix representation size squared.",
+            descKo: "행렬 액적의 외곽 경계가 물리적 우주 지평선을 정의합니다. 우주의 정보 한계와 베켄슈타인-호킹 엔트로피가 행렬 차원 $N^2$과 직접 동정됩니다.",
+            link: "06_horizon_unification_math.md#L581-L590",
+            x: -360,
+            y: 110,
+            radius: 25,
+            color: "rgba(236, 72, 153, 0.95)", // Magenta
+            borderColor: "rgba(236, 72, 153, 0.4)",
+            hoverColor: "#ec4899"
+        },
+        {
+            id: "bounce",
+            symbol: "V_eff",
+            nameEn: "Vandermonde Bounce",
+            nameKo: "판데르몬데 빅 바운스",
+            mathCode: "V_{\\text{eff}}(a) \\approx \\frac{\\ell(\\ell+1)}{a^2} - \\frac{\\Lambda}{3}a^2",
+            descEn: "The Vandermonde repulsion between eigenvalues acts as an effective potential diverging at small scale factor, eliminating the Big Bang singularity.",
+            descKo: "행렬 고윳값들의 판데르몬데 반발력이 척도인자 $a \\to 0$ 극한에서 무한대로 발산하는 장벽을 형성해 빅뱅 특이점을 우주론적 빅 바운스로 완벽히 대체합니다.",
+            link: "06_horizon_unification_math.md#L591-L606",
+            x: -220,
+            y: 220,
+            radius: 25,
+            color: "rgba(14, 165, 233, 0.95)", // Sky Blue
+            borderColor: "rgba(14, 165, 233, 0.4)",
+            hoverColor: "#0ea5e9"
+        },
+        {
+            id: "time",
+            symbol: "Δ^it",
+            nameEn: "Modular Time Flow",
+            nameKo: "모듈러 시간 흐름",
+            mathCode: "\\alpha_t(A) = \\Delta_{\\Omega}^{it} A \\Delta_{\\Omega}^{-it}",
+            descEn: "Lorentzian time is not fundamental; it emerges as a modular automorphism (Tomita-Takesaki theory) from the horizon entanglement KMS state.",
+            descKo: "시간은 기본 차원이 아니며 지평선 얽힘 진공의 Tomita-Takesaki 모듈러 흐름(KMS 열적 진공)으로부터 창발되는 열역학적 매개변수입니다.",
+            link: "06_horizon_unification_math.md#L857-L870",
+            x: 0,
+            y: 220,
+            radius: 28,
+            color: "rgba(244, 63, 94, 0.95)", // Rose
+            borderColor: "rgba(244, 63, 94, 0.4)",
+            hoverColor: "#f43f5e"
+        },
+        {
+            id: "compact",
+            symbol: "Y_i",
+            nameEn: "Fuzzy Compactification",
+            nameKo: "퍼지 콤팩트화",
+            mathCode: "SO(10) \\to SU(3) \\times SU(2) \\times U(1)",
+            descEn: "Spontaneous dimensional compactification on CP^2_F x S^2_F. The commutant of this fuzzy space dynamically yields the Standard Model gauge symmetry.",
+            descKo: "10차원 기하학 중 6차원이 퍼지 공간 $CP^2_F \\times S^2_F$ 상으로 자발적 콤팩트화되며, 여분 차원 대칭성이 표준 모형 $SU(3) \\times SU(2) \\times U(1)$로 분기됩니다.",
+            link: "06_horizon_unification_math.md#L636-L650",
+            x: 280,
+            y: -10,
+            radius: 25,
+            color: "rgba(16, 185, 129, 0.95)", // Emerald
+            borderColor: "rgba(16, 185, 129, 0.4)",
+            hoverColor: "#10b981"
+        },
+        {
+            id: "matter",
+            symbol: "χ=3",
+            nameEn: "Chiral Matter & Higgs",
+            nameKo: "카이랄 물질과 힉스 보손",
+            mathCode: "n_{\\text{gen}} = \\chi(CP^2 \\times S^2) = 3",
+            descEn: "Compact space topology dictates exactly three generations of chiral fermions. The spectral Higgs mechanism generates physical masses.",
+            descKo: "콤팩트 공간의 위상학적 특성(오일러 지수 = 3)에 의해 자연스럽게 3세대 카이랄 페르미온이 선택되며 스펙트럼 힉스 메커니즘을 통해 질량이 획득됩니다.",
+            link: "06_horizon_unification_math.md#L675-L690",
+            x: 360,
+            y: 110,
+            radius: 25,
+            color: "rgba(99, 102, 241, 0.95)", // Indigo
+            borderColor: "rgba(99, 102, 241, 0.4)",
+            hoverColor: "#6366f1"
+        }
+    ];
+
+    const hnmLinks = [
+        { from: "axiom", to: "chiral" },
+        { from: "axiom", to: "susy" },
+        { from: "chiral", to: "droplet" },
+        { from: "droplet", to: "horizon" },
+        { from: "horizon", to: "bounce" },
+        { from: "horizon", to: "time" },
+        { from: "droplet", to: "compact" },
+        { from: "compact", to: "matter" }
+    ];
+
+    function resizeTheoryMapCanvas() {
+        if (!theoryMapCanvas) return;
+        const rect = theoryMapCanvas.parentElement.getBoundingClientRect();
+        theoryMapCanvas.width = rect.width;
+        theoryMapCanvas.height = rect.height;
+    }
+
+    function toWorldCoords(mousePos) {
+        return {
+            x: (mousePos.x - theoryMapCanvas.width / 2 - theoryMapPan.x) / theoryMapZoom,
+            y: (mousePos.y - theoryMapCanvas.height / 2 - theoryMapPan.y) / theoryMapZoom
+        };
+    }
+
+    function getMousePos(canvas, evt) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+
+    function selectNode(node) {
+        theoryMapSelectedNode = node;
+        
+        if (!node) {
+            nodeDetails.classList.remove("active");
+            nodeDetails.innerHTML = `
+                <div class="no-selection-msg">
+                    <i class="fa-solid fa-fingerprint animate-pulse"></i>
+                    <p data-en="Hover or click a node in the map to display its details." data-ko="지평선 비가환 기하학 네트워크 맵의 노드를 가리키거나 클릭하여 상세 물리 정보를 확인해 보세요.">${state.currentLang === 'en' ? 'Hover or click a node in the map to display its details.' : '지평선 비가환 기하학 네트워크 맵의 노드를 가리키거나 클릭하여 상세 물리 정보를 확인해 보세요.'}</p>
+                </div>
+            `;
+            return;
+        }
+
+        nodeDetails.classList.add("active");
+        
+        const name = state.currentLang === "en" ? node.nameEn : node.nameKo;
+        const desc = state.currentLang === "en" ? node.descEn : node.descKo;
+        const linkLabel = state.currentLang === "en" ? "References in Paper" : "논문 내 관련 항목";
+        const linkPath = node.link;
+        const linkName = linkPath.split('/').pop().replace('#', ' #');
+
+        nodeDetails.innerHTML = `
+            <div class="detail-node-name">${name}</div>
+            <div class="detail-node-math">$$${node.mathCode}$$</div>
+            <div class="detail-node-desc">${desc}</div>
+            <div class="detail-node-links">
+                <span class="detail-node-links-title">${linkLabel}</span>
+                <a href="${linkPath}" class="detail-node-link-item link">
+                    <i class="fa-solid fa-file-lines"></i> ${linkName}
+                </a>
+            </div>
+        `;
+
+        if (window.katex && node.mathCode) {
+            const mathEl = nodeDetails.querySelector(".detail-node-math");
+            if (mathEl) {
+                try {
+                    window.katex.render(node.mathCode, mathEl, {
+                        displayMode: true,
+                        throwOnError: false
+                    });
+                } catch (err) {
+                    console.error("KaTeX error:", err);
+                }
+            }
+        }
+        
+        // Add click events to document links in sidebar to let them load inside the app
+        const linkItem = nodeDetails.querySelector(".detail-node-link-item");
+        if (linkItem) {
+            linkItem.addEventListener("click", (e) => {
+                e.preventDefault();
+                // Extract document filename
+                const docFile = linkPath.split('#')[0];
+                
+                // Find matching button
+                const matchingBtn = Array.from(navButtons).find(btn => btn.getAttribute("data-doc") === docFile);
+                if (matchingBtn) {
+                    matchingBtn.click();
+                } else {
+                    // Fallback load
+                    state.activeView = "doc-view";
+                    docView.classList.add("active");
+                    sandboxView.classList.remove("active");
+                    if (theoryMapView) theoryMapView.classList.remove("active");
+                    loadMarkdown(docFile);
+                }
+            });
+        }
+    }
+
+    function smoothCenterOn(tx, ty) {
+        const targetPanX = -tx * theoryMapZoom;
+        const targetPanY = -ty * theoryMapZoom;
+        
+        let startX = theoryMapPan.x;
+        let startY = theoryMapPan.y;
+        let elapsed = 0;
+        const duration = 400; // ms
+        const startTime = performance.now();
+
+        function animateCenter(now) {
+            elapsed = now - startTime;
+            const t = Math.min(elapsed / duration, 1.0);
+            const ease = t * (2 - t); // quadratic ease-out
+
+            theoryMapPan.x = startX + (targetPanX - startX) * ease;
+            theoryMapPan.y = startY + (targetPanY - startY) * ease;
+
+            if (t < 1.0) {
+                theoryMapCenterTween = requestAnimationFrame(animateCenter);
+            } else {
+                theoryMapCenterTween = null;
+            }
+        }
+        
+        if (theoryMapCenterTween) cancelAnimationFrame(theoryMapCenterTween);
+        theoryMapCenterTween = requestAnimationFrame(animateCenter);
+    }
+
+    function initTheoryMap() {
+        if (!theoryMapCanvas) return;
+        cancelAnimationFrame(theoryMapAnimationId);
+        resizeTheoryMapCanvas();
+        
+        // Reset pan and zoom to center
+        theoryMapPan = { x: 0, y: 0 };
+        theoryMapZoom = 1.0;
+        selectNode(null);
+
+        // Animation Loop
+        function drawTheoryMap() {
+            if (state.activeView !== "theory-map-view") return;
+            
+            theoryMapCtx.clearRect(0, 0, theoryMapCanvas.width, theoryMapCanvas.height);
+            
+            // Draw background quantum mesh grid (very faint)
+            const spaceTimePulse = Date.now() * 0.0005;
+            theoryMapCtx.save();
+            theoryMapCtx.translate(theoryMapCanvas.width / 2 + theoryMapPan.x, theoryMapCanvas.height / 2 + theoryMapPan.y);
+            theoryMapCtx.scale(theoryMapZoom, theoryMapZoom);
+
+            // Draw grid lines
+            theoryMapCtx.strokeStyle = "rgba(168, 85, 247, 0.03)";
+            theoryMapCtx.lineWidth = 1;
+            const gridSize = 80;
+            const gridLimit = 1000;
+            for (let x = -gridLimit; x <= gridLimit; x += gridSize) {
+                theoryMapCtx.beginPath();
+                theoryMapCtx.moveTo(x, -gridLimit);
+                theoryMapCtx.lineTo(x, gridLimit);
+                theoryMapCtx.stroke();
+            }
+            for (let y = -gridLimit; y <= gridLimit; y += gridSize) {
+                theoryMapCtx.beginPath();
+                theoryMapCtx.moveTo(-gridLimit, y);
+                theoryMapCtx.lineTo(gridLimit, y);
+                theoryMapCtx.stroke();
+            }
+
+            // Draw connection lines
+            hnmLinks.forEach(link => {
+                const fromNode = hnmNodes.find(n => n.id === link.from);
+                const toNode = hnmNodes.find(n => n.id === link.to);
+                if (fromNode && toNode) {
+                    // Draw thick faint background line
+                    theoryMapCtx.beginPath();
+                    theoryMapCtx.moveTo(fromNode.x, fromNode.y);
+                    theoryMapCtx.lineTo(toNode.x, toNode.y);
+                    theoryMapCtx.strokeStyle = "rgba(147, 51, 234, 0.12)";
+                    theoryMapCtx.lineWidth = 6;
+                    theoryMapCtx.stroke();
+
+                    // Draw inner glowing line
+                    theoryMapCtx.beginPath();
+                    theoryMapCtx.moveTo(fromNode.x, fromNode.y);
+                    theoryMapCtx.lineTo(toNode.x, toNode.y);
+                    theoryMapCtx.strokeStyle = "rgba(168, 85, 247, 0.4)";
+                    theoryMapCtx.lineWidth = 2;
+                    theoryMapCtx.stroke();
+
+                    // Draw animated pulse along link
+                    const dx = toNode.x - fromNode.x;
+                    const dy = toNode.y - fromNode.y;
+                    const ratio = ((Date.now() * 0.0008) % 1.0);
+                    const pulseX = fromNode.x + dx * ratio;
+                    const pulseY = fromNode.y + dy * ratio;
+
+                    theoryMapCtx.beginPath();
+                    theoryMapCtx.arc(pulseX, pulseY, 3.5, 0, Math.PI * 2);
+                    theoryMapCtx.fillStyle = "#f43f5e"; // bright rose pulse
+                    theoryMapCtx.shadowColor = "#f43f5e";
+                    theoryMapCtx.shadowBlur = 10;
+                    theoryMapCtx.fill();
+                    theoryMapCtx.shadowBlur = 0;
+                }
+            });
+
+            // Draw nodes
+            hnmNodes.forEach(node => {
+                const isHovered = theoryMapHoveredNode === node;
+                const isSelected = theoryMapSelectedNode === node;
+                const radius = node.radius * (isHovered ? 1.15 : (isSelected ? 1.1 : 1.0));
+
+                // Draw outer halo
+                theoryMapCtx.shadowColor = node.hoverColor;
+                theoryMapCtx.shadowBlur = isHovered ? 20 : (isSelected ? 15 : 6);
+                theoryMapCtx.beginPath();
+                theoryMapCtx.arc(node.x, node.y, radius + 4, 0, Math.PI * 2);
+                theoryMapCtx.fillStyle = isHovered || isSelected ? node.color.replace("0.95", "0.2") : "rgba(255, 255, 255, 0.02)";
+                theoryMapCtx.fill();
+                theoryMapCtx.shadowBlur = 0;
+
+                // Draw border
+                theoryMapCtx.beginPath();
+                theoryMapCtx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+                theoryMapCtx.strokeStyle = isSelected ? "#ffffff" : (isHovered ? node.hoverColor : node.borderColor);
+                theoryMapCtx.lineWidth = isSelected ? 3 : 2;
+                theoryMapCtx.stroke();
+
+                // Draw solid inner fill
+                theoryMapCtx.beginPath();
+                theoryMapCtx.arc(node.x, node.y, radius - 2, 0, Math.PI * 2);
+                theoryMapCtx.fillStyle = isSelected ? node.color : "rgba(12, 6, 26, 0.9)";
+                theoryMapCtx.fill();
+
+                // Draw symbol
+                theoryMapCtx.font = "bold 13px 'JetBrains Mono', monospace";
+                theoryMapCtx.fillStyle = isSelected ? "#000" : "#ffffff";
+                theoryMapCtx.textAlign = "center";
+                theoryMapCtx.textBaseline = "middle";
+                theoryMapCtx.fillText(node.symbol, node.x, node.y);
+
+                // Draw name below
+                const name = state.currentLang === "en" ? node.nameEn : node.nameKo;
+                theoryMapCtx.font = "600 12px 'Outfit', 'Noto Sans KR', sans-serif";
+                theoryMapCtx.fillStyle = isSelected ? "#c084fc" : (isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.65)");
+                theoryMapCtx.fillText(name, node.x, node.y + radius + 18);
+            });
+
+            theoryMapCtx.restore();
+            theoryMapAnimationId = requestAnimationFrame(drawTheoryMap);
+        }
+
+        theoryMapAnimationId = requestAnimationFrame(drawTheoryMap);
+    }
+
+    // Theory Map Event Listeners
+    if (theoryMapCanvas) {
+        theoryMapCanvas.addEventListener("mousedown", (e) => {
+            const mousePos = getMousePos(theoryMapCanvas, e);
+            const worldPos = toWorldCoords(mousePos);
+
+            // Find if a node is clicked
+            const clickedNode = hnmNodes.find(node => {
+                const dx = worldPos.x - node.x;
+                const dy = worldPos.y - node.y;
+                return Math.sqrt(dx * dx + dy * dy) <= node.radius * 1.2;
+            });
+
+            if (clickedNode) {
+                selectNode(clickedNode);
+                smoothCenterOn(clickedNode.x, clickedNode.y);
+            } else {
+                theoryMapIsPanning = true;
+                theoryMapStartPan = { x: mousePos.x - theoryMapPan.x, y: mousePos.y - theoryMapPan.y };
+            }
+        });
+
+        theoryMapCanvas.addEventListener("mousemove", (e) => {
+            const mousePos = getMousePos(theoryMapCanvas, e);
+            
+            if (theoryMapIsPanning) {
+                if (theoryMapCenterTween) cancelAnimationFrame(theoryMapCenterTween);
+                theoryMapPan.x = mousePos.x - theoryMapStartPan.x;
+                theoryMapPan.y = mousePos.y - theoryMapStartPan.y;
+            } else {
+                const worldPos = toWorldCoords(mousePos);
+                // Check if hovering a node
+                const hoverNode = hnmNodes.find(node => {
+                    const dx = worldPos.x - node.x;
+                    const dy = worldPos.y - node.y;
+                    return Math.sqrt(dx * dx + dy * dy) <= node.radius * 1.2;
+                });
+
+                if (hoverNode !== theoryMapHoveredNode) {
+                    theoryMapHoveredNode = hoverNode;
+                    theoryMapCanvas.style.cursor = hoverNode ? "pointer" : "grab";
+                }
+            }
+        });
+
+        window.addEventListener("mouseup", () => {
+            theoryMapIsPanning = false;
+        });
+
+        theoryMapCanvas.addEventListener("wheel", (e) => {
+            e.preventDefault();
+            const mousePos = getMousePos(theoryMapCanvas, e);
+            const worldPos = toWorldCoords(mousePos);
+
+            const zoomFactor = 1.1;
+            const previousZoom = theoryMapZoom;
+
+            if (e.deltaY < 0) {
+                theoryMapZoom = Math.min(theoryMapZoom * zoomFactor, maxZoom);
+            } else {
+                theoryMapZoom = Math.max(theoryMapZoom / zoomFactor, minZoom);
+            }
+
+            // Zoom centering adjustment
+            theoryMapPan.x -= worldPos.x * (theoryMapZoom - previousZoom);
+            theoryMapPan.y -= worldPos.y * (theoryMapZoom - previousZoom);
+        });
+
+        window.addEventListener("resize", resizeTheoryMapCanvas);
     }
 });

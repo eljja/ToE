@@ -114,6 +114,12 @@
                             <span data-en="Quantum Sandbox" data-ko="Quantum Sandbox">Quantum Sandbox</span>
                         </button>
                     </li>
+                    <li>
+                        <button class="nav-btn" data-action="theory-map">
+                            <i class="fa-solid fa-network-wired"></i>
+                            <span data-en="HNM Theory Map" data-ko="HNM 이론 도식 맵">HNM Theory Map</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
 
@@ -217,6 +223,33 @@
                                 <span class="pulse-dot"></span> LIVE VIEWPORT
                             </div>
                             <div class="instruction" data-en="Drag mouse to warp spacetime or click to spawn new quanta." data-ko="마우스 드래그로 공간을 비틀거나 클릭하여 새로운 양자를 스폰하세요.">Drag mouse to warp spacetime or click to spawn new quanta.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HNM Theory Map screen -->
+            <div id="theory-map-view" class="view-panel">
+                <div class="theory-map-container glass">
+                    <div class="theory-map-sidebar">
+                        <h3><i class="fa-solid fa-circle-info"></i> <span data-en="Concept Details" data-ko="개념 세부 정보">Concept Details</span></h3>
+                        <p class="sub-text" data-en="Click on any node to view HNM equations and physics explanations." data-ko="노드를 클릭하여 HNM 방정식과 이론적 연계 설명을 확인하세요.">Click on any node to view HNM equations and physics explanations.</p>
+                        
+                        <div id="node-details" class="node-details-card">
+                            <div class="no-selection-msg">
+                                <i class="fa-solid fa-fingerprint animate-pulse"></i>
+                                <p data-en="Hover or click a node in the map to display its details." data-ko="지평선 비가환 기하학 네트워크 맵의 노드를 가리키거나 클릭하여 상세 물리 정보를 확인해 보세요.">Hover or click a node in the map to display its details.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="theory-map-viewport">
+                        <canvas id="theory-map-canvas"></canvas>
+                        <div class="viewport-overlay">
+                            <div class="status-indicator">
+                                <span class="pulse-dot" style="background-color: var(--color-primary); box-shadow: 0 0 8px var(--color-primary);"></span> HNM SPEC-MAP VIEWPORT
+                            </div>
+                            <div class="instruction" data-en="Drag viewport to pan. Click nodes to examine physics." data-ko="드래그하여 맵을 이동하고 노드를 클릭하여 이론 체계를 탐색해 보세요.">Drag viewport to pan. Click nodes to examine physics.</div>
                         </div>
                     </div>
                 </div>

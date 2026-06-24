@@ -43,7 +43,7 @@ The library is organized according to the stages of unification and theoretical 
 * **Key Concepts**:
   - **Spectral Super-Dirac Axiom**: Derivation of the bosonic-fermionic HNM action strictly from the 4th-order spectral action $S[\mathcal{D}] = \text{Tr}_{\text{s}}(\mathcal{D}^4)$ of a single Super-Dirac operator $\mathcal{D}$, proving the off-shell identical vanishing of the bulk cosmological constant.
   - **Uniqueness of D=10 Dimensions**: Deduction of the Fierz identities, the Octonionic normed division algebra (Hurwitz's theorem), and Majorana-Weyl conditions.
-  - **Accelerated Expansion ($q=-2$)**: Pure geometric expansion emerging from the informational growth rate of the matrix dimension $N(t)$ ($\dot{N} \propto N^2$).
+  - **de Sitter Expansion ($q \to -1$)**: Emergent cosmological history from eigenvalue tunneling in the matrix Fock space, naturally yielding de Sitter expansion ($q_{\text{vacuum}} = -1$) and an observationally consistent deceleration parameter today ($q_0 \approx -0.55$).
   - **Big Bounce**: Statistical proof of zero probability for the Big Bang singularity via the logarithmic Coulomb repulsion of the Vandermonde Jacobian.
   - **Fuzzy Compactification**: Hessian stability ($m^2>0$) of the $CP^2_F \times S^2_F$ vacuum, gauge emergence, and the topological derivation of the 3 generations of elementary particles (Euler characteristic $\chi=3$).
   - **ER=EPR & Dark Matter**: Emergence of wormhole geometry via off-diagonal block entanglement, and the equivalence of maximum Kaluza-Klein remnants to Dark Matter.
