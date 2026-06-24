@@ -1016,10 +1016,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateHorizonSimulation(w, h) {
         const centerX = w / 2;
         const centerY = h / 2;
-        const baseRadius = Math.min(w, h) * 0.28;
-        // Spacetime expansion inside based on accreted count
+        const baseRadius = Math.min(w, h) * 0.22;
         const expansionScale = 1.0 + accretedCount * 0.015;
         const horizonRadius = baseRadius * Math.min(1.5, expansionScale);
+        const time = Date.now() * 0.001;
 
         // Update Horizon Ripples
         for (let i = horizonRipples.length - 1; i >= 0; i--) {
@@ -1031,33 +1031,82 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // 1. Draw Spacetime grid *inside* the horizon (expanding)
-        sandboxCtx.strokeStyle = "rgba(161, 118, 255, 0.08)";
+        // 1. Draw Warped Spacetime Grid (Quantum Gravity Lensing)
+        sandboxCtx.strokeStyle = "rgba(168, 85, 247, 0.06)"; // glowing violet grid
         sandboxCtx.lineWidth = 1;
-        const gridLines = 14;
-        
-        // Circular spacetime mesh representing expanding metric inside black hole
-        for (let i = 1; i <= gridLines; i++) {
-            const r = (horizonRadius / gridLines) * i;
+        const cols = 26;
+        const rows = 20;
+        const xStep = w / cols;
+        const yStep = h / rows;
+
+        // We draw vertical grid lines but bent towards black hole
+        for (let i = 0; i <= cols; i++) {
             sandboxCtx.beginPath();
-            sandboxCtx.arc(centerX, centerY, r, 0, Math.PI * 2);
-            sandboxCtx.stroke();
-        }
-        for (let i = 0; i < 24; i++) {
-            const angle = (i * Math.PI * 2) / 24;
-            sandboxCtx.beginPath();
-            sandboxCtx.moveTo(centerX, centerY);
-            sandboxCtx.lineTo(centerX + Math.cos(angle) * horizonRadius, centerY + Math.sin(angle) * horizonRadius);
+            for (let j = 0; j <= rows; j++) {
+                const ox = i * xStep;
+                const oy = j * yStep;
+                
+                // Calculate bending vector
+                const dx = ox - centerX;
+                const dy = oy - centerY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                let rx = ox;
+                let ry = oy;
+                if (dist > horizonRadius) {
+                    // Pull grid vertices towards center to represent gravity warping
+                    const warpFactor = Math.pow(horizonRadius / dist, 2.5) * 45 * baseForceStrength;
+                    rx -= (dx / dist) * warpFactor;
+                    ry -= (dy / dist) * warpFactor;
+                } else {
+                    // Inside the horizon, the grid collapses to the singularity
+                    const collapse = (dist / horizonRadius);
+                    rx = centerX + dx * collapse * 0.1;
+                    ry = centerY + dy * collapse * 0.1;
+                }
+
+                if (j === 0) sandboxCtx.moveTo(rx, ry);
+                else sandboxCtx.lineTo(rx, ry);
+            }
             sandboxCtx.stroke();
         }
 
-        // 2. Draw Torsion Bounce Shockwaves at r -> 0
+        // Draw horizontal grid lines bent towards black hole
+        for (let j = 0; j <= rows; j++) {
+            sandboxCtx.beginPath();
+            for (let i = 0; i <= cols; i++) {
+                const ox = i * xStep;
+                const oy = j * yStep;
+                
+                const dx = ox - centerX;
+                const dy = oy - centerY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                let rx = ox;
+                let ry = oy;
+                if (dist > horizonRadius) {
+                    const warpFactor = Math.pow(horizonRadius / dist, 2.5) * 45 * baseForceStrength;
+                    rx -= (dx / dist) * warpFactor;
+                    ry -= (dy / dist) * warpFactor;
+                } else {
+                    const collapse = (dist / horizonRadius);
+                    rx = centerX + dx * collapse * 0.1;
+                    ry = centerY + dy * collapse * 0.1;
+                }
+
+                if (i === 0) sandboxCtx.moveTo(rx, ry);
+                else sandboxCtx.lineTo(rx, ry);
+            }
+            sandboxCtx.stroke();
+        }
+
+        // 2. Draw Torsion Bounce Shockwaves
         if (torsionBounceActive) {
-            bounceRadius += 4;
+            bounceRadius += 5;
             if (bounceRadius > horizonRadius) {
                 torsionBounceActive = false;
             } else {
-                sandboxCtx.strokeStyle = `rgba(255, 0, 127, ${1 - bounceRadius / horizonRadius})`;
+                sandboxCtx.strokeStyle = `rgba(236, 72, 153, ${1 - bounceRadius / horizonRadius})`; // neon pink
                 sandboxCtx.lineWidth = 3;
                 sandboxCtx.beginPath();
                 sandboxCtx.arc(centerX, centerY, bounceRadius, 0, Math.PI * 2);
@@ -1065,30 +1114,43 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // 3. Draw Event Horizon Boundary (Glowing Ring)
-        sandboxCtx.strokeStyle = "rgba(0, 240, 255, 0.4)";
-        sandboxCtx.lineWidth = 4;
-        sandboxCtx.shadowColor = "rgba(0, 240, 255, 0.5)";
-        sandboxCtx.shadowBlur = 15;
-        
-        // Draw the main circle with ripple distortions
+        // 3. Draw Accretion Disk Glowing Heat (Faint glowing ellipses background)
+        const gradient = sandboxCtx.createRadialGradient(centerX, centerY, horizonRadius - 20, centerX, centerY, horizonRadius * 2.2);
+        gradient.addColorStop(0, "rgba(251, 113, 133, 0.15)"); // Rose glow
+        gradient.addColorStop(0.3, "rgba(168, 85, 247, 0.08)"); // Purple glow
+        gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+        sandboxCtx.fillStyle = gradient;
         sandboxCtx.beginPath();
-        const segments = 120;
+        sandboxCtx.arc(centerX, centerY, horizonRadius * 2.2, 0, Math.PI * 2);
+        sandboxCtx.fill();
+
+        // 4. Draw Event Horizon Boundary (Beautiful neon ring with shader-like waves)
+        sandboxCtx.strokeStyle = "rgba(192, 132, 252, 0.85)"; // purple border
+        sandboxCtx.lineWidth = 3;
+        sandboxCtx.shadowColor = "rgba(168, 85, 247, 0.7)";
+        sandboxCtx.shadowBlur = 18;
+        
+        sandboxCtx.beginPath();
+        const segments = 150;
         for (let i = 0; i <= segments; i++) {
             const angle = (i * Math.PI * 2) / segments;
             let currentRadius = horizonRadius;
             
-            // Add ripple deformations
+            // Dynamic surface ripples (simulating quantum gravity fluctuations)
+            currentRadius += Math.sin(angle * 12 + time * 3.5) * 2.5;
+            currentRadius += Math.cos(angle * 7 - time * 2) * 1.8;
+
+            // Collision ripples
             horizonRipples.forEach(ripple => {
                 const diff = Math.abs(angle - ripple.angle);
-                if (diff < 0.5) {
-                    currentRadius += Math.sin(ripple.phase) * 12 * ripple.opacity * Math.cos((diff / 0.5) * Math.PI / 2);
+                if (diff < 0.6) {
+                    currentRadius += Math.sin(ripple.phase) * 14 * ripple.opacity * Math.cos((diff / 0.6) * Math.PI / 2);
                 }
             });
 
-            // Dimension warp wave (visualize 10D/11D extra dimensions folding)
+            // Extra dimensions warp in 10D/11D
             if (activeDimension > 4) {
-                currentRadius += Math.sin(angle * 8 + Date.now() * 0.005) * 2 * (activeDimension - 3);
+                currentRadius += Math.sin(angle * 16 + time * 6) * 1.2 * (activeDimension - 3);
             }
 
             const x = centerX + Math.cos(angle) * currentRadius;
@@ -1098,110 +1160,450 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         sandboxCtx.closePath();
         sandboxCtx.stroke();
+        
+        // Inner Black Hole Singularity Core
         sandboxCtx.shadowBlur = 0;
+        sandboxCtx.fillStyle = "#010003";
+        sandboxCtx.beginPath();
+        sandboxCtx.arc(centerX, centerY, horizonRadius - 3, 0, Math.PI * 2);
+        sandboxCtx.fill();
 
-        // 4. Update & Spawn particles
-        // Auto-spawn outer parent particles if they run low
-        const outerCount = simParticles.filter(p => !p.isInside).length;
-        if (outerCount < maxParticlesCount / 2) {
-            const angle = Math.random() * Math.PI * 2;
-            const r = Math.max(w, h) * 0.6;
-            simParticles.push({
-                x: centerX + Math.cos(angle) * r,
-                y: centerY + Math.sin(angle) * r,
-                vx: 0,
-                vy: 0,
-                size: Math.random() * 4 + 2,
-                color: "rgba(255, 215, 0, 0.7)",
-                isInside: false
-            });
+        // 5. Initialize particles for different forces if empty
+        if (simParticles.length === 0) {
+            // Accretion disk dust
+            for (let i = 0; i < 40; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = horizonRadius * (1.2 + Math.random() * 1.5);
+                simParticles.push({
+                    type: "dust",
+                    x: centerX + Math.cos(angle) * r,
+                    y: centerY + Math.sin(angle) * r,
+                    angle: angle,
+                    orbitRadius: r,
+                    speed: (0.015 + Math.random() * 0.01) * baseForceStrength,
+                    size: Math.random() * 2 + 1,
+                    color: "rgba(251, 191, 36, 0.7)" // Golden Yellow
+                });
+            }
+            // Electromagnetic charged particles (+ and -)
+            for (let i = 0; i < 6; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = horizonRadius * (1.5 + Math.random() * 1.0);
+                simParticles.push({
+                    type: "em",
+                    charge: i % 2 === 0 ? 1 : -1,
+                    x: centerX + Math.cos(angle) * r,
+                    y: centerY + Math.sin(angle) * r,
+                    angle: angle,
+                    orbitRadius: r,
+                    speed: 0.008 * (i % 2 === 0 ? 1 : -1.2) * baseForceStrength,
+                    size: 4,
+                    color: i % 2 === 0 ? "rgba(0, 240, 255, 0.9)" : "rgba(239, 68, 68, 0.9)" // blue (+) / red (-)
+                });
+            }
+            // Strong force quarks (bound pairs)
+            for (let i = 0; i < 4; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = horizonRadius * (1.3 + Math.random() * 0.8);
+                const qx = centerX + Math.cos(angle) * r;
+                const qy = centerY + Math.sin(angle) * r;
+                
+                // Red quark
+                const q1 = {
+                    id: "q_" + i + "_r",
+                    type: "quark",
+                    color: "rgba(244, 63, 94, 0.9)", // red
+                    charge: "red",
+                    x: qx - 20,
+                    y: qy - 20,
+                    vx: (Math.random() - 0.5) * 1,
+                    vy: (Math.random() - 0.5) * 1,
+                    size: 4,
+                    partnerId: "q_" + i + "_g"
+                };
+                // Green quark partner
+                const q2 = {
+                    id: "q_" + i + "_g",
+                    type: "quark",
+                    color: "rgba(16, 185, 129, 0.9)", // green
+                    charge: "green",
+                    x: qx + 20,
+                    y: qy + 20,
+                    vx: (Math.random() - 0.5) * 1,
+                    vy: (Math.random() - 0.5) * 1,
+                    size: 4,
+                    partnerId: "q_" + i + "_r"
+                };
+                simParticles.push(q1, q2);
+            }
+            // Weak force beta particles (unstable)
+            for (let i = 0; i < 4; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = horizonRadius * (1.6 + Math.random() * 1.0);
+                simParticles.push({
+                    type: "weak",
+                    x: centerX + Math.cos(angle) * r,
+                    y: centerY + Math.sin(angle) * r,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    decayTimer: Math.random() * 200 + 100,
+                    size: 3,
+                    color: "rgba(253, 224, 71, 0.8)" // yellow
+                });
+            }
         }
 
-        // Loop over particles
+        // 6. Draw Spacetime Grid inside the horizon (COLLAPSING)
+        sandboxCtx.strokeStyle = "rgba(168, 85, 247, 0.08)";
+        for (let i = 1; i < 10; i++) {
+            sandboxCtx.beginPath();
+            sandboxCtx.arc(centerX, centerY, (horizonRadius / 10) * i, 0, Math.PI * 2);
+            sandboxCtx.stroke();
+        }
+
+        // 7. Update and Draw Particles
+        const newParticles = [];
         for (let i = simParticles.length - 1; i >= 0; i--) {
             const p = simParticles[i];
-            
-            if (p.isInside) {
-                // --- INNER BABY UNIVERSE PARTICLES ---
+
+            if (p.isAccreted) {
+                // --- INNER MATRICIZED PARTICLES (COLLAPSING) ---
                 const dx = p.x - centerX;
                 const dy = p.y - centerY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                
-                // Keep them inside the horizon (soft boundary bounce)
-                if (dist > horizonRadius - p.size - 5) {
-                    const angle = Math.atan2(dy, dx);
-                    p.x = centerX + Math.cos(angle) * (horizonRadius - p.size - 6);
-                    p.vx = -Math.cos(angle) * Math.abs(p.vx) * 0.8;
-                    p.vy = -Math.sin(angle) * Math.abs(p.vy) * 0.8;
-                }
 
-                // Torsion Bounce: if a particle gets too close to the singularity center (r < 25)
-                if (dist < 25) {
-                    const angle = Math.atan2(dy, dx);
-                    p.vx = Math.cos(angle) * 3 * baseForceStrength;
-                    p.vy = Math.sin(angle) * 3 * baseForceStrength;
-                    p.x = centerX + Math.cos(angle) * 26;
-                    
-                    // Trigger shockwave
+                // Gravity pull towards singularity r -> 0
+                const innerPull = 1.2 * baseForceStrength;
+                p.x -= (dx / (dist || 1)) * innerPull;
+                p.y -= (dy / (dist || 1)) * innerPull;
+
+                // Add modular time jittering
+                p.x += (Math.random() - 0.5) * 1.5;
+                p.y += (Math.random() - 0.5) * 1.5;
+
+                // Draw inside particle as purple matrix quantum
+                sandboxCtx.fillStyle = "rgba(168, 85, 247, 0.85)";
+                sandboxCtx.shadowColor = "rgba(168, 85, 247, 0.8)";
+                sandboxCtx.shadowBlur = 4;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(p.x, p.y, p.size * 0.8, 0, Math.PI * 2);
+                sandboxCtx.fill();
+                sandboxCtx.shadowBlur = 0;
+
+                // Singularity Torsion Bounce
+                if (dist < 12) {
                     torsionBounceActive = true;
-                    bounceRadius = 15;
+                    bounceRadius = 8;
+                    accretedCount--; // consume accreted quantum for bounce
+                    if (accretedCount < 0) accretedCount = 0;
+                    valParticlesText.innerText = accretedCount;
+                    simParticles.splice(i, 1);
                 }
+                continue;
+            }
 
-                // Drag to mouse (if inside and mouse down)
-                if (mouse.isDown && dist < horizonRadius) {
-                    const mdx = mouse.x - p.x;
-                    const mdy = mouse.y - p.y;
-                    const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                    if (mdist > 5 && mdist < 150) {
-                        p.vx += (mdx / mdist) * 0.1 * baseForceStrength;
-                        p.vy += (mdy / mdist) * 0.1 * baseForceStrength;
-                    }
+            // --- OUTER ACTIVE PARTICLES (FORCE BY FORCE) ---
+            if (p.type === "dust") {
+                // Accretion disk dust spirals in
+                p.angle += p.speed;
+                p.orbitRadius -= 0.3 * baseForceStrength;
+                
+                p.x = centerX + Math.cos(p.angle) * p.orbitRadius;
+                p.y = centerY + Math.sin(p.angle) * p.orbitRadius;
+
+                // Render dust particle
+                sandboxCtx.fillStyle = p.color;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                sandboxCtx.fill();
+
+                // Accretion trigger
+                if (p.orbitRadius <= horizonRadius) {
+                    accreteParticle(p, i);
                 }
+            } 
+            else if (p.type === "em") {
+                // Charged particles orbit and generate lightning arcs
+                p.angle += p.speed;
+                p.orbitRadius -= 0.15 * baseForceStrength;
+                
+                p.x = centerX + Math.cos(p.angle) * p.orbitRadius;
+                p.y = centerY + Math.sin(p.angle) * p.orbitRadius;
 
-                p.x += p.vx;
-                p.y += p.vy;
-                p.vx *= 0.98;
-                p.vy *= 0.98;
-
-                // Draw inner particles
+                // Draw EM particle with neon aura
                 sandboxCtx.fillStyle = p.color;
                 sandboxCtx.shadowColor = p.color;
-                sandboxCtx.shadowBlur = 6;
+                sandboxCtx.shadowBlur = 8;
                 sandboxCtx.beginPath();
                 sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 sandboxCtx.fill();
                 sandboxCtx.shadowBlur = 0;
+
+                // Generate Electric Arcs to the horizon when close
+                if (p.orbitRadius < horizonRadius * 1.5) {
+                    const hAngle = p.angle + (Math.random() - 0.5) * 0.4;
+                    const hx = centerX + Math.cos(hAngle) * horizonRadius;
+                    const hy = centerY + Math.sin(hAngle) * horizonRadius;
+                    
+                    // Draw jagged lightning path
+                    drawLightning(p.x, p.y, hx, hy, "rgba(0, 240, 255, 0.65)");
+                }
+
+                // Accretion trigger
+                if (p.orbitRadius <= horizonRadius) {
+                    accreteParticle(p, i);
+                }
             } 
-            else {
-                // --- OUTER PARENT UNIVERSE PARTICLES (Accretion) ---
+            else if (p.type === "quark") {
+                // Quark Orbit & QCD Confinement String
+                // Attract to black hole
+                const dx = centerX - p.x;
+                const dy = centerY - p.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                p.vx += (dx / dist) * 0.12 * baseForceStrength;
+                p.vy += (dy / dist) * 0.12 * baseForceStrength;
+
+                // Find partner quark
+                const partner = simParticles.find(other => other.id === p.partnerId);
+                if (partner) {
+                    const pdx = partner.x - p.x;
+                    const pdy = partner.y - p.y;
+                    const pdist = Math.sqrt(pdx * pdx + pdy * pdy);
+                    
+                    // QCD potential: Constant force + Hooke force
+                    const strongTension = (1.5 + pdist * 0.05) * baseForceStrength;
+                    p.vx += (pdx / (pdist || 1)) * strongTension * 0.05;
+                    p.vy += (pdy / (pdist || 1)) * strongTension * 0.05;
+
+                    // Draw Confinement Gluon Tube (Wavy string) only once
+                    if (p.charge === "red") {
+                        drawGluonString(p.x, p.y, partner.x, partner.y, pdist);
+                    }
+
+                    // Hadronization check: if pulled too far, string breaks and spawns a new pair!
+                    if (pdist > 95) {
+                        const midX = (p.x + partner.x) / 2;
+                        const midY = (p.y + partner.y) / 2;
+                        
+                        // Hadronization flash
+                        sandboxCtx.fillStyle = "rgba(255, 255, 255, 0.9)";
+                        sandboxCtx.beginPath();
+                        sandboxCtx.arc(midX, midY, 15, 0, Math.PI * 2);
+                        sandboxCtx.fill();
+
+                        // Break pairing and create two new pairs
+                        const randomId1 = "q_new_" + Math.random();
+                        const randomId2 = "q_new_" + Math.random();
+
+                        p.partnerId = randomId1;
+                        partner.partnerId = randomId2;
+
+                        // Create two new quarks at middle
+                        const nq1 = {
+                            id: randomId1,
+                            type: "quark",
+                            color: "rgba(16, 185, 129, 0.9)", // green
+                            charge: "green",
+                            x: midX - 5,
+                            y: midY - 5,
+                            vx: -p.vx * 0.5,
+                            vy: -p.vy * 0.5,
+                            size: 4,
+                            partnerId: p.id
+                        };
+                        const nq2 = {
+                            id: randomId2,
+                            type: "quark",
+                            color: "rgba(244, 63, 94, 0.9)", // red
+                            charge: "red",
+                            x: midX + 5,
+                            y: midY + 5,
+                            vx: -partner.vx * 0.5,
+                            vy: -partner.vy * 0.5,
+                            size: 4,
+                            partnerId: partner.id
+                        };
+
+                        newParticles.push(nq1, nq2);
+                    }
+                }
+
+                // Add drag
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vx *= 0.95;
+                p.vy *= 0.95;
+
+                // Draw quark
+                sandboxCtx.fillStyle = p.color;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                sandboxCtx.fill();
+
+                // Accretion check
+                if (dist <= horizonRadius) {
+                    accreteParticle(p, i);
+                }
+            } 
+            else if (p.type === "weak") {
+                // Weak Force particle decay
                 const dx = centerX - p.x;
                 const dy = centerY - p.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Gravitational pull of the black hole
-                const gravityStrength = 0.5 * baseForceStrength;
-                if (dist > 5) {
-                    p.vx += (dx / dist) * gravityStrength;
-                    p.vy += (dy / dist) * gravityStrength;
-                }
-
-                // Drag by mouse
-                if (mouse.isDown) {
-                    const mdx = mouse.x - p.x;
-                    const mdy = mouse.y - p.y;
-                    const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                    if (mdist < 150) {
-                        p.vx += (mdx / (mdist || 1)) * 0.25 * baseForceStrength;
-                        p.vy += (mdy / (mdist || 1)) * 0.25 * baseForceStrength;
-                    }
-                }
+                p.vx += (dx / dist) * 0.08 * baseForceStrength;
+                p.vy += (dy / dist) * 0.08 * baseForceStrength;
 
                 p.x += p.vx;
                 p.y += p.vy;
-                p.vx *= 0.97;
-                p.vy *= 0.97;
+                p.vx *= 0.96;
+                p.vy *= 0.96;
 
+                p.decayTimer -= 1 * baseForceStrength;
+
+                // Draw yellow weak particle with decay trail
+                sandboxCtx.fillStyle = p.color;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                sandboxCtx.fill();
+
+                // Decay trigger (Beta decay representation)
+                if (p.decayTimer <= 0) {
+                    // Explode into a lighter lepton (blue) and a neutrino (very faint)
+                    for (let j = 0; j < 3; j++) {
+                        const decayAngle = Math.random() * Math.PI * 2;
+                        newParticles.push({
+                            type: "decay_product",
+                            x: p.x,
+                            y: p.y,
+                            vx: Math.cos(decayAngle) * 3 * baseForceStrength,
+                            vy: Math.sin(decayAngle) * 3 * baseForceStrength,
+                            life: 25,
+                            size: 2,
+                            color: j === 0 ? "rgba(147, 51, 234, 0.85)" : "rgba(255, 255, 255, 0.4)"
+                        });
+                    }
+                    // Remove parent weak particle
+                    simParticles.splice(i, 1);
+                    continue;
+                }
+
+                // Accretion check
+                if (dist <= horizonRadius) {
+                    accreteParticle(p, i);
+                }
+            } 
+            else if (p.type === "decay_product") {
+                // Leptons/neutrinos produced in decay
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vx *= 0.95;
+                p.vy *= 0.95;
+                p.life -= 1;
+
+                sandboxCtx.fillStyle = p.color;
+                sandboxCtx.beginPath();
+                sandboxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                sandboxCtx.fill();
+
+                if (p.life <= 0) {
+                    simParticles.splice(i, 1);
+                }
             }
+        }
+
+        // Push new particles
+        if (newParticles.length > 0) {
+            simParticles.push(...newParticles);
+        }
+
+        // Helper: Accrete particle into the horizon
+        function accreteParticle(particle, index) {
+            const collisionAngle = Math.atan2(particle.y - centerY, particle.x - centerX);
+            
+            // Trigger horizon ripple
+            horizonRipples.push({
+                angle: collisionAngle,
+                phase: 0,
+                opacity: 1.0
+            });
+
+            // Increment accreted count
+            accretedCount++;
+            valParticlesText.innerText = accretedCount;
+            updateEnergyStatus();
+
+            // Transform this particle into an inner matricized quantum
+            particle.isAccreted = true;
+            particle.x = centerX + Math.cos(collisionAngle) * (horizonRadius - 8);
+            particle.y = centerY + Math.sin(collisionAngle) * (horizonRadius - 8);
+            particle.vx = -Math.cos(collisionAngle) * 1.5;
+            particle.vy = -Math.sin(collisionAngle) * 1.5;
+        }
+
+        // Helper: Draw electric lightning arcs (EM force)
+        function drawLightning(x1, y1, x2, y2, color) {
+            sandboxCtx.strokeStyle = color;
+            sandboxCtx.lineWidth = 1.5;
+            sandboxCtx.beginPath();
+            sandboxCtx.moveTo(x1, y1);
+
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const segments = Math.max(3, Math.floor(dist / 12));
+
+            let currentX = x1;
+            let currentY = y1;
+
+            for (let j = 1; j < segments; j++) {
+                const ratio = j / segments;
+                const tx = x1 + dx * ratio;
+                const ty = y1 + dy * ratio;
+
+                // Add random perpendicular jitter
+                const jitter = (Math.random() - 0.5) * 8;
+                const angle = Math.atan2(dy, dx) + Math.PI / 2;
+                currentX = tx + Math.cos(angle) * jitter;
+                currentY = ty + Math.sin(angle) * jitter;
+
+                sandboxCtx.lineTo(currentX, currentY);
+            }
+
+            sandboxCtx.lineTo(x2, y2);
+            sandboxCtx.stroke();
+        }
+
+        // Helper: Draw Gluon String / QCD Color Tube (Strong Force)
+        function drawGluonString(x1, y1, x2, y2, distance) {
+            sandboxCtx.strokeStyle = `rgba(239, 68, 68, ${0.5 + (distance / 100) * 0.4})`; // turns redder as stretched
+            sandboxCtx.lineWidth = 2.5;
+            sandboxCtx.beginPath();
+            
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const steps = 30;
+            const frequency = 4; // wave frequency
+            const amplitude = Math.min(10, 2 + distance * 0.08); // vibrates more when stretched
+            const timePhase = Date.now() * 0.025;
+
+            for (let j = 0; j <= steps; j++) {
+                const ratio = j / steps;
+                const tx = x1 + dx * ratio;
+                const ty = y1 + dy * ratio;
+                
+                // Sine wave perpendicular to line
+                const perpAngle = Math.atan2(dy, dx) + Math.PI / 2;
+                const offset = Math.sin(ratio * Math.PI * frequency + timePhase) * amplitude * Math.sin(ratio * Math.PI); // envelope limits amplitude at ends
+                
+                const wx = tx + Math.cos(perpAngle) * offset;
+                const wy = ty + Math.sin(perpAngle) * offset;
+
+                if (j === 0) sandboxCtx.moveTo(wx, wy);
+                else sandboxCtx.lineTo(wx, wy);
+            }
+            sandboxCtx.stroke();
         }
     }
 

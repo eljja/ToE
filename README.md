@@ -5,6 +5,9 @@
 
 # 🌌 Theory of Everything (ToE) Research Library
 
+![HNM Force Unification at the Event Horizon](./hnm_unification_art.png)
+
+
 This repository serves as a research database for the development of a unique **Theory of Everything (ToE)**, aiming to unify the four fundamental interactions and merge quantum mechanics with general relativity.
 
 It is structured to systematically sense, analyze, and construct academic literature that addresses the achievements, hypotheses, and limitations of existing paradigms in theoretical physics.
