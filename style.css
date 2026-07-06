@@ -52,6 +52,41 @@ body.light-theme {
     --shadow-base: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
+body.light-theme .breadcrumb #current-crumb,
+body.light-theme .nav-btn:hover,
+body.light-theme .nav-btn.active,
+body.light-theme .markdown-body .hnm-hero h2,
+body.light-theme .hnm-step strong,
+body.light-theme .detail-node-name {
+    color: var(--text-main);
+}
+
+body.light-theme .markdown-body h1 {
+    background: linear-gradient(45deg, var(--text-main), var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-theme .hnm-kicker,
+body.light-theme .hnm-step span {
+    color: #5b21b6;
+}
+
+body.light-theme .hnm-actions a {
+    color: var(--text-main);
+    background: rgba(0, 162, 176, 0.11);
+    border-color: rgba(0, 162, 176, 0.28);
+}
+
+body.light-theme .hnm-actions a:first-child {
+    background: rgba(212, 156, 0, 0.14);
+    border-color: rgba(212, 156, 0, 0.3);
+}
+
+body.light-theme .hnm-step {
+    background: linear-gradient(180deg, rgba(110, 39, 255, 0.055), rgba(0, 162, 176, 0.025));
+}
+
 /* ==========================================================================
    Reset & Core Styling
    ========================================================================== */

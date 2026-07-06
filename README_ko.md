@@ -1,4 +1,4 @@
-# 대통일장 이론 및 모든 것의 이론 (GUT & ToE) 연구 라이브러리
+# 지평선 비가환 행렬 이론 (HNM)
 
 <section class="hnm-hero">
   <div class="hnm-hero-copy">

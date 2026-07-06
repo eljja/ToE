@@ -1,4 +1,4 @@
-# Theory of Everything (ToE) Research Library
+# Horizon Noncommutative Matrix Theory (HNM)
 
 <section class="hnm-hero">
   <div class="hnm-hero-copy">
