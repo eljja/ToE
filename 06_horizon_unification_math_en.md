@@ -1,7 +1,7 @@
 # Horizon Noncommutative Matrix Theory: An Axiomatic Program for Unified Quantum Gravity
 
 ### Abstract
-We present an axiomatic framework for the unification of quantum gravity, gauge fields, and chiral matter: **Horizon Noncommutative Matrix (HNM) Theory**. The entire physical and geometric properties of the universe are uniquely derived from a single algebraic object: a **Super-Dirac Operator $\mathcal{D}$** acting on a noncommutative spectral triple. The chiral spectral action $S_{\text{HNM}} = \text{Tr}((QQ^\dagger)^2)$ generates the exact curved-space Einstein-Hilbert action, Yang-Mills gauge fields, and the Standard Model Dirac fermions with a geometrically derived Higgs potential and Higgs boson mass. A separate supersymmetric Ward identity $\text{Tr}_{\text{s}}(\mathcal{D}^4) \equiv 0$ algebraically constrains the bulk vacuum energy to vanish identically off-shell, resolving the cosmological constant problem. Spacetime coordinates are represented as $N \times N$ non-commuting matrices whose joint eigenvalue support forms a fuzzy compact droplet, dynamically generating a holographic cosmic horizon. The growth of the matrix dimension is formulated in a second-quantized matrix Fock space, explaining cosmic expansion as quantum instanton tunneling through the Vandermonde barrier and resolving the Big Bang singularity. Finally, physical Lorentzian time and Einstein's curved-space field equations emerge as algebraic equations of state from the Tomita-Takesaki modular flow of the horizon entanglement vacuum. We provide precise quantitative, falsifiable predictions for future cosmological polarimetry and quantum gravity experiments.
+We present an axiomatic research program for the unification of quantum gravity, gauge fields, and chiral matter: **Horizon Noncommutative Matrix (HNM) Theory**. The theory organizes physical and geometric structures around a single algebraic object: a **Super-Dirac Operator $\mathcal{D}$** acting on a noncommutative spectral triple. The chiral spectral action $S_{\text{HNM}} = \text{Tr}((QQ^\dagger)^2)$ is proposed as a candidate structure whose classical limit recovers Einstein-Hilbert gravity, Yang-Mills gauge fields, and Standard Model chiral fermions with a geometrically motivated Higgs sector. A separate supersymmetric Ward identity $\text{Tr}_{\text{s}}(\mathcal{D}^4) \equiv 0$ provides an off-shell bulk vacuum-energy cancellation mechanism. Spacetime coordinates are represented as $N \times N$ non-commuting matrices whose joint eigenvalue support forms a fuzzy compact droplet, interpreted as a holographic cosmic horizon. The growth of the matrix dimension is formulated in a second-quantized matrix Fock space, giving a Big Bounce scenario in which cosmic expansion is described as quantum tunneling through the Vandermonde barrier. Finally, physical Lorentzian time and Einstein's curved-space field equations are interpreted as algebraic equations of state from the Tomita-Takesaki modular flow of the horizon entanglement vacuum. The framework gives quantitative, falsifiable signatures for future cosmological polarimetry and quantum gravity experiments.
 
 ---
 
@@ -71,7 +71,7 @@ To clarify the academic position of the Horizon Noncommutative Matrix (HNM) fram
 
 1. **Comparison with Prior Horizon Concepts:**
    - **Black Hole Event Horizon (Bekenstein-Hawking, 1973–1975):** Historically, event horizons were defined as boundary surfaces in a smooth classical Lorentzian spacetime that partition information, possessing thermodynamics ($S = A/4G$) and Hawking temperature ($T_H = \hbar c^3 / 8\pi G k_B M$). HNM diverges fundamentally: rather than postulating a pre-existing classical spacetime and finding a horizon boundary within it, HNM establishes the *horizon information capacity* as the primary UV starting point. The horizon's area dictates the effective dimension $N$ of the coordinate algebra, meaning classical spacetime and its horizon geometry emerge *together* from the underlying finite-dimensional algebra $\text{Mat}_N(\mathbb{C})$.
-   - **Holographic Principle ('t Hooft-Susskind, 1993–1995):** The holographic principle asserts that the physical degrees of freedom within a bulk volume are encoded on its boundary. HNM provides a concrete, non-perturbative realization of this principle by mapping the boundary information strictly to the finite dimension $N$ of the coordinate matrices. Spacetime coordinates do not exist as independent continuous variables; they are operators whose finite matrix size $N$ represents the holographic information bound.
+   - **Holographic Principle ('t Hooft-Susskind, 1993–1995):** The holographic principle asserts that the physical degrees of freedom within a bulk volume are encoded on its boundary. HNM gives a concrete algebraic implementation by mapping the boundary information to the finite dimension $N$ of the coordinate matrices. Spacetime coordinates are treated not as independent continuous variables, but as operators whose finite matrix size $N$ represents the holographic information bound.
    - **Matrix Models (IKKT/BFSS, 1996–1997):** Traditional matrix models define spacetime coordinates as $N \times N$ matrices, but they typically take the static large-$N$ limit ($N \to \infty$) or assume a fixed $N$ from the outset on a flat Minkowski or background-independent target space. They do not associate $N$ with a physical, expanding horizon. HNM is the first framework to identify the matrix size $N$ directly with the physical cosmological horizon area ($N \propto R_H^2 \propto \text{Area}$).
 
 2. **Core Original Contributions of HNM:**
@@ -110,7 +110,7 @@ $$\hat{\Phi}^\dagger(M) | \Psi_N \rangle \;=\; | \Psi_{N+1} \rangle$$
 The growth of the matrix dimension is governed by a dimension-coupling transition Hamiltonian:
 $$\hat{H}_{\text{trans}} \;=\; \sum_{N=1}^\infty g_N \int dM \, e^{i S_{\text{WZW}}} \left( \hat{\Phi}^\dagger(M)_{N \to N+1} + \hat{\Phi}(M)_{N+1 \to N} \right)$$
 
-where $S_{\text{WZW}}$ is a Wess-Zumino-Witten topological boundary term that absorbs the gauge charge anomaly between $U(N)$ and $U(N+1)$, strictly preserving S-matrix unitarity and gauge invariance across dimension-altering transitions. The WZW term is formulated as a 3D topological action on the cobordism boundary connecting the $N$-dimensional and $(N+1)$-dimensional Hilbert spaces:
+where $S_{\text{WZW}}$ is a Wess-Zumino-Witten topological boundary term that absorbs the gauge charge anomaly between $U(N)$ and $U(N+1)$, preserving S-matrix unitarity and gauge invariance across dimension-altering transitions. The WZW term is formulated as a 3D topological action on the cobordism boundary connecting the $N$-dimensional and $(N+1)$-dimensional Hilbert spaces:
 $$S_{\text{WZW}}(g) \;=\; \frac{k}{12\pi} \int_{\Omega_3} \text{Tr}\left( (g^{-1} dg)^3 \right) \;+\; \frac{k}{4\pi} \int_{\partial \Omega_3} \text{Tr}\left( (g^{-1} dg) \wedge A \right)$$
 where $g \in U(N+1)/U(N)$ represents the transition fields on the boundary, and $A$ is the background $U(N)$ gauge connection. The level $k$ is integer-quantized to satisfy topological modular invariance, acting as a central extension of the Lie algebra that completely cancels the gauge anomaly of the dimension-coupling Fock transition. Here, $g_N$ represents the dimension-coupling amplitude. The transition amplitude $\langle \Psi_{N+1} | \hat{H}_{\text{trans}} | \Psi_N \rangle$ determines the dynamic tunneling probability density of the universe into larger dimensions. Spacetime expansion is therefore formulated as a rigorous quantum-mechanical transition in the Fock space of matrix representations, solving the dimensionality gap.
 
@@ -245,7 +245,7 @@ where $R(g)$ is the scalar curvature of the reconstructed metric. Evaluating the
 $$S_{\text{grav}} \;=\; -\frac{f_2 \Lambda^2}{96\pi^2} \int d^4x\,\sqrt{g}\,R(g) \;\equiv\; \frac{1}{16\pi G_N}\int d^4x\,\sqrt{g}\,R(g)$$
 which derives Newton's gravitational constant $G_N$ from the fundamental UV cutoff scale $\ell_{\text{uv}}$ and the internal matrix dimension $N_{\text{int}}$:
 $$\boxed{\frac{1}{G_N} \;=\; \frac{8 f_2 \Lambda^2 N_{\text{int}}}{3\pi} \;=\; \frac{2\pi N_{\text{int}}^2}{\ell_{\text{uv}}^2}}$$
-Here, $N_{\text{int}}$ is the fixed, topologically invariant representation dimension (matrix size) of the compactified internal fuzzy space $CP^2_F \times S^2_F$. The macroscopic cosmological expansion of the universe is described by the growth of the external cosmological dimension $N_{\text{cosm}}$ in the matrix Fock space. Since the internal matrix size $N_{\text{int}}$ remains topologically locked, Newton's gravitational constant $G_N$ is strictly constant and does not vary with cosmological time. Any unphysical extra modes are stabilized or decoupled by the massive Higgs mechanism and topological modular constraints, leaving General Relativity as the exact low-energy effective description of gravity.
+Here, $N_{\text{int}}$ is the fixed, topologically invariant representation dimension (matrix size) of the compactified internal fuzzy space $CP^2_F \times S^2_F$. The macroscopic cosmological expansion of the universe is described by the growth of the external cosmological dimension $N_{\text{cosm}}$ in the matrix Fock space. Since the internal matrix size $N_{\text{int}}$ remains topologically locked, Newton's gravitational constant $G_N$ is constant within the model and does not vary with cosmological time. Any unphysical extra modes are stabilized or decoupled by the massive Higgs mechanism and topological modular constraints, leaving General Relativity as the low-energy effective description of gravity.
 
 Crucially, exact continuous Diffeomorphism Invariance (Diff(M)) is broken down to $U(N)$ gauge symmetry at finite $N$. Full Diff(M) and exact Lorentz symmetry are exclusively emergent phenomena of the $N \to \infty$ thermodynamic limit. This explicitly predicts a fundamental scale of Lorentz violation at $\sim 1/N$, resolving the Diff(M) anomaly by establishing it as a testable physical prediction (manifesting in Gamma-Ray Burst dispersion).
 
@@ -363,7 +363,7 @@ $$[D_a, \; D_b] \;=\; R_{ab}^{\;\;\;cd} J_{cd}$$
 In the large-$N$ limit, applying the **Seiberg-Witten Map**, this noncommutative curvature tensor maps directly to the classical Riemannian curvature tensor:
 $$R_{ab}^{\;\;\;cd} \;\longrightarrow\; R_{\mu\nu}^{\;\;\;\rho\sigma}(g) + \mathcal{O}(\theta)$$
 
-**Physical Rationale:** Gravity is not an independent geometric force; it is the **symplectic gauge theory of the coordinate frames** on the noncommutative manifold. The matrix commutators $[X_a, X_b]$ do not merely represent quantum uncertainty; they are the physical carriers of the spin connection and the Riemann curvature. Spacetime curvature is nothing other than the gauge curvature of the noncommutative frame bundle, achieving the complete gauge-theoretic unification of gravity.
+**Physical Rationale:** Gravity is not introduced as an independent geometric force; it is modeled as the **symplectic gauge theory of the coordinate frames** on the noncommutative manifold. The matrix commutators $[X_a, X_b]$ do not merely represent quantum uncertainty; they are interpreted as carriers of the spin connection and the Riemann curvature. Spacetime curvature is identified with the gauge curvature of the noncommutative frame bundle, giving a gauge-theoretic route to gravity.
 
 ---
 
@@ -775,7 +775,7 @@ Therefore, the collection of these highest-order Kaluza-Klein modes—which are 
 Hawking's Black Hole Information Paradox is fundamentally nullified by the finite matrix dynamics of HNM.
 A black hole formed inside the cosmic droplet is not a macroscopically isolated geometric singularity, but merely a locally dense **sub-droplet of eigenvalues**. The evaporation of a black hole (Hawking Radiation) is a noncommutative quantum diffusion process where the eigenvalues of this sub-droplet slowly scatter back into the bulk matrix space through tunneling.
 
-Because the evolution of the entire system is strictly governed by the Tomita-Takesaki modular flow (unitary evolution $\Delta^{-is}$) in a finite-dimensional matrix space, the initial entanglement information of the black hole is unitarily preserved in the bulk degrees of freedom, without a single bit of information being lost. Calculating the entanglement entropy $S_{\text{EE}}$ between the black hole and the radiation over evaporation time yields a curve that begins to decrease at the midpoint (Page time) and eventually converges to zero. This **Page Curve** is derived within this framework not from macroscopic assumptions, but from the microscopic unitary matrix dynamics.
+Because the evolution of the entire system is governed by the Tomita-Takesaki modular flow (unitary evolution $\Delta^{-is}$) in a finite-dimensional matrix space, the initial entanglement information of the black hole is modeled as being unitarily preserved in the bulk degrees of freedom. Calculating the entanglement entropy $S_{\text{EE}}$ between the black hole and the radiation over evaporation time yields a curve that begins to decrease at the midpoint (Page time) and eventually converges to zero. This **Page Curve** is derived within this framework not from macroscopic assumptions, but from the microscopic unitary matrix dynamics.
 
 ### 7.4 The Microscopic Quantum State of Cold Dark Matter
 
@@ -916,7 +916,7 @@ $$\boxed{R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} + \Lambda g_{\mu\nu} \;=\; 8\pi G_
 
 where $G_N$ is the derived gravitational constant from Chapter 2, and $\Lambda = \frac{3\gamma^2}{8\pi G_N}$ is the emergent cosmological constant from Chapter 4.
 
-Thus, as proposed by Jacobson [17] and Verlinde [18], **gravity is not a fundamental force, but a macroscopic thermodynamic phenomenon.** Einstein's equations are nothing other than the local thermodynamic equations of state of the Tomita-Takesaki modular entanglement of the noncommutative matrix droplet.
+Thus, following the thermodynamic-gravity logic of Jacobson [17] and Verlinde [18], **gravity is interpreted as a macroscopic thermodynamic phenomenon.** Einstein's equations are treated as local thermodynamic equations of state of the Tomita-Takesaki modular entanglement of the noncommutative matrix droplet.
 
 ### 8.4 Subfactor Theory, Jones Index, and the Ryu-Takayanagi Formula
 
@@ -966,7 +966,7 @@ $$[D\omega_2 : D\omega_1]_s \;=\; u(s) \;\in\; \mathcal{M}_V$$
 The modular Hamiltonian generates a modular flow. The change in the entanglement entropy between the two states is given exactly by the logarithmic expectation value of this modular cocycle:
 $$\Delta S_{\text{EE}} \;=\; -i \lim_{s \to 0} \frac{d}{ds} \langle \Omega_1 | [D\omega_2 : D\omega_1]_s | \Omega_1 \rangle$$
 
-We prove that this operator-algebraic relation maps strictly to the semiclassical Noether charge of the diffeomorphism symmetry. The Noether charge $Q[\xi]$ of the coordinate frame transformations evaluated on the boundary horizon yields:
+We formulate a map from this operator-algebraic relation to the semiclassical Noether charge of the diffeomorphism symmetry. The Noether charge $Q[\xi]$ of the coordinate frame transformations evaluated on the boundary horizon yields:
 $$\Delta S_{\text{EE}} \;=\; \frac{2\pi}{\hbar} \int_{\partial V} d^{D-2}x\,\sqrt{\sigma}\, \epsilon_{\alpha\beta\gamma\delta} \left( \frac{\delta \mathcal{L}_{\text{grav}}}{\delta R_{\alpha\beta\gamma\delta}} \right) \nabla^\gamma \xi^\delta \;\equiv\; \Delta S_{\text{Wald}}$$
 
 This is the exact **Wald Entropy Formula** for a general diffeomorphism-invariant theory of gravity.
@@ -1009,7 +1009,7 @@ Furthermore, the fluctuations of the matrix eigenvalues are closely related to t
 
 ## Chapter 10. Quantitative Falsifiable Predictions and Experimental Verification
 
-A unified theory must provide precise, quantitative, and experimentally falsifiable predictions to distinguish it from alternative paradigms (such as String Theory or Loop Quantum Gravity). HNM yields the following four quantitative predictions.
+A unified theory should provide quantitative and experimentally falsifiable predictions to distinguish it from alternative paradigms (such as String Theory or Loop Quantum Gravity). HNM yields the following four quantitative predictions.
 
 ### 10.1 Noncommutative Spacetime and Quantized Minimum Length
 
@@ -1082,7 +1082,7 @@ $$\text{Li}_{n_1, \dots, n_k}(x_1, \dots, x_k) \;=\; \sum_{0 < m_1 < \dots < m_k
 We define the **Hopf Algebra of Periods** $\mathcal{A}_{\text{period}}$ equipped with a coproduct $\Delta$ that decomposes any scattering amplitude into a tensor product of lower-weight motivic structures:
 $$\Delta \;:\; \mathcal{A}_{\text{period}} \;\longrightarrow\; \mathcal{A}_{\text{period}} \;\otimes\; \mathcal{A}_{\text{period}}$$
 
-The **Motivic Galois Group** $G_{\text{mot}}$ acts as a group of automorphisms on this Hopf algebra, preserving the algebraic and transcendental structures of the amplitudes. We prove that the action of the Motivic Galois Group on the S-matrix preserves the transcendental weight $W$ of the amplitudes, mapping $n$-loop scattering amplitudes strictly to periods of weight $2n$:
+The **Motivic Galois Group** $G_{\text{mot}}$ acts as a group of automorphisms on this Hopf algebra, preserving the algebraic and transcendental structures of the amplitudes. In this formulation, the action of the Motivic Galois Group on the S-matrix preserves the transcendental weight $W$ of the amplitudes, mapping $n$-loop scattering amplitudes to periods of weight $2n$:
 $$\sigma \cdot A^{(n)}_{\text{loop}} \;\in\; \mathcal{W}_{2n}$$
 
 where $\sigma \in G_{\text{mot}}$, and $\mathcal{W}$ is the weight filtration. Specifically, the coproduct $\Delta$ on the Hopf algebra of multiple polylogarithms is defined via the Goncharov coproduct formula. For a classic polylogarithm $\text{Li}_n(x)$, it takes the form:
@@ -1106,7 +1106,7 @@ This is consistent with why the Fermilab Holometer obtained a null result for tr
 
 ## Chapter 11. Topological $1/N$ Expansion and the Emergence of String Theory
 
-A true theory of everything must encompass the successes of String Theory while providing a non-perturbative background-independent formulation. HNM achieves this precisely through the topological expansion of the random matrix path integral.
+A candidate theory of everything should encompass the successes of String Theory while providing a non-perturbative background-independent formulation. HNM approaches this through the topological expansion of the random matrix path integral.
 
 ### 11.1 The 't Hooft Limit and Genus Expansion
 
