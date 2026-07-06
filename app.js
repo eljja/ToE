@@ -189,6 +189,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return normalizeDocName(hash.slice("#doc=".length));
     }
 
+    function getViewRouteFromHash() {
+        const hash = window.location.hash || "";
+        if (!hash.startsWith("#view=")) return null;
+
+        const view = decodeURIComponent(hash.slice("#view=".length)).trim();
+        return view === "sandbox" || view === "theory-map" ? view : null;
+    }
+
     function getDocFromLinkHref(href) {
         if (!href) return null;
         const rawHref = href.trim();
@@ -257,8 +265,56 @@ document.addEventListener("DOMContentLoaded", () => {
         loadMarkdown(normalizedDoc);
     }
 
+    function showInteractiveTool(action, options = {}) {
+        if (action !== "sandbox" && action !== "theory-map") return;
+
+        navButtons.forEach(btn => btn.classList.remove("active"));
+        const matchingBtn = Array.from(navButtons).find(btn => btn.getAttribute("data-action") === action);
+        if (matchingBtn) matchingBtn.classList.add("active");
+
+        parentCrumb.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
+
+        if (options.updateHash) {
+            const nextHash = `#view=${encodeURIComponent(action)}`;
+            if (window.location.hash !== nextHash) {
+                history.pushState(null, "", nextHash);
+            }
+        }
+
+        if (action === "sandbox") {
+            state.activeView = "sandbox-view";
+            docView.classList.remove("active");
+            sandboxView.classList.add("active");
+            if (theoryMapView) theoryMapView.classList.remove("active");
+
+            currentCrumb.innerText = state.currentLang === "en" ? "Quantum Sandbox" : "양자 샌드박스";
+            updateEnergyStatus();
+            initSandbox();
+            return;
+        }
+
+        state.activeView = "theory-map-view";
+        docView.classList.remove("active");
+        sandboxView.classList.remove("active");
+        if (theoryMapView) theoryMapView.classList.add("active");
+
+        currentCrumb.innerText = state.currentLang === "en" ? "HNM Theory Map" : "HNM 이론 도식 맵";
+        initTheoryMap();
+    }
+
     function wireInternalMarkdownLinks() {
         markdownContainer.querySelectorAll("a[href]").forEach(link => {
+            const viewTarget = link.getAttribute("data-view-target") || getViewRouteFromHashValue(link.getAttribute("href"));
+            if (viewTarget) {
+                link.setAttribute("href", `#view=${encodeURIComponent(viewTarget)}`);
+                link.classList.add("internal-view-link");
+                link.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    showInteractiveTool(viewTarget, { updateHash: true });
+                });
+                return;
+            }
+
             const targetDoc = getDocFromLinkHref(link.getAttribute("href"));
             if (!targetDoc) return;
 
@@ -270,6 +326,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 showDocument(targetDoc, { updateHash: true });
             });
         });
+    }
+
+    function getViewRouteFromHashValue(href) {
+        if (!href) return null;
+        const rawHref = href.trim();
+        if (!rawHref.startsWith("#view=")) return null;
+
+        const view = decodeURIComponent(rawHref.slice("#view=".length)).trim();
+        return view === "sandbox" || view === "theory-map" ? view : null;
     }
 
     async function loadMarkdown(docName) {
@@ -406,55 +471,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     loadMarkdown(state.activeDoc);
 
-    function handleDocumentRouteChange() {
+    function handleRouteChange() {
+        const routeView = getViewRouteFromHash();
+        if (routeView) {
+            showInteractiveTool(routeView);
+            return;
+        }
+
         const routeDoc = getDocRouteFromHash();
         if (routeDoc && routeDoc !== state.activeDoc) {
             showDocument(routeDoc);
         }
     }
-    window.addEventListener("hashchange", handleDocumentRouteChange);
-    window.addEventListener("popstate", handleDocumentRouteChange);
+    window.addEventListener("hashchange", handleRouteChange);
+    window.addEventListener("popstate", handleRouteChange);
 
     // ----------------------------------------------------
     // Navigation Routing
     // ----------------------------------------------------
     navButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            // Update Active button state
-            navButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-
             const doc = btn.getAttribute("data-doc");
             const action = btn.getAttribute("data-action");
 
             if (doc) {
                 showDocument(doc, { updateHash: true });
-            } else if (action === "sandbox") {
-                // Switch to Sandbox View
-                state.activeView = "sandbox-view";
-                docView.classList.remove("active");
-                sandboxView.classList.add("active");
-                if (theoryMapView) theoryMapView.classList.remove("active");
-
-                parentCrumb.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
-                currentCrumb.innerText = state.currentLang === "en" ? "Quantum Sandbox" : "양자 샌드박스";
-
-                updateEnergyStatus();
-                initSandbox();
-            } else if (action === "theory-map") {
-                // Switch to Theory Map View
-                state.activeView = "theory-map-view";
-                docView.classList.remove("active");
-                sandboxView.classList.remove("active");
-                if (theoryMapView) theoryMapView.classList.add("active");
-
-                parentCrumb.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
-                currentCrumb.innerText = state.currentLang === "en" ? "HNM Theory Map" : "HNM 이론 도식 맵";
-
-                initTheoryMap();
+            } else if (action) {
+                showInteractiveTool(action, { updateHash: true });
             }
         });
     });
+
+    const initialRouteView = getViewRouteFromHash();
+    if (initialRouteView) {
+        window.setTimeout(() => showInteractiveTool(initialRouteView), 0);
+    }
 
     // ----------------------------------------------------
     // Quantum Sandbox Engine (Physics Simulator)
@@ -1735,6 +1786,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let theoryMapIsPanning = false;
     let theoryMapStartPan = { x: 0, y: 0 };
     let theoryMapCenterTween = null;
+    const theoryMapMinZoom = 0.35;
+    const theoryMapMaxZoom = 2.4;
 
     const hnmNodes = [
         {
@@ -1999,6 +2052,28 @@ document.addEventListener("DOMContentLoaded", () => {
         theoryMapCanvas.height = rect.height;
     }
 
+    function fitTheoryMapToViewport() {
+        if (!theoryMapCanvas || !hnmNodes.length) return;
+
+        const paddingX = 85;
+        const paddingY = 90;
+        const minX = Math.min(...hnmNodes.map(node => node.x - node.radius)) - paddingX;
+        const maxX = Math.max(...hnmNodes.map(node => node.x + node.radius)) + paddingX;
+        const minY = Math.min(...hnmNodes.map(node => node.y - node.radius)) - paddingY;
+        const maxY = Math.max(...hnmNodes.map(node => node.y + node.radius)) + paddingY;
+        const mapWidth = maxX - minX;
+        const mapHeight = maxY - minY;
+        const availableWidth = Math.max(280, theoryMapCanvas.width - 56);
+        const availableHeight = Math.max(280, theoryMapCanvas.height - 56);
+
+        theoryMapZoom = Math.min(0.82, availableWidth / mapWidth, availableHeight / mapHeight);
+        theoryMapZoom = Math.max(theoryMapMinZoom, Math.min(theoryMapZoom, theoryMapMaxZoom));
+        theoryMapPan = {
+            x: -((minX + maxX) / 2) * theoryMapZoom,
+            y: -((minY + maxY) / 2) * theoryMapZoom
+        };
+    }
+
     function toWorldCoords(mousePos) {
         return {
             x: (mousePos.x - theoryMapCanvas.width / 2 - theoryMapPan.x) / theoryMapZoom,
@@ -2108,9 +2183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelAnimationFrame(theoryMapAnimationId);
         resizeTheoryMapCanvas();
         
-        // Reset pan and zoom to center
-        theoryMapPan = { x: 0, y: 0 };
-        theoryMapZoom = 1.0;
+        fitTheoryMapToViewport();
         selectNode(null);
 
         // Animation Loop
@@ -2210,7 +2283,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 theoryMapCtx.fill();
 
                 // Draw symbol
-                theoryMapCtx.font = "bold 13px 'JetBrains Mono', monospace";
+                const symbolFontSize = Math.max(13, Math.min(20, 13 / theoryMapZoom));
+                theoryMapCtx.font = `bold ${symbolFontSize}px 'JetBrains Mono', monospace`;
                 theoryMapCtx.fillStyle = isSelected ? "#000" : "#ffffff";
                 theoryMapCtx.textAlign = "center";
                 theoryMapCtx.textBaseline = "middle";
@@ -2218,9 +2292,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Draw name below
                 const name = state.currentLang === "en" ? node.nameEn : node.nameKo;
-                theoryMapCtx.font = "600 12px 'Outfit', 'Noto Sans KR', sans-serif";
+                const labelFontSize = Math.max(12, Math.min(18, 12 / theoryMapZoom));
+                theoryMapCtx.font = `600 ${labelFontSize}px 'Outfit', 'Noto Sans KR', sans-serif`;
                 theoryMapCtx.fillStyle = isSelected ? "#c084fc" : (isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.65)");
-                theoryMapCtx.fillText(name, node.x, node.y + radius + 18);
+                theoryMapCtx.fillText(name, node.x, node.y + radius + (18 / theoryMapZoom));
             });
 
             theoryMapCtx.restore();
@@ -2288,9 +2363,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const previousZoom = theoryMapZoom;
 
             if (e.deltaY < 0) {
-                theoryMapZoom = Math.min(theoryMapZoom * zoomFactor, maxZoom);
+                theoryMapZoom = Math.min(theoryMapZoom * zoomFactor, theoryMapMaxZoom);
             } else {
-                theoryMapZoom = Math.max(theoryMapZoom / zoomFactor, minZoom);
+                theoryMapZoom = Math.max(theoryMapZoom / zoomFactor, theoryMapMinZoom);
             }
 
             // Zoom centering adjustment
@@ -2298,6 +2373,11 @@ document.addEventListener("DOMContentLoaded", () => {
             theoryMapPan.y -= worldPos.y * (theoryMapZoom - previousZoom);
         });
 
-        window.addEventListener("resize", resizeTheoryMapCanvas);
+        window.addEventListener("resize", () => {
+            resizeTheoryMapCanvas();
+            if (state.activeView === "theory-map-view") {
+                fitTheoryMapToViewport();
+            }
+        });
     }
 });

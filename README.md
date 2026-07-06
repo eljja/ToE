@@ -1,11 +1,69 @@
-# 🌌 Theory of Everything (ToE) Research Library
+# Theory of Everything (ToE) Research Library
 
-![HNM Force Unification at the Event Horizon](./hnm_unification_art.png)
+<section class="hnm-hero">
+  <div class="hnm-hero-copy">
+    <p class="hnm-kicker">Horizon Noncommutative Matrix Theory</p>
+    <h2>One finite horizon algebra, one spectral action, many effective forces.</h2>
+    <div class="hnm-actions">
+      <a href="#view=theory-map" data-view-target="theory-map">Open interactive theory map</a>
+      <a href="#doc=hnm_research_summary.md">Read compressed summary</a>
+    </div>
+    <p>
+      HNM is presented here as a candidate unification program: start from a finite
+      noncommutative matrix algebra bounded by horizon information, derive dynamics
+      from a single Super-Dirac spectral datum, and recover spacetime, gauge fields,
+      cosmology, and observational signatures as effective layers of the same matrix system.
+    </p>
+  </div>
+  <figure class="hnm-hero-figure">
+    <img src="./hnm_unification_art.png" alt="HNM force unification around an event horizon">
+    <figcaption>Four interactions are interpreted as effective projections of one horizon-scale matrix dynamics.</figcaption>
+  </figure>
+</section>
 
+This repository is a web-first research library for the development of **Horizon Noncommutative Matrix Theory (HNM)** as a Theory of Everything candidate.
 
-This repository serves as a research database for the development of a unique **Theory of Everything (ToE)**, aiming to unify the four fundamental interactions and merge quantum mechanics with general relativity.
+It is organized to compare existing unification programs, expose their bottlenecks, and then state the HNM proposal with a consistent chain from axiom to possible observational tests.
 
-It is structured to systematically sense, analyze, and construct academic literature that addresses the achievements, hypotheses, and limitations of existing paradigms in theoretical physics.
+---
+
+## HNM at a Glance
+
+<div class="hnm-glance" aria-label="HNM logical flow">
+  <div class="hnm-step">
+    <span>Axiom</span>
+    <strong>Super-Dirac operator</strong>
+    <em>A single spectral datum on a finite noncommutative matrix algebra.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>Bound</span>
+    <strong>Horizon information</strong>
+    <em>Observable degrees of freedom scale with the horizon, not an infinite continuum.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>Dynamics</span>
+    <strong>Matrix action</strong>
+    <em>Commutators become curvature, gauge fields, and matter couplings in the large-N limit.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>Emergence</span>
+    <strong>Spacetime and particles</strong>
+    <em>D=10 consistency, fuzzy compactification, cosmology, ER=EPR, and modular time.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>Tests</span>
+    <strong>Falsifiable signatures</strong>
+    <em>Minimum-length corrections, area quantization, blue-tilted primordial waves, and holographic noise.</em>
+  </div>
+</div>
+
+**Elevator interpretation.** HNM treats the event horizon as an information boundary and replaces an infinitely smooth spacetime background with finite matrices. The theory asks whether gravity, gauge forces, particle families, cosmic expansion, and entanglement geometry can all be read as different limits of one horizon-constrained matrix dynamics.
+
+**Reading rule.** The full treatise uses theorem/proof language for internal mathematical derivations. Empirical statements and numerical signatures should be read as proposed predictions and consistency targets until independently tested.
 
 ---
 

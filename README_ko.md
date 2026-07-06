@@ -1,11 +1,69 @@
-# 🌌 대통일장 이론 및 모든 것의 이론 (GUT & ToE) 연구 라이브러리
+# 대통일장 이론 및 모든 것의 이론 (GUT & ToE) 연구 라이브러리
 
-![사건의 지평선에서의 HNM 4대 힘 통합 도식](./hnm_unification_art.png)
+<section class="hnm-hero">
+  <div class="hnm-hero-copy">
+    <p class="hnm-kicker">Horizon Noncommutative Matrix Theory</p>
+    <h2>하나의 유한한 지평선 대수, 하나의 스펙트럼 작용량, 여러 유효 힘.</h2>
+    <div class="hnm-actions">
+      <a href="#view=theory-map" data-view-target="theory-map">인터랙티브 이론 맵 열기</a>
+      <a href="#doc=hnm_research_summary.md">압축 요약본 읽기</a>
+    </div>
+    <p>
+      HNM은 하나의 모든 것의 이론 후보로 정리된다. 지평선 정보량으로 제한되는
+      유한한 비가환 행렬 대수에서 출발하고, 단일 슈퍼 디랙 스펙트럼 데이터로
+      동역학을 정의한 뒤, 시공간과 게이지 장, 우주론, 관측 신호를 같은 행렬계의
+      서로 다른 유효 층위로 해석한다.
+    </p>
+  </div>
+  <figure class="hnm-hero-figure">
+    <img src="./hnm_unification_art.png" alt="사건의 지평선 주변에서 HNM 4대 힘 통합을 표현한 도식">
+    <figcaption>네 가지 상호작용은 하나의 지평선 규모 행렬 동역학이 서로 다르게 투영된 유효 현상으로 해석된다.</figcaption>
+  </figure>
+</section>
 
+본 저장소는 **지평선 비가환 행렬 이론(Horizon Noncommutative Matrix Theory, HNM)**을 모든 것의 이론 후보로 정리하기 위한 웹 중심 연구 라이브러리입니다.
 
-본 저장소는 4대 기본 상호작용의 통합과 양자역학 및 일반 상대성 이론의 융합을 목표로 하는 독창적인 **모든 것의 이론(Theory of Everything, ToE)** 개발을 위한 연구 데이터베이스입니다.
+기존 통합 이론의 성과와 병목을 비교한 뒤, HNM 제안을 공리에서 관측 가능 신호까지 하나의 일관된 논리 사슬로 제시하는 것을 목표로 합니다.
 
-우주의 근본 물리 법칙을 통합하기 위한 기존 학계의 연구 성과, 다양한 가설, 그리고 각각의 한계점을 정밀하게 센싱하고 분석한 학술적 문헌들을 구축해 나갑니다.
+---
+
+## HNM 한눈에 보기
+
+<div class="hnm-glance" aria-label="HNM 논리 흐름">
+  <div class="hnm-step">
+    <span>공리</span>
+    <strong>슈퍼 디랙 연산자</strong>
+    <em>유한한 비가환 행렬 대수 위의 단일 스펙트럼 데이터.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>한계</span>
+    <strong>지평선 정보량</strong>
+    <em>관측 가능한 자유도는 무한 연속체가 아니라 지평선 정보 용량으로 제한된다.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>동역학</span>
+    <strong>행렬 작용량</strong>
+    <em>큰 N 극한에서 교환자는 곡률, 게이지 장, 물질 결합으로 해석된다.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>창발</span>
+    <strong>시공간과 입자</strong>
+    <em>D=10 일관성, 퍼지 콤팩트화, 우주론, ER=EPR, 모듈러 시간이 한 축으로 연결된다.</em>
+  </div>
+  <div class="hnm-arrow">→</div>
+  <div class="hnm-step">
+    <span>검증</span>
+    <strong>반증 가능한 신호</strong>
+    <em>최소 길이 보정, 면적 양자화, 청색 기울기 원시 중력파, 홀로그래픽 노이즈.</em>
+  </div>
+</div>
+
+**엘리베이터 해석.** HNM은 사건의 지평선을 정보 경계로 보고, 무한히 매끄러운 배경 시공간 대신 유한한 행렬을 기본 대상으로 삼는다. 중력, 게이지 힘, 입자 세대, 우주 팽창, 얽힘 기하를 하나의 지평선 제한 행렬 동역학의 서로 다른 극한으로 읽을 수 있는지 묻는 이론이다.
+
+**읽기 기준.** 풀버전 이론서의 정리/증명 표현은 내부 수학 전개를 뜻한다. 경험적 주장과 정량 신호는 독립 검증 전까지 제안된 예측 및 일관성 목표로 읽어야 한다.
 
 ---
 
@@ -33,7 +91,7 @@
 * **주요 내용**: 에릭 벌린데의 엔트로피 중력(Entropic Gravity), 홀로그래피 원리(AdS/CFT 대응성), ER=EPR 가설(양자 얽힘과 웜홀), 휠러의 "It from bit" 정보 물리학.
 
 ### [05. 블랙홀 우주론 및 지평선 홀로그래피 (Black Hole Cosmology & Horizon Holography)](#doc=05_black_hole_cosmology.md)
-* **주제**: 우리 우주가 블랙홀 내부에 존재하거나 지평선 자체에 결쳐 있다는 가설적 패러다임 분석
+* **주제**: 우리 우주가 블랙홀 내부에 존재하거나 지평선 자체에 걸쳐 있다는 가설적 패러다임 분석
 * **주요 내용**: 우주의 슈바르츠실트 임계 조건 일치 검증, 포프랍스키의 비틀림(Torsion) 빅뱅 차단 모델, 베켄슈타인-호킹 지평선 엔트로피에 기초한 홀로그래피 양자 통합 가능성 및 ToE 적용 제언.
 
 ### [06. HNM 풀버전 이론서](#doc=06_horizon_unification_math.md)
