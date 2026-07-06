@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         theme: "dark-theme",
         currentLang: "en"
     };
+    const contentVersion = "20260707-hnm-final-copy";
 
     // ----------------------------------------------------
     // UI Elements
@@ -348,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const targetFile = getLocalizedDocName(normalizedDoc);
 
         try {
-            let response = await fetch(targetFile);
+            let response = await fetch(`${targetFile}?v=${contentVersion}`);
             if (!response.ok) {
                 throw new Error(state.currentLang === 'en' ? "Document not found." : "문서를 찾을 수 없습니다.");
             }
