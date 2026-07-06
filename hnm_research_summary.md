@@ -1,4 +1,4 @@
-# HNM Thesis Summary: Condensed Guide to the Full Treatise
+# HNM Research Summary: Condensed Guide to the Full Treatise
 
 This document is a compressed web summary of **[06. HNM Full Treatise](#doc=06_horizon_unification_math.md)**. It is not a separate theory or an alternate claim set. It follows the same conceptual order as the full document and restates its core equations, interpretations, and predictions in a shorter form.
 

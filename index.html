@@ -46,16 +46,16 @@
             <!-- Repository Status Info -->
             <div class="repo-info">
                 <div class="info-item">
-                    <span class="label">Repository:</span>
+                    <span class="label" data-en="Repository:" data-ko="저장소:">Repository:</span>
                     <a href="https://github.com/eljja/ToE" target="_blank" class="value link">eljja/ToE <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
                 <div class="info-item">
-                    <span class="label">Branch:</span>
+                    <span class="label" data-en="Branch:" data-ko="브랜치:">Branch:</span>
                     <span class="value"><i class="fa-solid fa-code-branch"></i> main</span>
                 </div>
                 <div class="info-item">
-                    <span class="label">Status:</span>
-                    <span class="value status-online"><span class="dot"></span> Online</span>
+                    <span class="label" data-en="Status:" data-ko="상태:">Status:</span>
+                    <span class="value status-online"><span class="dot"></span> <span data-en="Online" data-ko="온라인">Online</span></span>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                     <li>
                         <button class="nav-btn active" data-doc="README.md">
                             <i class="fa-solid fa-compass"></i>
-                            <span data-en="Overview" data-ko="Overview">Overview</span>
+                            <span data-en="Overview" data-ko="개요">Overview</span>
                         </button>
                     </li>
                     <li>
@@ -106,12 +106,12 @@
                     </li>
                 </ul>
 
-                <p class="nav-title" data-en="Research Thesis" data-ko="연구 논문">Research Thesis</p>
+                <p class="nav-title" data-en="Research Summary" data-ko="연구 요약본">Research Summary</p>
                 <ul>
                     <li>
-                        <button class="nav-btn" data-doc="hnm_prl_submission.md">
+                        <button class="nav-btn" data-doc="hnm_research_summary.md">
                             <i class="fa-solid fa-file-lines"></i>
-                            <span data-en="HNM Thesis Summary" data-ko="HNM 논문형 요약본">HNM Thesis Summary</span>
+                            <span data-en="HNM Research Summary" data-ko="HNM 압축 요약본">HNM Research Summary</span>
                         </button>
                     </li>
                 </ul>
@@ -121,7 +121,7 @@
                     <li>
                         <button class="nav-btn" data-action="sandbox">
                             <i class="fa-solid fa-flask-ripple"></i>
-                            <span data-en="Quantum Sandbox" data-ko="Quantum Sandbox">Quantum Sandbox</span>
+                            <span data-en="Quantum Sandbox" data-ko="양자 샌드박스">Quantum Sandbox</span>
                         </button>
                     </li>
                     <li>
@@ -154,7 +154,7 @@
                     </button>
                     <button id="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
                     <a href="https://github.com/eljja/ToE" target="_blank" class="github-btn">
-                        <i class="fa-brands fa-github"></i> GitHub Repo
+                        <i class="fa-brands fa-github"></i> <span data-en="GitHub Repo" data-ko="GitHub 저장소">GitHub Repo</span>
                     </a>
                 </div>
             </header>
@@ -207,8 +207,8 @@
                             <label><span data-en="Spatial Dimension:" data-ko="공간 차원 (Dimension):">Spatial Dimension:</span> <span id="val-dims">4D</span></label>
                             <div class="dim-selector">
                                 <button class="dim-btn active" data-dim="4">4D</button>
-                                <button class="dim-btn" data-dim="10">10D (String)</button>
-                                <button class="dim-btn" data-dim="11">11D (M-Theory)</button>
+                                <button class="dim-btn" data-dim="10"><span data-en="10D (String)" data-ko="10D (끈)">10D (String)</span></button>
+                                <button class="dim-btn" data-dim="11"><span data-en="11D (M-Theory)" data-ko="11D (M-이론)">11D (M-Theory)</span></button>
                             </div>
                         </div>
 
@@ -219,7 +219,7 @@
                             </div>
                             <div class="info-block">
                                 <span class="info-title" data-en="State Convergence" data-ko="상태 수렴여부">State Convergence</span>
-                                <span class="info-value text-green" id="convergence-status">Unifying...</span>
+                                <span class="info-value text-green" id="convergence-status" data-en="Unifying..." data-ko="통합 중...">Unifying...</span>
                             </div>
                         </div>
 
@@ -230,7 +230,7 @@
                         <canvas id="sandbox-canvas"></canvas>
                         <div class="viewport-overlay">
                             <div class="status-indicator">
-                                <span class="pulse-dot"></span> LIVE VIEWPORT
+                                <span class="pulse-dot"></span> <span data-en="LIVE VIEWPORT" data-ko="실시간 뷰포트">LIVE VIEWPORT</span>
                             </div>
                             <div class="instruction" data-en="Drag mouse to warp spacetime or click to spawn new quanta." data-ko="마우스 드래그로 공간을 비틀거나 클릭하여 새로운 양자를 스폰하세요.">Drag mouse to warp spacetime or click to spawn new quanta.</div>
                         </div>
@@ -257,7 +257,7 @@
                         <canvas id="theory-map-canvas"></canvas>
                         <div class="viewport-overlay">
                             <div class="status-indicator">
-                                <span class="pulse-dot" style="background-color: var(--color-primary); box-shadow: 0 0 8px var(--color-primary);"></span> HNM SPEC-MAP VIEWPORT
+                                <span class="pulse-dot" style="background-color: var(--color-primary); box-shadow: 0 0 8px var(--color-primary);"></span> <span data-en="HNM SPEC-MAP VIEWPORT" data-ko="HNM 이론 지도 뷰포트">HNM SPEC-MAP VIEWPORT</span>
                             </div>
                             <div class="instruction" data-en="Drag viewport to pan. Click nodes to examine physics." data-ko="드래그하여 맵을 이동하고 노드를 클릭하여 이론 체계를 탐색해 보세요.">Drag viewport to pan. Click nodes to examine physics.</div>
                         </div>

@@ -71,6 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 parentCrumbText.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
             }
         }
+
+        if (state.activeView === "sandbox-view") {
+            updateEnergyStatus();
+        }
     }
 
     if (langToggleBtn) {
@@ -157,8 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (docName === 'README.md') {
             return state.currentLang === 'en' ? 'README.md' : 'README_ko.md';
         }
-        if (docName === 'hnm_prl_submission.md') {
-            return state.currentLang === 'en' ? 'hnm_prl_submission.md' : 'hnm_prl_submission_ko.md';
+        if (docName === 'hnm_research_summary.md') {
+            return state.currentLang === 'en' ? 'hnm_research_summary.md' : 'hnm_research_summary_ko.md';
         }
         if (state.currentLang === 'en' && docName.endsWith('.md')) {
             return docName.replace('.md', '_en.md');
@@ -174,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!clean.endsWith(".md")) return null;
         if (clean === "README_ko.md") return "README.md";
-        if (clean === "hnm_prl_submission_ko.md") return "hnm_prl_submission.md";
+        if (clean === "hnm_research_summary_ko.md") return "hnm_research_summary.md";
         if (clean.endsWith("_en.md")) return clean.replace("_en.md", ".md");
         return clean;
     }
@@ -223,8 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (label) return label.innerText;
 
         const labels = {
-            "README.md": state.currentLang === "en" ? "Overview" : "Overview",
-            "hnm_prl_submission.md": state.currentLang === "en" ? "HNM Thesis Summary" : "HNM 논문형 요약본",
+            "README.md": state.currentLang === "en" ? "Overview" : "개요",
+            "hnm_research_summary.md": state.currentLang === "en" ? "HNM Research Summary" : "HNM 압축 요약본",
             "06_horizon_unification_math.md": state.currentLang === "en" ? "06. HNM Full Treatise" : "06. HNM 풀버전 이론서"
         };
         return labels[docName] || docName;
@@ -435,6 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 parentCrumb.innerText = state.currentLang === "en" ? "Interactive" : "인터랙티브 툴";
                 currentCrumb.innerText = state.currentLang === "en" ? "Quantum Sandbox" : "양자 샌드박스";
 
+                updateEnergyStatus();
                 initSandbox();
             } else if (action === "theory-map") {
                 // Switch to Theory Map View
@@ -544,24 +549,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateEnergyStatus() {
         if (currentMode === "gravity") {
-            energyGauge.innerText = "Macroscopic / Planck Scale";
-            convergenceStatus.innerText = "Expanding spacetime";
+            energyGauge.innerText = state.currentLang === "en" ? "Macroscopic / Planck Scale" : "거시적 / 플랑크 스케일";
+            convergenceStatus.innerText = state.currentLang === "en" ? "Expanding spacetime" : "시공간 팽창 중";
             convergenceStatus.className = "info-value text-green";
         } else if (currentMode === "electromagnetism") {
-            energyGauge.innerText = "Atomic Scale (~1 eV)";
-            convergenceStatus.innerText = "Coupling stable";
+            energyGauge.innerText = state.currentLang === "en" ? "Atomic Scale (~1 eV)" : "원자 스케일 (~1 eV)";
+            convergenceStatus.innerText = state.currentLang === "en" ? "Coupling stable" : "결합 안정";
             convergenceStatus.className = "info-value text-green";
         } else if (currentMode === "strong") {
-            energyGauge.innerText = "Hadronic Scale (~1 GeV)";
-            convergenceStatus.innerText = "Confinement active";
+            energyGauge.innerText = state.currentLang === "en" ? "Hadronic Scale (~1 GeV)" : "강입자 스케일 (~1 GeV)";
+            convergenceStatus.innerText = state.currentLang === "en" ? "Confinement active" : "가둠 작용 활성";
             convergenceStatus.className = "info-value text-green";
         } else if (currentMode === "string") {
-            energyGauge.innerText = "Planck Scale (10^19 GeV)";
-            convergenceStatus.innerText = "Vibrating strings...";
+            energyGauge.innerText = state.currentLang === "en" ? "Planck Scale (10^19 GeV)" : "플랑크 스케일 (10^19 GeV)";
+            convergenceStatus.innerText = state.currentLang === "en" ? "Vibrating strings..." : "끈 진동 중...";
             convergenceStatus.className = "info-value text-green";
         } else if (currentMode === "horizon") {
-            energyGauge.innerText = "HNM Matrix Scale N = " + (20 + accretedCount);
-            convergenceStatus.innerText = "Information accretion active";
+            energyGauge.innerText = (state.currentLang === "en" ? "HNM Matrix Scale N = " : "HNM 행렬 스케일 N = ") + (20 + accretedCount);
+            convergenceStatus.innerText = state.currentLang === "en" ? "Information accretion active" : "정보 흡수 활성";
             convergenceStatus.className = "info-value text-green";
         }
     }
