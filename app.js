@@ -153,8 +153,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Document Loader & Markdown/Math Parser
     // ----------------------------------------------------
     function getLocalizedDocName(docName) {
+        docName = normalizeDocName(docName) || docName;
         if (docName === 'README.md') {
             return state.currentLang === 'en' ? 'README.md' : 'README_ko.md';
+        }
+        if (docName === 'hnm_prl_submission.md') {
+            return state.currentLang === 'en' ? 'hnm_prl_submission.md' : 'hnm_prl_submission_ko.md';
         }
         if (state.currentLang === 'en' && docName.endsWith('.md')) {
             return docName.replace('.md', '_en.md');
@@ -162,21 +166,120 @@ document.addEventListener("DOMContentLoaded", () => {
         return docName;
     }
 
+    function normalizeDocName(docName) {
+        if (!docName) return null;
+        let clean = decodeURIComponent(String(docName)).trim();
+        clean = clean.split("?")[0].split("#")[0].replace(/\\/g, "/");
+        clean = clean.substring(clean.lastIndexOf("/") + 1);
+
+        if (!clean.endsWith(".md")) return null;
+        if (clean === "README_ko.md") return "README.md";
+        if (clean === "hnm_prl_submission_ko.md") return "hnm_prl_submission.md";
+        if (clean.endsWith("_en.md")) return clean.replace("_en.md", ".md");
+        return clean;
+    }
+
+    function getDocRouteFromHash() {
+        const hash = window.location.hash || "";
+        if (!hash.startsWith("#doc=")) return null;
+        return normalizeDocName(hash.slice("#doc=".length));
+    }
+
+    function getDocFromLinkHref(href) {
+        if (!href) return null;
+        const rawHref = href.trim();
+
+        if (rawHref.startsWith("#doc=")) {
+            return normalizeDocName(rawHref.slice("#doc=".length));
+        }
+
+        const hrefWithoutHash = rawHref.split("#")[0].split("?")[0];
+        if (hrefWithoutHash.endsWith(".md")) {
+            return normalizeDocName(hrefWithoutHash);
+        }
+
+        try {
+            const url = new URL(rawHref, window.location.href);
+            const samePage = url.origin === window.location.origin && url.pathname.endsWith(".md");
+            return samePage ? normalizeDocName(url.pathname) : null;
+        } catch {
+            return null;
+        }
+    }
+
+    function setActiveNavDocument(docName) {
+        const normalizedDoc = normalizeDocName(docName);
+        if (!normalizedDoc) return null;
+
+        navButtons.forEach(btn => btn.classList.remove("active"));
+        const matchingBtn = Array.from(navButtons).find(btn => btn.getAttribute("data-doc") === normalizedDoc);
+        if (matchingBtn) matchingBtn.classList.add("active");
+        return matchingBtn || null;
+    }
+
+    function getDocumentLabel(docName) {
+        const matchingBtn = Array.from(navButtons).find(btn => btn.getAttribute("data-doc") === docName);
+        const label = matchingBtn ? matchingBtn.querySelector("span") : null;
+        if (label) return label.innerText;
+
+        const labels = {
+            "README.md": state.currentLang === "en" ? "Overview" : "Overview",
+            "hnm_prl_submission.md": state.currentLang === "en" ? "HNM Thesis Summary" : "HNM 논문형 요약본",
+            "06_horizon_unification_math.md": state.currentLang === "en" ? "06. HNM Full Treatise" : "06. HNM 풀버전 이론서"
+        };
+        return labels[docName] || docName;
+    }
+
+    function showDocument(docName, options = {}) {
+        const normalizedDoc = normalizeDocName(docName);
+        if (!normalizedDoc) return;
+
+        state.activeView = "doc-view";
+        docView.classList.add("active");
+        sandboxView.classList.remove("active");
+        if (theoryMapView) theoryMapView.classList.remove("active");
+
+        setActiveNavDocument(normalizedDoc);
+        parentCrumb.innerText = state.currentLang === "en" ? "Library" : "라이브러리";
+        currentCrumb.innerText = getDocumentLabel(normalizedDoc);
+
+        if (options.updateHash) {
+            const nextHash = `#doc=${encodeURIComponent(normalizedDoc)}`;
+            if (window.location.hash !== nextHash) {
+                history.pushState(null, "", nextHash);
+            }
+        }
+
+        loadMarkdown(normalizedDoc);
+    }
+
+    function wireInternalMarkdownLinks() {
+        markdownContainer.querySelectorAll("a[href]").forEach(link => {
+            const targetDoc = getDocFromLinkHref(link.getAttribute("href"));
+            if (!targetDoc) return;
+
+            link.setAttribute("href", `#doc=${encodeURIComponent(targetDoc)}`);
+            link.setAttribute("data-doc-target", targetDoc);
+            link.classList.add("internal-doc-link");
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                showDocument(targetDoc, { updateHash: true });
+            });
+        });
+    }
+
     async function loadMarkdown(docName) {
-        state.activeDoc = docName;
+        const normalizedDoc = normalizeDocName(docName) || docName;
+        state.activeDoc = normalizedDoc;
         loadingSpinner.style.display = "flex";
         const loadingText = document.getElementById("loading-text");
         if (loadingText) {
             loadingText.innerText = state.currentLang === 'en' ? "Loading document..." : "문서를 불러오는 중입니다...";
         }
-        const targetFile = getLocalizedDocName(docName);
+        const targetFile = getLocalizedDocName(normalizedDoc);
 
         try {
             let response = await fetch(targetFile);
-            if (!response.ok && state.currentLang === 'en') {
-                // Fallback to original (Korean) if English file doesn't exist
-                response = await fetch(docName);
-            }
             if (!response.ok) {
                 throw new Error(state.currentLang === 'en' ? "Document not found." : "문서를 찾을 수 없습니다.");
             }
@@ -226,6 +329,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
+            wireInternalMarkdownLinks();
+
             loadingSpinner.style.display = "none";
             markdownContainer.style.opacity = "1";
         } catch (error) {
@@ -261,16 +366,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Detect alerts
                 if (line.includes('[!NOTE]')) {
                     alertType = 'alert-note';
-                    lines[i] = '> **💡 참고 (Note)**';
+                    lines[i] = state.currentLang === 'en' ? '> **💡 Note**' : '> **💡 참고 (Note)**';
                 } else if (line.includes('[!IMPORTANT]')) {
                     alertType = 'alert-important';
-                    lines[i] = '> **🚨 중요 (Important)**';
+                    lines[i] = state.currentLang === 'en' ? '> **🚨 Important**' : '> **🚨 중요 (Important)**';
                 } else if (line.includes('[!WARNING]')) {
                     alertType = 'alert-warning';
-                    lines[i] = '> **⚠️ 경고 (Warning)**';
+                    lines[i] = state.currentLang === 'en' ? '> **⚠️ Warning**' : '> **⚠️ 경고 (Warning)**';
                 } else if (line.includes('[!CAUTION]')) {
                     alertType = 'alert-caution';
-                    lines[i] = '> **🛑 주의 (Caution)**';
+                    lines[i] = state.currentLang === 'en' ? '> **🛑 Caution**' : '> **🛑 주의 (Caution)**';
                 }
             } else {
                 if (inQuote) {
@@ -288,8 +393,23 @@ document.addEventListener("DOMContentLoaded", () => {
         return lines.join('\n');
     }
 
-    // Initialize document view
+    // Initialize document view, honoring internal document routes such as #doc=06_horizon_unification_math.md.
+    const initialRouteDoc = getDocRouteFromHash();
+    if (initialRouteDoc) {
+        state.activeDoc = initialRouteDoc;
+        setActiveNavDocument(initialRouteDoc);
+        currentCrumb.innerText = getDocumentLabel(initialRouteDoc);
+    }
     loadMarkdown(state.activeDoc);
+
+    function handleDocumentRouteChange() {
+        const routeDoc = getDocRouteFromHash();
+        if (routeDoc && routeDoc !== state.activeDoc) {
+            showDocument(routeDoc);
+        }
+    }
+    window.addEventListener("hashchange", handleDocumentRouteChange);
+    window.addEventListener("popstate", handleDocumentRouteChange);
 
     // ----------------------------------------------------
     // Navigation Routing
@@ -304,16 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const action = btn.getAttribute("data-action");
 
             if (doc) {
-                // Switch to Document View
-                state.activeView = "doc-view";
-                docView.classList.add("active");
-                sandboxView.classList.remove("active");
-                if (theoryMapView) theoryMapView.classList.remove("active");
-                
-                parentCrumb.innerText = state.currentLang === "en" ? "Library" : "라이브러리";
-                currentCrumb.innerText = btn.querySelector("span").innerText;
-
-                loadMarkdown(doc);
+                showDocument(doc, { updateHash: true });
             } else if (action === "sandbox") {
                 // Switch to Sandbox View
                 state.activeView = "sandbox-view";
@@ -1626,156 +1737,254 @@ document.addEventListener("DOMContentLoaded", () => {
             symbol: "D",
             nameEn: "Super-Dirac Axiom",
             nameKo: "슈퍼 디랙 공리",
-            mathCode: "\\mathcal{D} = \\begin{pmatrix} 0 & Q \\\\ Q^\\dagger & 0 \\end{pmatrix}",
-            descEn: "The fundamental starting point of HNM. The entire physical and geometric properties of the universe are uniquely encoded in a single Super-Dirac operator acting on a noncommutative spectral triple.",
-            descKo: "HNM 이론의 절대적인 시작점입니다. 우주의 모든 물리적 및 기하학적 성질은 비가환 스펙트럼 삼조 상에 작용하는 단 하나의 슈퍼 디랙 연산자에 의해 수학적으로 코딩됩니다.",
-            link: "06_horizon_unification_math.md#L17-L22",
+            mathCode: "\\mathcal{D}=\\begin{pmatrix}0&Q\\\\Q^\\dagger&0\\end{pmatrix}",
+            descEn: "HNM starts from one Super-Dirac operator on a finite noncommutative matrix algebra. Spacetime, fields, and geometry are treated as structures extracted from this spectral datum.",
+            descKo: "HNM은 유한 차원 비가환 행렬 대수 위의 하나의 슈퍼 디랙 연산자에서 출발합니다. 시공간, 장, 기하학은 이 스펙트럼 데이터에서 추출되는 구조로 정리됩니다.",
+            sectionEn: "Full Treatise: Chapter 1",
+            sectionKo: "풀버전 이론서: 제1장",
+            doc: "06_horizon_unification_math.md",
             x: 0,
-            y: 0,
+            y: -20,
             radius: 35,
-            color: "rgba(251, 191, 36, 0.95)", // Golden Amber
+            color: "rgba(251, 191, 36, 0.95)",
             borderColor: "rgba(251, 191, 36, 0.4)",
             hoverColor: "#fbbf24"
         },
         {
-            id: "chiral",
-            symbol: "S",
-            nameEn: "Chiral Spectral Action",
-            nameKo: "카이랄 스펙트럼 작용량",
-            mathCode: "S_{\\text{HNM}} = \\text{Tr}((Q Q^\\dagger)^2)",
-            descEn: "The variational principle driving all physical dynamics. Under spontaneous compactification, it yields general relativity, Yang-Mills gauge theory, and standard model chiral fermions.",
-            descKo: "우주의 동역학을 유도하는 변분 원리입니다. 자발적 콤팩트화를 거치며 고전 아인슈타인-힐베르트 중력 작용량, 양-밀스 게이지 이론 및 3세대 카이랄 페르미온을 생성합니다.",
-            link: "06_horizon_unification_math.md#L176-L190",
-            x: -160,
-            y: -100,
-            radius: 28,
-            color: "rgba(6, 182, 212, 0.95)", // Cyan
-            borderColor: "rgba(6, 182, 212, 0.4)",
-            hoverColor: "#06b6d4"
-        },
-        {
-            id: "susy",
-            symbol: "Tr_s",
-            nameEn: "SUSY Ward Identity",
-            nameKo: "초대칭 워드 항등식",
-            mathCode: "\\text{Tr}_{\\text{s}}(\\mathcal{D}^4) \\equiv 0",
-            descEn: "Algebraic identity that vanishes identically off-shell. It acts as a constraint forcing the cosmological constant to vanish and resolving the vacuum energy density crisis.",
-            descKo: "오프셸 수준에서 항상 0으로 소멸하는 수학적 항등식입니다. 대수적 구속조건으로 작용하여 우주의 벌크 진공 에너지를 0으로 강제하며 우주상수 문제를 해결합니다.",
-            link: "06_horizon_unification_math.md#L209-L220",
-            x: 160,
-            y: -100,
-            radius: 28,
-            color: "rgba(168, 85, 247, 0.95)", // Purple
-            borderColor: "rgba(168, 85, 247, 0.4)",
-            hoverColor: "#a855f7"
-        },
-        {
-            id: "droplet",
-            symbol: "X_a",
-            nameEn: "Fuzzy Droplet Geometry",
-            nameKo: "퍼지 액적 기하학",
-            mathCode: "[X_a, X_b] = i \\theta_{ab} \\mathbf{1}",
-            descEn: "Coordinate matrices form a fuzzy droplet under the action. In the large-N limit, the eigenvalues condense to form a continuous 4D Riemannian manifold.",
-            descKo: "비가환 시공간 좌표 행렬들이 응집해 구 형태의 퍼지 액적 기하학을 형성합니다. 큰-$N$ 극한에서 고윳값 분포가 연속적인 4차원 곡선 시공간 다양체로 창발합니다.",
-            link: "06_horizon_unification_math.md#L473-L485",
-            x: -280,
-            y: -10,
-            radius: 25,
-            color: "rgba(34, 197, 94, 0.95)", // Emerald Green
-            borderColor: "rgba(34, 197, 94, 0.4)",
-            hoverColor: "#22c55e"
-        },
-        {
             id: "horizon",
             symbol: "R_H",
-            nameEn: "Holographic Horizon",
-            nameKo: "홀로그래픽 지평선",
-            mathCode: "S = N^2 = \\frac{A}{4\\ell_P^2}",
-            descEn: "The spectral outer boundary of the fuzzy droplet functions as the cosmic horizon. Entropy is equivalent to the matrix representation size squared.",
-            descKo: "행렬 액적의 외곽 경계가 물리적 우주 지평선을 정의합니다. 우주의 정보 한계와 베켄슈타인-호킹 엔트로피가 행렬 차원 $N^2$과 직접 동정됩니다.",
-            link: "06_horizon_unification_math.md#L581-L590",
-            x: -360,
-            y: 110,
-            radius: 25,
-            color: "rgba(236, 72, 153, 0.95)", // Magenta
+            nameEn: "Horizon Information Bound",
+            nameKo: "지평선 정보 한계",
+            mathCode: "N \\propto R_H^2",
+            descEn: "The horizon is interpreted as an algebraic information-capacity limit, not merely a surface inside pre-existing spacetime. This links finite light speed, minimum length, entropy, and gravity.",
+            descKo: "지평선은 이미 존재하는 시공간 속의 표면이 아니라 관찰 가능한 정보 용량의 대수적 한계로 해석됩니다. 여기서 빛의 유한 속도, 최소 길이, 엔트로피, 중력이 연결됩니다.",
+            sectionEn: "Full Treatise: Section 1.2",
+            sectionKo: "풀버전 이론서: 1.2절",
+            doc: "06_horizon_unification_math.md",
+            x: -240,
+            y: -160,
+            radius: 27,
+            color: "rgba(236, 72, 153, 0.95)",
             borderColor: "rgba(236, 72, 153, 0.4)",
             hoverColor: "#ec4899"
         },
         {
-            id: "bounce",
-            symbol: "V_eff",
-            nameEn: "Vandermonde Bounce",
-            nameKo: "판데르몬데 빅 바운스",
-            mathCode: "V_{\\text{eff}}(a) \\approx \\frac{\\ell(\\ell+1)}{a^2} - \\frac{\\Lambda}{3}a^2",
-            descEn: "The Vandermonde repulsion between eigenvalues acts as an effective potential diverging at small scale factor, eliminating the Big Bang singularity.",
-            descKo: "행렬 고윳값들의 판데르몬데 반발력이 척도인자 $a \\to 0$ 극한에서 무한대로 발산하는 장벽을 형성해 빅뱅 특이점을 우주론적 빅 바운스로 완벽히 대체합니다.",
-            link: "06_horizon_unification_math.md#L591-L606",
-            x: -220,
-            y: 220,
-            radius: 25,
-            color: "rgba(14, 165, 233, 0.95)", // Sky Blue
+            id: "fock",
+            symbol: "F_N",
+            nameEn: "Matrix Fock Expansion",
+            nameKo: "행렬 포크 공간 팽창",
+            mathCode: "\\mathcal{H}_{\\text{Fock}}=\\bigoplus_N\\mathcal{H}_N",
+            descEn: "Cosmic expansion is modeled as growth of the matrix representation dimension. The transition N to N+1 adds coordinate degrees of freedom and horizon information capacity.",
+            descKo: "우주 팽창은 행렬 표현 차원 자체의 성장으로 모델링됩니다. $N \\to N+1$ 전이는 좌표 자유도와 지평선 정보 용량의 증가를 뜻합니다.",
+            sectionEn: "Full Treatise: Section 1.3 and Chapter 4",
+            sectionKo: "풀버전 이론서: 1.3절 및 제4장",
+            doc: "06_horizon_unification_math.md",
+            x: -430,
+            y: -40,
+            radius: 27,
+            color: "rgba(14, 165, 233, 0.95)",
             borderColor: "rgba(14, 165, 233, 0.4)",
             hoverColor: "#0ea5e9"
         },
         {
-            id: "time",
-            symbol: "Δ^it",
-            nameEn: "Modular Time Flow",
-            nameKo: "모듈러 시간 흐름",
-            mathCode: "\\alpha_t(A) = \\Delta_{\\Omega}^{it} A \\Delta_{\\Omega}^{-it}",
-            descEn: "Lorentzian time is not fundamental; it emerges as a modular automorphism (Tomita-Takesaki theory) from the horizon entanglement KMS state.",
-            descKo: "시간은 기본 차원이 아니며 지평선 얽힘 진공의 Tomita-Takesaki 모듈러 흐름(KMS 열적 진공)으로부터 창발되는 열역학적 매개변수입니다.",
-            link: "06_horizon_unification_math.md#L857-L870",
+            id: "action",
+            symbol: "S",
+            nameEn: "HNM Master Action",
+            nameKo: "HNM 마스터 작용량",
+            mathCode: "S_{\\text{HNM}}=\\text{Tr}((QQ^\\dagger)^2)",
+            descEn: "The chiral spectral action is the central dynamical equation. In the matrix limit it yields an IKKT/BFSS-type action for coordinates and spinors.",
+            descKo: "카이랄 스펙트럼 작용량은 이론의 중심 동역학입니다. 행렬 극한에서 좌표와 스피너를 위한 IKKT/BFSS형 작용량으로 환원됩니다.",
+            sectionEn: "Full Treatise: Chapter 2",
+            sectionKo: "풀버전 이론서: 제2장",
+            doc: "06_horizon_unification_math.md",
+            x: -230,
+            y: 120,
+            radius: 29,
+            color: "rgba(6, 182, 212, 0.95)",
+            borderColor: "rgba(6, 182, 212, 0.4)",
+            hoverColor: "#06b6d4"
+        },
+        {
+            id: "ward",
+            symbol: "Tr_s",
+            nameEn: "Vacuum-Energy Constraint",
+            nameKo: "진공 에너지 구속조건",
+            mathCode: "\\text{Tr}_{s}(\\mathcal{D}^4)\\equiv0",
+            descEn: "The supersymmetric supertrace identity is read as a constraint pairing bosonic and fermionic spectral contributions, separating chiral dynamics from bulk vacuum-energy cancellation.",
+            descKo: "초대칭 초대각합 항등식은 보손과 페르미온 스펙트럼 기여를 짝짓는 구속조건으로 읽힙니다. 카이랄 동역학과 벌크 진공 에너지 상쇄를 구분합니다.",
+            sectionEn: "Full Treatise: Section 2.2",
+            sectionKo: "풀버전 이론서: 2.2절",
+            doc: "06_horizon_unification_math.md",
             x: 0,
-            y: 220,
+            y: -190,
             radius: 28,
-            color: "rgba(244, 63, 94, 0.95)", // Rose
+            color: "rgba(168, 85, 247, 0.95)",
+            borderColor: "rgba(168, 85, 247, 0.4)",
+            hoverColor: "#a855f7"
+        },
+        {
+            id: "classical",
+            symbol: "G_YM",
+            nameEn: "Classical Field Limit",
+            nameKo: "고전 장 이론 극한",
+            mathCode: "[X^b,[X_b,X_a]]+\\frac12\\bar{\\Psi}\\Gamma_a\\Psi=0",
+            descEn: "In the large-N limit, commutators become curvature and field strength. Gravity, Yang-Mills theory, and the Dirac equation are organized as effective faces of one matrix dynamics.",
+            descKo: "큰 $N$ 극한에서 교환자는 곡률과 장세기로 해석됩니다. 중력, 양-밀스 이론, 디랙 방정식은 하나의 행렬 동역학의 서로 다른 유효 표현으로 정리됩니다.",
+            sectionEn: "Full Treatise: Section 2.3",
+            sectionKo: "풀버전 이론서: 2.3절",
+            doc: "06_horizon_unification_math.md",
+            x: 0,
+            y: 160,
+            radius: 28,
+            color: "rgba(34, 197, 94, 0.95)",
+            borderColor: "rgba(34, 197, 94, 0.4)",
+            hoverColor: "#22c55e"
+        },
+        {
+            id: "d10",
+            symbol: "D=10",
+            nameEn: "D=10 Consistency",
+            nameKo: "D=10 일관성",
+            mathCode: "D-2\\in\\{1,2,4,8\\}",
+            descEn: "Supersymmetric Fierz identities, Majorana-Weyl spinors, and normed division algebras select the 10-dimensional consistency branch emphasized in the full treatise.",
+            descKo: "초대칭 Fierz 항등식, 마요라나-바일 스피너, 노름 나눗셈 대수가 결합되어 풀버전에서 강조하는 10차원 일관성 가지를 선택합니다.",
+            sectionEn: "Full Treatise: Chapter 3",
+            sectionKo: "풀버전 이론서: 제3장",
+            doc: "06_horizon_unification_math.md",
+            x: 240,
+            y: -160,
+            radius: 28,
+            color: "rgba(244, 63, 94, 0.95)",
             borderColor: "rgba(244, 63, 94, 0.4)",
             hoverColor: "#f43f5e"
         },
         {
             id: "compact",
-            symbol: "Y_i",
-            nameEn: "Fuzzy Compactification",
-            nameKo: "퍼지 콤팩트화",
-            mathCode: "SO(10) \\to SU(3) \\times SU(2) \\times U(1)",
-            descEn: "Spontaneous dimensional compactification on CP^2_F x S^2_F. The commutant of this fuzzy space dynamically yields the Standard Model gauge symmetry.",
-            descKo: "10차원 기하학 중 6차원이 퍼지 공간 $CP^2_F \\times S^2_F$ 상으로 자발적 콤팩트화되며, 여분 차원 대칭성이 표준 모형 $SU(3) \\times SU(2) \\times U(1)$로 분기됩니다.",
-            link: "06_horizon_unification_math.md#L636-L650",
-            x: 280,
-            y: -10,
-            radius: 25,
-            color: "rgba(16, 185, 129, 0.95)", // Emerald
+            symbol: "A_F",
+            nameEn: "SM Fuzzy Compactification",
+            nameKo: "표준모형 퍼지 콤팩트화",
+            mathCode: "\\mathcal{A}_F\\cong\\mathbb{C}\\oplus\\mathbb{H}\\oplus\\text{Mat}_3(\\mathbb{C})",
+            descEn: "The internal fuzzy sector CP^2_F x S^2_F is used to organize Standard Model gauge symmetry, three generations, Higgs structure, and neutrino masses.",
+            descKo: "내부 퍼지 부문 $CP^2_F \\times S^2_F$는 표준모형 게이지 대칭, 3세대, 힉스 구조, 중성미자 질량을 정리하는 역할을 합니다.",
+            sectionEn: "Full Treatise: Chapters 1 and 6",
+            sectionKo: "풀버전 이론서: 제1장 및 제6장",
+            doc: "06_horizon_unification_math.md",
+            x: 430,
+            y: -40,
+            radius: 27,
+            color: "rgba(16, 185, 129, 0.95)",
             borderColor: "rgba(16, 185, 129, 0.4)",
             hoverColor: "#10b981"
         },
         {
-            id: "matter",
-            symbol: "χ=3",
-            nameEn: "Chiral Matter & Higgs",
-            nameKo: "카이랄 물질과 힉스 보손",
-            mathCode: "n_{\\text{gen}} = \\chi(CP^2 \\times S^2) = 3",
-            descEn: "Compact space topology dictates exactly three generations of chiral fermions. The spectral Higgs mechanism generates physical masses.",
-            descKo: "콤팩트 공간의 위상학적 특성(오일러 지수 = 3)에 의해 자연스럽게 3세대 카이랄 페르미온이 선택되며 스펙트럼 힉스 메커니즘을 통해 질량이 획득됩니다.",
-            link: "06_horizon_unification_math.md#L675-L690",
-            x: 360,
-            y: 110,
-            radius: 25,
-            color: "rgba(99, 102, 241, 0.95)", // Indigo
+            id: "cosmology",
+            symbol: "q",
+            nameEn: "Eigenvalue Cosmology",
+            nameKo: "고윳값 우주론",
+            mathCode: "q_{\\text{vacuum}}=-1",
+            descEn: "Free-probabilistic eigenvalue droplets, instanton tunneling, and the Vandermonde barrier are used to connect de Sitter-like expansion with a Big Bounce scenario.",
+            descKo: "자유 확률론적 고윳값 액적, 인스턴톤 터널링, 판데르몬데 장벽을 통해 드 시터형 팽창과 빅 바운스 시나리오를 연결합니다.",
+            sectionEn: "Full Treatise: Chapters 4 and 5",
+            sectionKo: "풀버전 이론서: 제4장 및 제5장",
+            doc: "06_horizon_unification_math.md",
+            x: 250,
+            y: 125,
+            radius: 28,
+            color: "rgba(59, 130, 246, 0.95)",
+            borderColor: "rgba(59, 130, 246, 0.4)",
+            hoverColor: "#3b82f6"
+        },
+        {
+            id: "erepr",
+            symbol: "ER",
+            nameEn: "ER=EPR & Dark Matter",
+            nameKo: "ER=EPR과 암흑 물질",
+            mathCode: "\\rho_{\\text{DM}}\\propto a^{-3}",
+            descEn: "Off-diagonal matrix blocks are interpreted as entanglement channels. The same sector is used to model cold dark matter as frozen Kaluza-Klein remnants.",
+            descKo: "비대각 행렬 블록은 얽힘 채널로 해석됩니다. 같은 부문에서 암흑 물질은 얼어붙은 Kaluza-Klein 잔존물로 모델링됩니다.",
+            sectionEn: "Full Treatise: Chapter 7",
+            sectionKo: "풀버전 이론서: 제7장",
+            doc: "06_horizon_unification_math.md",
+            x: -430,
+            y: 190,
+            radius: 28,
+            color: "rgba(99, 102, 241, 0.95)",
             borderColor: "rgba(99, 102, 241, 0.4)",
             hoverColor: "#6366f1"
+        },
+        {
+            id: "time",
+            symbol: "Δ^it",
+            nameEn: "Modular Time & Gravity",
+            nameKo: "모듈러 시간과 중력",
+            mathCode: "\\sigma_s(A)=\\Delta^{-is}A\\Delta^{is}",
+            descEn: "Time is treated as emergent modular flow. Entanglement thermodynamics then supplies the route from matrix states to Einstein-like gravitational equations.",
+            descKo: "시간은 창발적 모듈러 흐름으로 취급됩니다. 얽힘 열역학은 행렬 상태에서 아인슈타인형 중력 방정식으로 가는 경로를 제공합니다.",
+            sectionEn: "Full Treatise: Chapters 8 and 9",
+            sectionKo: "풀버전 이론서: 제8장 및 제9장",
+            doc: "06_horizon_unification_math.md",
+            x: -150,
+            y: 320,
+            radius: 28,
+            color: "rgba(234, 88, 12, 0.95)",
+            borderColor: "rgba(234, 88, 12, 0.4)",
+            hoverColor: "#ea580c"
+        },
+        {
+            id: "predictions",
+            symbol: "Obs",
+            nameEn: "Falsifiable Signatures",
+            nameKo: "반증 가능한 관측 신호",
+            mathCode: "n_T=+0.0215\\pm0.0005",
+            descEn: "The prediction layer collects proposed signatures: minimum length corrections, area quantization, Hawking lines, heavy KK dark matter, blue-tilted primordial waves, and holographic noise.",
+            descKo: "예측 층은 최소 길이 보정, 면적 양자화, 호킹 방출선, 무거운 KK 암흑 물질, 청색 기울기 원시 중력파, 홀로그래픽 노이즈를 관측 신호로 모읍니다.",
+            sectionEn: "Full Treatise: Chapter 10",
+            sectionKo: "풀버전 이론서: 제10장",
+            doc: "06_horizon_unification_math.md",
+            x: 130,
+            y: 320,
+            radius: 28,
+            color: "rgba(217, 70, 239, 0.95)",
+            borderColor: "rgba(217, 70, 239, 0.4)",
+            hoverColor: "#d946ef"
+        },
+        {
+            id: "strings",
+            symbol: "Σ_g",
+            nameEn: "Emergent Strings",
+            nameKo: "창발적 끈 이론",
+            mathCode: "F=\\sum_g N^{2-2g}\\mathcal{F}_g",
+            descEn: "String worldsheets are read as the large-N ribbon-graph expansion of the matrix path integral. String theory becomes a perturbative shadow, not the starting axiom.",
+            descKo: "끈 세계면은 행렬 경로적분의 큰 $N$ 리본 그래프 전개로 읽힙니다. 끈 이론은 출발 공리가 아니라 섭동적 그림자로 정리됩니다.",
+            sectionEn: "Full Treatise: Chapters 11 and 12",
+            sectionKo: "풀버전 이론서: 제11장 및 제12장",
+            doc: "06_horizon_unification_math.md",
+            x: 430,
+            y: 215,
+            radius: 27,
+            color: "rgba(20, 184, 166, 0.95)",
+            borderColor: "rgba(20, 184, 166, 0.4)",
+            hoverColor: "#14b8a6"
         }
     ];
 
     const hnmLinks = [
-        { from: "axiom", to: "chiral" },
-        { from: "axiom", to: "susy" },
-        { from: "chiral", to: "droplet" },
-        { from: "droplet", to: "horizon" },
-        { from: "horizon", to: "bounce" },
+        { from: "axiom", to: "horizon" },
+        { from: "axiom", to: "fock" },
+        { from: "axiom", to: "action" },
+        { from: "axiom", to: "ward" },
+        { from: "axiom", to: "d10" },
+        { from: "action", to: "classical" },
+        { from: "d10", to: "compact" },
+        { from: "fock", to: "cosmology" },
         { from: "horizon", to: "time" },
-        { from: "droplet", to: "compact" },
-        { from: "compact", to: "matter" }
+        { from: "horizon", to: "erepr" },
+        { from: "cosmology", to: "erepr" },
+        { from: "cosmology", to: "predictions" },
+        { from: "classical", to: "predictions" },
+        { from: "compact", to: "predictions" },
+        { from: "action", to: "strings" },
+        { from: "strings", to: "predictions" }
     ];
 
     function resizeTheoryMapCanvas() {
@@ -1818,9 +2027,11 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const name = state.currentLang === "en" ? node.nameEn : node.nameKo;
         const desc = state.currentLang === "en" ? node.descEn : node.descKo;
-        const linkLabel = state.currentLang === "en" ? "References in Paper" : "논문 내 관련 항목";
-        const linkPath = node.link;
-        const linkName = linkPath.split('/').pop().replace('#', ' #');
+        const linkLabel = state.currentLang === "en" ? "Related Source" : "관련 원문";
+        const linkDoc = node.doc || "06_horizon_unification_math.md";
+        const linkName = state.currentLang === "en"
+            ? (node.sectionEn || "Open HNM Full Treatise")
+            : (node.sectionKo || "HNM 풀버전 이론서 열기");
 
         nodeDetails.innerHTML = `
             <div class="detail-node-name">${name}</div>
@@ -1828,7 +2039,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="detail-node-desc">${desc}</div>
             <div class="detail-node-links">
                 <span class="detail-node-links-title">${linkLabel}</span>
-                <a href="${linkPath}" class="detail-node-link-item link">
+                <a href="#doc=${encodeURIComponent(linkDoc)}" class="detail-node-link-item link" data-doc-target="${linkDoc}">
                     <i class="fa-solid fa-file-lines"></i> ${linkName}
                 </a>
             </div>
@@ -1853,21 +2064,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (linkItem) {
             linkItem.addEventListener("click", (e) => {
                 e.preventDefault();
-                // Extract document filename
-                const docFile = linkPath.split('#')[0];
-                
-                // Find matching button
-                const matchingBtn = Array.from(navButtons).find(btn => btn.getAttribute("data-doc") === docFile);
-                if (matchingBtn) {
-                    matchingBtn.click();
-                } else {
-                    // Fallback load
-                    state.activeView = "doc-view";
-                    docView.classList.add("active");
-                    sandboxView.classList.remove("active");
-                    if (theoryMapView) theoryMapView.classList.remove("active");
-                    loadMarkdown(docFile);
-                }
+                showDocument(linkDoc, { updateHash: true });
             });
         }
     }
